@@ -92,7 +92,6 @@
 - Result label: **proved theorem**
 - Hypotheses: marker-three layers, `3<=X_n`, `r_n>=2`
 - Conclusion: main support generates exactly `3Z`; palette subset sums attain every residue modulo `3`
-- Constants effective: yes after the displayed elementary thresholds
 - Proof: `proofs/MARKER_THREE_LATTICE_REPAIR.md`
 
 ### N1-RED-004: Quotient-window correction theorem
@@ -129,19 +128,33 @@
 - Range status: `exp(O((log n)^2))`, not the factorial half-range
 - Proof: `proofs/MARKER_THREE_LATTICE_REPAIR.md`
 
-## Frozen conditional results
+### N1-STR-018: Repaired high-prime menu bound
 
-### N1-CAP-001: Explicit menu capacity
-
-- Result label: **conditional theorem**
-- Hypothesis:
+- Result label: **proved theorem**
+- Imported dependency: `N3-ANA-010` from branch `nova/analytic-density`, exact commit `e60069f797af878711e7a9d4abb1fb6188a1f724`
+- Hypotheses: integer `n>=120368`, `1<=t<=M_n`
+- Conclusion:
   \[
-  \pi(n)-\pi(n/2)\ge n/(3\log n)
+  |U_t(n)|\ge2^{\pi(n)-\pi(n/2)-1}
+  \ge2^{n/(3\log n)-1}
   \]
-  for all sufficiently large `n`
-- Conclusion: the full menus satisfy the necessary profile-capacity inequality
-- What is not claimed: additive occupancy
-- Location: `proofs/HIGH_PRIME_MENU_CAPACITY.md`
+- Legality mechanism: complementary subset products of primes in `(n/2,n]`, with the factor `3` reserved separately
+- Cutoff proof: the upper-half prime product divides the central binomial coefficient and is at most `2^n`
+- Proof: `proofs/MARKER_THREE_MENU_CAPACITY.md`
+
+### N1-CAP-002: Explicit repaired profile-capacity gate
+
+- Result label: **proved theorem**
+- Hypotheses: integer `n>=120368`
+- Conclusion:
+  \[
+  2^{r_n}\prod_{t=1}^{M_n}(|U_t(n)|+1)\ge X_n+1
+  \]
+- Constants effective: yes, threshold `120368`
+- What is not claimed: profile injectivity, numerical occupancy, maximum-gap control
+- Proof: `proofs/MARKER_THREE_MENU_CAPACITY.md`
+
+## Frozen conditional results
 
 ### N1-RED-005: Marker-three half-range reduction
 
