@@ -2,205 +2,204 @@
 
 ## Requirements from Nova 1
 
-### N2-REQ-N1-001-v4
+### N2-REQ-N1-001-v5
 
-Requirement status: `AWAITING_RECEIVER_DECISION`
+Requirement status: `STRUCTURAL_INPUT_ACCEPTED`
 
-The original system in `N1-HO-N2-001` was rejected at commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`. Nova 2 issued `N2-HO-N1-002`, freezing this repair:
+Accepted source:
 
-- retain the full-menu valuation-tagged main labels;
-- set
-  \[
-  g_n=2^{r_n+1};
-  \]
-- extend the correction palette through `2^{r_n+2}`;
-- normalize the main sumset as `R_n=g_nQ_n`;
-- replace the false original request by
-  \[
-  Q_n\cap[\max(0,m-3),m]\ne\varnothing.
-  \]
+- branch: `nova/factorial-structure`
+- exact commit: `ebb47ba436af554366d0f285119a769f31f9e561`
+- construction: `N1-CON-003`
+- handoff: `N1-HO-N2-002`
+- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`
 
-Nova 1 must return `ACCEPTED`, `ACCEPTED_WITH_RESTRICTIONS`, `SUPERSEDED`, or `REJECTED`, with exact branch and commit SHA.
+The accepted structural facts are:
 
-Required confirmations:
+- legal marker-three main divisors;
+- exact 2-adic layer separation;
+- main-palette numerical disjointness;
+- exact main lattice `3 Z`;
+- quotient span one;
+- exact correction radius and downward-window reduction;
+- selected-term cost `M_n+r_n`.
 
-1. every added power divides `n!` over the declared range;
-2. added powers are numerically disjoint from all main labels;
-3. correction term count is `r_n+3`;
-4. quotient identity uses one fixed label family for all targets;
-5. quotient endpoint is exactly `floor(X_n/g_n)`;
-6. every valuation budget remains legal;
-7. the repaired construction receives a versioned object ID;
-8. every endpoint excluded from analytic tilting has deterministic coverage.
+Response:
 
-Nova 2 has independently proved N2-ADD-118, so Nova 1 need not re-prove four-point occupancy in
+`handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
 
-\[
-0\le m\le3\cdot2^{M_n}.
-\]
-
-Repair contract: `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`.
-
-### N2-REQ-N1-002
+### N2-REQ-N1-002-v2
 
 Requirement status: `OPEN`
 
-Any superseding construction must still provide exact labels, numerical distinctness, quotient normalization, correction range and cost, first-target coverage, final-only selection logic, endpoint coverage, and an exact source SHA. Any construction failing N2-ADD-116 is rejected before analytic work.
+Provide exact endpoint information for the marker-three quotient model:
+
+1. lower bounds for the largest reachable quotient sum;
+2. upper bounds sufficient to detect endpoint deficit;
+3. explicit large-core subfamilies in each layer;
+4. exact thresholds for inclusion of all odd cores through `m_n`;
+5. any structural theorem controlling gaps between admissible odd cores;
+6. finite exceptions.
+
+A support maximum below `Y_n-W_n` disproves the frozen model.
+
+### N2-REQ-N1-003
+
+Requirement status: `SUPERSEDED`
+
+Nova 2's earlier three-power repair contract `N2-HO-N1-002` is superseded as the preferred route by `N1-CON-003`. N2-ADD-116 through N2-ADD-118 remain valid and preserved as a fallback chain.
 
 ## Requirements from Nova 3
 
-All Nova 3 work now applies only to the unprotected quotient region
-
-\[
-3\cdot2^{M_n}<m\le\left\lfloor X_n/g_n\right\rfloor.
-\]
-
 ### N2-REQ-N3-001-v4
 
-Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
+Requirement status: `OPEN`
 
-For the exact normalized labels
-
-\[
-B_t(n)=\{2^{t-1}u:u\mid n!,\ u>1\text{ odd},\ g_n2^{t-1}u\le X_n\},
-\]
-
-prove existence and uniqueness, or an explicit certified substitute, for a target-dependent exponential tilt centered in
+For the exact marker-three quotient labels
 
 \[
-W_{n,m}=[\max(0,m-3),m].
+B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
 \]
 
-State the exact bulk set and every endpoint exclusion.
+construct or reject a target-dependent exponential product law centered in
+
+\[
+I_{n,q}=[\max(0,q-W_n),q].
+\]
+
+State the exact bulk target range and every endpoint exclusion.
 
 ### N2-REQ-N3-002-v4
 
-Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
+Requirement status: `OPEN`
 
-Prove explicit uniform variance lower and upper bounds for the normalized numerical-value random sum throughout the declared bulk region. Identify the first lower and upper endpoint where the bound fails.
+Prove explicit uniform bounds for:
+
+- variance;
+- third absolute centered moment;
+- maximal numerical step;
+- maximal-step to standard-deviation ratio;
+- lower and upper endpoint collapse.
+
+These must concern numerical quotient values, not logarithms.
 
 ### N2-REQ-N3-003-v4
 
-Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
+Requirement status: `OPEN`
 
 Determine the exact additive span and every resonance of
 
 \[
-\Phi_{n,m}(\theta)=\mathbb E e^{i\theta T_{n,m}}
+\Phi_{n,q}(\theta)=\mathbb E e^{i\theta T_{n,q}}
 \]
 
-on `[-pi,pi]`. A gcd-one statement is not a quantitative minor-arc theorem.
+on `[-pi,pi]`.
+
+The fact that `1 in B_1(n)` proves span one but does not prove quantitative minor-arc decay.
 
 ### N2-REQ-N3-004-v3
 
-Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
+Requirement status: `OPEN`
 
-Provide an explicit lattice reference law `G_{n,m}`, prove positive four-point mass, and establish
+Provide an explicit integer-valued reference law `G_{n,q}` and prove
 
 \[
 \int_{-\pi}^{\pi}
-|\Phi_{n,m}(\theta)-\Psi_{n,m}(\theta)|
-\left|\sum_{a\in W_{n,m}}e^{-ia\theta}\right|d\theta
+|\Phi_{n,q}(\theta)-\Psi_{n,q}(\theta)|
+\left|
+\sum_{a\in I_{n,q}}e^{-ia\theta}
+\right|d\theta
 <
-2\pi G_{n,m}(W_{n,m})
+2\pi G_{n,q}(I_{n,q})
 \]
 
 for every declared bulk target.
 
-Exact request: `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
+Exact request:
+
+`handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
 
 ### N2-REQ-N3-005
 
 Requirement status: `OPEN`
 
-Any use of logarithmic divisor-size theorems requires a separately proved transfer to the additive numerical-value quotient convolution.
+Any use of logarithmic divisor theorems must include a separate proved transfer to the numerical additive quotient law. Without that bridge, the result is not an occupancy input.
 
 ## Requirements from Nova 4
 
-### Current intake
-
-Nova 4 commit
-
-`2f2a355f59f230751b8e798e7a5df0769e8bf6d9`
-
-is `ACCEPTED_WITH_RESTRICTIONS`.
-
-Accepted:
-
-- exact lattice-first infrastructure;
-- rational certification of `r_n` and `M_n`;
-- independent replay of N2-ADD-115 and N2-OBS-107;
-- fail-closed corrupted-certificate tests.
-
-Missing:
-
-- current Nova 2 source metadata;
-- N2-ADD-116 quotient normalization;
-- N2-OBS-108 repair regressions;
-- normalized quotient labels and sumset search;
-- a completed four-point quotient-gap result.
-
-Response: `handoffs/RESPONSE_TO_NOVA4.md`.
-
 ### N2-REQ-N4-001-v3
 
-Requirement status: `PARTIALLY_SATISFIED`
+Requirement status: `OPEN`
 
-Upgrade the lattice verifier to the current quotient contract and check, in order:
+Independently replay the marker-three structural gate from Nova 1 commit
 
-1. divisor legality;
-2. numerical duplicates;
-3. common factor `g_n`;
-4. exact quotient labels;
-5. correction interval `[0,Lg_n-1]`;
-6. quotient threshold `L-1`;
-7. N2-ADD-118 protected-prefix membership;
-8. exact final-window occupancy beyond the prefix through a declared cutoff.
+`ebb47ba436af554366d0f285119a769f31f9e561`.
+
+Return separate verdicts for legality, distinctness, lattice, quotient span, correction coverage, quotient reduction, and term count.
 
 ### N2-REQ-N4-002-v3
 
-Requirement status: `PARTIALLY_SATISFIED`
+Requirement status: `OPEN`
 
-Replay:
+Implement N2-ADD-120's connected-core recursion.
 
-- N2-OBS-107, already implemented;
-- one-power failure at `x=g_n`;
-- two-power failure at `x=2g_n`;
-- N2-ADD-118 binary-spine witnesses.
-
-Then search only after
+At layer `t`, compute
 
 \[
-m=3\cdot2^{M_n}.
+D_t=
+\left\lfloor
+\frac{E_{t-1}+W_n+1}{2^{t-1}}
+\right\rfloor,
 \]
 
-No full-family counterexample can occur earlier.
+then return:
+
+- the largest core connected to zero;
+- the first blocking core gap;
+- the exact two cores bordering the gap;
+- the certified endpoint `E_t`;
+- the final comparison of `E_{M_n}+W_n` with `Y_n`.
+
+Failure of this recursion is failure of one proof engine only.
 
 ### N2-REQ-N4-003-v3
 
 Requirement status: `OPEN`
 
-For each feasible `n`, report:
+For feasible exact ranges, compute the full marker-three quotient restricted sumset and report:
 
-- quotient layer sizes;
-- formal profile count;
-- full versus reduced menu status;
-- exact reachable sums through the declared cutoff;
-- collision ratio;
-- gcd and residues modulo `2<=q<=64`;
-- maximum downward quotient gap;
-- first empty four-point window beyond the protected prefix;
-- exact witnesses and source SHAs.
+- layer sizes;
+- profile count;
+- number of distinct sums;
+- collision multiplicity;
+- maximum downward gap;
+- first empty target window;
+- exact witnesses;
+- full versus reduced menu status.
 
-A reduced-menu failure is not a full-family failure.
+A reduced-menu failure is not a full-model counterexample.
 
-### N2-REQ-N4-004
+### N2-REQ-N4-004-v2
 
 Requirement status: `OPEN`
 
-Any probabilistic test must use certified intervals for the tilt, variance, reference mass, and Fourier discrepancy. Uncertified quadrature is computational evidence only.
+Replay the deterministic protected prefix through
 
-Frozen handoff: `handoffs/TO_NOVA4.md`.
+\[
+m_n(2^{M_n}-1)+W_n.
+\]
+
+No counterexample may be reported at or below this bound.
+
+### N2-REQ-N4-005
+
+Requirement status: `OPEN`
+
+Audit endpoint support. If the exact maximum reachable quotient is below `Y_n-W_n`, return the smallest endpoint counterexample and classify the marker-three model as disproved.
+
+Exact request:
+
+`handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
 
 ## Archive requirement
 
@@ -208,56 +207,67 @@ Frozen handoff: `handoffs/TO_NOVA4.md`.
 
 Requirement status: `OPEN`
 
-Import the full Phase 12M through 12P source packages or source-level theorem statements so their exact no-go hypotheses can be audited.
+Import the source-level Phase 12M through 12P theorem statements so their exact hypotheses can be audited rather than inferred from summaries.
 
 ## Internal Nova 2 requirements
 
 ### N2-REQ-INT-001-v4
 
-Requirement status: `PARTIALLY_PROVED`
+Requirement status: `OPEN`
 
-N2-ADD-118 proves
+Prove or disprove
 
 \[
-Q_n\cap[\max(0,m-3),m]\ne\varnothing
+Q_n\cap[q-W_n,q]\ne\varnothing
 \]
 
 for every
 
 \[
-0\le m\le3\cdot2^{M_n}.
+W_n+1\le q\le Y_n.
 \]
 
-Extend or disprove the same statement in
-
-\[
-3\cdot2^{M_n}<m\le\left\lfloor X_n/g_n\right\rfloor.
-\]
-
-### N2-REQ-INT-002-v2
+### N2-REQ-INT-002-v3
 
 Requirement status: `OPEN`
 
-Prove that every remaining argument is genuinely final-only and does not impose sequential interval coverage.
+Determine the connected-core reach under N2-ADD-120 and identify the first layer at which the carrier recursion stops extending.
 
-### N2-REQ-INT-003-v2
+### N2-REQ-INT-003-v3
 
 Requirement status: `OPEN`
 
-After Nova 3 declares a bulk range and Nova 1 declares deterministic endpoints, prove their union covers every quotient target with no transition gap.
+Audit N2-ADD-120 against the exact Phase 12P hypotheses. Do not label a sequential proof as final-only.
 
 ### N2-REQ-INT-004-v3
 
 Requirement status: `OPEN`
 
-Determine the exact quotient span and quantify all secondary periodicities beyond the binary-spine prefix.
+Control collision collapse between different marker-three rainbow profiles. Formal capacity is not support cardinality.
 
-### N2-REQ-INT-005
+### N2-REQ-INT-005-v2
 
 Requirement status: `OPEN`
 
-Compare target-dependent Fourier positivity and deterministic labeled restricted-sumset growth on the same quotient labels. Retain the weakest theorem that closes every remaining four-point window.
+Compare the two preferred asymptotic engines on the same marker-three labels:
+
+1. target-dependent bounded-torus Fourier positivity;
+2. deterministic final restricted-sumset growth.
+
+Retain the weakest valid theorem proving every target window occupied.
+
+### N2-REQ-INT-006
+
+Requirement status: `OPEN`
+
+Prove the bulk and deterministic endpoint regimes cover every quotient target with no transition gap.
+
+### N2-REQ-INT-007
+
+Requirement status: `OPEN`
+
+Certify finite exceptions below the eventual threshold.
 
 ## Rule
 
-Every theorem, certificate, computation, heuristic, or disproved architecture must use one of the track's six allowed result labels. No target may be omitted, and no labeled duplicate may be treated as a distinct numerical divisor.
+Every theorem, certificate, computation, heuristic, or disproved architecture must use an allowed evidence label. Requirements use requirement status. No target may be omitted, no labeled duplicate may be treated as a distinct numerical divisor, and failure of a sufficient proof engine must not be promoted to failure of the full model.
