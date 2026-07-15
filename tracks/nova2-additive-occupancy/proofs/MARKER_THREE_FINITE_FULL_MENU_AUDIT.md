@@ -145,18 +145,18 @@ python verification/marker_three_full_menu_audit.py --n-min 45 --n-max 45
 
 Frozen artifacts:
 
-- `verification/data/marker_three_full_menu_n12_n45.json`
+- `verification/data/marker_three_full_menu_n12_n45.manifest.json`
 - `verification/data/marker_three_full_menu_n12_n45.csv`
 
-Canonical JSON payload SHA-256:
+The standalone generator emits the full per-layer JSON payload. Its combined canonical payload SHA-256 is:
 
 `15f3598d3d111bfd78a7f1e51a9fd07972158c81f60686a76a5a3e03bf22224c`
 
-CSV SHA-256:
+The repository CSV uses LF line endings. Its SHA-256 is:
 
-`04c9f73c354c549d65935b1ca98c6573649cdffc9bb72873d313ea05d053e82e`
+`b777f045c7f5fa6ff44d143b97d1526a2f3c228a20d264f0a44b64bf111b0f6b`
 
-The CSV contains the exact per-`n` summary. The JSON additionally records every per-layer menu size, threshold, connected core, first blocking gap, and carrier endpoint.
+The CSV freezes the exact per-`n` summary. The manifest freezes the source commits, range, layer transitions, largest completed case, resource boundary, artifact paths, and hashes.
 
 ## Interpretation
 
