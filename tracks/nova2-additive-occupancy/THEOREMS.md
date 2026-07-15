@@ -18,6 +18,7 @@
 | N2-ADD-113 | proved theorem | Positive point mass gives targetwise extraction for fixed legal labels | `models/TOY_SUFFICIENT_CONDITIONS.md` |
 | N2-ADD-115 | proved theorem | A subset of `g Z` cannot meet all downward windows of radius below `g-1`; applying this to the first Nova 1 layers gives an exact first-target failure | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
 | N2-ADD-116 | proved theorem | If `S subseteq g Z` and corrections cover `[0,Lg-1]`, exact original-target coverage is equivalent to quotient downward gaps at most `L-1` | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
+| N2-ADD-118 | proved theorem | The repaired normalized quotient sumset meets every four-point window through `3*2^{M_n}` under the frozen valuation-budget condition | `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md` |
 
 ## Conditional theorems
 
@@ -64,9 +65,38 @@
   M_n+r_n+3
   =O((\log n)^2).
   \]
+- Proved prefix input: N2-ADD-118 closes the quotient hypothesis uniformly for every `0<=m<=3*2^{M_n}`.
+- Remaining quotient region:
+  \[
+  3\cdot2^{M_n}<m\le\lfloor X_n/g_n\rfloor.
+  \]
 - Structural dependency: Nova 1 must accept or supersede the repair and certify the three added powers, quotient identity, and finite exceptions.
 - Analytic dependency: exact additive numerical-value tilt and bounded-torus weighted Fourier theorem, or a deterministic quotient covering theorem.
 - Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
+
+## Finite certificates
+
+### N2-FIN-201
+
+- Result label: `finite certificate`.
+- Exact rational-log scan range: `7<=n<=5000`.
+- First `n` satisfying
+  \[
+  r_n+M_n\le\left\lfloor v_2(n!)/2\right\rfloor-1
+  \]
+  is `n=1892`.
+- Parameters:
+  \[
+  r_n=31,
+  \qquad
+  M_n=911,
+  \qquad
+  v_2(1892!)=1886,
+  \qquad
+  v_3(1892!)=942.
+  \]
+- N2-ADD-118 protects every four-point quotient window through `3*2^911`, a 275-digit endpoint.
+- Verification: `verification/quotient_binary_spine.py`.
 
 ## Disproved models
 
@@ -119,6 +149,15 @@
 - Exact target window: `[max(0,m-3),m]`.
 - Request: `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
 
+### Nova 4 lattice harness
+
+- Source branch: `nova/computational-verification`.
+- Source commit: `2f2a355f59f230751b8e798e7a5df0769e8bf6d9`.
+- Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
+- Accepted: exact lattice-first verification infrastructure and independent replay of N2-ADD-115 and N2-OBS-107.
+- Not yet supplied: N2-ADD-116 normalization, N2-OBS-108 regressions, normalized quotient labels, or a four-point quotient-gap sweep.
+- Response: `handoffs/RESPONSE_TO_NOVA4.md`.
+
 ## Open factorial instantiation nodes
 
 - N2-OPEN-201-v3: obtain Nova 1 acceptance or a versioned superseding construction for the three-power quotient repair.
@@ -127,7 +166,8 @@
 - N2-OPEN-204-v2: cover all quotient endpoint regimes omitted by the analytic theorem.
 - N2-OPEN-205: certify finite exceptions.
 - N2-OPEN-206: verify that any imported theorem for `log d` has a proved transfer to additive numerical sums before use.
-- N2-OPEN-207: independently prove or disprove that the final normalized rainbow sumset has maximum downward gap at most `3`.
+- N2-OPEN-207-v2: extend or disprove four-point quotient occupancy in the remaining region `3*2^{M_n}<m<=floor(X_n/g_n)`.
+- N2-OPEN-208: upgrade Nova 4's exact lattice harness to the current normalized quotient contract.
 
 ## Promotion rule
 
