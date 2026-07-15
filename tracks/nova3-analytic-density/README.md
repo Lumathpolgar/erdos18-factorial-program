@@ -6,29 +6,58 @@
 
 ## Mission
 
-Prove exact asymptotic counting and distribution estimates for divisors of `n!` that are legally matched to structural or additive theorem contracts.
+Prove exact counting, distribution, and Fourier estimates for factorial divisors, matched to versioned structural and additive theorem contracts.
 
 ## Current proved frontier
 
 The branch now contains:
 
-- the exact independent exponent and exponential-tilt model;
+- the exact factorial-divisor exponent product and exponential-tilt model;
 - a uniform logarithmic local-count ceiling;
-- a non-Gaussian limit theorem for the full uniform-divisor model;
-- an obstruction to unrestricted pointwise minor-arc decay;
-- a high-prime zero-tilt central limit theorem and coarse-window result;
-- the explicit upper-half prime interval bound
+- a non-Gaussian full-model limit;
+- an obstruction to unrestricted logarithmic minor-arc decay;
+- a high-prime zero-tilt central limit theorem and coarse-window theorem;
+- the explicit prime interval bound
   \[
   \pi(n)-\pi(n/2)\ge n/(3\log n)
   \qquad(n\ge120368);
   \]
-- the explicit Nova 1 menu-capacity threshold `n_3=n_4=n_5=120368`;
-- a compact-tilt Gaussian and coarse logarithmic-window theorem for exact subset products of primes in `(n/2,n]`, uniform for every fixed `|theta|<=theta_0<1`;
-- a unit-tilt freezing obstruction showing that the compact range cannot reach `|theta|=1`.
+- explicit old-address and repaired marker-three formal-capacity theorems;
+- a compact-tilt top-prime logarithmic Gaussian theorem for every fixed `|theta|<=theta_0<1`;
+- a unit-tilt freezing obstruction;
+- an exact repair of Nova 1's marker-three capacity proof;
+- an infinite counterexample family to the proposed central-binomial divisibility shortcut;
+- the active marker-three numerical product law;
+- unique target-dependent numerical tilt for every nontrivial quotient target;
+- exact additive span one and exact torus resonance set `{0}`;
+- an explicit all-frequency characteristic-function bound;
+- a proof that no minor-arc modulus gap can hold uniformly over all tilts.
 
-## Current distinction
+## Active numerical contract
 
-Logarithmic divisor density and numerical additive occupancy are different analytic objects.
+The active cross-track law is Nova 2 handoff `N2-HO-N3-003` at commit
+
+`fb73e6906105c983bacbd46a96ef8d5d87567fae`.
+
+It uses the numerical quotient supports
+
+\[
+B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
+\]
+
+For every
+
+\[
+W_n<q\le Y_n,
+\]
+
+the common exponential family has a unique finite tilt centered inside `[q-W_n,q]`.
+
+The only exact torus resonance is zero. Quantitative minor-arc control still requires a compact tilt range or an equivalent phase-dispersion lower bound on the final analytic target interval.
+
+## Mandatory distinction
+
+Logarithmic divisor density and numerical additive occupancy are different objects.
 
 A theorem for
 
@@ -42,11 +71,17 @@ does not control
 \mathbb E e^{itd}
 \]
 
-or a numerical rainbow sum. Nova 2's additive theorem requires a repaired layer system and a matched bounded-torus analysis on `[-pi,pi]`.
+or a numerical rainbow sum. The active additive inversion domain is the integer torus `[-pi,pi]`.
 
 ## Active theorem target
 
-Determine the sharpest true uniform logarithmic-window scale below `K_A log n` for compactly tilted top-prime subset products. Prove a bounded-frequency local theorem, weaken to the strongest true intermediate width, or prove a resonance or maximum-gap obstruction.
+After Nova 1 and Nova 2 freeze the exact transition from deterministic coverage to analytic responsibility, prove one of:
+
+1. a compact bound on the target-dependent numerical tilt;
+2. a direct phase-dispersion lower bound for enough active coordinates;
+3. an exact target family where variance or minor-arc coefficients collapse.
+
+Only then can the strict weighted Fourier inequality for constant-width quotient windows be attempted.
 
 ## Required files
 
@@ -55,9 +90,9 @@ Determine the sharpest true uniform logarithmic-window scale below `K_A log n` f
 - `SOURCE_LEDGER.md`
 - `OPEN_REQUIREMENTS.md`
 - `PREFERRED_ROUTE.md`
-- candidate theorem files under `candidates/`
-- proof files under `proofs/`
-- handoffs under `handoffs/`
+- candidate files under `candidates/`
+- proofs and verifiers under `proofs/`
+- versioned handoffs under `handoffs/`
 
 ## Verification
 
@@ -65,10 +100,12 @@ Determine the sharpest true uniform logarithmic-window scale below `K_A log n` f
 python3 tracks/nova3-analytic-density/proofs/scale_sanity.py
 python3 tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
+python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
+python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 ```
 
-Finite checks and computational tables remain explicitly separated from asymptotic proof.
+Finite checks and computational tables remain explicitly separated from symbolic proof.
 
 ## Claim boundary
 
-The factorial half-range theorem and Erdős Problem 18 remain open. Counting, formal profile capacity, logarithmic density, and Gaussian approximation do not by themselves imply additive coverage or maximum-gap control.
+The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, logarithmic density, exact centering, span one, and resonance classification do not by themselves imply quotient occupancy or maximum-gap control.
