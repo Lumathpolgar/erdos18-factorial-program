@@ -16,6 +16,7 @@
 | N2-ADD-111 | proved theorem | Explicit lower bound for a discretized-Gaussian window | `models/TOY_SUFFICIENT_CONDITIONS.md` |
 | N2-ADD-112 | proved theorem | Main-window occupancy plus a disjoint correction palette gives exact coverage | `models/TOY_SUFFICIENT_CONDITIONS.md` |
 | N2-ADD-113 | proved theorem | Positive point mass gives targetwise extraction for fixed legal labels | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-115 | proved theorem | A subset of `g Z` cannot meet all downward windows of radius below `g-1`; applying this to the first Nova 1 layers gives an exact first-target failure | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
 
 ## Conditional theorem
 
@@ -42,14 +43,22 @@
 | N2-OBS-104 | disproved model | A Gaussian-looking or weak local approximation forces every atom or window positive | `models/TOY_COUNTEREXAMPLES.md` |
 | N2-OBS-105 | disproved model | A bulk tilted local theorem remains uniform to both support endpoints | `models/TOY_COUNTEREXAMPLES.md` |
 | N2-OBS-106 | disproved model | Separate target-dependent probability spaces define one universal random object | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-OBS-107 | disproved model | The exact valuation-tagged occupancy request `N1-HO-N2-001` covers every target with radius `2^{r_n}-1` | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
+
+## Cross-track decisions
+
+- `N1-HO-N2-001`: `REJECTED` at Nova 1 commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
+- Reason: all main sums lie in `2^{r_n+1} Z`, while the first requested window is `[1,2^{r_n}]`.
+- Response: `handoffs/RESPONSE_TO_NOVA1.md`.
 
 ## Open factorial instantiation nodes
 
-- N2-OPEN-201: construct fixed factorial labels satisfying the N2-ADD-114 structural clauses.
-- N2-OPEN-202: prove a uniform target-dependent tilt and variance theorem in the bulk.
-- N2-OPEN-203: prove the weighted major-minor arc inequality.
+- N2-OPEN-201-v2: obtain a revised fixed factorial label family whose common lattice span and correction radius are compatible.
+- N2-OPEN-202: prove a uniform target-dependent tilt and variance theorem in the bulk for an accepted additive-value layer law.
+- N2-OPEN-203: prove the weighted major-minor arc inequality on the integer torus `[-pi,pi]`.
 - N2-OPEN-204: cover excluded endpoint regimes deterministically.
 - N2-OPEN-205: certify finite exceptions.
+- N2-OPEN-206: verify that any imported theorem for `log d` has a proved transfer to additive numerical sums before use.
 
 ## Promotion rule
 
