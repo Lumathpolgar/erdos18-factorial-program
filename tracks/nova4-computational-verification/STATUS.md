@@ -39,7 +39,7 @@ N2 lattice transition audit: every n = 3 through 10,000
 Nova 1 capacity audit: every n = 3 through 1,000,000
 Nova 1 reduced-rainbow audit: every n = 20 through 80
 previous complete unit suite: 39 passing
-new reduced-rainbow tests: 10 passing
+new reduced-rainbow tests: 11 passing
 on-disk corrupted fixtures required to fail: 11
 arithmetic: exact integers and rational interval bounds
 ```
