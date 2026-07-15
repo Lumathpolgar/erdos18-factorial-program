@@ -58,6 +58,31 @@ Proof: `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`.
 
 Response: `handoffs/RESPONSE_TO_NOVA1.md`.
 
+## Nova 3 handoff decision
+
+Nova 3 handoff `N3-HO-N2-001`, imported from branch `nova/analytic-density` at exact commit
+
+`0ce88b28dc2e6641093526f5777bb31f658e3515`,
+
+is `ACCEPTED_WITH_RESTRICTIONS`.
+
+Accepted restrictions:
+
+- the full uniform-divisor law for `log d` is not Gaussian;
+- unbounded-frequency pointwise decay is not a valid contract;
+- low-prime coordinates may retain macroscopic variance;
+- logarithmic divisor theorems do not transfer automatically to additive numerical sums.
+
+Nova 2's required characteristic function is
+
+\[
+\phi_{n,x}(t)=\mathbb E e^{itS_{n,x}}
+\]
+
+for the numerical divisor sum, with inversion on the bounded torus `[-pi,pi]`. The high-prime logarithmic CLT is not imported as an additive occupancy theorem.
+
+Response: `handoffs/RESPONSE_TO_NOVA3.md`.
+
 ## Disproved models and retired shortcuts
 
 - Raw profile capacity as a coverage criterion.
@@ -67,6 +92,7 @@ Response: `handoffs/RESPONSE_TO_NOVA1.md`.
 - A single bulk tilted local theorem extending uniformly to both support endpoints.
 - Target-dependent probability spaces treated as one shared random universal object.
 - The exact valuation-tagged layer and correction contract `N1-HO-N2-001`.
+- Automatic transfer from logarithmic divisor density to additive numerical occupancy.
 
 ## Model ranking
 
@@ -75,18 +101,10 @@ Response: `handoffs/RESPONSE_TO_NOVA1.md`.
 3. Uniform rainbow convolution.
 4. Fixed-law Fourier or local-limit route as a standalone architecture.
 
-## Nova 3 inspection
-
-Nova 3 branch `nova/analytic-density` was inspected at exact commit
-
-`0ce88b28dc2e6641093526f5777bb31f658e3515`.
-
-Its handoff correctly warns that results for `log d` do not automatically transfer to additive numerical divisor sums and that unbounded-frequency pointwise decay is the wrong contract. Nova 2's additive Fourier variable is on the integer torus `[-pi,pi]`. A formal restricted response is being maintained separately.
-
 ## Exact open blockers
 
 1. Nova 1 must replace the rejected layer system with labels whose support lattice and correction radius are compatible.
-2. Nova 3 must analyze the exact additive numerical-value layer law, not the logarithmic divisor model, once revised labels are frozen.
+2. Nova 3 must analyze the exact additive numerical-value layer law once revised labels are frozen.
 3. No certified finite falsification harness from Nova 4 is available.
 4. The source-level Phase 12M through 12P package statements are not stored in the repository.
 5. Finite exceptions below the eventual `n_0` remain open.
@@ -95,8 +113,9 @@ Its handoff correctly warns that results for `log d` do not automatically transf
 
 - `handoffs/TO_NOVA1.md`
 - `handoffs/TO_NOVA3.md`
-- `handoffs/TO_NOVA4.md`
+- `handoffs/TO_NOVA4.md`, updated with the N2-ADD-115 lattice precheck and N2-OBS-107 regression case
 - `handoffs/RESPONSE_TO_NOVA1.md`
+- `handoffs/RESPONSE_TO_NOVA3.md`
 
 ## Next theorem target
 
