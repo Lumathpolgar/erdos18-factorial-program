@@ -1,0 +1,116 @@
+{
+  "schema": "nova2.marker-three-streaming-audit.v1",
+  "result_id": "N2-FIN-203",
+  "result_class": "finite certificate",
+  "source": {
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "nova1_branch": "nova/factorial-structure",
+    "nova1_commit": "ebb47ba436af554366d0f285119a769f31f9e561",
+    "nova1_construction": "N1-CON-003",
+    "nova2_theorems": ["N2-ADD-119", "N2-ADD-120", "N2-ADD-121"]
+  },
+  "n": 46,
+  "r": 16,
+  "M": 235,
+  "v2_factorial": 42,
+  "legal_layer_count": 43,
+  "X": 74179661362209580727623742159,
+  "Y": 24726553787403193575874580719,
+  "W": 21844,
+  "odd_core_divisor_count": 27941760,
+  "stream": {
+    "emitted_count_through_Y": 24567748,
+    "final_value_through_Y": 24726431646655352806770703125,
+    "record_gap_count": 631,
+    "maximum_frontier": 3373952
+  },
+  "layers_used": 6,
+  "carrier_endpoint": 24938550582416882103407926139,
+  "occupied_through": 24938550582416882103407947983,
+  "margin": 211996795013688527533367264,
+  "deficit": 0,
+  "reaches_full_endpoint": true,
+  "term_bound": 22,
+  "rows": [
+    {
+      "t": 1,
+      "scale": 1,
+      "core_bound": 24726553787403193575874580719,
+      "menu_size": 24567748,
+      "gap_threshold": 21845,
+      "connected_max_core": 49786217,
+      "carrier_endpoint": 49786217,
+      "first_blocking_gap": {
+        "left_core": 49786217,
+        "right_core": 49809375,
+        "gap": 23158
+      }
+    },
+    {
+      "t": 2,
+      "scale": 2,
+      "core_bound": 12363276893701596787937290359,
+      "menu_size": 24221955,
+      "gap_threshold": 24904031,
+      "connected_max_core": 377630859375,
+      "carrier_endpoint": 755311504967,
+      "first_blocking_gap": {
+        "left_core": 377630859375,
+        "right_core": 377656336629,
+        "gap": 25477254
+      }
+    },
+    {
+      "t": 3,
+      "scale": 4,
+      "core_bound": 6181638446850798393968645179,
+      "menu_size": 23854078,
+      "gap_threshold": 188827881703,
+      "connected_max_core": 9327107601883071,
+      "carrier_endpoint": 37309185719037251,
+      "first_blocking_gap": {
+        "left_core": 9327107601883071,
+        "right_core": 9327298099640625,
+        "gap": 190497757554
+      }
+    },
+    {
+      "t": 4,
+      "scale": 8,
+      "core_bound": 3090819223425399196984322589,
+      "menu_size": 23464068,
+      "gap_threshold": 4663648214882387,
+      "connected_max_core": 329182348809878825625,
+      "carrier_endpoint": 2633496099664749642251,
+      "first_blocking_gap": {
+        "left_core": 329182348809878825625,
+        "right_core": 329187350009763984375,
+        "gap": 5001199885158750
+      }
+    },
+    {
+      "t": 5,
+      "scale": 16,
+      "core_bound": 1545409611712699598492161294,
+      "menu_size": 23052013,
+      "gap_threshold": 164593506229046854006,
+      "connected_max_core": 13250220558903267737706909,
+      "carrier_endpoint": 212006162438551948552952795,
+      "first_blocking_gap": {
+        "left_core": 13250220558903267737706909,
+        "right_core": 13250389594193630033203125,
+        "gap": 169035290362295496216
+      }
+    },
+    {
+      "t": 6,
+      "scale": 32,
+      "core_bound": 772704805856349799246080647,
+      "menu_size": 22618189,
+      "gap_threshold": 6625192576204748392280457,
+      "connected_max_core": 772704513124322817339217917,
+      "carrier_endpoint": 24938550582416882103407926139,
+      "first_blocking_gap": null
+    }
+  ]
+}
