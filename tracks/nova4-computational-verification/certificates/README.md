@@ -27,3 +27,12 @@ PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
 ```
 
 See `certificates/capacity/README.md` for the frozen source and independent recomputation contract.
+
+## Reduced-rainbow replay
+
+```bash
+PYTHONPATH=src python3 src/replay_rainbow.py verify-failure \
+  certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
+```
+
+See `certificates/rainbow/README.md` for the exact frozen Study B scope and corruption-rejection contract.
