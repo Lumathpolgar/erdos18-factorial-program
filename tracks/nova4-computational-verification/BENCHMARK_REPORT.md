@@ -73,9 +73,9 @@ No mathematical conclusion is inferred for `n=14` from that timeout.
 
 Environment: CPython 3.13.5, standard library only.
 
-The complete unit suite now contains 32 tests and completes in approximately 0.2 seconds in the recorded environment.
+The complete unit suite at that checkpoint contained 32 tests and completed in approximately 0.2 seconds in the recorded environment.
 
-The exact transition audit for every `3 <= n <= 10000` completes in approximately 1.9 seconds. It uses rational interval bounds for logarithmic ceilings and exact integer checks for factorial valuation and target admissibility.
+The exact transition audit for every `3 <= n <= 10000` completed in approximately 1.9 seconds. It uses rational interval bounds for logarithmic ceilings and exact integer checks for factorial valuation and target admissibility.
 
 These timings are engineering diagnostics, not mathematical claims.
 
@@ -83,4 +83,14 @@ These timings are engineering diagnostics, not mathematical claims.
 
 The exact audit of all 999,998 integers in `3 <= n <= 1,000,000` completed in approximately 6.7 seconds in the recorded container. Peak resident memory was approximately 333 MB.
 
-The complete unit suite contains 39 tests and completed in approximately 7.0 seconds. These are engineering diagnostics, not mathematical claims.
+The complete unit suite at that checkpoint contained 39 tests and completed in approximately 7.0 seconds. These are engineering diagnostics, not mathematical claims.
+
+## Nova 1 reduced-rainbow benchmark
+
+The deterministic Study B generation for all 61 cases in `20 <= n <= 80` completed in approximately 24.1 seconds in the recorded CPython 3.13.5 container. Peak resident memory was approximately 316 MiB.
+
+The calculation used exact target-truncated integer bitsets through `T_n=10^7`, exact residue masks for every modulus `2<=q<=64`, and stored support snapshots for replayable record-gap witnesses.
+
+Ten newly added reduced-rainbow tests completed in approximately 2.7 seconds. They cover exact parameter transitions, family construction, support counts, independent lattice agreement, witness reconstruction, duplicate-layer rejection, full semantic replay on a sample range, and rehashed false-certificate rejection.
+
+No timeout or unknown result occurred in Study B. These timings are engineering diagnostics, not mathematical claims.
