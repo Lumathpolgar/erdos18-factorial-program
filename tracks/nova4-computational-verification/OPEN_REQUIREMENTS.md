@@ -8,9 +8,9 @@ Frozen source head: `fa11f4b2cb86a2dd791df189ada12757be791804`
 
 Handoff: `N1-HO-N4-001`
 
-Status: `RECEIVED_READY_FOR_AUDIT`
+Status: `STUDY_A_COMPLETE_STUDY_B_READY`
 
-Run the exact capacity-threshold audit and reduced rainbow model under the frozen formulas and ranges.
+Study A is complete at Nova 4 checkpoint `53b579cd5a7eeac780869cffa2cb8b9b8bdd5289`. Run the reduced rainbow model for every `20 <= n <= 80`.
 
 ## N4-REQ-N3-001
 
