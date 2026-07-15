@@ -1,163 +1,135 @@
 # Nova 2 Additive Model Registry
 
-## Model QV: Normalized valuation-tagged quotient occupancy
+## Model M3: Marker-three quotient occupancy
+
+- Model ID: `N2-MOD-M3-001`.
+- Result label: `conditional theorem` as a structural reduction.
+- Rank: 1.
+- Source branch: `nova/factorial-structure`.
+- Source commit: `ebb47ba436af554366d0f285119a769f31f9e561`.
+- Source construction: `N1-CON-003`.
+- Nova 2 intake: `ACCEPTED_WITH_RESTRICTIONS`.
+- Response: `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
+
+Frozen quotient labels:
+
+\[
+B_t(n)=
+\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
+\]
+
+Target window:
+
+\[
+[q-W_n,q],
+\qquad
+W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor.
+\]
+
+Conditional conclusion:
+
+\[
+H_{n!}(X_n+1)\le M_n+r_n.
+\]
+
+Structural advantages:
+
+- exact main lattice `3 Z`;
+- quotient span one;
+- original binary correction palette;
+- no main-palette collision;
+- lower term cost than the three-power fallback;
+- a much wider quotient correction window.
+
+Main blockers:
+
+- uniform final quotient occupancy;
+- endpoint support near `Y_n`;
+- profile-to-sum collision control;
+- numerical additive Fourier estimates;
+- finite exceptions.
+
+## Engine M3-F: Final-only tilted Fourier occupancy
+
+- Engine ID: `N2-ENG-M3-F`.
+- Result label: `conditional theorem`.
+- Rank inside Model M3: 1.
+- Fixed labels: marker-three quotient labels.
+- Target-dependent object: probability weights only.
+- Characteristic function:
+  \[
+  \Phi_{n,q}(\theta)=\mathbb E e^{i\theta T_{n,q}},
+  \qquad
+  \theta\in[-\pi,\pi].
+  \]
+- Exact request: `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
+- Main blocker: strict weighted Fourier error below exact target-window reference mass.
+
+This remains the preferred asymptotic engine because it tests the final sumset and does not impose sequential interval growth.
+
+## Engine M3-D: Deterministic final restricted-sumset theorem
+
+- Engine ID: `N2-ENG-M3-D`.
+- Result label: `conditional theorem`.
+- Rank inside Model M3: 2.
+- Required conclusion: every final marker-three quotient window is occupied.
+- Main blocker: available additive theorems do not automatically preserve labels, numerical distinctness, interval location, or factorial legality.
+
+## Engine M3-C: Connected-core carrier recursion
+
+- Engine ID: `N2-ENG-M3-C`.
+- Result label: `conditional theorem`.
+- Rank inside Model M3: 3.
+- Theorems: N2-ADD-119 and N2-ADD-120.
+- Proof: `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`.
+
+At layer `t`, core gaps are tested against
+
+\[
+D_t(E_{t-1})
+=
+\left\lfloor
+\frac{E_{t-1}+W_n+1}{2^{t-1}}
+\right\rfloor.
+\]
+
+Strengths:
+
+- exact integer criterion;
+- preserves downward orientation;
+- scalable without full sumset enumeration;
+- gives explicit first blocking core gap.
+
+Restrictions:
+
+- sequential proof architecture;
+- failure does not disprove the full model;
+- requires exact Phase 12P compatibility audit.
+
+Verification request: `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
+
+## Model QV: Three-power normalized valuation-tagged fallback
 
 - Model ID: `N2-MOD-QV-001`.
-- Result label: `conditional theorem` as a repaired reduction, with a proved deterministic prefix.
-- Rank: 1, conditional on Nova 1 structural acceptance.
+- Result label: `conditional theorem` with proved prefix.
+- Rank: 4.
+- Status: `SUPERSEDED_AS_PREFERRED`, preserved as a valid fallback.
+- Proofs: N2-ADD-116, N2-ADD-117, N2-ADD-118.
 - File: `models/VALUATION_TAGGED_QUOTIENT_MODEL.md`.
-- Source construction: Nova 1 full-menu valuation-tagged packets, inspected at head `fa11f4b2cb86a2dd791df189ada12757be791804`.
-- Common factor removed:
-  \[
-  g_n=2^{r_n+1}.
-  \]
-- Frozen quotient labels:
-  \[
-  B_t(n)=\{2^{t-1}u:u\mid n!,\ u>1\text{ odd},\ g_n2^{t-1}u\le X_n\}.
-  \]
-- Repaired correction palette:
-  \[
-  \{2^0,2^1,\ldots,2^{r_n+2}\}.
-  \]
-- Exact required conclusion:
-  \[
-  Q_n\cap[\max(0,m-3),m]\ne\varnothing
-  \]
-  for every quotient target through `floor(X_n/g_n)`.
-- Proved prefix by N2-ADD-118:
-  \[
-  0\le m\le3\cdot2^{M_n}.
-  \]
-- Remaining region:
-  \[
-  3\cdot2^{M_n}<m\le\lfloor X_n/g_n\rfloor.
-  \]
-- Term budget after global success: `M_n+r_n+3`.
-- Proof engine in the remaining region: target-dependent tilt plus bounded-torus Fourier comparison, or a deterministic final-sumset theorem.
-- Main blockers: Nova 1 repair acceptance, quotient span and resonance audit, four-point local mass beyond the prefix, endpoints, finite exceptions.
 
-## Model BS: Deterministic binary-spine prefix
-
-- Model ID: `N2-MOD-BS-001`.
-- Result label: `proved theorem`.
-- Rank: a proved component inside Model QV, not a standalone global architecture.
-- Proof: `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md`.
-- Verification: `verification/quotient_binary_spine.py`.
-- Frozen legal choices:
-  \[
-  3,5,7\in B_1(n),
-  \qquad
-  3\cdot2^{t-1}\in B_t(n)\quad(2\le t\le M_n).
-  \]
-- Exact conclusion: every odd quotient from `3` through `3*2^{M_n}-3` is represented, so every four-point window through `3*2^{M_n}` is occupied.
-- Term cost: at most `M_n` quotient terms.
-- Limitation: it does not control the remaining quotient range up to `floor(X_n/g_n)`.
+The route is retained because its normalization, repair obstruction, and binary-spine theorem are exact. Marker-three is preferred because it has smaller lattice span, fewer correction terms, and a wider target window.
 
 ## Model U: Uniform rainbow convolution
 
 - Result label: `heuristic`.
-- Rank: 4.
-- File: `models/UNIFORM_RAINBOW_CONVOLUTION.md`.
-- Frozen object: product of uniform laws on pairwise numerically disjoint labels.
-- Required conclusion: every correction window has positive final convolution mass.
-- Main blocker: one fixed mean leaves the endpoint windows in large-deviation tails.
+- Rank: 5.
+- Main blocker: one fixed mean leaves endpoint windows in large-deviation tails.
 
-## Model T: Target-dependent exponential tilt
+## Fixed-law Fourier standalone route
 
-- Result label: `conditional theorem`.
-- Rank: 2 as a general architecture and the preferred probabilistic engine inside Model QV after the proved prefix.
-- File: `models/TARGET_DEPENDENT_TILT.md`.
-- Frozen object: fixed labels with target-dependent Gibbs weights.
-- Current exact law: exponential tilt on the normalized numerical labels `B_t(n)`.
-- Current exact target window: `[max(0,m-3),m]`.
-- Current target domain: only the region beyond `3*2^{M_n}` needs analytic treatment.
-- Proof engine: N2-ADD-110 weighted Fourier comparison.
-- Main blocker: uniform tilt, variance, major arcs, minor arcs, resonances, and endpoint regime split for the quotient model.
-
-## Model F: Fourier and local-limit occupancy
-
-- Result label: `conditional theorem` as a proof engine, `heuristic` as a fixed-law standalone route.
-- Rank: 5 as a standalone model.
-- File: `models/FOURIER_LOCAL_LIMIT.md`.
-- Frozen object: integer-valued additive characteristic function on the torus `[-pi,pi]`, split into explicit major and minor arcs.
-- Current exact characteristic function:
-  \[
-  \Phi_{n,m}(\theta)=\mathbb E e^{i\theta T_{n,m}}.
-  \]
-- Required inequality: weighted Fourier error strictly below the reference four-point window mass.
-- Main blocker: target-uniform minor-arc control and every additional resonance on the bounded torus.
-- Type restriction: the Fourier variable acts on numerical quotient sums, not on `log d`. Results for logarithmic divisor size require a separate transfer theorem.
-
-## Model D: Deterministic restricted-sumset growth
-
-- Result label: `conditional theorem` beyond the binary-spine prefix.
-- Rank: 3.
-- File: `models/DETERMINISTIC_RESTRICTED_SUMSET.md`.
-- Frozen object: final collision-free labeled sumset, with no partial interval invariant.
-- Current exact target: prove maximum downward gap at most `3` in the final quotient sumset after `3*2^{M_n}`.
-- Main blocker: existing additive theorems do not automatically preserve labeling, distinctness, interval location, or factorial legality.
-
-## Rejected factorial instantiation V1
-
-- Result label: `disproved model`.
-- Imported object: Nova 1 `N1-HO-N2-001`.
-- Source branch: `nova/factorial-structure`.
-- Source commit: `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
-- Addresses: `e_t=r_n+t`, for `1<=t<=M_n`.
-- Main support lattice: `2^{r_n+1} Z`.
-- Requested correction radius: `2^{r_n}-1`.
-- First failing target: `x=2^{r_n}`.
-- Empty window: `[1,2^{r_n}]` contains no possible main sum.
-- Proof: `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`.
-- Handoff decision: `REJECTED` in `handoffs/RESPONSE_TO_NOVA1.md`.
-
-## Rejected repair variants V1-A and V1-B
-
-- Result label: `disproved model`.
-- The original palette extended only through `2^{r_n}` still misses target `g_n=2^{r_n+1}`.
-- The original palette extended through `2^{r_n+1}` still misses target `2g_n`.
-- The failures are exact and independent of menu size or analytic estimates.
-- Result ID: `N2-OBS-108`.
-- Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
-
-## Cross-model proved obstructions
-
-- Profile count does not imply coverage.
-- Proper lattice span blocks residue classes.
-- Ordinary convolution can count illegal collisions.
-- Approximation error must be smaller than the main atom or window mass.
-- Tilted Bernoulli variance collapses at both support endpoints.
-- Target-dependent probability spaces are not one random universal object without a coupling.
-- A correction radius smaller than the common lattice gap cannot repair every downward window.
-- After quotient normalization, correction range `[0,Lg-1]` can bridge only quotient downward gaps at most `L-1`.
-- One-power and two-power consecutive-binary repairs fail the minimum-support test.
-
-Locations:
-
-- `models/TOY_COUNTEREXAMPLES.md`
-- `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`
-- `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`
-
-## Cross-model proved sufficient conditions
-
-- collision-free deterministic extraction;
-- sampled-catalogue union bound;
-- weighted Fourier window positivity;
-- explicit discretized-Gaussian window lower bound;
-- correction-window bridge;
-- lattice quotient normalization;
-- the conditional three-power repair implication;
-- deterministic binary-spine four-point occupancy through `3*2^{M_n}`.
-
-Locations:
-
-- `models/TOY_SUFFICIENT_CONDITIONS.md`;
-- `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`;
-- `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md`.
-
-## Preferred hybrid
-
-Use Model QV as the exact construction. Model BS closes its entire initial quotient regime. Beyond that prefix, use Model T for target centering, Model F for positive four-point window mass, and the repaired deterministic binary palette for exact residual completion. Model D remains the preferred nonanalytic alternative.
+- Result label: `heuristic` as a standalone architecture.
+- Rank: 6.
+- Fourier analysis remains useful inside target-dependent models, but a single fixed law is not expected to cover both support endpoints uniformly.
 
 ## Mandatory evaluation fields
 
@@ -167,16 +139,14 @@ Every future candidate must record:
 2. divisor legality;
 3. numerical disjointness;
 4. term budget;
-5. support range;
-6. common lattice span and exact attained residues;
-7. quotient normalization when a common span exists;
+5. support range and endpoint reach;
+6. common lattice and quotient normalization;
+7. exact target-window orientation and width;
 8. moments and maximal step;
-9. target type: pointwise, windowed, almost-all, average, or finite;
-10. correction width and term cost;
-11. proof that the correction radius covers every remaining quotient gap;
-12. endpoint regimes, including the first requested target;
-13. exact bounded-frequency analytic inequality;
-14. whether the Fourier variable acts on numerical values or logarithmic values;
-15. exact finite falsification task;
-16. whether the argument is final-only or secretly sequential;
-17. whether the target lies inside the N2-ADD-118 protected prefix.
+9. additive span and every resonance;
+10. collision multiplicity;
+11. deterministic prefix;
+12. finite or asymptotic status;
+13. whether the proof is final-only or sequential;
+14. exact Phase 12P compatibility when sequential;
+15. exact falsification task and source SHAs.
