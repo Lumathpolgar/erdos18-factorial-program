@@ -2,114 +2,192 @@
 
 ## Requirements from Nova 1
 
-### N2-REQ-N1-001-v2
+### N2-REQ-N1-001-v3
+
+Requirement status: `AWAITING_RECEIVER_DECISION`
+
+The original system in `N1-HO-N2-001` was rejected at commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`. The current Nova 1 head inspected is `fa11f4b2cb86a2dd791df189ada12757be791804`, and no versioned repair was present there.
+
+Nova 2 issued `N2-HO-N1-002`, freezing the following repair:
+
+- retain the full-menu valuation-tagged main labels;
+- set
+  \[
+  g_n=2^{r_n+1};
+  \]
+- add the three correction powers
+  \[
+  2^{r_n},\quad2^{r_n+1},\quad2^{r_n+2};
+  \]
+- use the full correction palette
+  \[
+  C_n^+=\{2^0,\ldots,2^{r_n+2}\};
+  \]
+- normalize the main sumset as `R_n=g_nQ_n`;
+- replace the false original occupancy request by the exact quotient request
+  \[
+  Q_n\cap[\max(0,m-3),m]\ne\varnothing.
+  \]
+
+Nova 1 must return `ACCEPTED`, `ACCEPTED_WITH_RESTRICTIONS`, `SUPERSEDED`, or `REJECTED`, with exact branch and commit SHA.
+
+Exact structural confirmations required:
+
+1. every added power divides `n!` over the declared range;
+2. added powers are numerically disjoint from all main labels;
+3. correction term count is `r_n+3`;
+4. quotient identity uses the same fixed labels for all targets;
+5. `3 in B_1(n)` or every exception is listed;
+6. quotient endpoint is exactly `floor(X_n/g_n)`;
+7. all valuation budgets remain legal;
+8. the repaired construction receives a new versioned object ID;
+9. every endpoint excluded from analytic tilting has deterministic coverage.
+
+Repair contract: `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`.
+
+### N2-REQ-N1-002
 
 Requirement status: `OPEN`
 
-The first fixed layer system in `N1-HO-N2-001` was rejected at Nova 1 commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08` by N2-ADD-115. Its support lies in `2^{r_n+1} Z`, while its correction radius is only `2^{r_n}-1`.
+If Nova 1 supersedes the repair, the new construction must still provide:
 
-Provide a revised, versioned factorial label family and correction palette satisfying every structural hypothesis of N2-ADD-114:
+- exact fixed labels;
+- numerical distinctness;
+- exact common lattice and quotient normalization;
+- correction range and term cost;
+- exact first-target coverage;
+- final-only selection logic;
+- endpoint coverage;
+- exact branch and commit SHA.
 
-- `A_{1,n},...,A_{k_n,n} subseteq D(n!)`;
-- `k_n<=K_1(log n)^2`;
-- exact divisor formulas;
-- pairwise numerical disjointness;
-- disjoint correction palette `C_n`;
-- exact correction radius `R_n`;
-- every residual `0<=r<=R_n` representable using at most `L_1(log n)^2` correction divisors;
-- total support reach at least `X_n-R_n`;
-- exact common lattice span of all main sums;
-- exact attained residue classes modulo that span;
-- proof that `R_n` is at least every unresolved downward residue gap;
-- explicit coverage of the first requested target;
-- deterministic coverage of every endpoint regime excluded from the bulk tilt theorem;
-- maximal-step data needed by the analytic theorem;
-- confirmation that no sequential partial-interval invariant is imposed.
-
-Original request: `handoffs/TO_NOVA1.md`.
-
-Rejection and repair contract: `handoffs/RESPONSE_TO_NOVA1.md`.
+Any construction failing N2-ADD-116 is rejected before analytic work.
 
 ## Requirements from Nova 3
 
-### N2-REQ-N3-001-v2
+### N2-REQ-N3-001-v3
 
-Requirement status: `BLOCKED_ON_REVISED_LABELS`
+Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
 
-After Nova 1 supplies an accepted fixed layer system, prove target-dependent exponential-tilt existence and a uniform bulk variance theorem for the additive numerical-value random sum
-
-\[
-S_{n,x}=\sum_i Y_{i,n,x},
-\qquad
-Y_{i,n,x}\in A_{i,n}\cup\{0\}.
-\]
-
-The theorem must state the exact target range and cannot use a logarithmic-divisor model without a proved transfer.
-
-### N2-REQ-N3-002-v2
-
-Requirement status: `BLOCKED_ON_REVISED_LABELS`
-
-For the exact additive layer law, identify every resonance on the integer torus and prove the actual lattice span or every inaccessible residue class.
-
-### N2-REQ-N3-003-v2
-
-Requirement status: `BLOCKED_ON_REVISED_LABELS`
-
-Provide an explicit lattice reference law `Q_{n,x}`, major arc set `M_{n,x}`, minor arc set `m_{n,x}`, and error functions on the bounded inversion domain `[-pi,pi]` satisfying
+For the exact normalized labels
 
 \[
-\int_{\mathfrak M_{n,x}}E_{\rm maj}|K_{n,x}|dt
-+
-\int_{\mathfrak m_{n,x}}E_{\rm min}|K_{n,x}|dt
-<2\pi Q_{n,x}(I_{n,x})
+B_t(n)=\{2^{t-1}u:u\mid n!,\ u>1\text{ odd},\ g_n2^{t-1}u\le X_n\},
 \]
 
-for every target in the declared bulk range.
-
-The characteristic function must be
+prove existence and uniqueness, or an explicit certified substitute, for the target-dependent exponential tilt centered inside
 
 \[
-\phi_{n,x}(t)=\mathbb E e^{itS_{n,x}},
+W_{n,m}=[\max(0,m-3),m].
 \]
 
-where `S_{n,x}` is the numerical divisor sum. The Fourier variable is not applied to `log d`.
+State the exact bulk target set and every endpoint exclusion.
 
-Original handoff: `handoffs/TO_NOVA3.md`.
+### N2-REQ-N3-002-v3
 
-Nova 3 source inspected: branch `nova/analytic-density`, commit `0ce88b28dc2e6641093526f5777bb31f658e3515`, handoff `N3-HO-N2-001`.
+Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
 
-### N2-REQ-N3-004
+For the normalized numerical-value random sum, prove explicit uniform variance lower and upper bounds throughout the bulk target set. Identify the first lower and upper endpoint at which variance control fails.
+
+### N2-REQ-N3-003-v3
+
+Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
+
+Determine the exact additive span and audit every resonance of
+
+\[
+\Phi_{n,m}(\theta)=\mathbb E e^{i\theta T_{n,m}}
+\]
+
+on the integer torus `[-pi,pi]`.
+
+A gcd-one statement is not a quantitative minor-arc theorem.
+
+### N2-REQ-N3-004-v2
+
+Requirement status: `BLOCKED_ON_NOVA1_ACCEPTANCE`
+
+Provide an explicit lattice reference law `G_{n,m}` and prove
+
+\[
+G_{n,m}(W_{n,m})\ge p_0(n,m)>0.
+\]
+
+Then prove the strict weighted Fourier inequality
+
+\[
+\int_{-\pi}^{\pi}
+|\Phi_{n,m}(\theta)-\Psi_{n,m}(\theta)|
+\left|\sum_{a\in W_{n,m}}e^{-ia\theta}\right|d\theta
+<
+2\pi G_{n,m}(W_{n,m})
+\]
+
+for every declared bulk target.
+
+The window has at most four integer points. A distribution-function error not smaller than its reference mass is insufficient.
+
+Exact request: `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
+
+### N2-REQ-N3-005
 
 Requirement status: `OPEN`
 
-Any proposed use of Nova 3 theorems for logarithmic divisor size must include a separate proved compatibility theorem transferring those estimates to the additive numerical-value convolution. Without that bridge, the result is not an input to N2-ADD-114.
+Any proposed use of Nova 3 theorems for logarithmic divisor size must include a separate proved compatibility theorem transferring those estimates to the additive numerical-value quotient convolution. Without that bridge, the result is not an input to N2-ADD-117.
 
 ## Requirements from Nova 4
 
-### N2-REQ-N4-001
+### N2-REQ-N4-001-v2
 
 Requirement status: `OPEN`
 
-Build an exact or certified falsification harness for divisor legality, numerical collisions, gcd and residues, support gaps, every target window, tilt parameters, variance, and the weighted Fourier inequality.
+Build an exact quotient-normalization verifier that accepts a frozen labeled family and correction palette and checks, in this order:
 
-The harness must run the lattice compatibility test before expensive convolution or Fourier work.
+1. divisor legality;
+2. numerical duplicates;
+3. common main-sum factor `g_n`;
+4. exact quotient labels;
+5. correction interval `[0,Lg_n-1]`;
+6. quotient gap threshold `L-1`;
+7. first target and minimum nonzero quotient sum;
+8. total support reach;
+9. exact final-window occupancy through the declared finite cutoff.
 
-### N2-REQ-N4-002
+### N2-REQ-N4-002-v2
 
 Requirement status: `OPEN`
 
-Return the smallest counterexample by smallest `n`, then smallest target, then smallest violated condition.
+Use the following exact regression cases:
 
-For any family with all terms divisible by `g`, explicitly test whether the correction radius is below `g-1` and whether the target range contains a missing residue block.
+- original palette: failure at `x=2^{r_n}`;
+- one-power repair through `2^{r_n}`: failure at `x=g_n`;
+- two-power repair through `2^{r_n+1}`: failure at `x=2g_n`;
+- three-power repair: verify that the initial quotient windows `m=0,1,2,3` pass when `3 in B_1(n)`.
 
-### N2-REQ-N4-003
+Then search for the lexicographically smallest later four-point quotient-window failure by smallest `n`, then smallest `m`.
+
+### N2-REQ-N4-003-v2
 
 Requirement status: `OPEN`
 
-Record the exact branch and commit SHA of every Nova 1 and Nova 3 input under test. Reject corrupted certificates and fail closed.
+For feasible `n`, compute exactly:
 
-Frozen handoff: `handoffs/TO_NOVA4.md`.
+- all quotient layer sizes;
+- formal profile count;
+- number of distinct reachable quotient sums through a declared cutoff;
+- collision ratio;
+- gcd and residues modulo every `2<=q<=64`;
+- maximum downward quotient gap;
+- first window `[m-3,m]` with no reachable sum;
+- one valid witness for every new reachable maximum;
+- exact branch and commit SHA of all imported inputs.
+
+### N2-REQ-N4-004
+
+Requirement status: `OPEN`
+
+If the probabilistic model is tested, use certified intervals for the tilt, variance, reference four-point mass, and weighted Fourier discrepancy. Numerical quadrature without a certified error bound is computational evidence only and cannot promote N2-ADD-117.
+
+Frozen base handoff: `handoffs/TO_NOVA4.md`.
 
 ## Archive requirement
 
@@ -121,37 +199,50 @@ Import the full Phase 12M through 12P source packages or source-level theorem st
 
 ## Internal Nova 2 requirements
 
-### N2-REQ-INT-001-v2
-
-Requirement status: `BLOCKED_ON_NOVA1`
-
-Instantiate N2-ADD-114 for the first structurally accepted factorial label family. The rejected `N1-HO-N2-001` family cannot serve as this input.
-
-### N2-REQ-INT-002
+### N2-REQ-INT-001-v3
 
 Requirement status: `OPEN`
 
-Prove that the selected model is genuinely final-only and does not impose a hidden sequential interval invariant covered by Phase 12P.
+Prove or disprove the exact normalized all-target statement
 
-### N2-REQ-INT-003
+\[
+Q_n\cap[\max(0,m-3),m]\ne\varnothing
+\]
+
+for every
+
+\[
+0\le m\le\lfloor X_n/g_n\rfloor.
+\]
+
+### N2-REQ-INT-002-v2
 
 Requirement status: `OPEN`
 
-After receiving endpoint and bulk ranges, verify that their union covers every integer target from `0` through `X_n` with no transition gap.
+Prove that the normalized model remains genuinely final-only. No proof may require every intermediate partial sumset to cover an interval.
 
-### N2-REQ-INT-004
+### N2-REQ-INT-003-v2
 
 Requirement status: `OPEN`
 
-For every future frozen layer family, run the following checks before analytic modeling:
+After Nova 3 declares a bulk range and Nova 1 declares deterministic endpoints, prove their union covers every quotient target with no transition gap.
 
-1. gcd and support lattice;
-2. exact residue classes;
-3. first requested target;
-4. correction radius versus maximum residue gap;
-5. minimum nonzero main term;
-6. numerical collisions;
-7. total support reach.
+### N2-REQ-INT-004-v2
+
+Requirement status: `OPEN`
+
+Determine whether the final quotient sumset has span one and quantify all secondary periodicities. The existence of the term `3` does not alone prove maximum gap at most `3`.
+
+### N2-REQ-INT-005
+
+Requirement status: `OPEN`
+
+Compare the two surviving proof engines on the same quotient labels:
+
+1. target-dependent Fourier positivity;
+2. deterministic labeled restricted-sumset growth.
+
+Retain the weakest theorem that proves every four-point window occupied.
 
 ## Rule
 
