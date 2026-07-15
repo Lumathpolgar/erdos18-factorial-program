@@ -4,7 +4,7 @@
 
 ### N2-REQ-N1-001
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Provide fixed factorial labels and a correction palette satisfying every structural hypothesis of N2-ADD-114:
 
@@ -26,19 +26,19 @@ Frozen handoff: `handoffs/TO_NOVA1.md`.
 
 ### N2-REQ-N3-001
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 For the frozen Nova 1 labels, prove target-dependent exponential-tilt existence and a uniform bulk variance theorem with an explicit target range.
 
 ### N2-REQ-N3-002
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Prove the lattice span or identify every inaccessible residue class.
 
 ### N2-REQ-N3-003
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Provide an explicit lattice reference law `Q_{n,x}`, major arc, minor arc, and error functions satisfying
 
@@ -57,19 +57,19 @@ Frozen handoff: `handoffs/TO_NOVA3.md`.
 
 ### N2-REQ-N4-001
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Build an exact or certified falsification harness for divisor legality, numerical collisions, gcd and residues, support gaps, every target window, tilt parameters, variance, and the weighted Fourier inequality.
 
 ### N2-REQ-N4-002
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Return the smallest counterexample by smallest `n`, then smallest target, then smallest violated condition.
 
 ### N2-REQ-N4-003
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Record the exact branch and commit SHA of every Nova 1 and Nova 3 input under test. Reject corrupted certificates and fail closed.
 
@@ -79,7 +79,7 @@ Frozen handoff: `handoffs/TO_NOVA4.md`.
 
 ### N2-REQ-ARC-001
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Import the full Phase 12M through 12P source packages or source-level theorem statements into the repository so the exact quantitative no-go hypotheses can be audited rather than inferred from index summaries.
 
@@ -87,22 +87,22 @@ Import the full Phase 12M through 12P source packages or source-level theorem st
 
 ### N2-REQ-INT-001
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Instantiate N2-ADD-114 for the first accepted factorial label family.
 
 ### N2-REQ-INT-002
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 Prove that the selected model is genuinely final-only and does not impose a hidden sequential interval invariant covered by Phase 12P.
 
 ### N2-REQ-INT-003
 
-Result label: `open requirement`
+Requirement status: `OPEN`
 
 After receiving endpoint and bulk ranges, verify that their union covers every integer target from `0` through `X_n` with no transition gap.
 
 ## Rule
 
-Every requirement must distinguish a theorem-grade input from heuristic or finite evidence. No target may be omitted, and no labeled duplicate may be treated as a distinct numerical divisor.
+Every theorem, certificate, computation, heuristic, or disproved architecture must use one of the track's six allowed result labels. Requirements themselves use requirement status rather than an evidence label. No target may be omitted, and no labeled duplicate may be treated as a distinct numerical divisor.
