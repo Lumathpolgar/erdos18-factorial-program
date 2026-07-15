@@ -14,7 +14,7 @@ Accepted source:
 - handoff: `N1-HO-N2-002`
 - Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`
 
-The accepted structural facts are:
+Accepted structural facts:
 
 - legal marker-three main divisors;
 - exact 2-adic layer separation;
@@ -24,22 +24,19 @@ The accepted structural facts are:
 - exact correction radius and downward-window reduction;
 - selected-term cost `M_n+r_n`.
 
-Response:
+Response: `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
 
-`handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
-
-### N2-REQ-N1-002-v2
+### N2-REQ-N1-002-v3
 
 Requirement status: `OPEN`
 
-Provide exact endpoint information for the marker-three quotient model:
+Provide uniform endpoint and odd-core gap information for the marker-three model:
 
 1. lower bounds for the largest reachable quotient sum;
-2. upper bounds sufficient to detect endpoint deficit;
-3. explicit large-core subfamilies in each layer;
+2. explicit large-core subfamilies in every layer;
+3. uniform control of consecutive gaps between odd divisors of `n!/3`;
 4. exact thresholds for inclusion of all odd cores through `m_n`;
-5. any structural theorem controlling gaps between admissible odd cores;
-6. finite exceptions.
+5. finite exceptions.
 
 A support maximum below `Y_n-W_n` disproves the frozen model.
 
@@ -47,7 +44,7 @@ A support maximum below `Y_n-W_n` disproves the frozen model.
 
 Requirement status: `SUPERSEDED`
 
-Nova 2's earlier three-power repair contract `N2-HO-N1-002` is superseded as the preferred route by `N1-CON-003`. N2-ADD-116 through N2-ADD-118 remain valid and preserved as a fallback chain.
+Nova 2's earlier three-power repair contract `N2-HO-N1-002` is superseded as the preferred route by `N1-CON-003`. N2-ADD-116 through N2-ADD-118 remain valid as a fallback chain.
 
 ## Requirements from Nova 3
 
@@ -55,7 +52,7 @@ Nova 2's earlier three-power repair contract `N2-HO-N1-002` is superseded as the
 
 Requirement status: `OPEN`
 
-For the exact marker-three quotient labels
+For the exact numerical marker-three quotient labels
 
 \[
 B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
@@ -93,9 +90,7 @@ Determine the exact additive span and every resonance of
 \Phi_{n,q}(\theta)=\mathbb E e^{i\theta T_{n,q}}
 \]
 
-on `[-pi,pi]`.
-
-The fact that `1 in B_1(n)` proves span one but does not prove quantitative minor-arc decay.
+on `[-pi,pi]`. The fact that `1 in B_1(n)` proves span one but does not prove quantitative minor-arc decay.
 
 ### N2-REQ-N3-004-v3
 
@@ -115,19 +110,17 @@ Provide an explicit integer-valued reference law `G_{n,q}` and prove
 
 for every declared bulk target.
 
-Exact request:
-
-`handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
+Exact request: `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
 
 ### N2-REQ-N3-005
 
 Requirement status: `OPEN`
 
-Any use of logarithmic divisor theorems must include a separate proved transfer to the numerical additive quotient law. Without that bridge, the result is not an occupancy input.
+Any use of logarithmic divisor theorems must include a separate proved transfer to the numerical additive quotient law.
 
 ## Requirements from Nova 4
 
-### N2-REQ-N4-001-v3
+### N2-REQ-N4-001-v4
 
 Requirement status: `OPEN`
 
@@ -139,37 +132,40 @@ Return separate verdicts for legality, distinctness, lattice, quotient span, cor
 
 ### N2-REQ-N4-002-v4
 
-Requirement status: `PARTIALLY_COMPLETED_BY_NOVA2`
+Requirement status: `PARTIALLY_CLOSED_BY_NOVA2`
 
-Implement and independently reconstruct N2-ADD-120's connected-core recursion.
+Nova 2 has implemented N2-ADD-120 and certified exact connected-core reach for every `12<=n<=46`.
 
-At layer `t`, compute
+Nova 4 must independently reconstruct:
 
-\[
-D_t=
-\left\lfloor
-\frac{E_{t-1}+W_n+1}{2^{t-1}}
-\right\rfloor,
-\]
+- N2-ADD-119 carrier blocks;
+- N2-ADD-120 recursion;
+- N2-ADD-121 unique-parent divisor stream;
+- N2-FIN-202 for `12<=n<=45`;
+- N2-FIN-203 at `n=46`.
 
-then return:
+For each layer return the largest core connected to zero, the first blocking gap, its two endpoints, the certified carrier endpoint, and the final comparison with `Y_n`.
 
-- the largest core connected to zero;
-- the first blocking core gap;
-- the exact two cores bordering the gap;
-- the certified endpoint `E_t`;
-- the final comparison of the occupied endpoint with `Y_n`.
-
-Nova 2 completed this exact audit with full menus for every `12<=n<=45`. Nova 4 must independently replay N2-FIN-202. Failure of this recursion outside the completed range is failure of one proof engine only.
-
-### N2-REQ-N4-003-v3
+### N2-REQ-N4-003-v4
 
 Requirement status: `OPEN`
 
-For feasible exact ranges, compute the full marker-three quotient restricted sumset and report:
+Extend the exact bounded-memory audit from the smallest unaudited parameter
+
+\[
+n=47.
+\]
+
+A resource limit must be reported as `unknown due to resource limits`, not as a counterexample. Failure of the carrier recursion is failure of one proof engine unless the full restricted sumset is also shown to miss a required window.
+
+### N2-REQ-N4-004-v3
+
+Requirement status: `OPEN`
+
+For feasible exact ranges, compute the full marker-three restricted sumset and report:
 
 - layer sizes;
-- profile count;
+- formal profile count;
 - number of distinct sums;
 - collision multiplicity;
 - maximum downward gap;
@@ -179,49 +175,16 @@ For feasible exact ranges, compute the full marker-three quotient restricted sum
 
 A reduced-menu failure is not a full-model counterexample.
 
-### N2-REQ-N4-004-v2
-
-Requirement status: `OPEN`
-
-Replay the deterministic protected prefix through
-
-\[
-m_n(2^{M_n}-1)+W_n.
-\]
-
-No counterexample may be reported at or below this bound.
-
-### N2-REQ-N4-005
+### N2-REQ-N4-005-v2
 
 Requirement status: `OPEN`
 
 Audit endpoint support. If the exact maximum reachable quotient is below `Y_n-W_n`, return the smallest endpoint counterexample and classify the marker-three model as disproved.
 
-### N2-REQ-N4-006
+Exact requests:
 
-Requirement status: `OPEN`
-
-Independently reconstruct finite certificate `N2-FIN-202`:
-
-- exact range: `12<=n<=45`;
-- complete odd-core menus, not reduced menus;
-- all 34 cases reach `Y_n`;
-- layer-count transitions `2,3,4,5,6` on the frozen ranges;
-- exact largest completed case at `n=45`;
-- exact classification of `n=46` as resource-limited.
-
-Then implement a bounded-memory or streaming sorted odd-divisor generator capable of continuing at `n=46`, whose exact odd-core count is `27,941,760`.
-
-Frozen artifacts:
-
-- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
-- `verification/marker_three_full_menu_audit.py`;
-- `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
-- `verification/data/marker_three_full_menu_n12_n45.csv`.
-
-Exact request:
-
-`handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
+- `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`;
+- `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`.
 
 ## Archive requirement
 
@@ -233,7 +196,7 @@ Import the source-level Phase 12M through 12P theorem statements so their exact 
 
 ## Internal Nova 2 requirements
 
-### N2-REQ-INT-001-v4
+### N2-REQ-INT-001-v5
 
 Requirement status: `OPEN`
 
@@ -246,20 +209,16 @@ Q_n\cap[q-W_n,q]\ne\varnothing
 for every
 
 \[
-W_n+1\le q\le Y_n.
+W_n+1\le q\le Y_n
 \]
+
+uniformly for all sufficiently large `n`.
 
 ### N2-REQ-INT-002-v4
 
-Requirement status: `FINITE_RANGE_COMPLETED_ASYMPTOTIC_OPEN`
+Requirement status: `FINITE_RANGE_CLOSED_THROUGH_N46`
 
-N2-FIN-202 proves that the connected-core recursion reaches `Y_n` for every `12<=n<=45` using complete odd-core menus.
-
-Remaining task:
-
-- continue exact certification from `n=46` using streaming generation;
-- prove a uniform connected-core reach theorem; or
-- produce an exact first failure beyond the completed range.
+N2-FIN-202 and N2-FIN-203 certify the N2-ADD-120 carrier criterion for every `12<=n<=46`. Extend from `n=47`, or prove a uniform record-gap theorem.
 
 ### N2-REQ-INT-003-v3
 
@@ -288,26 +247,14 @@ Retain the weakest valid theorem proving every target window occupied.
 
 Requirement status: `OPEN`
 
-Prove the bulk and deterministic endpoint regimes cover every quotient target with no transition gap.
+Prove that the bulk and deterministic endpoint regimes cover every quotient target with no transition gap.
 
 ### N2-REQ-INT-007-v2
 
-Requirement status: `PARTIALLY_COMPLETED`
-
-Finite marker-three coverage is certified for `12<=n<=45`. Remaining finite-exception work includes `n<12`, any gap before an eventual asymptotic threshold, and independent reconstruction.
-
-### N2-REQ-INT-008
-
 Requirement status: `OPEN`
 
-Derive a uniform lower bound on the connected core at each layer strong enough to force
-
-\[
-E_{M_n}+W_n\ge Y_n.
-\]
-
-The finite data suggests terminal-layer saturation, but that observation is computational evidence only until a divisor-gap theorem is proved.
+Finite carrier coverage is exact for `12<=n<=46`. Certify all smaller exceptions and extend the upper finite boundary as resources permit.
 
 ## Rule
 
-Every theorem, certificate, computation, heuristic, or disproved architecture must use an allowed evidence label. Requirements use requirement status. No target may be omitted, no labeled duplicate may be treated as a distinct numerical divisor, and failure of a sufficient proof engine must not be promoted to failure of the full model.
+Every theorem, finite certificate, computation, heuristic, or disproved architecture must use an allowed evidence label. No target may be omitted, no labeled duplicate may be treated as a distinct numerical divisor, and failure of a sufficient proof engine must not be promoted to failure of the full model.
