@@ -4,19 +4,18 @@
 
 Every entry has one research result class. Finite computation, asymptotic proof, conditional implication, and disproved inference remain separate.
 
-## Exact factorial-divisor product model
+## Product and logarithmic divisor model
 
 ### N3-ANA-004, exact exponent product and exponential tilt
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
-- Hypotheses: integer `n>=2`; exact caps `0<=a_p<=v_p(n!)`
-- Conclusion: divisor exponents are independent under the uniform measure; exact mean and variance hold; the exponential tilt factors; every interior logarithmic target has a unique saddle parameter
+- Conclusion: exact independent exponent model, moments, factorized tilt, and unique saddle parameter for every interior logarithmic target
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
-### N3-ANA-005, uniform logarithmic local-count ceiling
+### N3-ANA-005, logarithmic local-count ceiling
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
 - Conclusion:
   \[
@@ -24,127 +23,92 @@ Every entry has one research result class. Finite computation, asymptotic proof,
   \le
   \tau(n!)\frac{\lfloor\Delta/\log q\rfloor+1}{v_q(n!)+1}
   \]
-  for every prime `q<=n`, real `u`, and `Delta>=0`
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ### N3-ANA-006, non-Gaussian full-model limit
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
-- Conclusion:
-  \[
-  \frac{\log d-\frac12\log(n!)}n
-  \Rightarrow
-  \sum_p(\log p)U_p,
-  \]
-  where the limit is a non-Gaussian infinite convolution
+- Conclusion: the centered uniform log-divisor model divided by `n` converges to a non-Gaussian infinite convolution
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ### N3-ANA-007, unrestricted minor-arc obstruction
 
-- Result class: `disproved estimate`
+- Class: `disproved estimate`
 - Status: `DISPROVED`
-- Conclusion: for every fixed `n>=3`,
+- Conclusion:
   \[
   \limsup_{|t|\to\infty}|\phi_n(t)|=1
   \]
+  for every fixed `n>=3`
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
-### N3-ANA-008, zero-tilt high-prime central limit theorem
+### N3-ANA-008, zero-tilt high-prime CLT
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
-- Hypotheses: `y=y(n)->infinity` and `2y<=sqrt(n)`
-- Conclusion:
-  \[
-  T_{n,y}/B_{n,y}\Rightarrow N(0,1),
-  \]
-  with
-  \[
-  B_{n,y}^2\gg n^2\frac{\log y}{y},
-  \qquad
-  M_{n,y}/B_{n,y}\to0
-  \]
+- Conclusion: after a growing low-prime cutoff, the high-prime logarithmic tail is asymptotically Gaussian and its largest coordinate is negligible relative to its standard deviation
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ### N3-ANA-009, coarse high-prime window positivity
 
-- Result class: `conditional theorem`
+- Class: `conditional theorem`
 - Status: `CONDITIONAL`
-- Dependency: accepted Berry-Esseen theorem N3-SRC-003
-- Conclusion: central windows with `Delta>=K M_{n,y}` have probability `>>Delta/B_{n,y}`
+- Dependency: Berry-Esseen N3-SRC-003
+- Conclusion: central windows with width at least a constant multiple of the largest coordinate span have mass `>>Delta/B`
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
-## Explicit top-prime and capacity theorems
+## Explicit prime interval and old-address capacity
 
 ### N3-ANA-010, explicit upper-half prime interval
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
-- Hypotheses: integer `n>=120368`
+- Hypothesis: integer `n>=120368`
 - Conclusion:
   \[
   \pi(n)-\pi(n/2)\ge\frac{n}{3\log n}
   \]
-- Dependency: Dusart Theorem 6.9, N3-SRC-008
+- Dependency: Dusart N3-SRC-008
 - Proof: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md`
 
-### N3-ANA-011, superseded old-address capacity theorem
+### N3-ANA-011, old-address formal capacity
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED_BUT_STRUCTURAL_MODEL_SUPERSEDED`
-- Imported model: Nova 1 old address system at commit `fa11f4b2cb86a2dd791df189ada12757be791804`
-- Conclusion: the old menus had legal formal capacity for `n>=120368`
-- Boundary: Nova 2 later disproved the old additive construction by a power-of-two lattice obstruction
+- Conclusion: the old Nova 1 address system had sufficient formal menu capacity for `n>=120368`
+- Boundary: Nova 2 later disproved its additive occupancy route by a lattice obstruction
 - Proof: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md`
 
-## Compact-tilt top-prime distribution
+## Compact-tilt top-prime logarithmic model
 
 ### N3-ANA-012, compact-tilt Gaussian coarse windows
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
 - Exact family: subset products of primes in `(n/2,n]`
-- Hypotheses: fixed `0<=theta_0<1`, fixed `A>=0`, `n>=120368`, and `|theta|<=theta_0`
-- Variance:
-  \[
-  B_{n,\theta}^2\ge\frac1{48}n^{1-\theta_0}\log n
-  \]
-- Berry-Esseen:
-  \[
-  \sup_z\left|P_\theta(T/B\le z)-\Phi(z)\right|
-  \le C_{BE}\sqrt{\frac{48\log n}{n^{1-\theta_0}}}
-  \]
-- Window conclusion: for `|x|<=AB` and `K_A log n<=Delta<=B`,
-  \[
-  P_\theta\{T\in[x,x+\Delta]\}
-  \ge\frac{c_A}{2}\frac{\Delta}{B}
-  \]
+- Hypotheses: fixed `|theta|<=theta_0<1`, fixed central displacement constant, `n>=120368`
+- Conclusions: explicit variance lower bound, Berry-Esseen bound, and positive logarithmic-window mass for `Delta>=K_A log n`
 - Proof: `proofs/COMPACT_TILT_TOP_PRIME_BAND.md`
 
 ### N3-ANA-013, unit-tilt freezing
 
-- Result class: `disproved estimate`
+- Class: `disproved estimate`
 - Status: `DISPROVED`
-- Disproved estimate: uniform Gaussian behavior on a fixed tilt range reaching `|theta|=1`
 - Conclusion:
   \[
   T_{n,1}/B_{n,1}\to0
   \]
-  in probability, with the same statement at `theta=-1`
+  in probability, with the symmetric statement at `theta=-1`
 - Proof: `proofs/COMPACT_TILT_TOP_PRIME_BAND.md`
 
-## Repaired marker-three audit
+## Repaired marker-three capacity
 
-### N3-ANA-014, repaired marker-three menu lower bound
+### N3-ANA-014, repaired menu lower bound
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
-- Imported request: Nova 1 `N1-HO-N3-002`, branch `nova/factorial-structure`, commit `9febe46f2298d2726eeffa139676136963790019`
-- Hypotheses: integer `n>=120368`; `1<=t<=M_n`; repaired core menu
-  \[
-  U_t^{(3)}(n)=\{u\ge1:u\text{ odd},\ 3u\mid n!,\ 3\cdot2^{t-1}u\le X_n\}
-  \]
+- Imported request: Nova 1 `N1-HO-N3-002`, commit `9febe46f2298d2726eeffa139676136963790019`
 - Conclusions:
   \[
   M_n-1\le v_2(n!),
@@ -153,106 +117,157 @@ Every entry has one research result class. Finite computation, asymptotic proof,
   |U_t^{(3)}(n)|\ge2^{h_n-1}
   \ge2^{n/(3\log n)-1}
   \]
+  for all `n>=120368` and `1<=t<=M_n`
 - Key repair:
   \[
   n!/H_n\ge\lfloor n/2\rfloor!
   \]
-  replaces the invalid central-binomial divisibility shortcut
 - Proof: `proofs/MARKER_THREE_REPAIRED_CAPACITY_AUDIT.md`
 
-### N3-ANA-015, repaired marker-three profile capacity
+### N3-ANA-015, repaired formal profile capacity
 
-- Result class: `proved theorem`
+- Class: `proved theorem`
 - Status: `PROVED`
-- Hypotheses: those of N3-ANA-014
 - Conclusion:
   \[
-  2^{r_n}
-  \prod_{t=1}^{M_n}(|U_t^{(3)}(n)|+1)
+  2^{r_n}\prod_{t=1}^{M_n}(|U_t^{(3)}(n)|+1)
   \ge X_n+1
   \]
   for every `n>=120368`
-- Claim boundary: formal profile capacity only
+- Claim boundary: formal capacity only
 - Proof: `proofs/MARKER_THREE_REPAIRED_CAPACITY_AUDIT.md`
 
 ### N3-ANA-016, central-binomial shortcut obstruction
 
-- Result class: `disproved estimate`
+- Class: `disproved estimate`
 - Status: `DISPROVED`
 - Disproved claim: every prime in `(n/2,n]` divides `binom(n,floor(n/2))`
-- Counterexample family: `n=2p-1` with prime `p`; then
+- Counterexample family: `n=2p-1`, `p` prime, for which
   \[
   v_p\binom{2p-1}{p-1}=0
   \]
-- Consequence: Nova 1's requested statements remain true, but that proof step must be replaced
 - Proof: `proofs/MARKER_THREE_REPAIRED_CAPACITY_AUDIT.md`
+
+## Marker-three numerical additive law
+
+### N3-ANA-017, active contract compatibility
+
+- Class: `proved theorem`
+- Status: `PROVED`
+- Nova 2 request: `N2-HO-N3-003`, commit `fb73e6906105c983bacbd46a96ef8d5d87567fae`
+- Structural source: Nova 1 marker-three construction at `ebb47ba436af554366d0f285119a769f31f9e561`
+- Latest compatible head: `9febe46f2298d2726eeffa139676136963790019`
+- Conclusion: the three later Nova 1 commits add endpoint-support artifacts only and do not change the numerical label sets
+- Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
+
+### N3-ANA-018, tilt existence, span, and exact resonance set
+
+- Class: `proved theorem`
+- Status: `PROVED`
+- Numerical law:
+  \[
+  P_\lambda(Z_t=b)
+  =
+  \frac{e^{\lambda b}}
+  {1+\sum_{a\in B_t(n)}e^{\lambda a}}
+  \]
+- Mean map: continuous and strictly increasing from zero to the sum of layer maxima
+- Target conclusion: for every
+  \[
+  W_n<q\le Y_n,
+  \]
+  there is a unique finite tilt centered at
+  \[
+  q-W_n/2\in[q-W_n,q]
+  \]
+- Lattice conclusion: exact additive span one
+- Resonance conclusion: on `[-pi,pi]`, the only exact modulus-one point is `theta=0`
+- Global bound:
+  \[
+  |\Phi_{n,\lambda}(\theta)|
+  \le
+  \exp\left(-2p_0(\lambda)p_1(\lambda)\sin^2(\theta/2)\right)
+  \]
+- Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
+
+### N3-ANA-019, endpoint-uniform minor-arc obstruction
+
+- Class: `disproved estimate`
+- Status: `DISPROVED`
+- Disproved estimate: a fixed `rho<1` minor-arc modulus bound uniform over all finite tilts
+- Conclusion:
+  \[
+  \sup_{\lambda\in\mathbb R}
+  |\Phi_{n,\lambda}(\theta)|=1
+  \]
+  for every fixed torus frequency
+- Mechanism: the law freezes at zero as `lambda->-infinity` and at layer maxima as `lambda->+infinity`
+- Consequence: the final analytic bulk must provide compact tilt or direct phase-dispersion bounds
+- Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
 
 ## Finite certificates
 
 ### N3-FIN-001
 
-- Range: every `2<=n<=12`
-- Checks: divisor uniqueness, exact moments, symmetry, and local ceiling
+- Exact range: every `2<=n<=12`
 - Verifier: `proofs/scale_sanity.py`
 
 ### N3-FIN-002
 
-- Range: every `120368<=n<=1000000`
-- Checks: explicit prime interval, old address legality, and old formal capacity
+- Exact range: every `120368<=n<=1000000`
+- Content: explicit prime interval and old-address threshold checks
 - Verifier: `proofs/prime_interval_capacity_sanity.py`
 
 ### N3-FIN-003
 
-- Range: listed small top-prime models and tilt grid
-- Checks: exact tilted normalization, mean, variance, and third-moment ceiling
+- Exact small top-prime tilt grid
 - Verifier: `proofs/compact_tilt_sanity.py`
 
 ### N3-FIN-004
 
 - Exact threshold: `n=120368`
-- Checks:
-  - exact prime-band size `h_n=5254`;
-  - exact repaired cutoff after squaring;
-  - exact address slack `118171`;
-  - exact profile-capacity bit margin `10575208`;
-  - exact central-binomial counterexample family for tested primes
+- Content: repaired cutoff, address legality, formal capacity, and central-binomial regression
 - Verifier: `proofs/marker_three_capacity_sanity.py`
+
+### N3-FIN-005
+
+- Exact supports: `n in {12,15}`
+- Content: marker-three support span, endpoint crossing, and finite support construction
+- Numerical evidence: tilt centering and sampled torus resonance checks
+- Verifier: `proofs/marker_three_numerical_law_sanity.py`
 
 ## Computational evidence
 
 ### N3-COMP-001
 
-- Selected `n<=10000`
-- Content: full-model scale and effective-dimension tables
-- Verifier: `proofs/scale_sanity.py`
+Full-model scale tables from `proofs/scale_sanity.py`.
 
 ### N3-COMP-002
 
-- Selected `n<=1000000` and compact tilt grid
-- Content: compact-tilt variance and Berry-Esseen scale tables
-- Verifier: `proofs/compact_tilt_sanity.py`
+Compact-tilt scale tables from `proofs/compact_tilt_sanity.py`.
 
 ### N3-COMP-003
 
-- Selected `n in {120368,200000,500000,1000000}`
-- Content: repaired prime-count, address, monotonic-cutoff, and capacity margins
-- Verifier: `proofs/marker_three_capacity_sanity.py`
-- What is not claimed: selected rows do not replace the symbolic monotonic proof
+Repaired marker-three capacity margins through selected `n<=1000000` from `proofs/marker_three_capacity_sanity.py`.
+
+### N3-COMP-004
+
+Small marker-three numerical-law tilt and characteristic-function grids from `proofs/marker_three_numerical_law_sanity.py`.
 
 ## Open candidate contracts
 
 ### N3-CAND-LDC-001
 
-Fine exact-factorial logarithmic lower windows remain open below the current coarse scales.
+Fine exact-factorial logarithmic lower windows remain open below current coarse scales.
 
 ### N3-CAND-LLT-001
 
-Compact-tilt coarse windows are proved for the top-prime band. Fine windows and the full bounded-exponent high-prime model remain open.
+Compact-tilt coarse logarithmic windows are proved for the top-prime band. Fine windows and the full bounded-exponent model remain open.
 
 ### N3-CAND-CF-001
 
-Unbounded decay is false. A matched bounded-frequency theorem remains open. Nova 2's future additive object is numerical and periodic on `[-pi,pi]`, not logarithmic.
+For the numerical marker-three law, exact span and resonances are now known. Uniform quantitative minor-arc control remains open until the final target range yields compact tilt or an equivalent dispersion bound.
 
 ## Promotion rule
 
-N3-ANA-014 and N3-ANA-015 close the repaired Nova 1 capacity request only. They do not prove profile injectivity, quotient occupancy, numerical additive coverage, the factorial half-range theorem, or `INT-002`.
+N3-ANA-014 and N3-ANA-015 close repaired formal capacity. N3-ANA-018 closes centering and exact resonance clauses. None of N3-ANA-014 through N3-ANA-019 proves the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
