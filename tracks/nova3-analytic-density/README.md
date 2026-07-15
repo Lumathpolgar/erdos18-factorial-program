@@ -6,95 +6,69 @@
 
 ## Mission
 
-Prove the asymptotic counting and distribution estimates for divisors of `n!` that are actually sufficient for the structural and additive tracks.
+Prove exact asymptotic counting and distribution estimates for divisors of `n!` that are legally matched to structural or additive theorem contracts.
 
-## Primary questions
+## Current proved frontier
 
-1. How many divisors of `n!` lie in a prescribed logarithmic interval below `sqrt(n!)`?
-2. How uniformly are factorial divisors distributed across multiplicative or additive windows?
-3. Which valuation profiles dominate at a target scale?
-4. Can one obtain local estimates strong enough for a global convolution or occupancy theorem?
+The branch now contains:
 
-## Required baseline work
+- the exact independent exponent and exponential-tilt model;
+- a uniform logarithmic local-count ceiling;
+- a non-Gaussian limit theorem for the full uniform-divisor model;
+- an obstruction to unrestricted pointwise minor-arc decay;
+- a high-prime zero-tilt central limit theorem and coarse-window result;
+- the explicit upper-half prime interval bound
+  \[
+  \pi(n)-\pi(n/2)\ge n/(3\log n)
+  \qquad(n\ge120368);
+  \]
+- the explicit Nova 1 menu-capacity threshold `n_3=n_4=n_5=120368`;
+- a compact-tilt Gaussian and coarse logarithmic-window theorem for exact subset products of primes in `(n/2,n]`, uniform for every fixed `|theta|<=theta_0<1`;
+- a unit-tilt freezing obstruction showing that the compact range cannot reach `|theta|=1`.
 
-- Record exact prime valuation constraints for `n!`.
-- Compare factorial divisors with smooth and ultrafriable integers without identifying the sets incorrectly.
-- Reconstruct the small-divisor ceilings used in Phases 12L and 12P and state why they do or do not transfer to `n!`.
-- Inventory known theorems that may apply, with exact sources and hypotheses.
+## Current distinction
 
-## Research program
+Logarithmic divisor density and numerical additive occupancy are different analytic objects.
 
-### N3-A: Logarithmic generating function
-
-Study
-
-\[
-F_n(z)=\prod_{p\le n}\left(1+z^{\log p}+\cdots+z^{v_p(n!)\log p}\right)
-\]
-
-through an appropriate continuous, Laplace, or probabilistic formulation. Identify the saddle point for divisors near a prescribed logarithmic size.
-
-### N3-B: Local divisor counts
-
-Estimate
+A theorem for
 
 \[
-\#\{d\mid n!: e^u\le d\le e^{u+\Delta}\}
+\mathbb E e^{it\log d}
 \]
 
-uniformly in the ranges requested by Nova 1 and Nova 2.
-
-### N3-C: Valuation-profile entropy
-
-Count admissible exponent vectors under the weighted constraint
+does not control
 
 \[
-\sum_{p\le n} a_p\log p\approx u,
-\qquad
-0\le a_p\le v_p(n!).
+\mathbb E e^{itd}
 \]
 
-Determine concentration, covariance, lattice span, and effective dimension.
+or a numerical rainbow sum. Nova 2's additive theorem requires a repaired layer system and a matched bounded-torus analysis on `[-pi,pi]`.
 
-### N3-D: Characteristic-function estimates
+## Active theorem target
 
-For additive constructions supplied by Nova 2, estimate characteristic functions or exponential sums needed for local-limit and anti-concentration arguments.
+Determine the sharpest true uniform logarithmic-window scale below `K_A log n` for compactly tilted top-prime subset products. Prove a bounded-frequency local theorem, weaken to the strongest true intermediate width, or prove a resonance or maximum-gap obstruction.
 
-### N3-E: Maximum-gap limitations
+## Required files
 
-Distinguish carefully between average density and guaranteed gaps. Prove either a usable maximum-gap statement or a theorem explaining why the requested statement is too strong.
+- `STATUS.md`
+- `THEOREMS.md`
+- `SOURCE_LEDGER.md`
+- `OPEN_REQUIREMENTS.md`
+- `PREFERRED_ROUTE.md`
+- candidate theorem files under `candidates/`
+- proof files under `proofs/`
+- handoffs under `handoffs/`
 
-## Forbidden shortcuts
+## Verification
 
-- A global asymptotic for `tau(n!)` does not imply local density.
-- Smooth-number estimates may overcount divisors of `n!`; overcounts must be used in the correct direction.
-- Mean spacing is not maximum spacing.
-- A central limit theorem without a local or uniform form may be insufficient.
-- External theorems must be cited with matching ranges and parameters.
+```text
+python3 tracks/nova3-analytic-density/proofs/scale_sanity.py
+python3 tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py
+python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
+```
 
-## Deliverables
+Finite checks and computational tables remain explicitly separated from asymptotic proof.
 
-- `tracks/nova3-analytic-density/STATUS.md`
-- `tracks/nova3-analytic-density/THEOREMS.md`
-- `tracks/nova3-analytic-density/SOURCE_LEDGER.md`
-- `tracks/nova3-analytic-density/OPEN_REQUIREMENTS.md`
-- explicit responses to theorem requests from Nova 1 and Nova 2
-- proofs, source compatibility checks, and numerical sanity checks
+## Claim boundary
 
-## Initial milestone
-
-Produce a rigorous scale map for divisors of `n!` below `sqrt(n!)` containing:
-
-- asymptotic total log-size of `n!`;
-- valuation entropy by prime band;
-- upper and lower bounds for divisor counts at representative scales;
-- candidate local window widths;
-- precise gaps between known estimates and the estimates needed for occupancy.
-
-## Acceptance criteria
-
-Nova 3 succeeds when it supplies either:
-
-1. analytic estimates sufficient for an accepted additive occupancy theorem;
-2. a new local distribution theorem for factorial divisors with explicit uniformity;
-3. a rigorous impossibility or lower-bound result that redirects the program.
+The factorial half-range theorem and Erdős Problem 18 remain open. Counting, formal profile capacity, logarithmic density, and Gaussian approximation do not by themselves imply additive coverage or maximum-gap control.
