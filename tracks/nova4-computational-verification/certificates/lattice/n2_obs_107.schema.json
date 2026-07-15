@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova4.n2-obs-107.v1",
+  "title": "Nova 2 N2-OBS-107 exact replay certificate",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "parameters", "claimed"],
+  "properties": {
+    "schema": {"const": "nova4.n2-obs-107.v1"},
+    "result_class": {"const": "disproved finite claim"},
+    "source": {"type": "object"},
+    "parameters": {
+      "type": "object",
+      "required": ["n"],
+      "properties": {"n": {"type": "integer", "minimum": 3}},
+      "additionalProperties": false
+    },
+    "claimed": {
+      "type": "object",
+      "required": [
+        "n", "r", "layer_count", "v2_factorial", "side_condition",
+        "radius", "target", "lowest_address", "common_divisor", "window",
+        "target_in_half_range", "window_contains_common_lattice_point"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

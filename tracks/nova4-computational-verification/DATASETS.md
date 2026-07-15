@@ -82,3 +82,55 @@ Verification command:
 ```bash
 PYTHONPATH=src python3 src/replay.py verify-tree certificates
 ```
+
+## N4-DATA-003: Nova 2 lattice-obstruction transition audit
+
+Result class: `exact finite theorem audit`
+
+Frozen source:
+
+```text
+branch: nova/additive-occupancy
+commit: 45c74a5fa747551422ffcad7d3ddf22788fbe622
+objects: N2-ADD-115 and N2-OBS-107
+```
+
+Parameter range:
+
+```text
+3 <= n <= 10000
+```
+
+Committed data:
+
+```text
+data/lattice/n2_obs_107_range_n3_n10000.json
+```
+
+Schema:
+
+```text
+data/lattice/n2_obs_107_range_audit.schema.json
+```
+
+SHA-256:
+
+```text
+94b8c1f074904e2aabe7d8b8ddf09279e591936050c07a5882e87977cfbd78b6
+```
+
+Exact findings:
+
+- first target-range success: `n=9`;
+- first valuation-budget success: `n=1892`;
+- first simultaneous admissible obstruction: `n=1892`;
+- temporary later side-condition failures: `n=1893,1894,1895`;
+- simultaneous success at every checked `1896 <= n <= 10000`.
+
+Generation command:
+
+```bash
+PYTHONPATH=src python3 src/replay.py audit-n2-obs-107 \
+  --n-min 3 --n-max 10000 \
+  --output data/lattice/n2_obs_107_range_n3_n10000.json
+```

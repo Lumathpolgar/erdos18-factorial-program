@@ -68,3 +68,13 @@ unknown due to resource limits
 ```
 
 No mathematical conclusion is inferred for `n=14` from that timeout.
+
+## Lattice gate benchmark
+
+Environment: CPython 3.13.5, standard library only.
+
+The complete unit suite now contains 32 tests and completes in approximately 0.2 seconds in the recorded environment.
+
+The exact transition audit for every `3 <= n <= 10000` completes in approximately 1.9 seconds. It uses rational interval bounds for logarithmic ceilings and exact integer checks for factorial valuation and target admissibility.
+
+These timings are engineering diagnostics, not mathematical claims.

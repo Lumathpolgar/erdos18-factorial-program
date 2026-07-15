@@ -12,38 +12,40 @@ Computation, Falsification, and Verification
 
 ## Overall state
 
-`FIRST_EXACT_CHECKPOINT_BUILT`
+`LATTICE_GATE_OPERATIONAL`
 
 ## Active results
 
 | ID | Result class | Exact statement | Artifact |
 |---|---|---|---|
 | N4-CMP-001 | `exact finite theorem audit` | Exact `lambda_{n!}(x)` for every `1 <= n <= 13` and `0 <= x <= floor(sqrt(n!))` | `data/factorial_half_range_summary_n1_n13.json` and deterministic generator |
-| N4-CMP-002 | `exact finite theorem audit` | Method A and Method B agree on all 109,947 tested targets | `SEARCH_METHODS.md` and dataset replay |
+| N4-CMP-002 | `exact finite theorem audit` | Two independent exact methods agree on all 109,947 tested targets | `SEARCH_METHODS.md` and dataset replay |
 | N4-VER-001 | `finite certificate` | Universal representation certificate verifier is fail-closed | `src/factorial_lab/certificates.py` |
+| N4-VER-004 | `finite certificate` | Explicit label families are checked for legality, collisions, gcd, residues, and exact window coverage | `src/factorial_lab/lattice.py` |
+| N4-AUD-002 | `exact finite theorem audit` | `N2-ADD-115` and `N2-OBS-107` independently reconstructed and accepted for the frozen model | `audits/N2_ADD_115_LATTICE_AUDIT.md` |
 | N4-CE-001 | `counterexample` | Descending greedy is suboptimal at `n=8, x=155` | `certificates/n8_target155_optimal.json` |
+| N4-CE-002 | `disproved finite claim` | Frozen `N1-HO-N2-001` fails at its first requested target when admissible | `certificates/lattice/n2_obs_107_n1892.json` |
 | N4-LIM-001 | `unknown due to resource limits` | Exact Method A profile for `n=14` did not finish in 30 seconds | `BENCHMARK_REPORT.md` |
 
-## Exact finite coverage
+## Verified coverage
 
 ```text
-n range: 1 through 13
-targets checked: 109,947
-arithmetic: exact integers
-optimality checks: two independent exact methods
-representation certificates: 14
-corrupted fixtures required to fail: 5
-unit tests: 21 passing
+factorial half-ranges: n = 1 through 13
+representation targets: 109,947
+N2 lattice transition audit: every n = 3 through 10,000
+unit tests: 32 passing
+on-disk corrupted fixtures required to fail: 9
+arithmetic: exact integers and rational interval bounds
 ```
 
 ## Current limitations
 
-- No asymptotic theorem is proved.
+- No asymptotic factorial half-range theorem is proved.
+- The accepted Nova 2 obstruction applies only to the frozen Nova 1 model at commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
+- No revised Nova 1 construction has yet been run through the new generic label-family harness.
 - No Track B source package is present for reconstruction.
-- Formal handoffs from Novas 1, 2, and 3 were received after the initial dataset build and are queued by exact commit SHA.
-- Those handoffs have been inspected but not yet independently executed or accepted.
-- The full detailed profile JSON is reproducibly generated and checksummed; the compact first-checkpoint summary is committed.
+- The `n=14` exact representation profile remains unknown due to resource limits.
 
 ## Next audit target
 
-Implement the Nova 2 exact lattice and residue gate and reproduce the frozen `N2-OBS-107` obstruction. Then run Nova 1 capacity and reduced-rainbow studies, followed by Nova 3 independent theorem audits.
+Run Nova 1 handoff `N1-HO-N4-001` at commit `fa11f4b2cb86a2dd791df189ada12757be791804`: first the certified capacity-threshold audit for `3 <= n <= 1,000,000`, then the reduced rainbow falsification model for `20 <= n <= 80`.

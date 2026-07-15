@@ -4,35 +4,9 @@ Date: 2026-07-15
 
 Nova 4 never changes another track's theorem status. Every request freezes the sending branch and exact commit SHA before testing.
 
-## N4-REQ-N2-001
-
-Priority: `1`
-
-Sending track: Nova 2
-
-Handoff: `N2-HO-N4-001-v2`
-
-Frozen branch: `nova/additive-occupancy`
-
-Frozen commit: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
-
-Artifact: `tracks/nova2-additive-occupancy/handoffs/TO_NOVA4.md`
-
-Status: `RECEIVED_READY_FOR_AUDIT`
-
-First audit:
-
-- implement the exact common-gcd and residue-lattice gate;
-- reproduce the frozen `N2-OBS-107` obstruction before any convolution;
-- reject numerical duplicates and illegal factorial divisors;
-- return the lexicographically smallest exact failure;
-- identify every tested external input by branch and commit SHA.
-
-Reason for priority: the handoff marks this as a mandatory first gate, and a symbolic lattice obstruction takes precedence over expensive enumeration.
-
 ## N4-REQ-N1-001
 
-Priority: `2`
+Priority: `1`
 
 Sending track: Nova 1
 
@@ -55,7 +29,7 @@ Requested studies:
 
 ## N4-REQ-N3-001
 
-Priority: `3`
+Priority: `2`
 
 Sending track: Nova 3
 
@@ -76,6 +50,31 @@ Requested studies:
 - scale convergence tables labeled computational evidence;
 - characteristic-function recurrence search labeled evidence;
 - source-compatibility reconstruction for imported analytic results.
+
+## N4-REQ-N2-001
+
+Priority: `COMPLETED`
+
+Sending track: Nova 2
+
+Handoff: `N2-HO-N4-001-v2`
+
+Frozen branch: `nova/additive-occupancy`
+
+Frozen commit: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
+
+Status: `ACCEPTED_FOR_FROZEN_MODEL`
+
+Completed work:
+
+- reusable common-gcd, residue, and exact finite support gate;
+- exact factorial-divisor and numerical-collision validation;
+- independent replay of `N2-OBS-107`;
+- proof reconstruction of `N2-ADD-115`;
+- exhaustive transition audit for `3 <= n <= 10000`;
+- corrupted-certificate rejection tests.
+
+Acceptance is limited to the exact model frozen by Nova 2. A revised candidate requires a new versioned request and exact source SHA.
 
 ## Intake rule
 

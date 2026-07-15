@@ -1,0 +1,33 @@
+{
+  "claimed": {
+    "common_divisor": 4294967296,
+    "layer_count": 911,
+    "lowest_address": 32,
+    "n": 1892,
+    "r": 31,
+    "radius": 2147483647,
+    "side_condition": true,
+    "target": 2147483648,
+    "target_in_half_range": true,
+    "v2_factorial": 1886,
+    "window": [
+      1,
+      2147483648
+    ],
+    "window_contains_common_lattice_point": false
+  },
+  "parameters": {
+    "n": 1892
+  },
+  "result_class": "disproved finite claim",
+  "schema": "nova4.n2-obs-107.v1",
+  "source": {
+    "nova1_frozen_branch": "nova/factorial-structure",
+    "nova1_frozen_commit": "b939574eb88a08bb03abda5bbe6ff2ca97444e08",
+    "nova2_branch": "nova/additive-occupancy",
+    "nova2_commit": "45c74a5fa747551422ffcad7d3ddf22788fbe622",
+    "nova2_model_obstruction": "N2-OBS-107",
+    "nova2_theorem": "N2-ADD-115",
+    "repository": "Lumathpolgar/erdos18-factorial-program"
+  }
+}

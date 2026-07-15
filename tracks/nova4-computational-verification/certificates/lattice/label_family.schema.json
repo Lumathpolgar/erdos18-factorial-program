@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova4.label-family.v1",
+  "title": "Nova 4 explicit factorial label-family certificate",
+  "type": "object",
+  "required": [
+    "schema", "source", "n", "target_interval", "correction_radius",
+    "layers", "correction_terms", "residue_moduli", "claimed"
+  ],
+  "properties": {
+    "schema": {"const": "nova4.label-family.v1"},
+    "source": {
+      "type": "object",
+      "required": ["repository", "branch", "commit"],
+      "properties": {
+        "repository": {"type": "string", "minLength": 1},
+        "branch": {"type": "string", "minLength": 1},
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+      },
+      "additionalProperties": false
+    },
+    "n": {"type": "integer", "minimum": 1},
+    "target_interval": {
+      "type": "object",
+      "required": ["min", "max"],
+      "properties": {
+        "min": {"type": "integer", "minimum": 0},
+        "max": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "correction_radius": {"type": "integer", "minimum": 0},
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "max_select", "terms"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "max_select": {"const": 1},
+          "terms": {
+            "type": "array",
+            "items": {"type": "integer", "minimum": 1},
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "correction_terms": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 1},
+      "uniqueItems": true
+    },
+    "residue_moduli": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 2, "maximum": 4096},
+      "uniqueItems": true
+    },
+    "claimed": {
+      "type": "object",
+      "properties": {
+        "main_gcd": {"type": "integer", "minimum": 0},
+        "first_failure_target": {"type": ["integer", "null"], "minimum": 0}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

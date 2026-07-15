@@ -1,17 +1,5 @@
 # Nova 4 Open Requirements
 
-## N4-REQ-N2-001
-
-Owner: Nova 2
-
-Frozen source head: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
-
-Handoff: `N2-HO-N4-001-v2`
-
-Status: `RECEIVED_READY_FOR_AUDIT`
-
-Build a reusable exact lattice and residue falsification gate, reproduce `N2-OBS-107`, and apply the gate before any convolution or Fourier computation.
-
 ## N4-REQ-N1-001
 
 Owner: Nova 1
@@ -35,6 +23,14 @@ Handoff: `N3-HO-N4-001`
 Status: `RECEIVED_READY_FOR_AUDIT`
 
 Independently reconstruct the product-model formulas, exact finite moments, local-count ceiling, and requested analytic evidence tables.
+
+## N4-REQ-N2-002
+
+Owner: Nova 2
+
+Status: `AWAITING_REVISED_MODEL`
+
+The frozen regression request is complete. Any new occupancy candidate must supply a versioned machine-readable label family, correction palette, target interval, and exact source commit for the lattice-first verifier.
 
 ## N4-REQ-INT-001
 

@@ -95,3 +95,71 @@ src/factorial_lab/arithmetic.py
 ```
 
 Checks include prime sieve, Legendre valuations, exact divisor generation, divisor-count identity, and exact factorial divisibility.
+
+## N4-VER-004: Lattice-first label-family verifier
+
+Status: `ACTIVE`
+
+Result class: `finite certificate`
+
+Implementation:
+
+```text
+src/factorial_lab/lattice.py
+```
+
+Input schema:
+
+```text
+certificates/lattice/label_family.schema.json
+```
+
+Checks:
+
+- exact source branch and commit metadata;
+- positive integer terms and exact factorial divisibility;
+- target-range bounds;
+- duplicate numerical terms within and across labels;
+- correction-palette collisions;
+- main and final common gcd;
+- exact reachable residues for declared moduli;
+- exact finite reachable support with one or zero terms per layer;
+- every downward target window in the finite domain;
+- cached gcd and first-failure claims by recomputation.
+
+Resource behavior: exceeding the explicit exact-state limit produces `unknown due to resource limits`, never a false claim.
+
+Replay command:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-label-family \
+  tests/lattice_fixtures/valid_common_gcd_failure.json
+```
+
+## N4-AUD-002: Frozen Nova 2 lattice-obstruction replay
+
+Status: `ACTIVE`
+
+Result class: `exact finite theorem audit`
+
+Implementation:
+
+```text
+src/factorial_lab/logcert.py
+src/factorial_lab/n2_audit.py
+```
+
+Certificate schema:
+
+```text
+certificates/lattice/n2_obs_107.schema.json
+```
+
+The verifier uses rigorous rational bounds for the logarithmic ceilings, recomputes `v_2(n!)`, checks exact source SHAs, verifies target admissibility, and proves the target window is disjoint from the common lattice.
+
+Replay command:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-n2-obs-107 \
+  certificates/lattice/n2_obs_107_n1892.json
+```
