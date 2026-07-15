@@ -43,10 +43,11 @@ The program is now pivoting to a direct attack on the richer divisor lattice of 
 ## Repository map
 
 - `docs/`: current definitions, status, proof dependencies, and research rules
-- `archive/packages/`: complete historical research packages
-- `archive/phase12K-12P/`: late Track A gate packages
+- `archive/`: indexed historical research records for Track A, Track B, and Phases 12K through 12P
 - `tracks/`: workspace for the four parallel Nova research tracks
 - `integration/`: cross-track theorem integration and final proof audits
+
+The original ZIP packages remain the source artifacts outside this repository for now. Their mathematical status and contents are indexed under `archive/`.
 
 ## Truth-status rule
 
