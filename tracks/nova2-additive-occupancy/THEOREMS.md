@@ -89,6 +89,39 @@ A rigorous rational-log scan found the first parameter satisfying the old valuat
 
 Verification: `verification/quotient_binary_spine.py`.
 
+### N2-FIN-202
+
+The exact full odd-core menus were generated and audited for every integer
+
+\[
+12\le n\le45.
+\]
+
+For every audited `n`, the connected-core carrier recursion reaches
+
+\[
+Y_n=\left\lfloor\frac{\lfloor\sqrt{n!}\rfloor}{3}\right\rfloor
+\]
+
+using between two and six legal main layers. Therefore
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le k_n+r_n
+\le22
+\]
+
+throughout the completed range.
+
+This is a finite certificate, not an asymptotic theorem. The next case `n=46` is untested because its `27,941,760` odd cores exceed the declared generation cap.
+
+Proof and data:
+
+- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
+- `verification/marker_three_full_menu_audit.py`;
+- `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
+- `verification/data/marker_three_full_menu_n12_n45.csv`.
+
 ## Disproved models
 
 | ID | Result label | Statement | Location |
@@ -139,16 +172,17 @@ Verification: `verification/quotient_binary_spine.py`.
 - Prior lattice service at commit `82358ea18277d36475db0a7ae81d6a68d7a49c59`: accepted for the old obstruction only.
 - New exact request: `N2-HO-N4-002`.
 - Files: `handoffs/RESPONSE_TO_NOVA4.md`, `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
+- Nova 2 independently completed the full-menu carrier audit through `n=45` in N2-FIN-202.
 
 ## Open factorial nodes
 
 - N2-OPEN-301: prove or disprove marker-three quotient occupancy through `Y_n`.
-- N2-OPEN-302: compute or prove connected-core reach under N2-ADD-120.
+- N2-OPEN-302: prove connected-core reach uniformly beyond the finite range; exact success is certified only for `12<=n<=45`.
 - N2-OPEN-303: prove endpoint support near `Y_n` or produce an exact endpoint deficit.
 - N2-OPEN-304: control total-sum collisions beyond formal profile capacity.
 - N2-OPEN-305: prove the numerical target-dependent tilt, moments, resonance decomposition, and weighted Fourier inequality.
 - N2-OPEN-306: audit N2-ADD-120 against the exact Phase 12P hypotheses.
-- N2-OPEN-307: certify finite exceptions.
+- N2-OPEN-307: extend finite certification beyond `n=45` with a bounded-memory or streaming core generator.
 
 ## Promotion rule
 
