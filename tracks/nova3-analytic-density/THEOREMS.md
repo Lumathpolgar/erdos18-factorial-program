@@ -135,6 +135,57 @@ Every entry carries exactly one research result class from the track contract. R
 - Proof: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md`
 - Handoff: `handoffs/RESPONSE_TO_NOVA1.md`
 
+## N3-ANA-012, compact-tilt top-prime Gaussian window theorem
+
+- Result class: `proved theorem`
+- Repository status: `PROVED`
+- Exact divisor family: subset products of primes in `(n/2,n]`, each with factorial valuation one
+- Hypotheses: fixed `0<=theta_0<1`, fixed `A>=0`, integer `n>=120368`, and `|theta|<=theta_0`
+- Variance conclusion:
+  \[
+  B_{n,\theta}^2\ge\frac1{48}n^{1-\theta_0}\log n.
+  \]
+- Berry-Esseen conclusion:
+  \[
+  \sup_z\left|\mathbb P_\theta\{T_{n,\theta}/B_{n,\theta}\le z\}-\Phi(z)\right|
+  \le C_{BE}\frac{\log n}{B_{n,\theta}}
+  \le C_{BE}\sqrt{\frac{48\log n}{n^{1-\theta_0}}}.
+  \]
+- Window conclusion: with
+  \[
+  c_A=(2\pi)^{-1/2}e^{-(A+1)^2/2},
+  \qquad K_A=4C_{BE}/c_A,
+  \]
+  whenever
+  \[
+  |x|\le AB_{n,\theta},
+  \qquad K_A\log n\le\Delta\le B_{n,\theta},
+  \]
+  then
+  \[
+  \mathbb P_\theta\{T_{n,\theta}\in[x,x+\Delta]\}
+  \ge\frac{c_A}{2}\frac{\Delta}{B_{n,\theta}}.
+  \]
+- Count conclusion: the same window contains an explicit positive number of distinct top-prime subset products after division by the maximum tilted atom
+- Constants: effective in terms of an accepted universal `C_BE`
+- Distinctness: unique factorization; every selected prime has exponent zero or one
+- Dependencies: N3-ANA-010 and N3-SRC-003
+- Proof: `proofs/COMPACT_TILT_TOP_PRIME_BAND.md`
+
+## N3-ANA-013, unit-tilt freezing obstruction
+
+- Result class: `disproved estimate`
+- Repository status: `DISPROVED`
+- Disproved estimate: a uniform Gaussian theorem on a fixed top-prime tilt range reaching `|theta|=1`
+- Exact conclusion:
+  \[
+  T_{n,1}/B_{n,1}\to0
+  \]
+  in probability, and the same holds at `theta=-1`
+- Mechanism: with probability tending to one, every Bernoulli coordinate takes its favored endpoint; the centered favored atom is `o(B_{n,1})`
+- Dependencies: N3-ANA-010 and N3-SRC-008
+- Proof: `proofs/COMPACT_TILT_TOP_PRIME_BAND.md`
+
 ## N3-FIN-001, factorial divisor verifier certificate
 
 - Result class: `finite certificate`
@@ -157,6 +208,15 @@ Every entry carries exactly one research result class from the track contract. R
 - Verifier: `proofs/prime_interval_capacity_sanity.py`
 - What is not claimed: computation is not used to extrapolate beyond the checked range
 
+## N3-FIN-003, compact-tilt moment certificate
+
+- Result class: `finite certificate`
+- Repository status: `FINITE_CERTIFICATE`
+- Exhaustive range: `n in {11,17,29,43}` and `theta in {-0.75,-0.25,0,0.25,0.75}`
+- Conclusion: direct subset enumeration matches the exact tilted normalization, mean, variance, and third-moment ceiling
+- Dependencies: Python standard library only
+- Verifier: `proofs/compact_tilt_sanity.py`
+
 ## N3-COMP-001, asymptotic-scale sanity tables
 
 - Result class: `computational evidence`
@@ -166,26 +226,35 @@ Every entry carries exactly one research result class from the track contract. R
 - What is not claimed: no asymptotic theorem follows from the finite table
 - Verifier: `proofs/scale_sanity.py`
 
+## N3-COMP-002, compact-tilt scale tables
+
+- Result class: `computational evidence`
+- Repository status: `COMPUTATIONAL_EVIDENCE`
+- Range: selected `n in {120368,200000,500000,1000000}` and `theta_0 in {0.25,0.50,0.75,0.90}`
+- Observation: all variance and third-moment inequalities pass; the Berry-Esseen ratios decrease slowly near `theta_0=0.9`; unit-tilt favored-endpoint concentration is visible
+- What is not claimed: the selected table is not an asymptotic proof or a fine local limit
+- Verifier: `proofs/compact_tilt_sanity.py`
+
 ## Open candidate contracts
 
 ### N3-CAND-LDC-001
 
 - Result class: `heuristic`
-- Status: desired exact tilted-window lower bound remains open
+- Status: a coarse weighted count theorem is now proved for top-prime subset products by N3-ANA-012; a fine exact-factorial lower-window theorem for the full bounded-exponent model remains open
 - File: `candidates/LOCAL_LOGARITHMIC_DIVISOR_COUNT.md`
 
 ### N3-CAND-LLT-001
 
 - Result class: `heuristic`
-- Status: fine tilted local limit remains open; N3-ANA-009 is the strongest current substitute
+- Status: compact-tilt coarse windows are closed on the top-prime band by N3-ANA-012; fine windows below `K_A log n` and the full high-prime bounded-exponent model remain open
 - File: `candidates/TILTED_LOCAL_LIMIT.md`
 
 ### N3-CAND-CF-001
 
 - Result class: `disproved estimate` for the unrestricted version
-- Status: bounded-frequency replacement remains open, but Nova 2 now requires the numerical additive-value characteristic function on `[-pi,pi]`, not the logarithmic-size characteristic function
+- Status: bounded-frequency replacement remains open, but Nova 2 requires the numerical additive-value characteristic function on `[-pi,pi]`, not the logarithmic-size characteristic function
 - File: `candidates/CHARACTERISTIC_FUNCTION_MINOR_ARC.md`
 
 ## Promotion rule
 
-N3-ANA-010 and N3-ANA-011 close Nova 1's explicit capacity dependency only. They do not imply additive interval coverage. No theorem in this registry closes `INT-002`.
+N3-ANA-010 and N3-ANA-011 close Nova 1's explicit capacity dependency. N3-ANA-012 closes the compact-tilt coarse logarithmic-window node only for the exact top-prime subset-product family. None of these results implies numerical additive interval coverage or closes `INT-002`.
