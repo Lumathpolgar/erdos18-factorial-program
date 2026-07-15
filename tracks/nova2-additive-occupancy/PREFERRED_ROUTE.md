@@ -31,11 +31,7 @@ The required quotient theorem is
 
 \[
 Q_n\cap[q-W_n,q]\ne\varnothing,
-\]
-
-with
-
-\[
+\qquad
 W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor.
 \]
 
@@ -47,45 +43,49 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 =O((\log n)^2).
 \]
 
-Why this is preferred:
+Why this remains preferred:
 
 - exact main lattice `3 Z`;
 - quotient span one;
 - original binary correction palette suffices;
 - numerical main-palette disjointness;
 - exact term cost `M_n+r_n`;
-- target window is polynomially wide rather than four points;
-- construction has a proved deterministic initial interval;
-- exact complete-menu carrier certificates now succeed for every `12<=n<=45`.
+- polynomially wide target windows;
+- deterministic and computational endpoint evidence;
+- exact finite carrier success for every `12<=n<=46`.
 
 Preferred proof engine:
 
 1. choose a target-dependent exponential law on the fixed numerical quotient labels;
-2. center the mean inside `[q-W_n,q]`;
+2. center its mean inside `[q-W_n,q]`;
 3. prove moment and maximal-step bounds;
 4. identify every bounded-torus resonance;
-5. prove a strict weighted Fourier inequality below exact reference window mass;
-6. use collision-free extraction and the binary correction palette.
+5. prove a strict weighted Fourier inequality below exact reference-window mass;
+6. extract a legal final rainbow representation and apply the correction palette.
 
 Exact analytic request:
 
 `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
 
-### Rank 2: Deterministic final restricted-sumset theorem for marker-three labels
+### Rank 2: Deterministic final restricted-sumset theorem
 
 **Result label: conditional theorem.**
 
-This route would prove every final quotient window occupied without probabilistic approximation. It remains final-only and avoids a hidden sequential interval invariant.
+This route would prove every final quotient window occupied without probabilistic approximation. It remains final-only and therefore avoids a hidden sequential interval invariant.
 
-Main blocker: available sumset theorems do not automatically preserve one choice per label, numerical distinctness, factorial legality, downward orientation, and endpoint location.
+Main blocker: available sumset theorems do not automatically preserve one choice per layer, numerical distinctness, factorial legality, downward orientation, and endpoint location.
 
 ### Rank 3: Connected-core carrier recursion
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved N2-ADD-119 and N2-ADD-120.
+Nova 2 proved:
 
-At layer `t`, the exact allowable core gap is
+- N2-ADD-119: translated carrier-block lemma;
+- N2-ADD-120: connected-core recursion;
+- N2-ADD-121: unique-parent streaming divisor theorem and record-gap compression.
+
+At layer `t`, the allowable core gap is
 
 \[
 D_t(E_{t-1})
@@ -95,43 +95,40 @@ D_t(E_{t-1})
 \right\rfloor.
 \]
 
-The recursion gives an exact certificate of how far translated carrier blocks cover and records the first blocking core gap.
-
-N2-FIN-202 generated complete odd-core menus and certified full quotient reach for every
+The recursion is now exactly certified for every
 
 \[
-12\le n\le45.
+12\le n\le46.
 \]
 
-Only two through six legal main layers were needed, giving the finite uniform bound
+N2-FIN-202 covers `12<=n<=45` by full-menu materialization. N2-FIN-203 covers `n=46` by a bounded-memory stream over `24,567,748` cores below `Y_46`, using only `631` record gaps and a maximum active frontier of `3,373,952` nodes.
+
+At `n=46`, six main layers prove
 
 \[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+H_{46!}(\lfloor\sqrt{46!}\rfloor+1)
+\le22.
 \]
 
-on the completed range.
+This engine is ranked third because it is sequential. Its finite success does not remove the Phase 12P audit, and a future failure would not disprove the full marker-three model unless the complete final sumset also fails.
 
-The largest completed case has `18,627,840` odd cores at `n=45`. The next case has `27,941,760` cores and requires a streaming or bounded-memory generator.
-
-This engine remains ranked third because it is sequential. Finite success does not prove the asymptotic theorem, a future failure does not automatically disprove the full model, and any asymptotic success still requires the exact Phase 12P audit.
-
-Proof and certificate:
+Proofs:
 
 - `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`;
-- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
-- `verification/marker_three_full_menu_audit.py`.
+- `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md`.
 
-Verification request:
+Verification:
 
-`handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
+- `verification/marker_three_full_menu_audit.py`;
+- `verification/marker_three_streaming_audit.cpp`.
 
 ### Rank 4: Three-power normalized valuation-tagged fallback
 
 **Result label: conditional theorem with proved prefix.**
 
-This is the former preferred route, governed by N2-ADD-116 through N2-ADD-118. It is now `SUPERSEDED_AS_PREFERRED` but retained because its normalization, obstruction, repair, and binary-spine theorem are exact.
+This is the former preferred route, governed by N2-ADD-116 through N2-ADD-118. It is `SUPERSEDED_AS_PREFERRED` but retained because its normalization, obstruction, repair, and binary-spine theorem are exact.
 
-Marker-three is better on the current evidence because it has a smaller lattice, wider correction window, lower term count, and successful complete-menu finite carrier certificates.
+Marker-three is stronger on current evidence because it has a smaller lattice, wider correction window, lower term count, and exact finite endpoint coverage through `n=46`.
 
 ### Rank 5: Uniform rainbow convolution
 
@@ -147,7 +144,7 @@ Fourier analysis remains essential inside the target-dependent route, but a sing
 
 ## Structural gate for marker-three
 
-The following are accepted:
+Accepted:
 
 1. divisor legality under the stated valuation side condition;
 2. numerical distinctness across layers;
@@ -159,16 +156,16 @@ The following are accepted:
 8. first-target coverage;
 9. term count `M_n+r_n`.
 
-The following remain open:
+Still open:
 
-1. global asymptotic quotient occupancy;
+1. uniform global quotient occupancy;
 2. uniform endpoint reach near `Y_n`;
 3. total-sum collision collapse;
 4. final-only Fourier or deterministic sumset theorem;
 5. Phase 12P audit for the sequential carrier engine;
-6. exact continuation beyond `n=45` and the remaining finite exceptions.
+6. all remaining finite exceptions.
 
-## Deterministic certified regions
+## Deterministic and finite protected region
 
 Nova 1 proves downward one-density through
 
@@ -176,36 +173,26 @@ Nova 1 proves downward one-density through
 A_n=m_n(2^{M_n}-1),
 \]
 
-where `m_n` is the largest odd integer at most `n`.
+where `m_n` is the largest odd integer at most `n`. Nova 2 extends required target-window occupancy through `A_n+W_n`.
 
-Nova 2 extends required target-window occupancy through
+In addition, N2-FIN-202 and N2-FIN-203 prove complete quotient endpoint coverage for every `12<=n<=46`.
 
-\[
-A_n+W_n.
-\]
+## Exact next targets
 
-In addition, N2-FIN-202 proves full quotient reach through `Y_n` for each `12<=n<=45` using complete menus. Computational and analytic work must distinguish this exact finite range from the asymptotic open region.
+### Deterministic computational target
 
-## Exact next theorem targets
+Reduce the N2-ADD-121 active frontier enough to certify `n=47`, or implement an external-memory frontier with an independently replayable certificate.
 
-There are three parallel valid targets.
+### Deterministic theorem target
 
-### Streaming finite target
-
-Implement a sorted odd-divisor stream or bounded-memory connected-component generator and continue exact full-menu certification from `n=46`.
-
-### Uniform deterministic target
-
-Prove a lower bound on the connected core in each layer strong enough to force
+Prove a uniform upper bound for record gaps of odd divisors of `n!/3` that forces
 
 \[
 E_{M_n}+W_n\ge Y_n.
 \]
 
-The finite terminal-layer saturation pattern is evidence, not a theorem.
-
 ### Final-only analytic target
 
-Prove the marker-three numerical-value weighted Fourier theorem on `[-pi,pi]` for every target beyond the deterministic protected region.
+Prove the marker-three numerical weighted Fourier theorem on `[-pi,pi]` for every target beyond the deterministic protected region.
 
-A failure of the sequential carrier engine must not terminate the final-only route.
+A failure of the carrier engine must not terminate the final-only route.
