@@ -196,3 +196,50 @@ Replay:
 PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
   certificates/capacity/n1_capacity_audit_n3_n1000000.json
 ```
+
+## N4-AUD-004: Nova 1 reduced-rainbow verifier
+
+Status: `ACTIVE`
+
+Result classes: `computational evidence` and `disproved finite claim`.
+
+Frozen input: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, handoff `N1-HO-N4-001`, Study B.
+
+Implementation:
+
+```text
+src/factorial_lab/n1_rainbow.py
+src/replay_rainbow.py
+```
+
+Schemas:
+
+```text
+data/rainbow/n1_reduced_rainbow.schema.json
+certificates/rainbow/n1_reduced_rainbow_first_failure.schema.json
+```
+
+Checks:
+
+- rationally certified `ceil(log n)` and exact `v_2(n!)`;
+- exact high-prime interval and core-menu generation;
+- exact layer addresses and no repeated address;
+- positive non-power-of-two terms dividing `n!` exactly;
+- no numerical duplicates within or across layers;
+- exact zero-or-one-per-layer bitset support in `[0,T_n]`;
+- exact formal profiles and distinct reachable sums;
+- exact term gcd and residue occupancy for every `2<=q<=64`;
+- exact maximum downward gap and first excessive gap;
+- witness reconstruction with layer, address, term membership, numerical distinctness, and exact sum checks;
+- full semantic checksum and exact frozen source metadata.
+
+Independent failure basis: the bitset support result is checked against the common-lattice obstruction `2^(r_n^*+1) Z`.
+
+Corruption behavior: a false first-failure target is rejected even when the outer checksum is recomputed.
+
+Replay:
+
+```bash
+PYTHONPATH=src python3 src/replay_rainbow.py verify-failure \
+  certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
+```
