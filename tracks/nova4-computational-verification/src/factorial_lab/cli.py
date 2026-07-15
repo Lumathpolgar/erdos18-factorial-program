@@ -9,6 +9,14 @@ from pathlib import Path
 
 from .certificates import CertificateError, load_certificate, verify_representation_certificate
 from .dataset import generate_dataset, verify_dataset, write_dataset
+from .lattice import (
+    LatticeCertificateError,
+    LatticeResourceLimit,
+    load_lattice_certificate,
+    verify_label_family_certificate,
+    write_json,
+)
+from .n2_audit import audit_n2_obs_107_range, verify_n2_obs_107_certificate
 
 
 def _print(value: object) -> None:
@@ -62,6 +70,34 @@ def command_verify_dataset(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_verify_label_family(args: argparse.Namespace) -> int:
+    certificate = load_lattice_certificate(args.path)
+    _print(
+        verify_label_family_certificate(certificate, max_exact_states=args.max_states)
+    )
+    return 0
+
+
+def command_verify_n2_obs_107(args: argparse.Namespace) -> int:
+    certificate = load_lattice_certificate(args.path)
+    _print(verify_n2_obs_107_certificate(certificate))
+    return 0
+
+
+def command_audit_n2_obs_107(args: argparse.Namespace) -> int:
+    audit = audit_n2_obs_107_range(args.n_min, args.n_max)
+    write_json(audit, args.output)
+    _print(
+        {
+            "status": "PASS",
+            "output": args.output,
+            "first_admissible_failure_n": audit["first_admissible_failure_n"],
+            "later_failures": len(audit["later_failures_after_first_admissible"]),
+        }
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -84,6 +120,27 @@ def build_parser() -> argparse.ArgumentParser:
     replay = subparsers.add_parser("verify-dataset", help="recompute and verify a dataset")
     replay.add_argument("path")
     replay.set_defaults(func=command_verify_dataset)
+
+    label_family = subparsers.add_parser(
+        "verify-label-family", help="run exact lattice, residue, and finite-window gates"
+    )
+    label_family.add_argument("path")
+    label_family.add_argument("--max-states", type=int, default=2_000_000)
+    label_family.set_defaults(func=command_verify_label_family)
+
+    regression = subparsers.add_parser(
+        "verify-n2-obs-107", help="replay the frozen Nova 2 lattice obstruction"
+    )
+    regression.add_argument("path")
+    regression.set_defaults(func=command_verify_n2_obs_107)
+
+    audit = subparsers.add_parser(
+        "audit-n2-obs-107", help="audit the frozen obstruction on an exact finite n range"
+    )
+    audit.add_argument("--n-min", type=int, default=3)
+    audit.add_argument("--n-max", type=int, required=True)
+    audit.add_argument("--output", required=True)
+    audit.set_defaults(func=command_audit_n2_obs_107)
     return parser
 
 
@@ -92,7 +149,14 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
     try:
         return args.func(args)
-    except (CertificateError, ValueError, RuntimeError, AssertionError) as exc:
+    except (
+        CertificateError,
+        LatticeCertificateError,
+        LatticeResourceLimit,
+        ValueError,
+        RuntimeError,
+        AssertionError,
+    ) as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1
 

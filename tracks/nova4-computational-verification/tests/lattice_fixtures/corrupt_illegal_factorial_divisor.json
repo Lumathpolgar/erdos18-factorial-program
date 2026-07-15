@@ -1,0 +1,11 @@
+{
+  "schema": "nova4.label-family.v1",
+  "source": {"repository": "x/y", "branch": "bad", "commit": "5555555555555555555555555555555555555555"},
+  "n": 8,
+  "target_interval": {"min": 0, "max": 100},
+  "correction_radius": 0,
+  "layers": [{"id": "A1", "max_select": 1, "terms": [11]}],
+  "correction_terms": [],
+  "residue_moduli": [2],
+  "claimed": {}
+}

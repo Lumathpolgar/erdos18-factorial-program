@@ -1,0 +1,17 @@
+{
+  "schema": "nova4.label-family.v1",
+  "source": {
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "branch": "test/finite-label-family",
+    "commit": "1111111111111111111111111111111111111111"
+  },
+  "n": 8,
+  "target_interval": {"min": 16, "max": 200},
+  "correction_radius": 15,
+  "layers": [
+    {"id": "A1", "max_select": 1, "terms": [96, 160]}
+  ],
+  "correction_terms": [],
+  "residue_moduli": [2, 4, 8, 16, 32],
+  "claimed": {"main_gcd": 32, "first_failure_target": 16}
+}
