@@ -1,51 +1,40 @@
 # Nova 1 Structural Verification
 
-## Commands
+## Python checks
 
 ```text
 python tracks/nova1-factorial-structure/verification/structural_sanity.py
 python tracks/nova1-factorial-structure/verification/marker_three_sanity.py
 python tracks/nova1-factorial-structure/verification/endpoint_support_sanity.py
+python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
 ```
 
-All scripts use the Python standard library only, deterministic inputs, and exact integer arithmetic.
+These scripts use deterministic inputs and exact integer arithmetic.
 
-## Baseline structural checks
+### Baseline structural checks
 
 `structural_sanity.py` verifies finite instances of:
 
-1. Legendre's valuation formula and digit-sum identity;
-2. exact quotient-band valuations;
+1. Legendre valuations and the digit-sum identity;
+2. quotient-band valuations;
 3. binary correction legality;
 4. marker distinctness and palette disjointness;
 5. complement-pair legality;
 6. high-prime menu counts;
 7. the downward-window counting inequality.
 
-Recorded result:
-
-```text
-PASS test_legendre_and_bands
-PASS test_binary_palette
-PASS test_marker_distinctness
-PASS test_complement_pairing
-PASS test_high_prime_menu_count
-PASS test_window_counting_lemma
-PASS all 6 structural sanity checks
-```
-
-## Marker-three repair checks
+### Marker-three reduced checks
 
 `marker_three_sanity.py` verifies:
 
-1. legality of generated marker-three divisors;
+1. marker-three divisor legality;
 2. exact 2-adic addresses;
-3. cross-layer numerical distinctness;
+3. cross-layer distinctness;
 4. exact main lattice `3Z`;
-5. palette disjointness and all residues modulo `3`;
+5. palette residues modulo `3`;
 6. the odd-digit one-gap lemma;
-7. exact reduced quotient rainbow reachability;
-8. the quotient-to-main correction reduction;
+7. reduced exact quotient rainbow reachability;
+8. quotient-to-main correction;
 9. complete reconstruction of every tested half-range target.
 
 Exact tested domain:
@@ -54,66 +43,141 @@ Exact tested domain:
 7 <= n <= 14
 r = 3
 M = min(6, v_2(n!) + 1)
-0 <= q <= floor(floor(sqrt(n!)) / 3)
 ```
 
-Recorded result:
+Result label: **computational evidence**.
+
+Detailed report:
+
+`MARKER_THREE_FINITE_REPORT.md`
+
+### Endpoint-support checks
+
+`endpoint_support_sanity.py` verifies finite instances of:
+
+- multiplicative 3-density for `6<=n<=20`;
+- legal first-three-layer endpoint witnesses for `12<=n<=20`;
+- total endpoint crossing;
+- exhaustive coarse-contraction inequalities for `12<=n<=14`.
+
+Result label: **finite certificate**.
+
+Detailed report:
+
+`ENDPOINT_SUPPORT_FINITE_REPORT.md`
+
+### Block and collision checks
+
+`block_collision_sanity.py` verifies finite instances of:
+
+- factorial arithmetic block legality;
+- exact one-block carrier inequalities;
+- exponential carry-collision identities;
+- asymptotic scale separation used by `N1-DIS-006`.
+
+Result label: **finite certificate**.
+
+Detailed report:
+
+`BLOCK_COLLISION_FINITE_REPORT.md`
+
+## Exact complete-core C++ verifier
+
+Source:
+
+`marker_three_full_core_u128.cpp`
+
+Build:
 
 ```text
-PASS test_legality_distinctness_and_lattice
-PASS test_odd_digit_one_gap
-n=7 X=70 layers=5 q_targets=24 reachable_q=24 max_downward_distance=0
-n=8 X=200 layers=6 q_targets=67 reachable_q=66 max_downward_distance=1
-n=9 X=602 layers=6 q_targets=201 reachable_q=198 max_downward_distance=1
-n=10 X=1904 layers=6 q_targets=635 reachable_q=622 max_downward_distance=1
-n=11 X=6317 layers=6 q_targets=2106 reachable_q=2056 max_downward_distance=1
-n=12 X=21886 layers=6 q_targets=7296 reachable_q=7080 max_downward_distance=1
-n=13 X=78911 layers=6 q_targets=26304 reachable_q=25458 max_downward_distance=1
-n=14 X=295259 layers=6 q_targets=98420 reachable_q=94710 max_downward_distance=1
-PASS test_quotient_reduction_exhaustively
-PASS all 3 marker-three checks
+g++ -O3 -std=c++17 \
+  tracks/nova1-factorial-structure/verification/marker_three_full_core_u128.cpp \
+  -o marker_three_full_core_u128
 ```
 
-Detailed report: `MARKER_THREE_FINITE_REPORT.md`.
-
-## Endpoint-support checks
-
-`endpoint_support_sanity.py` verifies:
-
-1. multiplicative 3-density of
-   \[
-   D_n=n!/(3\cdot2^{v_2(n!)})
-   \]
-   for every `6<=n<=20` by checking consecutive divisor ratios;
-2. existence of legal terms in each of the first three quotient layers satisfying
-   \[
-   X_n/9<b_t\le X_n/3
-   \]
-   for every `12<=n<=20`;
-3. pairwise numerical distinctness and exact legality of those terms;
-4. three-term support crossing
-   \[
-   b_1+b_2+b_3>\lfloor X_n/3\rfloor;
-   \]
-5. exhaustive coarse-contraction inequalities for every quotient target with `12<=n<=14` and `1<=L<=6`.
-
-Recorded result:
+Example runs:
 
 ```text
-PASS test_three_density
-PASS test_endpoint_support
-PASS test_coarse_contraction
-PASS all 3 endpoint-support checks
+./marker_three_full_core_u128 --n 46 --max-values 30000000
+./marker_three_full_core_u128 --n 47 --max-values 60000000
+./marker_three_full_core_u128 --n 48 --max-values 60000000
+./marker_three_full_core_u128 --n 49 --max-values 80000000
+./marker_three_full_core_u128 --n 50 --max-values 80000000
 ```
 
-Detailed report: `ENDPOINT_SUPPORT_FINITE_REPORT.md`.
+The verifier uses:
 
-## Evidence status
+- arbitrary-precision integer factorials and square roots;
+- exact rational certification of `r_n` and `M_n`;
+- exact prime valuations;
+- complete generation of every odd core not exceeding `Y_n`;
+- sorted duplicate-free core menus;
+- exact connected-core thresholds and endpoints;
+- a declared fail-closed value cap;
+- unsigned 128-bit storage for truncated core values.
 
-- Baseline structural checks: **finite certificate** for exact tested ranges.
-- Marker-three quotient behavior: **computational evidence** for the exact tested domain.
-- Endpoint-support checks: **finite certificate** for exact tested ranges.
+The implementation range is deliberately restricted to
 
-The endpoint theorem proves total support reaches beyond the final quotient target. It does not prove that a sum lies in the final downward window.
+```text
+12 <= n <= 50
+```
 
-No verification run proves the open asymptotic quotient occupancy theorem.
+because the frozen verifier stores core values in unsigned 128-bit integers. An unsupported endpoint is rejected rather than silently truncated.
+
+### N1-FIN-005
+
+Result label: **finite certificate**.
+
+Every `46<=n<=50` reaches the complete quotient endpoint in six main layers.
+
+Combined with imported Nova 2 certificate `N2-FIN-202` at exact commit
+
+`82603c631a106c3bff4676bdeeb9cc791fc98f3c`,
+
+the complete connected-core carrier is exactly certified for every
+
+```text
+12 <= n <= 50
+```
+
+This remains finite only.
+
+Detailed report and machine-readable records:
+
+- `FULL_CORE_N46_N50_REPORT.md`;
+- `full_core_n46_n50_summary.csv`;
+- `full_core_n46_n50_layers.csv`.
+
+## Connected-prefix theorem
+
+`N1-OBS-003` is a **proved theorem**, not a computational result.
+
+If `K_t` is the positive connected-prefix cardinality at layer `t`, carrier success requires
+
+\[
+\prod_t(1+K_t)
+\ge
+\frac{Y_n+1}{W_n+1}.
+\]
+
+For `n>=120368`, the geometric mean of the executed `1+K_t` must be at least
+
+\[
+\exp\left(\frac{n}{85\log n}\right).
+\]
+
+Proof:
+
+`../proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md`
+
+## Evidence boundary
+
+None of the verification runs proves:
+
+- uniform connected-core growth;
+- the asymptotic quotient-window theorem;
+- the final downward endpoint window;
+- target-local collision upper bounds;
+- the weighted bounded-torus Fourier theorem;
+- the factorial half-range theorem for all sufficiently large `n`;
+- Erdős Problem 18.
