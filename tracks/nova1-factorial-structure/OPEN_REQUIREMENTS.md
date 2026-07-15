@@ -38,7 +38,9 @@ The quotient layers are
 B_t(n)=
 \left\{
 2^{t-1}u:
- u\text{ odd},\ 3u\mid n!,\ 3\cdot2^{t-1}u\le X_n
+ u\text{ odd},
+ 3u\mid n!,
+ 3\cdot2^{t-1}u\le X_n
 \right\}.
 \]
 
@@ -52,19 +54,13 @@ Result label: **disproved route**.
 
 The old request was rejected by Nova 2 theorem `N2-ADD-115` at branch `nova/additive-occupancy`, commit `45c74a5fa747551422ffcad7d3ddf22788fbe622`.
 
-The old main support lay in `2^(r_n+1)Z`, while the old correction radius was too small to meet the first target window.
-
 ## Nova 3 requirement
 
 ### Closed N1-REQ-N3-001-A
 
 Result label: **proved theorem**.
 
-Nova 3 proved that for every integer
-
-\[
-n\ge120368,
-\]
+Nova 3 proved that for every integer `n>=120368`,
 
 \[
 \pi(n)-\pi(n/2)\ge\frac{n}{3\log n}.
@@ -77,16 +73,11 @@ Exact source:
 - theorems: `N3-ANA-010`, `N3-ANA-011`
 - response: `N3-HO-N1-002`
 
-Nova 1 re-audited the transfer to the repaired marker-three menus and proved:
-
-- `N1-STR-018`: each repaired layer has at least `2^(pi(n)-pi(n/2)-1)` high-prime cores;
-- `N1-CAP-002`: the necessary formal profile-capacity gate holds for every `n>=120368`.
-
-Location: `proofs/MARKER_THREE_MENU_CAPACITY.md`.
+Nova 1 re-audited the repaired transfer and proved `N1-STR-018` and `N1-CAP-002`.
 
 ### Next analytic request
 
-No additive analytic request is active until Nova 2 accepts the repaired lattice and freezes the exact target-dependent quotient numerical-value law.
+No additive analytic request is active until Nova 2 accepts the repaired structure and freezes the exact target-dependent quotient numerical-value law.
 
 The next request must specify:
 
@@ -96,8 +87,6 @@ The next request must specify:
 4. exact bounded-torus characteristic function;
 5. all major arcs and internal resonances;
 6. a weighted minor-arc conclusion smaller than the reference window mass.
-
-Logarithmic divisor estimates alone are not an additive occupancy theorem.
 
 ## Nova 4 requirement
 
@@ -113,15 +102,19 @@ Independently audit the repaired marker-three construction:
 4. verify legality and numerical distinctness for every generated layer;
 5. exhaust reduced quotient rainbow systems and record maximum downward gaps;
 6. search for the smallest failure of the exact radius `W_n` condition;
-7. test endpoint support separately from interior gap behavior;
-8. reject corrupted layer descriptions and repeated numerical divisors.
+7. independently verify `N1-STR-019` multiplicative 3-density;
+8. verify the first three quotient layers contain terms in `(X_n/9,X_n/3]` and cross the endpoint;
+9. distinguish total endpoint reach from downward endpoint-window occupancy;
+10. reject corrupted layer descriptions and repeated numerical divisors.
 
-The initial Nova 1 verifier and finite report are:
+Nova 1 finite artifacts:
 
 - `verification/marker_three_sanity.py`;
-- `verification/MARKER_THREE_FINITE_REPORT.md`.
+- `verification/MARKER_THREE_FINITE_REPORT.md`;
+- `verification/endpoint_support_sanity.py`;
+- `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md`.
 
-Nova 4 must reconstruct rather than trust the reported summaries.
+Nova 4 must reconstruct rather than trust the summaries.
 
 ## Internal Nova 1 requirement
 
@@ -137,28 +130,30 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2)
 h(n!)=O((\log n)^3).
 \]
 
-The archived source package must be inspected before this result can be promoted.
+The archived source package must be inspected before promotion.
 
 ## Closed structural requirements
 
-- Factorial valuation atlas: closed by proved theorems.
-- Numerical distinctness mechanism: closed for the repaired route.
-- Exact support lattice and residue audit: closed for the repaired route.
-- Correction palette: closed by binary correction theorem.
-- Direct first-target coverage: closed for the repaired route.
-- Fixed-family capacity audit: closed as a disproved route.
-- Minimum menu entropy: closed as a proved necessary condition.
-- Explicit prime-interval threshold: closed at `n=120368`.
-- Repaired formal profile-capacity gate: closed by `N1-CAP-002`.
-- Two complete structural candidates: closed as heuristic routes with exact blockers.
+- factorial valuation atlas;
+- numerical distinctness mechanism;
+- exact support lattice and residue audit;
+- correction palette;
+- direct first-target coverage;
+- fixed-family capacity audit;
+- minimum menu entropy;
+- explicit prime-interval threshold at `n=120368`;
+- repaired formal profile-capacity gate;
+- total quotient endpoint reach through `floor(X_n/3)`;
+- two complete structural candidates.
 
 ## Open structural requirements
 
-- Quotient endpoint support through `floor(X_n/3)`.
-- Uniform quotient maximum-gap bound `W_n`.
-- Collision-loss control for numerical sums.
-- Track B current-notation reconstruction.
-- Finite exceptions after an effective asymptotic threshold is obtained.
+- uniform quotient maximum downward gap at most `W_n`;
+- downward endpoint-window occupancy in `[floor(X_n/3)-W_n,floor(X_n/3)]`;
+- collision-loss control for numerical sums;
+- exact target-dependent numerical-value law;
+- Track B current-notation reconstruction;
+- finite exceptions after an effective asymptotic threshold.
 
 ## Rule
 
