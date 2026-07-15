@@ -10,7 +10,7 @@ Additive Occupancy and Global Sumsets
 
 ## Overall state
 
-`MARKER_THREE_STRUCTURALLY_ACCEPTED_GLOBAL_OCCUPANCY_OPEN`
+`MARKER_THREE_FULL_MENU_CERTIFIED_N12_N45_ASYMPTOTIC_OCCUPANCY_OPEN`
 
 ## Baseline
 
@@ -37,17 +37,17 @@ Nova 2 proved:
 
 - N2-ADD-116: exact lattice quotient normalization;
 - N2-ADD-117: conditional three-power repair;
-- N2-ADD-118: an exponential deterministic prefix for that repair.
+- N2-ADD-118: exponential deterministic prefix for that repair.
 
-These results remain valid, but the three-power route is no longer preferred after Nova 1 supplied a stronger marker-three construction.
+These results remain valid, but the route is no longer preferred after Nova 1 supplied the marker-three construction.
 
 ## Current preferred structural model
 
 Nova 1 handoff `N1-HO-N2-002` was imported from:
 
-- branch: `nova/factorial-structure`
-- exact commit: `ebb47ba436af554366d0f285119a769f31f9e561`
-- construction: `N1-CON-003`
+- branch: `nova/factorial-structure`;
+- exact commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
+- construction: `N1-CON-003`.
 
 Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
 
@@ -55,13 +55,7 @@ Response:
 
 `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
 
-The marker-three model uses main divisors
-
-\[
-3\cdot2^{t-1}u
-\]
-
-and quotient labels
+The marker-three quotient layers are
 
 \[
 B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
@@ -73,7 +67,7 @@ where
 Y_n=\left\lfloor\frac{\lfloor\sqrt{n!}\rfloor}{3}\right\rfloor.
 \]
 
-Its correction palette is the original binary palette, and the exact quotient radius is
+The correction-window radius is
 
 \[
 W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor.
@@ -83,12 +77,12 @@ The structural gate passes:
 
 - exact main lattice `3 Z`;
 - quotient span one;
-- numerical layer separation;
-- main-palette disjointness;
+- exact 2-adic layer separation;
+- main-palette numerical disjointness;
 - exact correction reduction;
-- term cost `M_n+r_n`.
+- term cost at most `M_n+r_n`.
 
-## Current deterministic results
+## Deterministic theorem package
 
 Nova 1 proves downward one-density through
 
@@ -98,16 +92,10 @@ m_n(2^{M_n}-1),
 
 where `m_n` is the largest odd integer at most `n`.
 
-Nova 2 extends required window occupancy through
-
-\[
-m_n(2^{M_n}-1)+W_n.
-\]
-
-Nova 2 also proved:
+Nova 2 proved:
 
 - N2-ADD-119: translated carrier-block lemma;
-- N2-ADD-120: connected-core recursion sufficient for full marker-three occupancy.
+- N2-ADD-120: connected-core recursion sufficient for complete marker-three quotient occupancy.
 
 At layer `t`, the exact allowable core gap is
 
@@ -119,15 +107,50 @@ D_t(E_{t-1})
 \right\rfloor.
 \]
 
-If the recursion reaches `Y_n-W_n`, the factorial half-range theorem follows with cost `M_n+r_n`.
+If the recursion reaches `Y_n-W_n`, then
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le M_n+r_n.
+\]
 
 N2-ADD-120 is sequential and requires a Phase 12P compatibility audit before asymptotic promotion.
+
+## Exact finite milestone N2-FIN-202
+
+Nova 2 generated every odd core and ran the exact connected-core recursion for every
+
+\[
+12\le n\le45.
+\]
+
+Result:
+
+- all 34 completed cases reach the full quotient endpoint `Y_n`;
+- two layers suffice for `12<=n<=14`;
+- three layers suffice for `15<=n<=19`;
+- four layers suffice for `20<=n<=25`;
+- five layers suffice for `26<=n<=38`;
+- six layers suffice for `39<=n<=45`;
+- every completed case satisfies the exact finite bound
+  \[
+  H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22.
+  \]
+
+At `n=45`, the full odd-core menu contains `18,627,840` values and six layers reach the endpoint. At `n=46`, the exact core count is `27,941,760`, above the declared `20,000,000` generation cap. The status at `n=46` is resource-limited, not failure.
+
+Artifacts:
+
+- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
+- `verification/marker_three_full_menu_audit.py`;
+- `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
+- `verification/data/marker_three_full_menu_n12_n45.csv`.
 
 ## Preferred proof engines
 
 1. Final-only target-dependent tilt plus bounded-torus Fourier window positivity for the marker-three numerical quotient law.
 2. Deterministic final restricted-sumset theorem for the same labels.
-3. Connected-core carrier recursion as a computational certificate and possible sequential theorem, subject to Phase 12P.
+3. Connected-core carrier recursion as a finite certificate and possible sequential theorem, subject to Phase 12P.
 4. The three-power valuation-tagged route as a preserved conditional fallback.
 
 ## Cross-track requests
@@ -142,13 +165,9 @@ File:
 
 ### Nova 4
 
-`N2-HO-N4-002` requests:
+`N2-HO-N4-002` requests structural replay, connected-core recursion, exact full quotient reachability where feasible, deterministic-prefix replay, and endpoint support auditing.
 
-- structural replay;
-- connected-core recursion;
-- full quotient reachability where feasible;
-- protected-prefix replay;
-- endpoint support audit.
+Nova 2 has independently completed the full-menu finite carrier audit through `n=45`; Nova 4 should now reconstruct N2-FIN-202 and extend it with a bounded-memory or streaming generator.
 
 File:
 
@@ -156,30 +175,25 @@ File:
 
 ## Exact open blockers
 
-1. Prove or disprove marker-three quotient occupancy for every target through `Y_n`.
-2. Determine connected-core reach under N2-ADD-120.
-3. Prove endpoint support near `Y_n` or produce an exact endpoint deficit.
-4. Control collisions between different rainbow profiles.
-5. Prove the numerical target-dependent tilt, moment, resonance, and weighted Fourier package.
-6. Audit the sequential carrier theorem against Phase 12P.
-7. Handle finite exceptions.
+1. Prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
+2. Replace the finite connected-core evidence by a uniform theorem or exact obstruction.
+3. Extend exact finite certification beyond `n=45` without materializing every odd core.
+4. Prove endpoint support near `Y_n` or produce an exact endpoint deficit.
+5. Control collisions between different rainbow profiles.
+6. Prove the numerical target-dependent tilt, moment, resonance, and weighted Fourier package.
+7. Audit the sequential carrier theorem against the exact Phase 12P hypotheses.
+8. Handle all remaining finite exceptions.
 
 ## Claim boundary
 
-The marker-three construction passes the structural gate. It does not yet prove the factorial half-range theorem or solve Erdős Problem 18.
+The marker-three construction passes the structural gate and every completed full-menu finite carrier audit. It does not yet prove the asymptotic factorial half-range theorem or solve Erdős Problem 18.
 
 ## Next theorem target
 
-Compute or prove the connected-core reach and compare
+Develop a streaming sorted odd-divisor generator that can certify the connected component without storing the complete menu, beginning at `n=46`. In parallel, formulate and prove the weakest uniform divisor-gap statement that forces
 
 \[
-E_{M_n}+W_n
+E_{M_n}+W_n\ge Y_n.
 \]
 
-with
-
-\[
-Y_n.
-\]
-
-In parallel, freeze and analyze the final-only numerical quotient law so failure of the sequential engine does not terminate the full model.
+The final-only Fourier route remains active so failure of the sequential engine does not terminate the full model.
