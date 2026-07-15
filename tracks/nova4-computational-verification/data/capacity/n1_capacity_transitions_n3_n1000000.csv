@@ -1,0 +1,7 @@
+n,V,m,r,M,K,A,C,both,C_certification_method,C_bit_slack
+3,1,2,5,20,25,False,True,False,exact factorial and integer isqrt,
+10,8,1,10,85,10,False,False,False,exact factorial and integer isqrt,
+11,8,2,10,92,102,False,True,False,exact factorial and integer isqrt,
+1892,1886,130,31,911,117550,True,True,True,exact n!<=n^n bit-length domination,214288
+1893,1886,130,31,912,117679,False,True,False,exact n!<=n^n bit-length domination,214535
+1896,1890,129,31,912,116767,True,True,True,exact n!<=n^n bit-length domination,212678
