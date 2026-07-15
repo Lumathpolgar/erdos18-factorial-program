@@ -20,6 +20,8 @@ Analytic Divisor Density
 
 `THIRD_SUBSTANTIVE_CHECKPOINT_COMPLETE`
 
+Checkpoint head before this status metadata update: `59d86f38540b37dc3cc4075d05589d75c008fb7e`.
+
 The main problem and the direct factorial half-range theorem remain open.
 
 ## New analytic result
@@ -157,6 +159,7 @@ No new external theorem was imported for the compact-tilt checkpoint.
 - `handoffs/TO_NOVA1_COMPACT_TILT.md`
 - `handoffs/TO_NOVA2_COMPACT_TILT.md`
 - `handoffs/TO_NOVA4_COMPACT_TILT.md`
+- `handoffs/CHECKPOINT_HEAD.md`
 
 ## Next theorem target
 
