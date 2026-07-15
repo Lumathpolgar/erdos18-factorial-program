@@ -185,3 +185,61 @@ Replay:
 PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
   data/capacity/n1_capacity_audit_n3_n1000000.json
 ```
+
+## N4-DATA-005: Nova 1 reduced-rainbow Study B
+
+Result class: `computational evidence`
+
+Frozen source:
+
+```text
+branch: nova/factorial-structure
+commit: fa11f4b2cb86a2dd791df189ada12757be791804
+handoff: N1-HO-N4-001, Study B
+```
+
+Parameter range: every `20 <= n <= 80`.
+
+Committed artifacts:
+
+```text
+data/rainbow/n1_reduced_rainbow_summary_n20_n80.csv
+data/rainbow/n1_reduced_rainbow_index.json
+data/rainbow/n1_reduced_rainbow.schema.json
+certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
+```
+
+The deterministic full generated audit includes exact residue sets for every modulus `2<=q<=64` and replayable witnesses for every new maximum downward gap. Its semantic SHA-256 is:
+
+```text
+cfc5dcbcadf9e6572a94a478eafd7632551b8e657bf41b3a69129ede088ce0f7
+```
+
+First-failure certificate semantic SHA-256:
+
+```text
+0c5dcdf30a72a28de6900c4e2d574dbcd5a5e210de07c305118af2730da04e8c
+```
+
+Exact finite findings:
+
+- all 61 reduced models fail at their first requested target `2^(r_n^*)`;
+- every nonzero layer term has gcd `2^(r_n^*+1)`;
+- the first failure is `n=20`, target `8`, empty window `[1,8]`;
+- exact reachable-set sizes range from `159` to `311,688`;
+- additional residue deficiencies beyond the gcd subgroup occur only at `n=22` for moduli `45`, `55`, and `57`.
+
+Generation and replay:
+
+```bash
+PYTHONPATH=src python3 src/replay_rainbow.py audit \
+  --n-min 20 --n-max 80 \
+  --output-json /tmp/n1_reduced_rainbow_full.json \
+  --output-csv data/rainbow/n1_reduced_rainbow_summary_n20_n80.csv \
+  --output-failure certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
+
+PYTHONPATH=src python3 src/replay_rainbow.py verify \
+  /tmp/n1_reduced_rainbow_full.json
+```
+
+The profile-compression fields are truncated-support diagnostics, not pure collision probabilities and not asymptotic claims.
