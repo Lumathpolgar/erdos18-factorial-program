@@ -1,29 +1,32 @@
 # Historical Archive
 
-This directory preserves the complete research record that led to the direct factorial pivot.
+This directory preserves indexed research records that led to the direct factorial pivot.
 
-## Main packages
+## Source packages
 
-- `packages/Erdos18_Solution_Program_Phases1-12J.zip`
-  - Historical Track A through Phase 12J
-  - Includes code, theorem drafts, experiments, exact certificates, tests, and manifests
+The original source artifacts currently remain outside the repository:
 
-- `packages/Erdos18_Solution_Program_TrackB_Phases1-8_13-15.zip`
-  - Conditional Track B package
-  - Includes Phases 13, 14A, 14B1, 14B2, 14C, 14D, 14E, and 15
-  - Phase 15 is a clean-room conditional audit with a closed merge gate
+- `Erdos18_Solution_Program_Phases1-12J.zip`
+- `Erdos18_Solution_Program_Phases1-8_13_14A_14B1_14B2_14C_14D_14E_15.zip`
+- `Phase12K_Entropy_Scale_Entry_Feasibility_Gate.zip`
+- `Phase12L_Low_Entry_Power_Mesh_Gate.zip`
+- `Phase12M_Non_Greedy_Intrinsic_Core_Reentry.zip`
+- `Phase12N_Additive_Window_Occupancy_Gate.zip`
+- `Phase12O_Mixed_Scale_Marker_Ladder_Gate.zip`
+- `Phase12P_Shared_Core_Fiber_Flat_Gap_Gate.zip`
 
-## Late Track A gates
+Their scope, theorem status, and route decisions are recorded in:
 
-The `phase12K-12P/` packages record the final lcm-core route analysis:
+- `TRACK_A_RECORD.md`
+- `TRACK_B_RECORD.md`
+- `PHASE12K_12P_RECORD.md`
 
-- 12K: entropy-scale entry feasibility
-- 12L: low-entry power-mesh and greedy lower bound
-- 12M: non-greedy intrinsic-core re-entry
-- 12N: additive window occupancy
-- 12O: mixed-scale marker ladder
-- 12P: shared-core flat-gap obstruction
+## Package contents
+
+The source packages include code, theorem drafts, experiment outputs, exact certificates, tests, manifests, verification logs, and conditional merge contracts.
 
 ## Archive policy
 
-The archive is immutable evidence of what was attempted and what was proved at that time. New research should not rewrite archived packages. Corrections or reinterpretations belong in new documents under `docs/` or a new phase directory.
+Historical records should not be rewritten to make the research appear more complete than it was. Corrections or reinterpretations belong in new documents under `docs/` or in a newly numbered research phase.
+
+When the source ZIP packages are mirrored into GitHub, they should be added without modifying their contents and accompanied by a checksum or package manifest.
