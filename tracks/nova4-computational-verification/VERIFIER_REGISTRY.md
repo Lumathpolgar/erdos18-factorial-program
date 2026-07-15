@@ -1,52 +1,97 @@
 # Nova 4 Verifier Registry
 
-## Verifier entry fields
+## N4-VER-001: Representation certificate verifier
+
+Status: `ACTIVE`
+
+Result class: `finite certificate`
+
+Purpose: verify exact sums of distinct positive divisors of `n!`.
+
+Implementation:
 
 ```text
-Verifier ID:
-Status:
-Purpose:
-Input schema:
-Output schema:
-Exact arithmetic:
-Failure behavior:
-Test command:
-Corruption tests:
-Owner:
+src/factorial_lab/certificates.py
 ```
 
-## Planned verifiers
+Input schema:
 
-### N4-VER-001: Representation certificate verifier
+```text
+certificates/representation_certificate.schema.json
+```
 
-Status: `PLANNED`
+Checks:
 
-Checks that all selected integers are positive, numerically distinct divisors of `n!`, that their exact sum equals the target, and that the claimed term bound holds.
+- strict integer fields;
+- positivity;
+- exact factorial divisibility through prime valuations;
+- duplicate numerical values across all labels;
+- exact sum equality;
+- target range membership;
+- term count;
+- optional cached field consistency.
 
-### N4-VER-002: Interval coverage verifier
+Failure behavior: fail closed with nonzero replay status.
 
-Status: `PLANNED`
+Corruption tests:
 
-Checks completeness of a finite interval certificate and rejects missing targets, duplicate divisors, or unverified summary counts.
+- duplicate numerical divisors with different labels;
+- illegal divisor;
+- wrong sum;
+- exceeded term bound;
+- false cached sum.
 
-### N4-VER-003: Layer contract verifier
+Test command:
 
-Status: `PLANNED`
+```bash
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+```
 
-Checks factorial valuation budgets, support ranges, cross-layer collisions, correction-palette collisions, and per-layer selection constraints.
+## N4-VER-002: Exact profile replay
 
-### N4-VER-004: Handoff package verifier
+Status: `ACTIVE`
 
-Status: `PLANNED`
+Result class: `exact finite theorem audit`
 
-Checks that required handoff fields, file references, theorem IDs, statuses, and verification commands are present.
+Implementation:
 
-### N4-AUD-001: Track B clean reconstruction
+```text
+src/factorial_lab/dataset.py
+```
 
-Status: `PLANNED`
+Independent optimality basis:
 
-Reconstructs the conditional half-range-to-global implication under the frozen repository notation.
+- Method A minimum-cardinality dynamic programming;
+- Method B exact-cardinality bitsets.
 
-## Fail-closed rule
+Recomputed fields:
 
-Missing files, malformed inputs, overflow risks, timeouts, inconsistent metadata, or failed assertions produce a failure status. They never produce a qualified pass.
+- all `lambda` values;
+- interval maximum;
+- hardest targets;
+- prime valuations;
+- divisor count;
+- eligible divisor count;
+- greedy failure count and first failure;
+- dataset checksum.
+
+Replay command:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-dataset \
+  data/factorial_half_range_profiles_n1_n13.json
+```
+
+## N4-VER-003: Arithmetic core
+
+Status: `ACTIVE`
+
+Result class: `exact finite theorem audit`
+
+Implementation:
+
+```text
+src/factorial_lab/arithmetic.py
+```
+
+Checks include prime sieve, Legendre valuations, exact divisor generation, divisor-count identity, and exact factorial divisibility.

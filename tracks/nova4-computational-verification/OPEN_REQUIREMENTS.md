@@ -1,43 +1,51 @@
 # Nova 4 Open Requirements
 
-## Requirements from Nova 1
+## N4-REQ-N1-001
 
-### N4-REQ-N1-001
+Owner: Nova 1
 
-Status: `AWAITING_CONSTRUCTION`
+Frozen source head: `f2e011d689d56af07ed01de08e00c05457ca9c80`
 
-Receive frozen divisor formulas, selection rules, and correction palettes. Implement exact legality, collision, range, and term-count checks.
+Status: `AWAITING_FROZEN_ARTIFACT`
 
-## Requirements from Nova 2
+Need exact divisor formulas, ranges, selection rules, correction palettes, and term-count claims.
 
-### N4-REQ-N2-001
+## N4-REQ-N2-001
 
-Status: `AWAITING_MODEL`
+Owner: Nova 2
 
-Receive frozen additive layer models. Compute exact supports for feasible parameters, detect lattice obstructions, and locate first uncovered windows.
+Frozen source head: `71370633b1e6726bf6f9e3b334d42cfc34512c06`
 
-## Requirements from Nova 3
+Status: `AWAITING_FROZEN_ARTIFACT`
 
-### N4-REQ-N3-001
+Need an exact additive model, target range, completeness claim, and safe pruning argument.
 
-Status: `DRAFT`
+## N4-REQ-N3-001
 
-Generate exact finite divisor-size and valuation-profile statistics for specified parameter ranges to test analytic formulas.
+Owner: Nova 3
 
-## Integration requirements
+Frozen source head: `c79cddee6e8940e27ff256c29a85a3fc93766f7b`
 
-### N4-REQ-INT-001
+Status: `READY_FOR_PARAMETER_REQUEST`
 
-Status: `READY`
+Exact valuation, divisor, and representation data are available through `n=13`. Need a frozen analytic formula and finite test domain.
 
-Reconstruct the archived Track B half-range-to-global implication using the frozen `H_N` definition and report every mismatch.
+## N4-REQ-INT-001
 
-### N4-REQ-INT-002
+Owner: Integration
 
-Status: `READY`
+Status: `BLOCKED_MISSING_SOURCE_ARTIFACT`
 
-Define the universal certificate schema and fail-closed verifier standard used by all tracks.
+Reconstruct the Track B half-range-to-global implication. The archive index exists, but the named source ZIP and verifier are not present in the repository.
+
+## N4-REQ-CMP-001
+
+Owner: Nova 4
+
+Result class: `unknown due to resource limits`
+
+Extend exact profiles to `n=14` with a more memory-efficient witness strategy, a target-partitioned proof certificate, or a different exact algorithm.
 
 ## Rule
 
-Nova 4 verifies claims but does not silently repair theorem statements. Any mismatch is returned to the owner through a versioned handoff.
+Nova 4 reports mismatches and counterexamples to the owning track. It does not silently revise another track's statement or status.

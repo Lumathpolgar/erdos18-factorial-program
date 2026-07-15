@@ -1,48 +1,84 @@
 # Nova 4 Dataset Registry
 
-## Dataset entry fields
+## N4-DATA-001: Exact factorial half-range profiles
+
+Result class: `exact finite theorem audit`
+
+Parameters:
 
 ```text
-Dataset ID:
-Status:
-Generator commit:
-Parameter range:
-Exact or sampled:
-Arithmetic type:
-Schema:
-Checksum or stable identifier:
-Verification command:
-Known limitations:
+1 <= n <= 13
+0 <= x <= floor(sqrt(n!))
 ```
 
-## Planned datasets
+Coverage: 109,947 targets.
 
-### N4-DATA-001: Factorial divisor inventories
+Arithmetic: exact integers.
 
-Status: `PLANNED`
+Methods:
 
-Exact sorted divisor sets for feasible `n`, with prime-factorization metadata and independent divisor-count checks.
+1. minimum-cardinality 0/1 dynamic programming;
+2. independent exact-cardinality bitset reachability.
 
-### N4-DATA-002: Exact representation profiles
+Committed compact data:
 
-Status: `PLANNED`
+```text
+data/factorial_half_range_summary_n1_n13.json
+```
 
-For feasible targets, record exact or certified bounds for `lambda_{n!}(x)`, along with witnesses.
+Schema:
 
-### N4-DATA-003: Candidate layer occupancy
+```text
+data/half_range_summary.schema.json
+```
 
-Status: `PLANNED`
+Full generated profile name:
 
-For frozen layer systems, record attainable sums, collision multiplicities, minimum window occupancy, and first uncovered targets.
+```text
+data/factorial_half_range_profiles_n1_n13.json
+```
 
-### N4-DATA-004: Valuation-profile statistics
+Full profile SHA-256:
 
-Status: `PLANNED`
+```text
+cfa5a728089e547ef357e3a6bf51574afa03c40b36ed9774e144e84f0a89e996
+```
 
-Histograms and moments for logarithmic divisor sizes and prime-exponent vectors, intended as evidence for Nova 3's asymptotic models.
+Generation command:
 
-## Rules
+```bash
+PYTHONPATH=src python3 src/replay.py generate-dataset \
+  --n-min 1 --n-max 13 \
+  --output data/factorial_half_range_profiles_n1_n13.json \
+  --certificate-dir certificates
+```
 
-- Large generated data need not be committed directly if a deterministic generator and checksum are committed.
-- Every exact claim must be reproducible from raw inputs.
-- Sampled data must record the sampling method and seed.
+Verification command:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-dataset \
+  data/factorial_half_range_profiles_n1_n13.json
+```
+
+Known limitation: Method A for `n=14` did not complete in a 30 second bounded attempt. That case is `unknown due to resource limits`.
+
+## N4-DATA-002: Representation certificates
+
+Result class: `finite certificate`
+
+Contents:
+
+- one certificate for a hardest target for each `1 <= n <= 13`;
+- one optimal certificate for the smallest descending-greedy counterexample.
+
+Schema:
+
+```text
+certificates/representation_certificate.schema.json
+```
+
+Verification command:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-tree certificates
+```

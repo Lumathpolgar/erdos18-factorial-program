@@ -1,45 +1,53 @@
 # Nova 4 Counterexample Registry
 
-## Entry fields
+## N4-CE-001: Descending greedy is not always optimal
+
+Result class: `counterexample`
+
+Frozen finite claim tested:
+
+> For every `n` and every target in the factorial half-range, repeatedly selecting the largest unused divisor of `n!` not exceeding the residual produces a minimum-term representation.
+
+Smallest failing parameter in the exhaustive search over `1 <= n <= 13`:
 
 ```text
-Counterexample ID:
-Claim tested:
-Claim owner:
-Smallest known failing parameter:
-Exact witness:
-Verification command:
-Scope of failure:
-What remains possible:
-Integration consequence:
+n = 8
+target = 155
 ```
 
-## Search queues
+Greedy trace:
 
-### N4-CE-001: Greedy versus optimal factorial representations
+```text
+155 -> choose 144, residual 11
+11 -> choose 10, residual 1
+1 -> choose 1, residual 0
+```
 
-Status: `PLANNED`
+Greedy term count: `3`.
 
-Find the smallest factorial targets where natural greedy rules use more terms than an exact optimum.
+Exact optimum:
 
-### N4-CE-002: Layer collision search
+```text
+155 = 140 + 15
+```
 
-Status: `PLANNED`
+Optimal term count: `2`.
 
-Search every candidate structural construction for same-value collisions across labels, packets, and correction palettes.
+Lower-bound basis: `155` is not a divisor of `8!`, so no one-term representation exists.
 
-### N4-CE-003: Additive window failures
+Certificate:
 
-Status: `PLANNED`
+```text
+certificates/n8_target155_optimal.json
+```
 
-For candidate global sumsets, locate the first uncovered target or minimum-occupancy window.
+Verification command:
 
-### N4-CE-004: Analytic approximation stress tests
+```bash
+PYTHONPATH=src python3 src/replay.py verify \
+  certificates/n8_target155_optimal.json
+```
 
-Status: `PLANNED`
+Scope of failure: descending largest-divisor greedy optimality.
 
-Compare proposed asymptotic divisor counts and moments with exact finite data, especially in transition regimes.
-
-## Rule
-
-Counterexamples remain in the registry even after a route is replaced. A repaired conjecture receives a new ID and exact revised statement.
+What remains possible: greedy can still supply upper bounds or work on restricted target classes. This counterexample does not address the asymptotic factorial theorem.
