@@ -1,166 +1,184 @@
 # Nova 3 Status
 
-## Track
+## Track and branch
 
-Analytic Divisor Density
-
-## Branch
-
-`nova/analytic-density`
-
-## Baseline
-
-- Starting branch head: `c79cddee6e8940e27ff256c29a85a3fc93766f7b`
-- Main head inspected: `68ace6c9c3b67636e298a406fee3bfe8e072741d`
+- Track: Analytic Divisor Density
+- Branch: `nova/analytic-density`
+- Main head inspected at startup: `68ace6c9c3b67636e298a406fee3bfe8e072741d`
 - Merge base: `cd5576d4f7934e26e9d4ef3b065c2ad4cee36c67`
-- Startup relation: branch was already divergent, four commits ahead of the merge base and twelve commits behind main
-- No rebase, force-push, merge into main, or edit to another Nova branch was performed
+- No merge to `main`, force push, rebase, or edit to another Nova branch
 
 ## Overall state
 
-`THIRD_SUBSTANTIVE_CHECKPOINT_COMPLETE`
+`FOURTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
 
-Checkpoint head before this status metadata update: `59d86f38540b37dc3cc4075d05589d75c008fb7e`.
+The factorial half-range theorem and Erdős Problem 18 remain open.
 
-The main problem and the direct factorial half-range theorem remain open.
+## New cross-track result
 
-## New analytic result
+Nova 1 issued repaired marker-three audit `N1-HO-N3-002` from:
 
-The compact nonzero-tilt coarse-window node is closed for the exact top-prime divisor family.
+- branch: `nova/factorial-structure`
+- exact commit: `9febe46f2298d2726eeffa139676136963790019`
+
+Nova 3 returns:
+
+- outcome: `ACCEPTED_WITH_PROOF_REPAIR`
+- response: `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
+- theorems: N3-ANA-014, N3-ANA-015, N3-ANA-016
+
+Both requested capacity statements hold for every integer
+
+\[
+n\ge120368.
+\]
+
+## New proved theorem N3-ANA-014
 
 For
 
 \[
-\mathcal P_n=\{p\text{ prime}:n/2<p\le n\},
+U_t^{(3)}(n)=
+\{u\ge1:u\text{ odd},\ 3u\mid n!,\ 3\cdot2^{t-1}u\le X_n\},
 \]
 
-every prime has valuation one in `n!`. Under the exponential tilt
+and every `1<=t<=M_n`,
 
 \[
-\mathbb P_\theta(A_p=1)=\frac{p^\theta}{1+p^\theta},
+M_n-1\le v_2(n!),
 \]
-
-N3-ANA-012 proves a uniform Gaussian approximation and logarithmic-window lower bound for every fixed compact range
 
 \[
-|\theta|\le\theta_0<1.
+|U_t^{(3)}(n)|
+\ge2^{h_n-1}
+\ge2^{n/(3\log n)-1}.
 \]
 
-The admissible coarse-window width is
+The exact proof uses
 
 \[
-\Delta\ge K_A\log n,
+H_n\mid\frac{n!}{\lfloor n/2\rfloor!}
 \]
 
-with explicit constants depending only on the fixed displacement bound `A` and a universal Berry-Esseen constant.
+and proves
 
-N3-ANA-013 proves that this tilt restriction is structural: at `theta=1` and `theta=-1`, the normalized law converges to zero in probability rather than to a Gaussian.
+\[
+9\,2^{2M_n-2}<\lfloor n/2\rfloor!.
+\]
 
-## Proved results
+Proof: `proofs/MARKER_THREE_REPAIRED_CAPACITY_AUDIT.md`.
 
-| ID | Result class | Statement | Proof location |
-|---|---|---|---|
-| N3-ANA-004 | proved theorem | Exact independent exponent model, moments, saddle parameter, and exponential tilt | `proofs/PRODUCT_MODEL_THEOREMS.md` |
-| N3-ANA-005 | proved theorem | Exact uniform local-count ceiling by conditioning on one prime exponent | `proofs/PRODUCT_MODEL_THEOREMS.md` |
-| N3-ANA-006 | proved theorem | Full uniform log-divisor model converges to a non-Gaussian infinite convolution | `proofs/PRODUCT_MODEL_THEOREMS.md` |
-| N3-ANA-008 | proved theorem | High-prime tail central limit theorem after a cutoff tending to infinity | `proofs/PRODUCT_MODEL_THEOREMS.md` |
-| N3-ANA-010 | proved theorem | `pi(n)-pi(n/2)>=n/(3 log n)` for every integer `n>=120368` | `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md` |
-| N3-ANA-011 | proved theorem | Legal Nova 1 addresses, explicit menu lower bounds, and formal profile capacity for every `n>=120368` | `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md` |
-| N3-ANA-012 | proved theorem | Uniform compact-tilt Gaussian approximation, coarse-window positivity, and weighted distinct subset-product count for `(n/2,n]` | `proofs/COMPACT_TILT_TOP_PRIME_BAND.md` |
+## New proved theorem N3-ANA-015
 
-## Conditional result
+For every `n>=120368`,
 
-| ID | Result class | Statement | Dependency |
-|---|---|---|---|
-| N3-ANA-009 | conditional theorem | Coarse central-window lower bound for the full high-prime logarithmic tail when `Delta>=K M_{n,y}` | Berry-Esseen, N3-SRC-003 |
+\[
+2^{r_n}
+\prod_{t=1}^{M_n}
+(|U_t^{(3)}(n)|+1)
+\ge X_n+1.
+\]
 
-## Disproved estimates and rejected transfers
+This is formal profile capacity only.
 
-| ID or route | Result class | Statement |
+## New disproved proof step N3-ANA-016
+
+The claim that every prime in `(n/2,n]` divides
+
+\[
+\binom n{\lfloor n/2\rfloor}
+\]
+
+is false for odd `n`.
+
+For every prime `p`, take `n=2p-1`. Then
+
+\[
+p\in(n/2,n],
+\qquad
+v_p\binom{2p-1}{p-1}=0.
+\]
+
+This invalidates the suggested shortcut, not the repaired menu theorem.
+
+## Existing analytic frontier
+
+| ID | Class | Current conclusion |
 |---|---|---|
-| N3-ANA-007 | disproved estimate | No fixed-`n` logarithmic characteristic function has uniform modulus below one on every sufficiently large frequency |
-| N3-ANA-013 | disproved estimate | A top-prime Gaussian theorem cannot be uniform on a fixed tilt range reaching `|theta|=1` |
-| Full-vector Gaussian route | disproved estimate | Low-prime coordinates retain macroscopic variance and the normalized full model is non-Gaussian |
-| Smooth-number lower-bound transfer | rejected inference | Lower bounds for a larger smooth or ultrafriable set do not transfer to exact divisors of `n!` |
-| Direct log-to-additive Fourier transfer | rejected inference | A theorem for `E exp(it log d)` does not control `E exp(it d)` or a numerical rainbow sum |
+| N3-ANA-004 | proved theorem | Exact divisor exponent product and tilt model |
+| N3-ANA-005 | proved theorem | Uniform logarithmic local-count ceiling |
+| N3-ANA-006 | proved theorem | Full model has a non-Gaussian limit |
+| N3-ANA-007 | disproved estimate | Unrestricted pointwise minor-arc decay is false |
+| N3-ANA-008 | proved theorem | Zero-tilt high-prime CLT |
+| N3-ANA-009 | conditional theorem | Coarse high-prime window positivity |
+| N3-ANA-010 | proved theorem | Explicit upper-half prime count for `n>=120368` |
+| N3-ANA-011 | proved but superseded model | Old-address formal capacity |
+| N3-ANA-012 | proved theorem | Compact-tilt top-prime coarse logarithmic windows |
+| N3-ANA-013 | disproved estimate | Gaussian behavior fails at unit tilt |
+| N3-ANA-014 | proved theorem | Repaired marker-three menu count and address legality |
+| N3-ANA-015 | proved theorem | Repaired marker-three formal capacity |
+| N3-ANA-016 | disproved estimate | Central-binomial divisibility shortcut is false |
 
-## Cross-track status
+## Exact finite certificate N3-FIN-004
+
+At `n=120368`:
+
+- top-prime count: `5254`;
+- prime-count margin: greater than `1824.21`;
+- `M_n=2190`;
+- `r_n=47`;
+- exact 2-adic address slack: `118171`;
+- exact formal-capacity margin: `10575208` bits;
+- repaired squared cutoff passes in exact integer arithmetic.
+
+Command:
+
+```text
+python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
+```
+
+Selected larger rows through `n=1000000` are N3-COMP-003 computational evidence only.
+
+## Cross-track state
 
 ### Nova 1
 
-The explicit prime-interval and formal menu-capacity request remains closed by N3-ANA-010 and N3-ANA-011 with
-
-\[
-n_3=n_4=n_5=120368.
-\]
-
-N3-ANA-012 is available as an independent logarithmic subset-product reservoir theorem. It does not repair the rejected power-of-two additive lattice construction.
+The repaired marker-three capacity request is closed. Nova 1 must replace the invalid central-binomial step with the quotient-factorial proof.
 
 ### Nova 2
 
-Nova 2's correct future Fourier object is the exact numerical additive law on `[-pi,pi]`. No layer-specific request is active because the first Nova 1 construction failed the lattice and first-window gate.
+Nova 2 has frozen two numerical quotient requests:
 
-N3-ANA-012 must not be imported as numerical additive occupancy evidence. It concerns `log d` for top-prime subset products.
+- `N2-HO-N3-002`, a four-point quotient-window law for a three-power repair;
+- `N2-HO-N3-003`, a marker-three numerical-value law with window radius `W_n`.
+
+The latest Nova 1 marker-three construction has changed beyond the exact commit imported by the Nova 2 marker-three request. Before analytic work begins, the receiving model must freeze one exact current structural commit and state which deterministic prefix remains protected.
+
+No logarithmic theorem will be substituted for the numerical additive law.
 
 ### Nova 4
 
-Independent reconstruction is required for N3-ANA-004 through N3-ANA-013 and the finite verifiers.
-
-## Finite certificates and computational evidence
-
-### N3-FIN-001
-
-- Range: every integer `2<=n<=12`
-- Command: `python3 tracks/nova3-analytic-density/proofs/scale_sanity.py`
-
-### N3-FIN-002
-
-- Range: every integer `120368<=n<=1000000`
-- Command: `python3 tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py`
-
-### N3-FIN-003
-
-- Exhaustive cases: `n in {11,17,29,43}` and `theta in {-0.75,-0.25,0,0.25,0.75}`
-- Verified: tilted normalization, mean, variance, and third-moment ceiling by direct subset enumeration
-- Command: `python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py`
-
-### N3-COMP-002
-
-Selected rows through `n=1000000` verify the displayed variance and third-moment inequalities for `theta_0` through `0.90` and illustrate unit-tilt freezing. These rows are computational evidence only.
-
-## Source audit
-
-Accepted external inputs:
-
-- Robbins explicit Stirling bounds
-- prime number theorem
-- Berry-Esseen inequality
-- Dusart Theorem 6.9 explicit bounds for `pi(x)`
-
-No new external theorem was imported for the compact-tilt checkpoint.
+Independent reconstruction is required for N3-ANA-014 through N3-ANA-016 and N3-FIN-004.
 
 ## Exact blockers
 
-1. Nova 1 must replace the rejected power-of-two lattice construction before additive Fourier analysis is relevant.
-2. A revised layer system must pass Nova 2's common-lattice, residue, correction-radius, first-target, endpoint, and distinctness gates.
-3. Nova 2 must then freeze the exact numerical additive law, target-dependent weights, major arcs, minor arcs, interval kernel, reference law, and error scale.
-4. Fine logarithmic windows below `K_A log n` remain open even for the top-prime band.
-5. The compact-tilt theorem for the full bounded-exponent high-prime tail remains open; N3-ANA-012 treats the exact Bernoulli band `(n/2,n]`.
-6. Independent Nova 4 reconstruction remains required.
-7. The Phase 12L and Phase 12P source packages remain outside the repository.
-8. The branch remains divergent from main, and no history rewrite is permitted.
+1. Nova 2 has multiple repaired quotient contracts and must identify the active one against a current Nova 1 commit.
+2. The active contract must freeze the exact numerical labels, target range beyond the deterministic prefix, tilt parameterization, and endpoint handoff.
+3. Constant-width numerical windows require a local torus estimate whose error is smaller than the reference mass, not merely Berry-Esseen distribution distance.
+4. Fine logarithmic windows below `K_A log n` remain open.
+5. Phase 12L and Phase 12P source packages remain outside the repository.
+6. The branch remains divergent from `main`.
 
 ## Handoffs
 
-- `handoffs/TO_NOVA1.md`
 - `handoffs/RESPONSE_TO_NOVA1.md`
-- `handoffs/TO_NOVA2.md`
-- `handoffs/TO_NOVA4.md`
+- `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
 - `handoffs/TO_NOVA1_COMPACT_TILT.md`
+- `handoffs/TO_NOVA2.md`
 - `handoffs/TO_NOVA2_COMPACT_TILT.md`
+- `handoffs/TO_NOVA4.md`
 - `handoffs/TO_NOVA4_COMPACT_TILT.md`
-- `handoffs/CHECKPOINT_HEAD.md`
 
 ## Next theorem target
 
-`N3-NEXT-003`: determine the sharpest true local theorem below logarithmic width `K_A log n` for the top-prime tilted subset-product model. Prove a bounded-frequency local estimate, or prove a resonance or spacing obstruction that prevents uniform positivity at the requested scale.
+`N3-NEXT-004`: audit Nova 2's competing repaired quotient requests against the latest Nova 1 construction. Freeze the one active numerical-value law, or return a precise version-mismatch obstruction before attempting any bounded-torus local theorem.
