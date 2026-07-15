@@ -2,148 +2,158 @@
 
 ## Route decision
 
-- Decision ID: `N3-ROUTE-002`
-- Status: `PROVED` as a route obstruction and ranking decision; the final local theorem remains `OPEN`
+- Decision ID: `N3-ROUTE-003`
+- Status: `PROVED` as a route ranking and obstruction decision; the final additive theorem remains `OPEN`
 - Date: 2026-07-15
 
 ## Cross-track correction
 
-Nova 2 has now frozen the distinction between two different analytic objects.
+Nova 2 has frozen the distinction between:
 
-1. Logarithmic divisor size:
+1. logarithmic divisor size,
    \[
-   \mathbb E e^{it\log d}.
+   \mathbb E e^{it\log d};
    \]
-2. Numerical additive occupancy:
+2. numerical additive occupancy,
    \[
    \mathbb E e^{itS_{n,x}},
-   \qquad
-   S_{n,x}=\sum_iY_{i,n,x}.
+   \qquad S_{n,x}=\sum_iY_{i,n,x}.
    \]
 
-A theorem for the first object does not automatically control the second. Numerical additive inversion is periodic on `[-pi,pi]` and must include every nonzero resonance. This correction is accepted from Nova 2 branch `nova/additive-occupancy`, commit `45c74a5fa747551422ffcad7d3ddf22788fbe622`.
+A theorem for the first object does not control the second. Numerical additive inversion is periodic on `[-pi,pi]` and must include every nonzero resonance.
 
-The first Nova 1 layer system is not eligible for Fourier analysis because Nova 2 proved that every main sum lies in a power-of-two sublattice that misses the first required window.
+The first Nova 1 layer system remains ineligible for Fourier analysis because Nova 2 proved that its main sums lie in a power-of-two sublattice missing the first required window.
 
 ## Ranked analytic routes
 
-### 1. Exact low-prime conditioning plus high-prime tilted logarithmic analysis
+### 1. Exact top-prime compact-tilt reservoir
 
-Status: `PREFERRED_FOR_INTRINSIC_DIVISOR_DENSITY`.
+Status: `PROVED_PREFERRED_INTRINSIC_COMPONENT`.
 
-Split the exponent vector at a cutoff `y=y(n)`:
+Freeze
+
+\[
+\mathcal P_n=\{p\text{ prime}:n/2<p\le n\}.
+\]
+
+Every coordinate has factorial valuation one. N3-ANA-012 proves, uniformly for each fixed
+
+\[
+|\theta|\le\theta_0<1,
+\]
+
+a Gaussian approximation, variance lower bound, coarse logarithmic-window positivity at width `K_A log n`, and a lower bound for the number of distinct subset products in the window.
+
+Advantages:
+
+- exact factorial divisors, not a smooth-number surrogate;
+- unique-factorization distinctness;
+- explicit threshold `n>=120368`;
+- no bounded-exponent bookkeeping because every coordinate is Bernoulli;
+- fully uniform compact-tilt constants;
+- a sharp obstruction at `|theta|=1` from N3-ANA-013.
+
+This is now the strongest clean analytic reservoir theorem on the branch.
+
+### 2. Exact low-prime conditioning plus full high-prime tilted logarithmic analysis
+
+Status: `PREFERRED_GENERALIZATION`.
+
+Split
 
 \[
 S_n=S_{\le y}+S_{>y}.
 \]
 
-Treat `S_{<=y}` exactly or structurally. Apply an exponential tilt and a local or coarse-window theorem only to `S_{>y}`.
+Treat the low-prime component exactly and apply a tilted theorem to the high-prime tail. N3-ANA-008 and N3-ANA-009 establish the zero-tilt coarse regime. Extending N3-ANA-012 from the top Bernoulli band to all bounded high-prime exponent coordinates remains open.
 
-Quantitative reasons:
+### 3. Structural gate followed by matched numerical additive Fourier analysis
 
-- the full model has bounded effective dimension;
-- small primes retain a fixed share of total variance;
-- after `y->infinity`, the largest high-prime coordinate becomes negligible compared with the tail standard deviation;
-- N3-ANA-008 proves a high-prime central limit theorem;
-- N3-ANA-009 gives coarse-window positivity when the width is at least a constant multiple of the largest remaining coordinate span.
+Status: `PREFERRED_FOR_NOVA_2_AFTER_REPAIR`.
 
-This route remains the correct intrinsic route for logarithmic divisor density.
+Required sequence:
 
-### 2. Structural gate followed by matched numerical additive Fourier analysis
-
-Status: `PREFERRED_FOR_NOVA_2_OCCUPANCY_AFTER_REPAIR`.
-
-The required sequence is now fixed.
-
-1. Nova 1 proposes a versioned factorial divisor layer system.
-2. Nova 2 checks the common lattice, attained residues, correction radius, first target, endpoints, numerical distinctness, and nonsequential selection rule.
-3. Only after that gate passes, Nova 2 freezes the exact numerical law, weights, target windows, interval kernel, reference law, and all major arcs.
+1. Nova 1 proposes a versioned divisor layer system.
+2. Nova 2 checks lattice, residues, correction radius, first target, endpoints, distinctness, and nonsequential legality.
+3. Nova 2 freezes the exact numerical law, target weights, windows, kernel, reference law, and all major arcs.
 4. Nova 3 proves the matched bounded-torus estimate or returns a resonance obstruction.
 
-No logarithmic density result may be substituted for this numerical additive theorem.
+No logarithmic theorem may be substituted for this numerical additive analysis.
 
-### 3. Explicit prime-band capacity certification
+### 4. Explicit prime-band capacity certification
 
 Status: `PROVED_SUPPORTING_ROUTE`.
 
-N3-ANA-010 and N3-ANA-011 close Nova 1's explicit upper-half prime count and formal menu-capacity dependency with
+N3-ANA-010 and N3-ANA-011 close Nova 1's explicit prime count and formal menu-capacity dependency with
 
 \[
 n_3=n_4=n_5=120368.
 \]
 
-This route certifies that the factorial divisor lattice contains enough legal formal profiles. It does not establish that profile sums are distinct or that they occupy every required window.
+Formal capacity is not profile-sum injectivity or occupancy.
 
-### 4. Direct saddle point with exact low-prime convolution
+### 5. Fine top-prime local analysis
+
+Status: `NEXT_INTRINSIC_TARGET`.
+
+N3-ANA-012 reaches windows
+
+\[
+\Delta\ge K_A\log n.
+\]
+
+The next intrinsic question is whether this can be lowered. A successful theorem must analyze the bounded-frequency characteristic function of the weighted Bernoulli prime-log sum. An obstruction must distinguish average density from maximum logarithmic gap.
+
+### 6. Direct saddle point with exact low-prime convolution
 
 Status: `SECONDARY_FOR_LOGARITHMIC_WINDOWS`.
 
-The exact tilted product identity is valid across the full bulk range. One may compute the low-prime distribution exactly, prove a local theorem for the high-prime tail, and convolve. This route is retained if a structural application supplies a fixed low-prime family and asks specifically about logarithmic divisor windows.
+The full tilted product identity remains valid. This route is retained for applications with a frozen low-prime family and an explicitly logarithmic target.
 
-### 5. Full uniform-divisor Gaussian local limit
+### 7. Full uniform-divisor Gaussian local limit
 
-Status: `DISPROVED`.
+Status: `DISPROVED` by N3-ANA-006.
 
-N3-ANA-006 proves that
+### 8. Unrestricted global minor-arc decay
 
-\[
-\frac{\log d-\frac12\log(n!)}n
-\]
+Status: `DISPROVED` by N3-ANA-007.
 
-converges to a non-Gaussian infinite convolution. A Gaussian local theorem for the full vector is false.
+### 9. Compact top-prime tilt range reaching `|theta|=1`
 
-### 6. Unrestricted global minor-arc decay
+Status: `DISPROVED` by N3-ANA-013.
 
-Status: `DISPROVED`.
+At unit tilt the Bernoulli coordinates freeze at their favored endpoints with probability tending to one, and the normalized centered law converges to zero in probability.
 
-N3-ANA-007 proves
-
-\[
-\limsup_{|t|\to\infty}|\phi_n(t)|=1
-\]
-
-for every fixed `n`. Any viable Fourier theorem needs a bounded range, smoothing, averaging, or explicit major-arc removal.
-
-### 7. Smooth-number lower-bound transfer
+### 10. Smooth-number lower-bound transfer
 
 Status: `REJECTED`.
 
-Divisors of `n!` form a constrained subset of smooth or ultrafriable sets. Lower bounds for a superset do not transfer to the subset.
+Lower bounds for larger smooth or ultrafriable sets do not transfer to exact factorial divisors.
 
-## Immediate theorem target
+## Exact current deliverable
 
-The strongest independent next target is a compact-tilt extension of N3-ANA-009.
-
-Freeze constants `A>0` and a high-prime cutoff `y=y(n)` with
+For every fixed `theta_0<1` and `A>=0`, N3-ANA-012 supplies effective constants such that top-prime subset products have positive tilted mass and explicit weighted count in every central logarithmic window satisfying
 
 \[
-y\to\infty,
-\qquad
-2y\le\sqrt n.
+K_A\log n\le\Delta\le B_{n,\theta}.
 \]
 
-For saddle parameters whose coordinate biases stay in a compact interior range, prove uniformly:
-
-1. lower and upper variance bounds;
-2. a maximal-coordinate to standard-deviation ratio tending to zero;
-3. a uniform third-moment bound;
-4. a Berry-Esseen estimate;
-5. positive mass in central windows of width at least a constant multiple of the largest tilted coordinate span.
-
-This theorem can be proved without pretending that the currently rejected additive layer system is valid.
+The theorem is exact in divisor legality and distinctness. It is not an additive occupancy theorem.
 
 ## Stop conditions
 
 Abandon or weaken a proposed route if it requires:
 
-- fixed-width logarithmic windows uniformly from the endpoints;
-- unbounded pointwise minor-arc decay;
-- a Gaussian theorem without conditioning out low primes;
+- fixed-width logarithmic windows without a local theorem;
+- an unbounded pointwise minor arc;
+- a Gaussian theorem through `|theta|=1` on the top-prime band;
+- a full-vector Gaussian theorem without low-prime conditioning;
 - lower-bound transfer from a smooth superset;
 - direct control of numerical additive sums from logarithmic divisor estimates;
-- Fourier work before the layer lattice and residue gate passes;
-- profile capacity treated as profile-sum injectivity.
+- Fourier work before Nova 2's structural gate passes;
+- profile capacity treated as profile-sum injectivity;
+- mean spacing treated as maximum-gap control.
 
 ## Next theorem target
 
-`N3-NEXT-002`: prove the compact nonzero-tilt high-prime coarse-window theorem with explicit uniform constants, then hand it to Nova 4 for reconstruction.
+`N3-NEXT-003`: determine the sharpest true uniform logarithmic-window scale below `K_A log n` for compactly tilted top-prime subset products. Prove a bounded-frequency local theorem, weaken to the strongest true intermediate scale, or prove a resonance or maximum-gap obstruction.
