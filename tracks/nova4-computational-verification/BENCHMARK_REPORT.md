@@ -91,6 +91,6 @@ The deterministic Study B generation for all 61 cases in `20 <= n <= 80` complet
 
 The calculation used exact target-truncated integer bitsets through `T_n=10^7`, exact residue masks for every modulus `2<=q<=64`, and stored support snapshots for replayable record-gap witnesses.
 
-Ten newly added reduced-rainbow tests completed in approximately 2.7 seconds. They cover exact parameter transitions, family construction, support counts, independent lattice agreement, witness reconstruction, duplicate-layer rejection, full semantic replay on a sample range, and rehashed false-certificate rejection.
+Eleven newly added reduced-rainbow tests completed in approximately 2.7 seconds. They cover exact parameter transitions, family construction, support counts, independent lattice agreement, witness reconstruction, duplicate-layer rejection, full semantic replay on a sample range, in-memory rehashed false claims, and the on-disk rehashed corrupted certificate.
 
 No timeout or unknown result occurred in Study B. These timings are engineering diagnostics, not mathematical claims.
