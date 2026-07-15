@@ -1,6 +1,8 @@
 # Handoff to Nova 2
 
-Handoff ID: `N1-HO-N2-001`
+Handoff ID: `N1-HO-N2-002`
+
+Supersedes: `N1-HO-N2-001`
 
 Sending track: Nova 1, Factorial Structure and Reduction
 
@@ -10,7 +12,18 @@ Date: 2026-07-15
 
 Result status: **conditional theorem** request
 
-Theorem or object IDs: `N1-CON-001`, `N1-RED-003`, `N1-REQ-N2-001-A`
+Theorem or object IDs: `N1-CON-003`, `N1-STR-014`, `N1-STR-015`, `N1-RED-004`, `N1-RED-005`, `N1-REQ-N2-002`
+
+## Prior handoff disposition
+
+`N1-HO-N2-001` was rejected by Nova 2 at:
+
+- branch: `nova/additive-occupancy`
+- exact commit: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
+- theorem: `N2-ADD-115`
+- disproved model: `N2-OBS-107`
+
+The old common factor was `2^(r_n+1)`, larger than the old correction radius plus one. This revised handoff changes the construction and receives a new ID.
 
 ## Exact frozen objects
 
@@ -19,80 +32,81 @@ For every integer `n>=3`, define
 \[
 X_n=\lfloor\sqrt{n!}\rfloor,
 \qquad
-V_n=v_2(n!),
-\]
-
-\[
 r_n=\lceil4\log n\rceil,
 \qquad
 M_n=\lceil16(\log n)^2\rceil,
 \]
 
-and, for `1<=t<=M_n`,
-
 \[
-e_t=r_n+t.
+R_n=2^{r_n}-1,
+\qquad
+W_n=\left\lfloor\frac{R_n-2}{3}\right\rfloor.
 \]
 
-The theorem request concerns all sufficiently large `n` satisfying
-
-\[
-e_{M_n}\le\lfloor V_n/2\rfloor-1.
-\]
-
-For each such `n` and `t`, define
+For `1<=t<=M_n`, define
 
 \[
 U_t(n)=
 \left\{
  u\in\mathbb Z_{>0}:
- u\mid n!,\ u\text{ odd},\ u>1,\ 2^{e_t}u\le X_n
+ u\text{ odd},\ 3u\mid n!,\ 3\cdot2^{t-1}u\le X_n
 \right\},
 \]
 
-and
+and the quotient layer
 
 \[
-\mathcal A_t(n)=\{2^{e_t}u:u\in U_t(n)\}.
+B_t(n)=
+\left\{
+2^{t-1}u:u\in U_t(n)
+\right\}.
 \]
 
-Define the rainbow sumset
+Define the quotient rainbow sumset
 
 \[
-\mathcal R_n=
+Q_n=
 \left\{
-\sum_{t=1}^{M_n}d_t:
- d_t\in\mathcal A_t(n)\cup\{0\}
+\sum_{t=1}^{M_n}b_t:
+ b_t\in B_t(n)\cup\{0\}
 \right\}.
 \]
 
 At most one nonzero term may be chosen from each layer.
+
+The corresponding main divisor is `3b_t`. The correction palette is
+
+\[
+C_n=\{1,2,4,\ldots,2^{r_n-1}\}.
+\]
 
 ## Exact theorem request
 
 Prove that an absolute integer `n_0` exists such that, for every integer `n>=n_0` and every integer
 
 \[
-2^{r_n}\le x\le X_n,
+W_n+1\le q\le\left\lfloor\frac{X_n}{3}\right\rfloor,
 \]
 
-there is a sum `y in R_n` satisfying
+there is a quotient rainbow sum `s in Q_n` satisfying
 
 \[
-x-(2^{r_n}-1)\le y\le x.
+q-W_n\le s\le q.
 \]
 
 Equivalently,
 
 \[
-[x-(2^{r_n}-1),x]\cap\mathcal R_n\ne\varnothing
+[q-W_n,q]\cap Q_n\ne\varnothing
 \]
 
 for every target in the stated range.
 
+A proof of exact representation is stronger than required.
+
 ## Required conclusion
 
-A proof of the requested theorem, combined with the proved binary correction lemma, yields
+Nova 1 has proved that the requested statement implies
 
 \[
 H_{n!}(X_n+1)
@@ -103,61 +117,113 @@ M_n+r_n
 \lceil4\log n\rceil.
 \]
 
-Every representation then uses numerically distinct divisors because different layers have different 2-adic valuations and the correction palette consists only of pure powers of two.
+The reduction is exact. Write a target as `x=3q+delta`, with `delta in {0,1,2}`. If `q<=W_n`, the palette handles `x` directly. Otherwise a quotient sum `s in [q-W_n,q]` gives main sum `3s` and residual
 
-## Exact hypotheses already supplied by Nova 1
+\[
+0\le x-3s\le2+3W_n\le R_n.
+\]
 
-1. Every element of every `A_t(n)` divides `n!`.
-2. A legal rainbow selection contains pairwise distinct main divisors.
-3. Main divisors are disjoint from
-   \[
-   \{1,2,\ldots,2^{r_n-1}\}.
-   \]
-4. The formal profile-capacity gate passes conditionally on the explicit prime-interval lower bound sent to Nova 3.
-5. No sequential selection rule is imposed.
+The binary palette represents the residual.
+
+## Structural gate already proved by Nova 1
+
+1. Every main term `3*2^(t-1)*u` divides `n!` for all sufficiently large `n`.
+2. Different layers have different exact 2-adic valuations.
+3. Every main term is divisible by `3`; every palette term is a pure power of two.
+4. Main and correction divisors are numerically disjoint.
+5. The exact main support lattice is `3Z` because the first layer contains `3`.
+6. The palette attains all residues modulo `3`.
+7. The correction radius `R_n` exceeds the largest residue gap modulo `3`.
+8. The first requested target is directly covered.
+9. The quotient support has lattice span one because `1 in B_1(n)`.
+10. No sequential partial-coverage invariant is imposed.
+11. Total selected-term cost is exactly at most `M_n+r_n`.
+
+Proof file:
+
+`tracks/nova1-factorial-structure/proofs/MARKER_THREE_LATTICE_REPAIR.md`
+
+Construction file:
+
+`tracks/nova1-factorial-structure/constructions/MARKER_THREE_VALUATION_RAINBOW.md`
+
+## Unconditional initial range
+
+Nova 1 proves that, for all sufficiently large `n`, every integer
+
+\[
+0\le x\le3m_n(2^{M_n}-1)+2
+\]
+
+is represented, where `m_n` is the largest odd integer at most `n`.
+
+This follows from the proved odd-digit one-gap lemma. It is not the half-range theorem.
+
+## Finite regression evidence
+
+The exact reduced-parameter verifier checks every quotient target for `7<=n<=14`. The maximum downward quotient distance is at most one throughout that domain, and the binary palette reconstructs every target up to `X_n`.
+
+Run:
+
+```text
+python tracks/nova1-factorial-structure/verification/marker_three_sanity.py
+```
+
+Files:
+
+- `verification/marker_three_sanity.py`
+- `verification/MARKER_THREE_FINITE_REPORT.md`
+
+Result label: **computational evidence**.
 
 ## Mandatory issues the proof must resolve
 
-- uniformity for every integer target, not almost all targets;
-- exact downward orientation and both interval endpoints;
-- inaccessible residue classes after the binary palette is included;
-- additive shell gaps;
-- collisions between different rainbow profiles;
-- whether a proposed decoder secretly imposes a sequential one-choice architecture;
-- exact selected-term count;
+- uniformity for every integer quotient target;
+- exact downward orientation and endpoints;
+- endpoint support near `floor(X_n/3)`;
+- additive shell gaps larger than `W_n`;
+- collision concentration between different rainbow profiles;
+- exact integer lattice and all resonances of any proposed probability law;
+- whether any decoder secretly imposes sequential partial coverage;
 - finite exceptions below `n_0`.
 
 ## Dependencies
 
+- `proofs/MARKER_THREE_LATTICE_REPAIR.md`
 - `proofs/VALUATION_BUDGET_LEMMAS.md`
-- `proofs/DISTINCTNESS_AND_CORRECTION.md`
 - `proofs/COUNTING_CAPACITY_OBSTRUCTION.md`
 - `proofs/MENU_ENTROPY_REQUIREMENT.md`
 - `proofs/HIGH_PRIME_MENU_CAPACITY.md`
-- `constructions/VALUATION_TAGGED_ADDRESS_PACKETS.md`
+- `constructions/MARKER_THREE_VALUATION_RAINBOW.md`
 - `PREFERRED_ROUTE.md`
 
-## Verification command
+## Verification requirement
 
-No repository-wide verifier exists yet. Nova 2 must provide either a complete proof artifact or reproducible finite falsification code with exact witnesses. Finite evidence must not be promoted to the asymptotic theorem.
+Before analytic work, audit the frozen structural gate independently. If it passes, freeze the exact quotient numerical-value probability law, its lattice span, target-dependent tilt, and bounded-torus characteristic function.
+
+A finite counterexample must include the exact `n`, quotient target `q`, downward distance, generated layer definition, and an independently replayable verifier.
 
 ## Known failure modes
 
-- large formal profile count with low distinct-sum count;
-- common residue obstruction across all addressed layers;
-- maximum downward gap exceeding `2^{r_n}-1`;
-- a proof using more than one term from a layer;
-- a sequential decoder falling under a Phase 12P-type obstruction.
+- a quotient maximum gap exceeding `W_n`;
+- support failing to reach the endpoint target range;
+- large formal profile count with few numerical sums;
+- an overlooked quotient residue obstruction;
+- illegal reuse of one layer or one numerical divisor;
+- a sequential proof falling under a Phase 12P-type information ceiling.
 
 ## What is not claimed
 
-Nova 1 does not claim that the requested occupancy theorem is true. Capacity, legality, and distinctness do not imply coverage.
+Nova 1 does not claim that the quotient occupancy theorem is true. The repaired lattice and finite evidence do not imply asymptotic coverage.
 
 ## Requested next action
 
-Attempt either:
+Return one of:
 
-1. a proof of the exact frozen theorem; or
-2. a rigorous counterexample family or asymptotic obstruction for the exact frozen layers.
+- `ACCEPTED`;
+- `ACCEPTED_WITH_RESTRICTIONS`;
+- `REJECTED`;
+- `NEEDS_REPAIR`;
+- `SUPERSEDED`.
 
-Return one of `ACCEPTED`, `ACCEPTED_WITH_RESTRICTIONS`, `REJECTED`, `NEEDS_REPAIR`, or `SUPERSEDED`, with the exact commit SHA of the result.
+Include the exact branch name, exact commit SHA, proof or counterexample location, and the first unresolved theorem node.
