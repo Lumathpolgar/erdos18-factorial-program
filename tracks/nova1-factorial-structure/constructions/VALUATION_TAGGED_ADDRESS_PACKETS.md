@@ -2,7 +2,7 @@
 
 Result label: **heuristic** as a half-range route.
 
-The divisor legality, term budget, numerical distinctness, and correction reduction used by this construction are proved theorems. Uniform coverage is not proved.
+This revision replaces the disproved fixed-family version with large menus per address. The selected-term count remains `O((log n)^2)`, while the available-choice count can be exponentially larger.
 
 ## 1. Formal definition
 
@@ -22,32 +22,31 @@ For `1<=t<=M_n`, define the factorial-specific 2-adic address
 e_t=r_n+t.
 \]
 
-Choose an odd core `u_t` satisfying
+Choose a finite menu `U_t(n)` of odd cores satisfying
 
 \[
-u_t>1,
+u>1,
 \qquad
-u_t\mid n!,
+u\mid n!,
 \qquad
-2^{e_t}u_t\le X_n.
+2^{e_t}u\le X_n
 \]
 
-Define the addressed divisor
+for every `u in U_t(n)`. Define the addressed layer
 
 \[
-d_t=2^{e_t}u_t.
+\mathcal A_t(n)=\{2^{e_t}u:u\in U_t(n)\}.
 \]
 
-The main family is
+A main representation chooses either zero terms or exactly one term from each layer. Thus the rainbow sumset is
 
 \[
-\mathcal A_n=\{d_t:1\le t\le M_n\}.
-\]
-
-The selectable main sums are arbitrary subset sums
-
-\[
-\Sigma(\mathcal A_n)=\left\{\sum_{t\in T}d_t:T\subseteq\{1,\ldots,M_n\}\right\}.
+\Sigma_{\rm rb}(\mathcal A_1,\ldots,\mathcal A_{M_n})
+=
+\left\{
+\sum_{t=1}^{M_n}d_t:
+ d_t\in\mathcal A_t(n)\cup\{0\}
+\right\}.
 \]
 
 The correction palette is
@@ -56,9 +55,21 @@ The correction palette is
 \mathcal C_{r_n}=\{1,2,\ldots,2^{r_n-1}\}.
 \]
 
-The index set may be partitioned into bookkeeping packets of size `O(log n)`, but the mathematical selection is global. No ordered one-choice packet rule is part of the construction.
+## 2. Disproved predecessor
 
-## 2. Factorial-specific multiplicity
+Result label: **disproved route**.
+
+The predecessor with only one frozen divisor in each of `M_n=O((log n)^2)` layers had at most `2^{M_n}` main profiles. Even with correction width `exp(O((log n)^2))`, the total number of targets it could cover was `exp(O((log n)^2))`, which is negligible compared with
+
+\[
+X_n=\exp(\Theta(n\log n)).
+\]
+
+The proof is in `proofs/COUNTING_CAPACITY_OBSTRUCTION.md`.
+
+The surviving route requires large menus `U_t(n)`.
+
+## 3. Factorial-specific multiplicity
 
 Result label: **proved theorem**.
 
@@ -68,84 +79,103 @@ For every fixed `A,B`,
 r_n+M_n\le v_2(n!)
 \]
 
-for all sufficiently large `n`, because `v_2(n!)=n-s_2(n)` and `(log n)^2=o(n)`.
+for all sufficiently large `n`. Hence every layer can receive a distinct 2-adic address. This `Theta((log n)^2)` address budget is unavailable in `L_n`, where `v_2(L_n)=floor(log_2 n)`.
 
-The construction therefore has `Theta((log n)^2)` distinct 2-adic addresses. This is unavailable in
+## 4. Legal divisor proof
 
-\[
-L_n=\operatorname{lcm}(1,\ldots,n),
-\]
+Result label: **proved theorem** under the menu hypotheses.
 
-where `v_2(L_n)=floor(log_2 n)`.
-
-## 3. Legal divisor proof
-
-Result label: **proved theorem** under the explicit core hypotheses.
-
-Each `u_t` is odd and divides `n!`. Since `e_t<=v_2(n!)`, and the 2-adic and odd-prime valuations are disjoint coordinates,
+Every layer element is
 
 \[
-d_t=2^{e_t}u_t\mid n!.
+d=2^{e_t}u
 \]
 
-Every correction term `2^j`, `0<=j<r_n`, divides `n!` because `r_n-1<=v_2(n!)`.
+with odd `u|n!` and `e_t<=v_2(n!)`, so `d|n!`. Shared odd prime factors between menu elements do not create a legality problem because selected summands are not multiplied.
 
-The construction never multiplies two selected summands, so shared odd factors between different cores do not create a legality violation.
+Every correction term divides `n!` because `r_n-1<=v_2(n!)`.
 
-## 4. Numerical distinctness proof
+## 5. Numerical distinctness proof
 
 Result label: **proved theorem**.
 
-For every `t`,
+Within one layer, distinct cores give distinct numerical divisors. Across different layers,
 
 \[
-v_2(d_t)=e_t.
+v_2(d)=e_t,
 \]
 
-The exponents `e_t` are pairwise distinct, so the `d_t` are pairwise distinct. Every `d_t` has odd part greater than one, whereas every correction term is a pure power of two. Therefore main and correction terms are numerically disjoint.
+so distinct addresses prevent cross-layer equality. Every main term has odd part greater than one, while every correction term is a pure power of two. Therefore every legal rainbow selection combined with the palette uses numerically distinct divisors.
 
-This proof remains valid even if several cores `u_t` are equal.
+## 6. Selectable term budget
 
-## 5. Packet and selection budget
-
-At most `M_n` main terms and at most `r_n` correction terms can be selected. The exact architecture bound is
+At most one main term is selected from each of `M_n` layers. Therefore the main cost is at most `M_n`, regardless of menu sizes. Including correction gives
 
 \[
 M_n+r_n
 \le A(\log n)^2+B\log n+2.
 \]
 
-There is no recursive multiplier in this count.
+There is no recursive multiplier.
 
-## 6. Represented scale
+## 7. Necessary capacity gate
 
-To place a main divisor near a prescribed scale `Y_t`, it is enough to find an odd divisor core in
+Result label: **proved theorem**.
 
-\[
-\frac{Y_t}{2^{e_t}}
-\le u_t\le
-\frac{Y_t+W_t}{2^{e_t}}.
-\]
-
-Then
+The number of formal rainbow profiles is
 
 \[
-Y_t\le d_t\le Y_t+W_t.
+P_n=\prod_{t=1}^{M_n}(|U_t(n)|+1).
 \]
 
-The 2-adic address is used for collision prevention, not for scale generation. The odd divisor lattice must supply the coarse magnitude.
+Downward-window coverage with width
 
-A schedule may use `J=ceil(C log n)` logarithmic scale blocks, each containing `ceil(C' log n)` addressed divisors. This gives `O(log n)` choices per scale and `O((log n)^2)` total terms without imposing a sequential decoding order.
+\[
+R_n=2^{r_n}-1
+\]
 
-## 7. Collision analysis
+requires
 
-- Within a packet: distinct 2-adic addresses prevent equality.
-- Across packets: the global address set is pairwise distinct, so packet boundaries are irrelevant to equality.
+\[
+P_n(R_n+1)\ge X_n+1.
+\]
+
+Equivalently,
+
+\[
+\sum_{t=1}^{M_n}\log(|U_t(n)|+1)
+\ge
+\log(X_n+1)-r_n\log2.
+\]
+
+Since `log X_n=Theta(n log n)`, the menus must collectively carry `Theta(n log n)` logarithmic profile capacity. This condition is necessary, not sufficient, because different profiles may collide.
+
+## 8. Represented scale
+
+A layer may be divided into core windows
+
+\[
+U_t(n;Y,W)=
+\left\{
+ u\mid n!:u\text{ odd},u>1,
+ Y/2^{e_t}\le u\le(Y+W)/2^{e_t}
+\right\}.
+\]
+
+Every selected core from this menu produces a divisor in `[Y,Y+W]`. The 2-adic address supplies collision control; the odd divisor lattice supplies magnitude and menu entropy.
+
+A viable schedule must combine menus from many logarithmic scales. Large menu cardinality at one scale is insufficient if it leaves shell gaps.
+
+## 9. Collision analysis
+
+- Within a layer: distinct cores give distinct divisors, but only one may be selected.
+- Across layers: distinct 2-adic valuations prevent equality.
 - With correction terms: impossible because every main term has odd part greater than one.
-- Hidden coordinate dependence: cores may share primes, but this affects neither equality nor legality because tags are distinct and summands are not multiplied.
-- Duplicate subset sums: possible and not prohibited. The target requires distinct divisors within a representation, not injectivity of the subset-sum map. Duplicate sums reduce effective capacity and must be measured by Nova 2 or Nova 4.
+- Duplicate total sums: possible and potentially severe.
+- Hidden dependence: menus can share odd primes and numerical cores; the addresses preserve term distinctness but not sum-map injectivity.
+- Capacity versus coverage: the profile inequality is mandatory but never promoted to occupancy.
 
-## 8. Correction mechanism
+## 10. Correction mechanism
 
 Result label: **conditional theorem**.
 
@@ -155,121 +185,135 @@ Assume every integer `x` with
 2^{r_n}\le x\le X_n
 \]
 
-admits a main subset sum `y in Sigma(A_n)` with
+has a rainbow main sum `y` satisfying
 
 \[
 x-(2^{r_n}-1)\le y\le x.
 \]
 
-Then the proved binary correction lemma gives
+Then the binary correction lemma gives
 
 \[
 H_{n!}(X_n+1)\le M_n+r_n=O((\log n)^2).
 \]
 
-The residual is represented by the unique binary subset of `C_{r_n}`.
-
-## 9. Exact missing additive theorem
+## 11. Exact missing additive theorem
 
 ### N1-REQ-N2-001-A
 
-For fixed absolute constants `A,B>0`, and for every sufficiently large `n`, let `A_n` be the exact addressed divisor family committed with this construction. Prove that for every integer
+For the exact frozen layer menus `A_t(n)`, prove that for every sufficiently large `n` and every integer
 
 \[
 2^{r_n}\le x\le X_n,
 \]
 
-there is a subset `T_x subseteq {1,...,M_n}` such that
+there are choices
+
+\[
+d_t\in\mathcal A_t(n)\cup\{0\}
+\]
+
+such that
 
 \[
 x-(2^{r_n}-1)
-\le\sum_{t\in T_x}d_t\le x.
+\le\sum_{t=1}^{M_n}d_t\le x.
 \]
 
-The conclusion must be uniform in every target `x`. It must use no more than `M_n` main terms, and it must apply to the frozen numerical family, not merely to an abstract family with the same cardinality.
+The theorem must be uniform in `x`, preserve at most one selected term per layer, and explicitly rule out inaccessible residue classes and additive shell gaps.
 
-A stronger exact representation statement is unnecessary.
-
-## 10. Exact missing analytic theorem
+## 12. Exact missing analytic theorem
 
 ### N1-REQ-N3-001-A
 
-Given the frozen scale windows
+For the frozen list of core windows `I_{t,s}(n)=[L_{t,s}(n),U_{t,s}(n)]`, prove lower bounds
 
 \[
-I_t(n)=[L_t(n),U_t(n)]
+|U_t(n)\cap I_{t,s}(n)|\ge Q_{t,s}(n)
 \]
 
-for `1<=t<=M_n`, prove that for all sufficiently large `n` every window contains an odd divisor `u_t` of `n!` satisfying
+for every stated layer and scale window, where:
 
-\[
-u_t>1,
-\qquad
-2^{e_t}u_t\le X_n.
-\]
+1. every counted integer is an odd divisor of `n!` greater than one;
+2. every resulting addressed divisor is at most `X_n`;
+3. the resulting menu sizes satisfy the necessary capacity inequality;
+4. the bounds are uniform in all frozen indices.
 
-The cores need not be distinct. No additive conclusion is requested. The final handoff freezes `L_t` and `U_t` after Nova 2 identifies the weakest useful scale schedule.
+No additive conclusion is requested.
 
-## 11. Known historical obstruction audit
+## 13. Known historical obstruction audit
 
 ### Phase 12K
 
-The construction does not request sub-integer entry windows. Any eventual analytic window schedule must nevertheless verify integer nonemptiness.
+Every core window must contain actual integers and actual divisors. No sub-integer mesh is accepted.
 
 ### Phase 12L
 
-No maximum-gap greedy orbit is part of the definition. A proof that sorts the divisors and applies the historical greedy recurrence would re-enter the obstruction.
+The construction is not greedy. A maximum-gap greedy decoder would require a fresh audit and may fail.
 
 ### Phase 12M
 
-The construction does not infer coverage from `2^{M_n}` formal subsets. Effective occupancy is the exact missing theorem.
+The large profile count is used only as a necessary gate. Independent decoding or separable recursion is not assumed.
 
 ### Phase 12N
 
-Magnitude-separated scale blocks may still have shell gaps. The downward-window theorem must explicitly rule them out.
+Menus spread across scales may still leave shell gaps. The additive theorem must eliminate them.
 
 ### Phase 12O
 
-Finite mixed-scale success motivates testing, but supplies no asymptotic step.
+Finite mixed-scale success motivates menu scheduling but gives no asymptotic theorem.
 
 ### Phase 12P
 
-The route is not defined as a one-choice sequential ladder. If a future proof selects one item from each ordered packet and extends a covered interval step by step, the Phase 12P hypotheses must be checked again.
+The frozen object is a global rainbow sumset, not a one-choice sequential coverage ladder. A sequential proof strategy could re-enter the obstruction.
 
-## 12. Mandatory falsification duties
+## 14. Mandatory falsification duties
 
-The route fails if any of the following occurs for infinitely many `n`:
+The route fails if any of the following occurs:
 
-1. `r_n+M_n>v_2(n!)`;
-2. a chosen core is even, equal to one, not a divisor of `n!`, or places `d_t>X_n`;
-3. two address exponents coincide;
-4. a main divisor is a pure power of two;
-5. the gcd or residue span of the main family creates inaccessible downward windows;
-6. the maximum gap in the main subset-sum set exceeds `2^{r_n}-1` somewhere below `X_n`;
-7. the only available proof uses more than `M_n` main terms;
-8. a finite successful schedule is promoted without uniform asymptotic proof.
+1. an address exceeds `v_2(n!)`;
+2. a menu contains an illegal, even, unit, or oversized core;
+3. two layers share an address;
+4. the profile-capacity inequality fails;
+5. menu correlations collapse the effective sumset;
+6. a residue class remains inaccessible after adding the palette;
+7. a downward gap exceeds `2^{r_n}-1`;
+8. the selected-term count exceeds `M_n+r_n`;
+9. a sequential decoder is used without a Phase 12P audit;
+10. finite success is promoted asymptotically.
 
-## 13. Finite test plan
+## 15. Finite test plan
 
-For a sequence of moderate `n` values:
+For each tested `n`:
 
-1. compute exact `v_p(n!)`;
-2. generate the frozen cores and addressed divisors;
-3. assert `d_t|n!`, `d_t<=X_n`, odd core greater than one, and pairwise numerical distinctness;
-4. assert disjointness from `C_{r_n}`;
-5. compute reachable subset sums up to `X_n` by a fail-closed bitset or meet-in-the-middle method;
-6. record the first target whose downward distance to the attainable set exceeds `2^{r_n}-1`;
-7. compute residue-class occupancy modulo small moduli;
-8. report term counts for actual witnesses, not only reachability.
+1. compute exact factorial valuations;
+2. build every frozen menu and assert legality;
+3. verify within-layer uniqueness, address separation, and palette disjointness;
+4. compute the profile-capacity lower bound before any expensive search;
+5. run restricted rainbow reachability that allows at most one element from each layer;
+6. record maximum downward gap and first missing residue class;
+7. compare formal profile count with the number of distinct sums to measure collision loss;
+8. record witness term counts.
 
 Finite success is computational evidence only.
 
-## 14. Asymptotic failure condition
+## 16. Asymptotic failure condition
 
-Result label: **disproved route** if one proves that, for every admissible addressed family with `M_n=O((log n)^2)` and `r_n=O(log n)`, there are infinitely many `n` and targets `x<=X_n` for which
+Result label: **disproved route** if one proves that every admissible menu system with
 
 \[
-[x-(2^{r_n}-1),x]\cap\Sigma(\mathcal A_n)=\varnothing.
+M_n=O((\log n)^2),
+\qquad
+r_n=O(\log n)
 \]
 
-Such a theorem would eliminate the entire address-packet architecture, not merely one scale schedule.
+has infinitely many `n` and targets `x<=X_n` for which
+
+\[
+[x-(2^{r_n}-1),x]
+\cap
+\Sigma_{\rm rb}(\mathcal A_1,\ldots,\mathcal A_{M_n})
+=\varnothing.
+\]
+
+A persistent residue obstruction after correction also disproves the route.
