@@ -10,7 +10,7 @@ Additive Occupancy and Global Sumsets
 
 ## Overall state
 
-`MARKER_THREE_FULL_MENU_CERTIFIED_N12_N45_ASYMPTOTIC_OCCUPANCY_OPEN`
+`MARKER_THREE_STREAMING_CERTIFIED_N12_N46_ASYMPTOTIC_OCCUPANCY_OPEN`
 
 ## Baseline
 
@@ -27,9 +27,7 @@ Nova 1 handoff `N1-HO-N2-001` at commit
 
 remains `REJECTED`.
 
-Every main sum in that model lies in `2^{r_n+1} Z`, while the first required window is `[1,2^{r_n}]`. This is N2-ADD-115 and N2-OBS-107.
-
-The one-power and two-power consecutive-binary repairs also fail exactly. They are N2-OBS-108.
+Every main sum in that model lies in `2^{r_n+1} Z`, while the first required window is `[1,2^{r_n}]`. This is N2-ADD-115 and N2-OBS-107. The one-power and two-power repairs also fail exactly and remain N2-OBS-108.
 
 ## Superseded fallback route
 
@@ -37,7 +35,7 @@ Nova 2 proved:
 
 - N2-ADD-116: exact lattice quotient normalization;
 - N2-ADD-117: conditional three-power repair;
-- N2-ADD-118: exponential deterministic prefix for that repair.
+- N2-ADD-118: exponential deterministic prefix.
 
 These results remain valid, but the route is no longer preferred after Nova 1 supplied the marker-three construction.
 
@@ -50,10 +48,6 @@ Nova 1 handoff `N1-HO-N2-002` was imported from:
 - construction: `N1-CON-003`.
 
 Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
-
-Response:
-
-`handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
 
 The marker-three quotient layers are
 
@@ -84,18 +78,11 @@ The structural gate passes:
 
 ## Deterministic theorem package
 
-Nova 1 proves downward one-density through
-
-\[
-m_n(2^{M_n}-1),
-\]
-
-where `m_n` is the largest odd integer at most `n`.
-
 Nova 2 proved:
 
 - N2-ADD-119: translated carrier-block lemma;
-- N2-ADD-120: connected-core recursion sufficient for complete marker-three quotient occupancy.
+- N2-ADD-120: connected-core recursion sufficient for complete marker-three quotient occupancy;
+- N2-ADD-121: unique-parent bounded-memory divisor stream and exact record-gap compression.
 
 At layer `t`, the exact allowable core gap is
 
@@ -116,35 +103,70 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 
 N2-ADD-120 is sequential and requires a Phase 12P compatibility audit before asymptotic promotion.
 
-## Exact finite milestone N2-FIN-202
+## Exact finite milestones
 
-Nova 2 generated every odd core and ran the exact connected-core recursion for every
+### N2-FIN-202
+
+Nova 2 materialized every odd core and ran the exact connected-core recursion for all
 
 \[
 12\le n\le45.
 \]
 
-Result:
+Every completed case reaches `Y_n`, uses between two and six main layers, and satisfies
 
-- all 34 completed cases reach the full quotient endpoint `Y_n`;
-- two layers suffice for `12<=n<=14`;
-- three layers suffice for `15<=n<=19`;
-- four layers suffice for `20<=n<=25`;
-- five layers suffice for `26<=n<=38`;
-- six layers suffice for `39<=n<=45`;
-- every completed case satisfies the exact finite bound
-  \[
-  H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22.
-  \]
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le22.
+\]
 
-At `n=45`, the full odd-core menu contains `18,627,840` values and six layers reach the endpoint. At `n=46`, the exact core count is `27,941,760`, above the declared `20,000,000` generation cap. The status at `n=46` is resource-limited, not failure.
+### N2-FIN-203
+
+The former `n=46` materialization barrier is closed by N2-ADD-121.
+
+Exact parameters:
+
+\[
+r_{46}=16,
+\qquad
+M_{46}=235,
+\qquad
+v_2(46!)=42.
+\]
+
+The complete odd-core family has `27,941,760` members. The streaming audit emits the `24,567,748` cores at most `Y_46`, retains only `631` record gaps, and reaches a maximum active frontier of `3,373,952` nodes.
+
+Six main layers give
+
+\[
+E_6+W_{46}
+=
+24{,}938{,}550{,}582{,}416{,}882{,}103{,}407{,}947{,}983
+>
+Y_{46}
+\]
+
+with margin
+
+\[
+211{,}996{,}795{,}013{,}688{,}527{,}533{,}367{,}264.
+\]
+
+Therefore
+
+\[
+H_{46!}(\lfloor\sqrt{46!}\rfloor+1)
+\le22.
+\]
 
 Artifacts:
 
-- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
-- `verification/marker_three_full_menu_audit.py`;
-- `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
-- `verification/data/marker_three_full_menu_n12_n45.csv`.
+- `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md`;
+- `verification/marker_three_streaming_audit.cpp`;
+- `verification/test_marker_three_streaming_audit.py`;
+- `verification/data/marker_three_streaming_n46.json`.
+
+The smallest unaudited parameter is now `n=47`. A bounded `n=47` run did not complete within the available execution limit and remains `unknown due to resource limits`, not failure.
 
 ## Preferred proof engines
 
@@ -159,25 +181,22 @@ Artifacts:
 
 `N2-HO-N3-003` freezes the exact marker-three numerical quotient law, target windows, moments, resonances, and weighted Fourier inequality.
 
-File:
-
-`handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`
+File: `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
 
 ### Nova 4
 
-`N2-HO-N4-002` requests structural replay, connected-core recursion, exact full quotient reachability where feasible, deterministic-prefix replay, and endpoint support auditing.
+Nova 4 must independently reconstruct N2-FIN-202 and N2-FIN-203, then extend the bounded-memory audit from `n=47`.
 
-Nova 2 has independently completed the full-menu finite carrier audit through `n=45`; Nova 4 should now reconstruct N2-FIN-202 and extend it with a bounded-memory or streaming generator.
+Files:
 
-File:
-
-`handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`
+- `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`;
+- `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`.
 
 ## Exact open blockers
 
 1. Prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
-2. Replace the finite connected-core evidence by a uniform theorem or exact obstruction.
-3. Extend exact finite certification beyond `n=45` without materializing every odd core.
+2. Replace finite carrier evidence by a uniform theorem or exact obstruction.
+3. Extend bounded-memory exact certification from `n=47`.
 4. Prove endpoint support near `Y_n` or produce an exact endpoint deficit.
 5. Control collisions between different rainbow profiles.
 6. Prove the numerical target-dependent tilt, moment, resonance, and weighted Fourier package.
@@ -186,11 +205,11 @@ File:
 
 ## Claim boundary
 
-The marker-three construction passes the structural gate and every completed full-menu finite carrier audit. It does not yet prove the asymptotic factorial half-range theorem or solve Erdős Problem 18.
+The marker-three construction passes the structural gate and every completed exact carrier audit through `n=46`. This does not prove the asymptotic factorial half-range theorem or solve Erdős Problem 18.
 
 ## Next theorem target
 
-Develop a streaming sorted odd-divisor generator that can certify the connected component without storing the complete menu, beginning at `n=46`. In parallel, formulate and prove the weakest uniform divisor-gap statement that forces
+Reduce the streaming frontier enough to certify `n=47`, or prove a uniform upper bound for the record gaps of odd divisors of `n!/3` strong enough to force
 
 \[
 E_{M_n}+W_n\ge Y_n.
