@@ -15,7 +15,7 @@ import cmath
 import math
 from functools import reduce
 from math import gcd
-from typing import Iterable, Sequence
+from typing import Sequence
 
 
 def factorization(n: int) -> list[tuple[int, int]]:
@@ -182,14 +182,14 @@ def finite_model_audit(n: int) -> list[tuple[int, float, float, float]]:
 
         rows.append((q, tilt, mean, variance))
 
-    # Endpoint concentration evidence. The exact theorem uses finite-support
-    # convergence, not these chosen numerical tilt values.
+    # Endpoint concentration evidence. The theorem uses the exact limit as
+    # |lambda|->infinity; the large finite values below merely exercise it.
     test_theta = 0.7
-    negative_modulus = abs(characteristic_function(layers, -1.0, test_theta))
+    negative_modulus = abs(characteristic_function(layers, -20.0, test_theta))
     positive_modulus = abs(characteristic_function(layers, 1.0, test_theta))
-    if negative_modulus < 0.999:
+    if negative_modulus < 0.999999:
         raise AssertionError(f"negative endpoint concentration not visible for n={n}")
-    if positive_modulus < 0.999:
+    if positive_modulus < 0.999999:
         raise AssertionError(f"positive endpoint concentration not visible for n={n}")
 
     return rows
