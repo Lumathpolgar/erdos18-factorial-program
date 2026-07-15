@@ -67,14 +67,14 @@ Every external theorem is recorded with its legal comparison direction. No sourc
   \le C_{BE}\frac{\sum_j\mathbb E|X_j|^3}{B^3}.
   \]
 - Original notation: normalized sums of independent variates and the standard normal distribution function
-- Repository translation: `X_j=(A_p-b_p/2) log p` over a selected prime range
+- Repository translation: centered logarithmic prime-exponent coordinates, including the tilted Bernoulli coordinates `X_{p,theta}=(A_{p,theta}-E_theta A_{p,theta}) log p` on `(n/2,n]`
 - Complete hypotheses: independence, zero mean, positive total variance, finite third absolute moments
 - Parameter range: finite triangular arrays
 - Exact factorial divisors or surrogate: applies directly after the exact exponent-coordinate model and prime range are frozen
 - Legal direction: direct
-- Effective constants: universal; no optimized value used
+- Effective constants: universal; the repository leaves `C_BE` symbolic and all downstream constants explicit in terms of it
 - Status: `ACCEPTED`
-- Supports: N3-ANA-009
+- Supports: N3-ANA-009 and N3-ANA-012
 
 ## N3-SRC-004, Ford divisor-in-an-interval theorem
 
@@ -132,13 +132,13 @@ Every external theorem is recorded with its legal comparison direction. No sourc
 - Publication date: 2015, with later manuscript revisions on arXiv
 - Exact statement audited: model-specific characteristic-function local limits for weighted Bernoulli sums, including warnings that central limit information can be too weak on thin sets
 - Original notation: weighted independent Bernoulli sums
-- Repository translation: factorial exponent coordinates are bounded discrete uniforms with nonidentical caps
+- Repository translation: the top-prime model in N3-ANA-012 is Bernoulli, but no Giuliano-Weber theorem is imported because its exact weight and characteristic-function hypotheses have not been matched
 - Complete hypotheses: theorem-specific weight and characteristic-function assumptions must be independently verified
 - Parameter range: as stated in each theorem
 - Exact factorial divisors or surrogate: probabilistic method, not a factorial-divisor theorem
-- Legal direction: no theorem imported at the first checkpoint
+- Legal direction: method only for the fine-window target below `K_A log n`
 - Status: `PARTIALLY_USABLE_METHOD_ONLY`
-- Supports: missing-step analysis for N3-CAND-LLT and N3-CAND-CF
+- Supports: missing-step analysis for N3-CAND-LLT, N3-CAND-CF, and N3-NEXT-003
 
 ## N3-SRC-008, Dusart explicit prime-counting bounds
 
@@ -158,7 +158,7 @@ Every external theorem is recorded with its legal comparison direction. No sourc
 - Repository notation translation: apply the lower bound at `x=n` and the upper bound at `x=n/2`
 - Complete hypotheses: real `x>=5393` for the lower bound and real `x>=60184` for the upper bound
 - Parameter range used: every integer `n>=120368`, so both source hypotheses hold
-- Exact factorial divisors or surrogate: prime-interval input to the exact high-prime divisor menus of `n!`
+- Exact factorial divisors or surrogate: prime-interval input to exact high-prime divisor families of `n!`
 - Legal direction: direct subtraction of a lower bound for `pi(n)` and an upper bound for `pi(n/2)`
 - Derived repository statement:
   \[
@@ -166,10 +166,10 @@ Every external theorem is recorded with its legal comparison direction. No sourc
   \qquad(n\ge120368).
   \]
 - Effective constants: yes
-- Compatibility proof: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md`
+- Compatibility proofs: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md` and `proofs/COMPACT_TILT_TOP_PRIME_BAND.md`
 - Status: `ACCEPTED`
-- Supports: N3-ANA-010, N3-ANA-011, and Nova 1 request `N1-REQ-N3-001-A`
+- Supports: N3-ANA-010, N3-ANA-011, N3-ANA-012, N3-ANA-013, and Nova 1 request `N1-REQ-N3-001-A`
 
 ## Source conclusions
 
-Accepted external inputs are Robbins explicit Stirling bounds, the prime number theorem, Berry-Esseen, and Dusart's explicit prime-counting inequalities. Ford's interval theorem, friable almost-all Gaussian laws, and ultrafriable progression estimates do not provide deterministic lower bounds for the exact divisors of `n!`.
+Accepted external inputs are Robbins explicit Stirling bounds, the prime number theorem, Berry-Esseen, and Dusart's explicit prime-counting inequalities. N3-ANA-012 and N3-ANA-013 otherwise use direct calculations in the exact top-prime factorial divisor model. Ford's interval theorem, friable almost-all Gaussian laws, and ultrafriable progression estimates do not provide deterministic lower bounds for exact divisors of `n!`.
