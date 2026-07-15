@@ -22,7 +22,11 @@ def command_verify(args: argparse.Namespace) -> int:
 
 
 def command_verify_tree(args: argparse.Namespace) -> int:
-    paths = sorted(Path(args.directory).glob("*.json"))
+    paths = sorted(
+        path
+        for path in Path(args.directory).glob("*.json")
+        if not path.name.endswith(".schema.json")
+    )
     if not paths:
         raise CertificateError("no certificate JSON files found")
     results = []
