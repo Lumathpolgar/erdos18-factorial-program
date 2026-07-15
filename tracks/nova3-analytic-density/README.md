@@ -28,32 +28,75 @@ The branch now contains:
 - an exact repair of Nova 1's marker-three capacity proof;
 - an infinite counterexample family to the proposed central-binomial divisibility shortcut;
 - the active marker-three numerical product law;
-- unique target-dependent numerical tilt for every nontrivial quotient target;
+- unique target-dependent numerical tilt;
 - exact additive span one and exact torus resonance set `{0}`;
-- an explicit all-frequency characteristic-function bound;
-- a proof that no minor-arc modulus gap can hold uniformly over all tilts.
+- an exact deterministic-to-analytic post-prefix boundary;
+- a uniform shrinking-tilt theorem on the complete post-prefix range;
+- a proof that the single binary anchor has exponentially collapsing weight;
+- an exact collision-aware tilted atom formula.
 
 ## Active numerical contract
 
-The active cross-track law is Nova 2 handoff `N2-HO-N3-003` at commit
+Current exact sources:
 
-`fb73e6906105c983bacbd46a96ef8d5d87567fae`.
+- Nova 1 branch `nova/factorial-structure`, commit `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`;
+- Nova 2 branch `nova/additive-occupancy`, commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c`;
+- Nova 2 handoff `N2-HO-N3-003`.
 
-It uses the numerical quotient supports
-
-\[
-B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
-\]
-
-For every
+The numerical quotient supports are
 
 \[
-W_n<q\le Y_n,
+B_t(n)=
+\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
 \]
 
-the common exponential family has a unique finite tilt centered inside `[q-W_n,q]`.
+Nova 2's deterministic small-core chain covers through
 
-The only exact torus resonance is zero. Quantitative minor-arc control still requires a compact tilt range or an equivalent phase-dispersion lower bound on the final analytic target interval.
+\[
+P_n=m_n(2^{M_n}-1)+W_n.
+\]
+
+The asymptotic final-only analytic range is
+
+\[
+P_n+1\le q\le Y_n.
+\]
+
+For every target in this range, N3-ANA-020 proves
+
+\[
+-\frac{8M_n\log L_n}{L_n}
+<\lambda_{n,q}<
+\frac{16(n\log n+\log14)}{2^{M_n}},
+\qquad
+L_n=m_n(2^{M_n}-1),
+\]
+
+so the common numerical tilt tends uniformly to zero.
+
+## Current analytic obstruction
+
+Uniformly small tilt does not make individual state probabilities uniform in a useful quantitative sense.
+
+At zero tilt,
+
+\[
+P_0(Z_t=0)P_0(Z_t=2^{t-1})
+<2^{-2(n/(3\log n)-1)}.
+\]
+
+Therefore the existing one-pair characteristic-function estimate cannot close the minor arc.
+
+The full numerical atom also contains exact collision multiplicity:
+
+\[
+P_\lambda(T=s)
+=
+\frac{C_n(s)e^{\lambda s}}
+{\prod_tZ_t(\lambda)}.
+\]
+
+Any local reference law must retain or control `C_n(s)`.
 
 ## Mandatory distinction
 
@@ -75,13 +118,25 @@ or a numerical rainbow sum. The active additive inversion domain is the integer 
 
 ## Active theorem target
 
-After Nova 1 and Nova 2 freeze the exact transition from deterministic coverage to analytic responsibility, prove one of:
+Prove aggregate phase dispersion for the complete tilted odd-core menus on the post-prefix target range.
 
-1. a compact bound on the target-dependent numerical tilt;
-2. a direct phase-dispersion lower bound for enough active coordinates;
-3. an exact target family where variance or minor-arc coefficients collapse.
+The primary candidate is
 
-Only then can the strict weighted Fourier inequality for constant-width quotient windows be attempted.
+\[
+\mathcal D_{t,\lambda}(\theta)
+=
+\sum_{a,b}p_t(a)p_t(b)
+\sin^2\left(\frac{(a-b)\theta}{2}\right),
+\]
+
+with
+
+\[
+|\phi_{t,\lambda}(\theta)|^2
+=1-2\mathcal D_{t,\lambda}(\theta).
+\]
+
+A successful theorem must aggregate many support differences or residue classes and remain collision-aware. A failure result must produce an explicit target-local concentration or additive-energy obstruction.
 
 ## Required files
 
@@ -102,10 +157,11 @@ python3 tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
+python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
 ```
 
 Finite checks and computational tables remain explicitly separated from symbolic proof.
 
 ## Claim boundary
 
-The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, logarithmic density, exact centering, span one, and resonance classification do not by themselves imply quotient occupancy or maximum-gap control.
+The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, logarithmic density, compact numerical tilt, span one, exact resonances, and collision identities do not by themselves imply quotient occupancy or maximum-gap control.
