@@ -1,6 +1,18 @@
 # Nova 1 Theorem Registry
 
-## Frozen proved results
+## Status rule
+
+Every item is labeled as one of:
+
+- **proved theorem**;
+- **conditional theorem**;
+- **finite certificate**;
+- **computational evidence**;
+- **disproved route**.
+
+No finite result is promoted to an asymptotic theorem. No formal profile count is treated as numerical additive occupancy.
+
+## Structural and reduction theorems
 
 ### N1-STR-003: Factorial valuation budget
 
@@ -17,7 +29,7 @@
 ### N1-STR-005: Valuation-budget partition
 
 - Result label: **proved theorem**
-- Conclusion: allocated valuation budgets preserve legality
+- Conclusion: allocated valuation budgets preserve divisor legality
 - Proof: `FACTORIAL_DIVISOR_ATLAS.md`
 
 ### N1-STR-006: Marker-signature distinctness
@@ -29,7 +41,7 @@
 ### N1-STR-007: Complement pairing
 
 - Result label: **proved theorem**
-- Conclusion: if `R^2|n!` and `z|R`, then `R/z` and `Rz` are legal; stated conditions give range and distinctness
+- Conclusion: if `R^2|n!` and `z|R`, then `R/z` and `Rz` are legal; the stated conditions give range and distinctness
 - Proof: `proofs/COMPLEMENT_PAIRING_LEMMA.md`
 
 ### N1-COR-001: Binary correction palette
@@ -44,7 +56,7 @@
 - Conclusion: downward `2^r-1` main occupancy plus the binary palette yields exact local coverage
 - Proof: `proofs/DISTINCTNESS_AND_CORRECTION.md`
 
-### N1-OBS-002: Capacity obstruction
+### N1-OBS-002: Counting-capacity obstruction
 
 - Result label: **proved theorem**
 - Conclusion: if a finite attainable set is downward `R`-dense on `[0,X]`, then `|S|(R+1)>=X+1`
@@ -62,16 +74,18 @@
 - Conclusion: admissible layers contain at least `2^(pi(n)-pi(n/2)-1)-1` high-prime cores
 - Proof: `proofs/HIGH_PRIME_MENU_CAPACITY.md`
 
+## Marker-three route
+
 ### N1-STR-014: Marker-three legality and distinctness
 
 - Result label: **proved theorem**
-- Conclusion: every `3*2^(t-1)*u` is legal; exact 2-adic valuations distinguish layers; divisibility by `3` separates the main family from the binary palette
+- Conclusion: every `3*2^(t-1)*u` is legal; exact 2-adic valuations distinguish layers; divisibility by `3` separates main terms from the binary palette
 - Proof: `proofs/MARKER_THREE_LATTICE_REPAIR.md`
 
 ### N1-STR-015: Exact support lattice and residues
 
 - Result label: **proved theorem**
-- Conclusion: the main support generates exactly `3Z`, while palette sums attain every residue modulo `3`
+- Conclusion: the main support generates exactly `3Z`; palette sums attain every residue modulo `3`
 - Proof: `proofs/MARKER_THREE_LATTICE_REPAIR.md`
 
 ### N1-RED-004: Quotient-window correction theorem
@@ -88,7 +102,7 @@
 - Conclusion: positional sums with digits `{0,1,3,5,...,m}` have maximum downward gap one on `[0,m(2^L-1)]`
 - Proof: `proofs/MARKER_THREE_LATTICE_REPAIR.md`
 
-### N1-STR-017: Unconditional marker-three initial interval
+### N1-STR-017: Unconditional initial interval
 
 - Result label: **proved theorem**
 - Conclusion: every integer through `3m_n(2^M_n-1)+2` has a legal representation using at most `M_n+r_n` terms
@@ -98,7 +112,7 @@
 ### N1-STR-018: Repaired high-prime menu bound
 
 - Result label: **proved theorem**
-- Imported dependency: `N3-ANA-010` from branch `nova/analytic-density`, commit `e60069f797af878711e7a9d4abb1fb6188a1f724`
+- Imported dependency: `N3-ANA-010` from branch `nova/analytic-density`, exact commit `e60069f797af878711e7a9d4abb1fb6188a1f724`
 - Hypotheses: `n>=120368`, `1<=t<=M_n`
 - Conclusion: `|U_t(n)|>=2^(pi(n)-pi(n/2)-1)>=2^(n/(3 log n)-1)`
 - Proof: `proofs/MARKER_THREE_MENU_CAPACITY.md`
@@ -111,40 +125,52 @@
 - What is not claimed: injectivity, occupancy, or maximum-gap control
 - Proof: `proofs/MARKER_THREE_MENU_CAPACITY.md`
 
-### N1-STR-019: Multiplicative 3-density of the reserved odd core
+### N1-STR-019: Multiplicative 3-density
 
 - Result label: **proved theorem**
-- Hypotheses: integer `n>=6`
+- Hypotheses: `n>=6`
 - Object: `D_n=n!/(3*2^v_2(n!))`
 - Conclusion: every real `1<=z<=D_n` has a divisor `d|D_n` with `z/3<d<=z`
-- Mechanism: prime-power extension lemma and `p<=3D_prefix`
 - Proof: `proofs/QUOTIENT_ENDPOINT_SUPPORT.md`
 
 ### N1-STR-020: Quotient endpoint support
 
 - Result label: **proved theorem**
-- Hypotheses: integer `n>=12`
-- Conclusion: there are distinct legal terms `b_t in B_t(n)` for `t=1,2,3` with `b_t>X_n/9`, hence
-  \[
-  b_1+b_2+b_3>X_n/3
-  \]
-  and the maximum quotient rainbow sum is at least `floor(X_n/3)+1`
-- Boundary status: total support reaches beyond the final target
-- What is not claimed: a sum in the downward endpoint window
+- Hypotheses: `n>=12`
+- Conclusion: three distinct legal quotient terms have total greater than `X_n/3`, so maximum support exceeds `floor(X_n/3)`
+- What is not claimed: a sum in the final downward endpoint window
 - Proof: `proofs/QUOTIENT_ENDPOINT_SUPPORT.md`
 
-### N1-RED-006: Coarse deterministic quotient contraction
+### N1-RED-006: Coarse deterministic contraction
 
 - Result label: **proved theorem**
-- Hypotheses: `n>=12`, `0<=q<=floor(X_n/3)`
-- Conclusion: after `L` increasing quotient layers, a deterministic legal selection leaves residual
-  \[
-  \rho_L<\max\{(2/3)^Lq,2^L\}
-  \]
-- Limitation: this does not reach the polynomial-width radius `W_n`
+- Conclusion: after `L` increasing quotient layers, a legal selection leaves residual below `max((2/3)^L q,2^L)`
+- Limitation: this does not reach the polynomial radius `W_n`
 - Proof: `proofs/QUOTIENT_ENDPOINT_SUPPORT.md`
 
-## Frozen conditional results
+### N1-STR-021: Factorial arithmetic core blocks
+
+- Result label: **proved theorem**
+- Object:
+  \[
+  A_k=\frac{k!}{3\cdot2^{v_2(k!)}},
+  \qquad
+  m_{n,k}=\max\{m\le n-k:m\text{ odd}\}
+  \]
+- Conclusion: `A_k,3A_k,...,m_{n,k}A_k` are legal odd cores and form a connected carrier block whenever the threshold is at least `2A_k`
+- Imported criterion: Nova 2 `N2-ADD-119` at exact commit `b15278e21f91e0e188b1c7c3e9a10e58a1db20fe`
+- Proof: `proofs/FACTORIAL_BLOCK_CARRIER_OBSTRUCTION.md`
+
+### N1-COL-001: Exponential carry collisions
+
+- Result label: **proved theorem**
+- Hypotheses: `n>=120368`
+- Identity: `3*2^e=2^e+2^(e+1)`
+- Conclusion: at least `2^floor(M_n/2)` distinct legal quotient profiles map to the same numerical sum `4^floor(M_n/2)-1`
+- Consequence: profile injectivity is false; maximum collision multiplicity is at least `exp(Omega((log n)^2))`
+- Proof: `proofs/RAINBOW_CARRY_COLLISIONS.md`
+
+## Conditional results
 
 ### N1-RED-005: Marker-three half-range reduction
 
@@ -156,7 +182,6 @@
   \le
   \lceil16(\log n)^2\rceil+\lceil4\log n\rceil
   \]
-- Dependencies: `N1-STR-014`, `N1-STR-015`, `N1-COR-001`, `N1-RED-004`
 - Location: `PREFERRED_ROUTE.md`
 
 ### N1-RED-001: Track B reconstruction
@@ -169,25 +194,27 @@
   \]
 - Dependency: archived Track B source package and current endpoint audit
 
-## Computational evidence
+## Finite and computational results
 
 ### N1-CMP-003: Marker-three reduced quotient audit
 
 - Result label: **computational evidence**
-- Exact finite domain: every `7<=n<=14` under reduced legal parameters
+- Domain: every `7<=n<=14` under reduced legal parameters
 - Conclusion: maximum downward quotient distance at most one
 - Verifier: `verification/marker_three_sanity.py`
-- Report: `verification/MARKER_THREE_FINITE_REPORT.md`
 
 ### N1-CMP-004: Endpoint support finite audit
 
 - Result label: **finite certificate**
-- Exact checks:
-  - 3-density for every `6<=n<=20`;
-  - endpoint crossing for every `12<=n<=20`;
-  - exhaustive coarse contraction for all targets with `12<=n<=14` and `1<=L<=6`
+- Checks: 3-density for `6<=n<=20`, endpoint crossing for `12<=n<=20`, and exhaustive coarse contraction for `12<=n<=14`
 - Verifier: `verification/endpoint_support_sanity.py`
-- Report: `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md`
+
+### N1-CMP-005: Block and collision audit
+
+- Result label: **finite certificate**
+- Checks: factorial block legality, exact carrier ceiling, explicit carry collisions, and scale separation
+- Verifier: `verification/block_collision_sanity.py`
+- Report: `verification/BLOCK_COLLISION_FINITE_REPORT.md`
 
 ## Disproved routes
 
@@ -214,9 +241,24 @@
 ### N1-DIS-005: Original valuation-tagged lattice
 
 - Result label: **disproved route**
-- Claim rejected: the old addresses `e_t=r_n+t` satisfy the radius `2^r_n-1` occupancy request
+- Claim rejected: old addresses `e_t=r_n+t` satisfy the radius `2^r_n-1` request
 - Countertheorem: Nova 2 `N2-ADD-115`
 - Exact source: branch `nova/additive-occupancy`, commit `45c74a5fa747551422ffcad7d3ddf22788fbe622`
+
+### N1-DIS-006: One factorial block per carrier layer
+
+- Result label: **disproved route**
+- Claim rejected: one factorial arithmetic block per layer can make the Nova 2 carrier recursion reach `Y_n` within `M_n` layers
+- Exact ceiling:
+  \[
+  E_{M_n}+W_n+1
+  \le
+  (W_n+1)(1+n/2)^{M_n}
+  <Y_n
+  \]
+  for every `n>=120368`
+- What remains possible: the complete connected core, multiple interacting blocks, and final-only proofs
+- Proof: `proofs/FACTORIAL_BLOCK_CARRIER_OBSTRUCTION.md`
 
 ## Historical conditional artifact
 
