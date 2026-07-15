@@ -3,7 +3,7 @@
 ## Model QV: Normalized valuation-tagged quotient occupancy
 
 - Model ID: `N2-MOD-QV-001`.
-- Result label: `conditional theorem` as a repaired reduction.
+- Result label: `conditional theorem` as a repaired reduction, with a proved deterministic prefix.
 - Rank: 1, conditional on Nova 1 structural acceptance.
 - File: `models/VALUATION_TAGGED_QUOTIENT_MODEL.md`.
 - Source construction: Nova 1 full-menu valuation-tagged packets, inspected at head `fa11f4b2cb86a2dd791df189ada12757be791804`.
@@ -24,9 +24,34 @@
   Q_n\cap[\max(0,m-3),m]\ne\varnothing
   \]
   for every quotient target through `floor(X_n/g_n)`.
-- Term budget after success: `M_n+r_n+3`.
-- Proof engine: target-dependent tilt plus bounded-torus Fourier comparison, or a deterministic final-sumset theorem.
-- Main blockers: Nova 1 repair acceptance, quotient span and resonance audit, four-point local mass, endpoints, finite exceptions.
+- Proved prefix by N2-ADD-118:
+  \[
+  0\le m\le3\cdot2^{M_n}.
+  \]
+- Remaining region:
+  \[
+  3\cdot2^{M_n}<m\le\lfloor X_n/g_n\rfloor.
+  \]
+- Term budget after global success: `M_n+r_n+3`.
+- Proof engine in the remaining region: target-dependent tilt plus bounded-torus Fourier comparison, or a deterministic final-sumset theorem.
+- Main blockers: Nova 1 repair acceptance, quotient span and resonance audit, four-point local mass beyond the prefix, endpoints, finite exceptions.
+
+## Model BS: Deterministic binary-spine prefix
+
+- Model ID: `N2-MOD-BS-001`.
+- Result label: `proved theorem`.
+- Rank: a proved component inside Model QV, not a standalone global architecture.
+- Proof: `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md`.
+- Verification: `verification/quotient_binary_spine.py`.
+- Frozen legal choices:
+  \[
+  3,5,7\in B_1(n),
+  \qquad
+  3\cdot2^{t-1}\in B_t(n)\quad(2\le t\le M_n).
+  \]
+- Exact conclusion: every odd quotient from `3` through `3*2^{M_n}-3` is represented, so every four-point window through `3*2^{M_n}` is occupied.
+- Term cost: at most `M_n` quotient terms.
+- Limitation: it does not control the remaining quotient range up to `floor(X_n/g_n)`.
 
 ## Model U: Uniform rainbow convolution
 
@@ -35,16 +60,17 @@
 - File: `models/UNIFORM_RAINBOW_CONVOLUTION.md`.
 - Frozen object: product of uniform laws on pairwise numerically disjoint labels.
 - Required conclusion: every correction window has positive final convolution mass.
-- Main blocker: one fixed mean leaves endpoint windows in large-deviation tails.
+- Main blocker: one fixed mean leaves the endpoint windows in large-deviation tails.
 
 ## Model T: Target-dependent exponential tilt
 
 - Result label: `conditional theorem`.
-- Rank: 2 as a general architecture and the preferred probabilistic engine inside Model QV.
+- Rank: 2 as a general architecture and the preferred probabilistic engine inside Model QV after the proved prefix.
 - File: `models/TARGET_DEPENDENT_TILT.md`.
 - Frozen object: fixed labels with target-dependent Gibbs weights.
 - Current exact law: exponential tilt on the normalized numerical labels `B_t(n)`.
 - Current exact target window: `[max(0,m-3),m]`.
+- Current target domain: only the region beyond `3*2^{M_n}` needs analytic treatment.
 - Proof engine: N2-ADD-110 weighted Fourier comparison.
 - Main blocker: uniform tilt, variance, major arcs, minor arcs, resonances, and endpoint regime split for the quotient model.
 
@@ -64,11 +90,11 @@
 
 ## Model D: Deterministic restricted-sumset growth
 
-- Result label: `conditional theorem`.
+- Result label: `conditional theorem` beyond the binary-spine prefix.
 - Rank: 3.
 - File: `models/DETERMINISTIC_RESTRICTED_SUMSET.md`.
 - Frozen object: final collision-free labeled sumset, with no partial interval invariant.
-- Current exact target: prove maximum downward gap at most `3` in the final quotient sumset `Q_n`.
+- Current exact target: prove maximum downward gap at most `3` in the final quotient sumset after `3*2^{M_n}`.
 - Main blocker: existing additive theorems do not automatically preserve labeling, distinctness, interval location, or factorial legality.
 
 ## Rejected factorial instantiation V1
@@ -120,16 +146,18 @@ Locations:
 - explicit discretized-Gaussian window lower bound;
 - correction-window bridge;
 - lattice quotient normalization;
-- the conditional three-power repair implication.
+- the conditional three-power repair implication;
+- deterministic binary-spine four-point occupancy through `3*2^{M_n}`.
 
 Locations:
 
 - `models/TOY_SUFFICIENT_CONDITIONS.md`;
-- `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
+- `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`;
+- `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md`.
 
 ## Preferred hybrid
 
-Use Model QV as the exact construction. Inside it, use Model T for target centering, Model F for positive four-point window mass, and the repaired deterministic binary palette for exact residual completion. Model D remains the preferred nonanalytic alternative.
+Use Model QV as the exact construction. Model BS closes its entire initial quotient regime. Beyond that prefix, use Model T for target centering, Model F for positive four-point window mass, and the repaired deterministic binary palette for exact residual completion. Model D remains the preferred nonanalytic alternative.
 
 ## Mandatory evaluation fields
 
@@ -150,4 +178,5 @@ Every future candidate must record:
 13. exact bounded-frequency analytic inequality;
 14. whether the Fourier variable acts on numerical values or logarithmic values;
 15. exact finite falsification task;
-16. whether the argument is final-only or secretly sequential.
+16. whether the argument is final-only or secretly sequential;
+17. whether the target lies inside the N2-ADD-118 protected prefix.
