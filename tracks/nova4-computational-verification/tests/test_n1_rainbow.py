@@ -4,6 +4,8 @@ from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"src"))
 from factorial_lab.n1_rainbow import RainbowCertificationError, _sha, audit_case, audit_range, build_family, certified_ceil_log, first_failure_certificate, verify_audit, verify_failure, verify_witness
 
+FIXTURES = Path(__file__).resolve().parent / "rainbow_fixtures"
+
 class ReducedRainbowTests(unittest.TestCase):
     def test_log_ceiling_transitions(self):
         self.assertEqual([certified_ceil_log(n) for n in (20,21,54,55)],[3,4,4,5])
@@ -34,6 +36,10 @@ class ReducedRainbowTests(unittest.TestCase):
         z=first_failure_certificate(audit_range(20,20));self.assertEqual(verify_failure(z)["target"],8)
     def test_rehashed_false_failure_rejected(self):
         z=first_failure_certificate(audit_range(20,20));z["claimed"]["target"]=9;z["sha256"]=_sha(z)
+        with self.assertRaises(RainbowCertificationError):verify_failure(z)
+    def test_on_disk_rehashed_false_failure_rejected(self):
+        z=json.loads((FIXTURES/"corrupt_rehashed_first_failure.json").read_text(encoding="utf-8"))
+        self.assertEqual(z["sha256"],_sha(z))
         with self.assertRaises(RainbowCertificationError):verify_failure(z)
 
 if __name__=="__main__":unittest.main()
