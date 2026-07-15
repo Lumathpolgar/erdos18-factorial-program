@@ -21,12 +21,13 @@ Marker-three construction:
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`
 - construction: `N1-CON-003`
 
-Nova 2 artifacts:
+Final Nova 2 artifacts:
 
 - streaming implementation commit: `e4539447d231acb87702179132d7c03e22c855e5`
 - frozen certificate commit: `8fbc943f16e48bcd46198847237ad5dd1916408e`
 - replay test commit: `7650330963f5c4dfbbbf46d51037562e65f50aab`
-- proof record commit: `5f51579397b3d1745a07d6b8d7cd5741adfcd090`
+- corrected proof record commit: `89be707222c9989e743fa943466762799211a4ba`
+- theorem registry commit: `fda6806cf509016fff337f48dc23dcab2913147f`
 
 Files:
 
@@ -37,17 +38,17 @@ Files:
 
 ## N2-ADD-121
 
-The odd divisors of `n!/3` after removing all powers of two are represented by bounded exponent vectors. Every nonzero exponent vector has a unique parent obtained by decrementing its largest nonzero coordinate.
+Represent each odd divisor of `n!/3` after removing all powers of two by its bounded exponent vector. Every nonzero vector has a unique parent obtained by decrementing its largest nonzero coordinate.
 
-The streaming generator starts from the zero vector and, from a state whose largest nonzero index is `j`, increments only coordinates `k>=j`. This generates every bounded exponent vector exactly once. A minimum priority queue therefore emits all odd cores in exact increasing numerical order.
+Starting from zero, a state whose largest nonzero coordinate is `j` generates increments only in coordinates `k>=j`. This produces every bounded vector exactly once. A minimum priority queue therefore emits all odd cores in exact increasing numerical order.
 
-The stream stores only:
+The stream retains only:
 
 1. the active priority frontier;
-2. counts and last values at requested layer bounds;
+2. counts and final values at requested layer bounds;
 3. consecutive gaps that set a new record.
 
-The first gap exceeding a carrier threshold is necessarily a record gap, so this compressed data replays every N2-ADD-120 connected component exactly.
+The first gap exceeding any carrier threshold is necessarily a record gap. These data therefore replay every N2-ADD-120 connected component exactly without storing the completed divisor prefix.
 
 ## N2-FIN-203 exact result
 
@@ -65,9 +66,7 @@ v_2(46!)=42,
 Y_{46}
 =
 24{,}726{,}553{,}787{,}403{,}193{,}575{,}874{,}580{,}719,
-\]
-
-\[
+\qquad
 W_{46}=21{,}844.
 \]
 
@@ -112,46 +111,32 @@ Return separate verdicts for:
 3. unique-parent generation with no duplicate or omitted exponent vector;
 4. increasing numerical output through `Y_46`;
 5. prefix counts at all six used layer bounds;
-6. all five first blocking gaps and the absence of a sixth-layer block;
-7. final carrier endpoint and margin;
+6. all five first blocking gaps and absence of a sixth-layer block;
+7. final carrier endpoint and positive margin;
 8. term bound `22`;
 9. fail-closed frontier-cap behavior.
 
-Use one of:
-
-- `ACCEPTED`;
-- `ACCEPTED_WITH_RESTRICTIONS`;
-- `NEEDS_REPAIR`;
-- `REJECTED`.
-
-A disagreement must include the first exact mismatching field and an independently replayable witness.
+Return one of `ACCEPTED`, `ACCEPTED_WITH_RESTRICTIONS`, `NEEDS_REPAIR`, or `REJECTED`. A disagreement must identify the first exact mismatching field and include a replayable witness.
 
 ## Required next extension
 
-The smallest unaudited parameter is now
+The smallest unaudited parameter is
 
 \[
 n=47.
 \]
 
-The current bounded execution did not complete at `n=47`. This is `unknown due to resource limits`, not failure.
+The bounded execution did not complete at `n=47`; this is `unknown due to resource limits`, not failure.
 
 Implement one or more of:
 
 1. a lower-memory frontier encoding;
 2. an external-memory priority frontier;
 3. a segmented exact merge of prime-power divisor streams;
-4. an exact record-gap certificate that can be independently replayed without retaining the full frontier;
+4. an independently replayable record-gap certificate;
 5. a proved divisor-gap bound replacing enumeration.
 
-For `n=47`, return either:
-
-- complete endpoint success;
-- the first exact carrier-block failure;
-- a full-model quotient counterexample;
-- or a fail-closed resource-limit certificate.
-
-Failure of the sequential carrier criterion alone is not failure of the full marker-three model.
+For `n=47`, return endpoint success, the first exact carrier failure, a full-model counterexample, or a fail-closed resource-limit certificate. Failure of the sequential carrier criterion alone is not failure of the complete marker-three model.
 
 ## Reproduction commands
 
@@ -168,4 +153,4 @@ python3 tracks/nova2-additive-occupancy/verification/test_marker_three_streaming
 
 ## Claim boundary
 
-N2-FIN-203 does not prove uniform occupancy, does not establish `n=47`, and does not remove the Phase 12P audit for asymptotic use of N2-ADD-120.
+N2-FIN-203 does not prove uniform occupancy, establish `n=47`, or remove the Phase 12P audit for asymptotic use of N2-ADD-120.
