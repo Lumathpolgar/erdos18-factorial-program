@@ -154,11 +154,11 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 
 - Class: `proved theorem`
 - Status: `PROVED`
-- Nova 2 request: `N2-HO-N3-003`, commit `fb73e6906105c983bacbd46a96ef8d5d87567fae`
+- Current Nova 2 source: branch `nova/additive-occupancy`, commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c`
 - Structural source: Nova 1 marker-three construction at `ebb47ba436af554366d0f285119a769f31f9e561`
-- Latest compatible head: `9febe46f2298d2726eeffa139676136963790019`
-- Conclusion: the three later Nova 1 commits add endpoint-support artifacts only and do not change the numerical label sets
-- Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
+- Latest compatible Nova 1 head inspected: `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`
+- Conclusion: later Nova 1 endpoint, carrier-block, and carry-collision commits preserve the numerical label definitions
+- Proofs: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md` and `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
 
 ### N3-ANA-018, tilt existence, span, and exact resonance set
 
@@ -205,6 +205,71 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 - Consequence: the final analytic bulk must provide compact tilt or direct phase-dispersion bounds
 - Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
 
+### N3-ANA-020, post-prefix tilt compression
+
+- Class: `proved theorem`
+- Status: `PROVED`
+- Deterministic prefix endpoint:
+  \[
+  P_n=m_n(2^{M_n}-1)+W_n
+  \]
+- Exact analytic target range:
+  \[
+  P_n+1\le q\le Y_n
+  \]
+- Conclusion:
+  \[
+  -\frac{8M_n\log L_n}{L_n}
+  <\lambda_{n,q}<
+  \frac{16(n\log n+\log14)}{2^{M_n}},
+  \qquad
+  L_n=m_n(2^{M_n}-1)
+  \]
+- Uniform consequence:
+  \[
+  \sup_{P_n<q\le Y_n}|\lambda_{n,q}|\to0
+  \]
+- Dependencies: N1-STR-020, N1-DIS-006, N2-ADD-120, N3-ANA-018
+- Proof: `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
+
+### N3-ANA-021, binary-anchor coefficient collapse
+
+- Class: `disproved estimate`
+- Status: `DISPROVED`
+- Disproved inference: compact numerical tilt, or even tilt tending to zero, automatically supplies a fixed lower bound for the zero-versus-minimum-state minor-arc coefficient
+- At zero tilt:
+  \[
+  P_0(Z_t=0)P_0(Z_t=2^{t-1})
+  <2^{-2(h_n-1)}
+  \le2^{-2(n/(3\log n)-1)}
+  \]
+- Consequence: the exact two-state bound in N3-ANA-018 cannot close the minor arc without aggregate phase dispersion
+- Proof: `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
+
+### N3-ANA-022, collision-aware tilted atom formula
+
+- Class: `proved theorem`
+- Status: `PROVED`
+- For exact profile multiplicity `C_n(s)`:
+  \[
+  P_\lambda(T_{n,\lambda}=s)
+  =
+  \frac{C_n(s)e^{\lambda s}}
+  {\prod_tZ_t(\lambda)}
+  \]
+- Nova 1 collision input: for
+  \[
+  J_n=\lfloor M_n/2\rfloor,
+  \qquad S_n=4^{J_n}-1,
+  \]
+  one has
+  \[
+  C_n(S_n)\ge2^{J_n}
+  \]
+- Consequence: every local approximation must account for numerical fiber multiplicity
+- Dependency: Nova 1 `N1-COL-001` at commit `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`
+- Proof: `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
+
 ## Finite certificates
 
 ### N3-FIN-001
@@ -236,6 +301,13 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 - Numerical evidence: tilt centering and sampled torus resonance checks
 - Verifier: `proofs/marker_three_numerical_law_sanity.py`
 
+### N3-FIN-006
+
+- Exact threshold: `n=120368`
+- Content: nonempty post-prefix range, largest minimum-state legality, lower-bound algebra, and exact carry-collision enumeration for four layer pairs
+- Observed minimal-support collision multiplicity at target `255`: `34`, exceeding the required `16`
+- Verifier: `proofs/post_prefix_tilt_sanity.py`
+
 ## Computational evidence
 
 ### N3-COMP-001
@@ -254,6 +326,18 @@ Repaired marker-three capacity margins through selected `n<=1000000` from `proof
 
 Small marker-three numerical-law tilt and characteristic-function grids from `proofs/marker_three_numerical_law_sanity.py`.
 
+### N3-COMP-005
+
+Post-prefix tilt bound scales at selected `n in {120368,200000,500000,1000000}` from `proofs/post_prefix_tilt_sanity.py`.
+
+At `n=120368`, the logarithmic magnitudes satisfy approximately
+
+\[
+\log_{10}\Lambda_n^-<-656.90,
+\qquad
+\log_{10}\Lambda_n^+<-651.90.
+\]
+
 ## Open candidate contracts
 
 ### N3-CAND-LDC-001
@@ -266,8 +350,8 @@ Compact-tilt coarse logarithmic windows are proved for the top-prime band. Fine 
 
 ### N3-CAND-CF-001
 
-For the numerical marker-three law, exact span and resonances are now known. Uniform quantitative minor-arc control remains open until the final target range yields compact tilt or an equivalent dispersion bound.
+For the numerical marker-three law, the exact span, exact resonance set, active post-prefix target range, and uniform shrinking tilt are now known. The single binary anchor is quantitatively insufficient. The open node is an aggregate phase-dispersion theorem for the complete odd-core menus with collision-aware atoms.
 
 ## Promotion rule
 
-N3-ANA-014 and N3-ANA-015 close repaired formal capacity. N3-ANA-018 closes centering and exact resonance clauses. None of N3-ANA-014 through N3-ANA-019 proves the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
+N3-ANA-020 closes the compact-tilt clause on the exact post-prefix target range. N3-ANA-021 prevents promotion of the existing two-state minor-arc bound. N3-ANA-022 freezes how profile collisions enter numerical atoms. None of N3-ANA-014 through N3-ANA-022 proves the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
