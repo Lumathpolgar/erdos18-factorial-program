@@ -10,236 +10,176 @@ Additive Occupancy and Global Sumsets
 
 ## Overall state
 
-`REPAIRED_ROUTE_SURVIVES_EXPONENTIAL_PREFIX_GLOBAL_REGION_OPEN`
+`MARKER_THREE_STRUCTURALLY_ACCEPTED_GLOBAL_OCCUPANCY_OPEN`
 
 ## Baseline
 
 - Startup branch head: `71370633b1e6726bf6f9e3b334d42cfc34512c06`
 - Startup main head: `68ace6c9c3b67636e298a406fee3bfe8e072741d`
 - Merge base: `cd5576d4f7934e26e9d4ef3b065c2ad4cee36c67`
-- Required mathematical definitions and archive indexes read.
 - `docs/HANDOFF_PROTOCOL.md` was absent; `docs/CROSS_TRACK_HANDOFF_PROTOCOL.md` was used.
 
-## Proved results
+## Permanent obstruction record
 
-- N2-ADD-101: profile count larger than interval size does not imply coverage.
-- N2-ADD-102: common-gcd lattice obstruction.
-- N2-ADD-103: ordinary convolution may certify an illegal repeated divisor.
-- N2-ADD-104 and N2-ADD-105: a local or window approximation is insufficient when its error reaches the reference mass.
-- N2-ADD-106: endpoint variance collapse for tilted Bernoulli sums.
-- N2-ADD-108: deterministic extraction from positive collision-free mass.
-- N2-ADD-109: exact union-bound threshold for a sampled catalogue.
-- N2-ADD-110: weighted Fourier comparison implies positive window mass.
-- N2-ADD-111: explicit discretized-Gaussian window lower bound.
-- N2-ADD-112: correction-window bridge.
-- N2-ADD-113: positive point mass gives targetwise deterministic extraction.
-- N2-ADD-115: a support contained in `g Z` cannot meet all downward windows of radius below `g-1` over a target range containing the first missing residue block.
-- N2-ADD-116: exact lattice quotient normalization. Correction range `[0,Lg-1]` is equivalent to quotient downward gaps at most `L-1`.
-- N2-ADD-118: the normalized valuation-tagged sumset meets every four-point quotient window through `3*2^{M_n}` under the frozen valuation-budget condition.
+Nova 1 handoff `N1-HO-N2-001` at commit
 
-## Conditional theorems
+`b939574eb88a08bb03abda5bbe6ff2ca97444e08`
 
-### N2-ADD-114
+remains `REJECTED`.
 
-Fixed legal labels, a disjoint correction palette, and a strict weighted Fourier window inequality imply
+Every main sum in that model lies in `2^{r_n+1} Z`, while the first required window is `[1,2^{r_n}]`. This is N2-ADD-115 and N2-OBS-107.
 
-\[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2).
-\]
+The one-power and two-power consecutive-binary repairs also fail exactly. They are N2-OBS-108.
 
-The implication is proved. Its factorial structural and analytic hypotheses remain open.
+## Superseded fallback route
 
-### N2-ADD-117
+Nova 2 proved:
 
-Retain the normalized valuation-tagged main labels and extend the binary correction palette through `2^{r_n+2}`. If the final normalized rainbow sumset `Q_n` intersects every four-point downward window
+- N2-ADD-116: exact lattice quotient normalization;
+- N2-ADD-117: conditional three-power repair;
+- N2-ADD-118: an exponential deterministic prefix for that repair.
 
-\[
-[\max(0,m-3),m]
-\]
+These results remain valid, but the three-power route is no longer preferred after Nova 1 supplied a stronger marker-three construction.
 
-through `floor(X_n/2^{r_n+1})`, then
+## Current preferred structural model
 
-\[
-H_{n!}(X_n+1)
-\le
-M_n+r_n+3
-=O((\log n)^2).
-\]
+Nova 1 handoff `N1-HO-N2-002` was imported from:
 
-The reduction is proved. N2-ADD-118 now proves its quotient hypothesis uniformly throughout the prefix
-
-\[
-0\le m\le3\cdot2^{M_n}.
-\]
-
-The remaining all-target region is open.
-
-## Original factorial instantiation decision
-
-Nova 1 handoff `N1-HO-N2-001`, imported from branch `nova/factorial-structure` at exact commit
-
-`b939574eb88a08bb03abda5bbe6ff2ca97444e08`,
-
-is `REJECTED`.
-
-Every main divisor and rainbow sum is divisible by `2^{r_n+1}`, while the original first requested window is `[1,2^{r_n}]`. This is N2-OBS-107.
-
-Proof: `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`.
-
-## Minimal repair milestone
-
-Let
-
-\[
-g_n=2^{r_n+1}.
-\]
-
-- Adding only `2^{r_n}` leaves target `g_n` unreachable.
-- Adding through `2^{r_n+1}` leaves target `2g_n` unreachable.
-- Adding through `2^{r_n+2}` is the first consecutive-binary extension not killed by the initial support gap.
-
-The first two variants are N2-OBS-108. The third yields the exact four-point quotient target in N2-ADD-117.
-
-Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
-
-## Binary-spine prefix milestone
-
-For every admissible `n>=7`, the valuation budget implies
-
-\[
-\left\lfloor\frac{X_n}{g_n}\right\rfloor
-\ge3\cdot2^{M_n}.
-\]
-
-The quotient layers contain
-
-\[
-3,5,7\in B_1(n)
-\]
-
-and the binary spine
-
-\[
-3\cdot2^{t-1}\in B_t(n)
-\qquad(2\le t\le M_n).
-\]
-
-Every odd quotient
-
-\[
-3\le q\le3\cdot2^{M_n}-3
-\]
-
-has a legal rainbow representation. Consequently every four-point quotient window through
-
-\[
-3\cdot2^{M_n}
-\]
-
-is occupied.
-
-Proof: `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md`.
-
-Verification: `verification/quotient_binary_spine.py`.
-
-## Finite certificate N2-FIN-201
-
-An exact rational-log scan through `n=5000` gives the first valuation-budget-admissible parameter as
-
-\[
-n=1892,
-\qquad
-r_n=31,
-\qquad
-M_n=911.
-\]
-
-The protected quotient prefix ends at `3*2^911`, a 275-digit integer. Therefore the repaired full-family model has no four-point counterexample before that target.
-
-## Nova 4 intake decision
-
-Nova 4 branch `nova/computational-verification` was inspected at commit
-
-`2f2a355f59f230751b8e798e7a5df0769e8bf6d9`.
+- branch: `nova/factorial-structure`
+- exact commit: `ebb47ba436af554366d0f285119a769f31f9e561`
+- construction: `N1-CON-003`
 
 Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
 
-Accepted:
+Response:
 
-- exact lattice-first verification infrastructure;
-- rational certification of `r_n` and `M_n`;
-- independent replay of N2-ADD-115 and N2-OBS-107;
-- fail-closed corrupted-certificate tests.
+`handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
 
-Not yet supplied:
+The marker-three model uses main divisors
 
-- N2-ADD-116 quotient normalization;
-- N2-OBS-108 regressions;
-- normalized quotient labels or reachable quotient sumsets;
-- a four-point quotient-gap sweep;
-- a later counterexample or quotient success certificate.
+\[
+3\cdot2^{t-1}u
+\]
 
-Response: `handoffs/RESPONSE_TO_NOVA4.md`.
+and quotient labels
 
-## Nova 3 request
+\[
+B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
+\]
 
-The request `N2-HO-N3-002` freezes the exact quotient numerical-value law, the torus `[-pi,pi]`, and the four-point weighted Fourier inequality. It remains conditional on Nova 1 accepting or superseding the repair.
+where
 
-Request: `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
+\[
+Y_n=\left\lfloor\frac{\lfloor\sqrt{n!}\rfloor}{3}\right\rfloor.
+\]
 
-## Disproved models and retired shortcuts
+Its correction palette is the original binary palette, and the exact quotient radius is
 
-- Raw profile capacity as a coverage criterion.
-- All-support-in-a-proper-lattice architectures without sufficient residue repair.
-- Ordinary convolution extraction with overlapping numerical labels.
-- Local-limit claims whose error is not smaller than the target atom or window mass.
-- A single bulk tilted local theorem extending uniformly to both support endpoints.
-- Target-dependent probability spaces treated as one shared random universal object.
-- The exact original valuation-tagged layer and correction contract.
-- Automatic transfer from logarithmic divisor density to additive numerical occupancy.
-- One-power and two-power consecutive-binary repairs.
+\[
+W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor.
+\]
 
-## Model ranking
+The structural gate passes:
 
-1. Normalized valuation-tagged quotient model with the proved binary-spine prefix and target-dependent tilt plus bounded-torus Fourier control in the remaining region.
-2. Deterministic restricted-sumset growth for the same quotient labels beyond the proved prefix.
-3. Uniform rainbow convolution.
-4. Fixed-law Fourier or local-limit route as a standalone architecture.
+- exact main lattice `3 Z`;
+- quotient span one;
+- numerical layer separation;
+- main-palette disjointness;
+- exact correction reduction;
+- term cost `M_n+r_n`.
+
+## Current deterministic results
+
+Nova 1 proves downward one-density through
+
+\[
+m_n(2^{M_n}-1),
+\]
+
+where `m_n` is the largest odd integer at most `n`.
+
+Nova 2 extends required window occupancy through
+
+\[
+m_n(2^{M_n}-1)+W_n.
+\]
+
+Nova 2 also proved:
+
+- N2-ADD-119: translated carrier-block lemma;
+- N2-ADD-120: connected-core recursion sufficient for full marker-three occupancy.
+
+At layer `t`, the exact allowable core gap is
+
+\[
+D_t(E_{t-1})
+=
+\left\lfloor
+\frac{E_{t-1}+W_n+1}{2^{t-1}}
+\right\rfloor.
+\]
+
+If the recursion reaches `Y_n-W_n`, the factorial half-range theorem follows with cost `M_n+r_n`.
+
+N2-ADD-120 is sequential and requires a Phase 12P compatibility audit before asymptotic promotion.
+
+## Preferred proof engines
+
+1. Final-only target-dependent tilt plus bounded-torus Fourier window positivity for the marker-three numerical quotient law.
+2. Deterministic final restricted-sumset theorem for the same labels.
+3. Connected-core carrier recursion as a computational certificate and possible sequential theorem, subject to Phase 12P.
+4. The three-power valuation-tagged route as a preserved conditional fallback.
+
+## Cross-track requests
+
+### Nova 3
+
+`N2-HO-N3-003` freezes the exact marker-three numerical quotient law, target windows, moments, resonances, and weighted Fourier inequality.
+
+File:
+
+`handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`
+
+### Nova 4
+
+`N2-HO-N4-002` requests:
+
+- structural replay;
+- connected-core recursion;
+- full quotient reachability where feasible;
+- protected-prefix replay;
+- endpoint support audit.
+
+File:
+
+`handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`
 
 ## Exact open blockers
 
-1. Nova 1 must accept, restrict, supersede, or reject the versioned three-power repair contract.
-2. Extend or disprove four-point quotient occupancy in
-   \[
-   3\cdot2^{M_n}<m\le\left\lfloor X_n/g_n\right\rfloor.
-   \]
-3. Nova 3 must prove the exact additive numerical-value tilt, variance, resonance, reference-mass, and weighted Fourier package for the normalized labels.
-4. Nova 1 must cover every quotient endpoint excluded from the analytic bulk theorem.
-5. Nova 4 must upgrade its lattice harness to the current quotient-normalized contract.
-6. The source-level Phase 12M through 12P package statements are not stored in the repository.
-7. Finite exceptions below the eventual `n_0` remain open.
+1. Prove or disprove marker-three quotient occupancy for every target through `Y_n`.
+2. Determine connected-core reach under N2-ADD-120.
+3. Prove endpoint support near `Y_n` or produce an exact endpoint deficit.
+4. Control collisions between different rainbow profiles.
+5. Prove the numerical target-dependent tilt, moment, resonance, and weighted Fourier package.
+6. Audit the sequential carrier theorem against Phase 12P.
+7. Handle finite exceptions.
 
-## Handoffs maintained
+## Claim boundary
 
-- `handoffs/TO_NOVA1.md`
-- `handoffs/TO_NOVA3.md`
-- `handoffs/TO_NOVA4.md`
-- `handoffs/RESPONSE_TO_NOVA1.md`
-- `handoffs/RESPONSE_TO_NOVA3.md`
-- `handoffs/RESPONSE_TO_NOVA4.md`
-- `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`
-- `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`
+The marker-three construction passes the structural gate. It does not yet prove the factorial half-range theorem or solve Erdős Problem 18.
 
 ## Next theorem target
 
-Work only in the unprotected quotient region
+Compute or prove the connected-core reach and compare
 
 \[
-3\cdot2^{M_n}<m\le\left\lfloor X_n/g_n\right\rfloor.
+E_{M_n}+W_n
 \]
 
-The immediate choices are:
+with
 
-1. prove a second deterministic spine or interval-extension theorem;
-2. construct an exact full-family counterexample after the proved prefix; or
-3. prove the normalized target-dependent Fourier-window theorem.
+\[
+Y_n.
+\]
+
+In parallel, freeze and analyze the final-only numerical quotient law so failure of the sequential engine does not terminate the full model.
