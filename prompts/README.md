@@ -1,77 +1,84 @@
-# Four-Nova Launch Prompts
+# Four-Nova Production Launch Prompts
+
+## Use these prompts
+
+The earlier `prompts/*_START.md` files are superseded. Do not launch the Novas from those files.
+
+Use the full production prompts under `prompts/production/`.
 
 ## Shared mode
 
-Use the same mode for all four sessions:
+Use the same mode for all four conversations:
 
 `Mode: Math`
 
-Do not use different modes across the four Novas. The division of labor is already encoded in the separate prompts.
+The mode is only the reasoning mode. The actual repository, branch, scope, phases, deliverables, Git workflow, and first checkpoint are fully specified inside each production prompt.
+
+## Repository
+
+- Repository: `Lumathpolgar/erdos18-factorial-program`
+- URL: `https://github.com/Lumathpolgar/erdos18-factorial-program`
+- Base branch: `main`
 
 ## Prompt assignment
 
-### Nova 1
+### Nova 1: Factorial Structure and Reduction
 
-Use:
+Paste the complete contents of:
 
-`prompts/NOVA1_FACTORIAL_STRUCTURE_START.md`
+`prompts/production/NOVA1_PRODUCTION_PROMPT.md`
 
-Branch:
+Working branch:
 
 `nova/factorial-structure`
 
-Primary responsibility: factorial divisor structure, deterministic constructions, correction architecture, and exact reductions.
+Nova 1 must reconstruct the baseline, build the factorial divisor atlas, develop two complete structural candidates, choose a preferred route, issue exact theorem requests to the other tracks, commit, push, and open a draft PR.
 
-### Nova 2
+### Nova 2: Additive Occupancy and Global Sumsets
 
-Use:
+Paste the complete contents of:
 
-`prompts/NOVA2_ADDITIVE_OCCUPANCY_START.md`
+`prompts/production/NOVA2_PRODUCTION_PROMPT.md`
 
-Branch:
+Working branch:
 
 `nova/additive-occupancy`
 
-Primary responsibility: global sumset occupancy, convolution, Fourier and local-limit mechanisms, anti-concentration, and correction-window coverage.
+Nova 2 must reconstruct the additive no-go results, formalize four occupancy models, prove or disprove independent toy theorems, select a preferred global route, freeze a candidate occupancy theorem, commit, push, and open a draft PR.
 
-### Nova 3
+### Nova 3: Analytic Divisor Density
 
-Use:
+Paste the complete contents of:
 
-`prompts/NOVA3_ANALYTIC_DENSITY_START.md`
+`prompts/production/NOVA3_PRODUCTION_PROMPT.md`
 
-Branch:
+Working branch:
 
 `nova/analytic-density`
 
-Primary responsibility: factorial-divisor counting and distribution, entropy, saddle points, local density, characteristic functions, and source validation.
+Nova 3 must reconstruct the analytic baseline, build the factorial divisor scale map, validate primary sources line by line, formulate three exact candidate analytic theorems, prove, weaken, or obstruct the best route, commit, push, and open a draft PR.
 
-### Nova 4
+### Nova 4: Computation, Falsification, and Verification
 
-Use:
+Paste the complete contents of:
 
-`prompts/NOVA4_COMPUTATIONAL_VERIFICATION_START.md`
+`prompts/production/NOVA4_PRODUCTION_PROMPT.md`
 
-Branch:
+Working branch:
 
 `nova/computational-verification`
 
-Primary responsibility: exact computation, certificate verification, counterexample search, reproducible datasets, and independent theorem audits.
+Nova 4 must build the exact verification core, corrupted-certificate tests, two independent search or bound methods, the initial exact dataset, the cross-track request queue, commit, push, and open a draft PR.
 
-## How to launch
+## Launch procedure
 
-Start four separate Nova conversations.
-
-Paste one complete prompt into each conversation without combining or shortening it. The prompt itself contains the repository, branch, read order, research target, deliverables, progress cycle, and GitHub rules.
-
-Each Nova must:
-
-1. work only on its assigned branch;
-2. commit and push meaningful progress;
-3. maintain a draft pull request for visibility;
-4. update its branch status and theorem registries;
-5. label every claim by evidence class;
-6. never merge or claim the full problem is solved without passing the integration gates.
+1. Start four separate Nova conversations.
+2. Set each conversation to `Mode: Math`.
+3. Paste one complete production prompt into each conversation.
+4. Do not shorten, summarize, combine, or paraphrase the prompt.
+5. Give each Nova access to GitHub.
+6. Let each Nova work only on its assigned branch.
+7. Require each Nova to report the pushed commit SHA and draft PR after its first substantive checkpoint.
 
 ## Shared target
 
@@ -87,4 +94,4 @@ The current sufficient local target is:
 H_{n!}\!\left(\lfloor\sqrt{n!}\rfloor+1\right)=O((\log n)^2).
 \]
 
-The four Novas are not four votes on one argument. They are four distinct research functions whose results must be integrated and independently audited.
+The problem is not solved. No Nova may promote a conditional theorem, finite certificate, computation, heuristic, or partial route into a solution claim.
