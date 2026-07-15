@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova4.n1-capacity-audit.v1",
+  "title": "Nova 1 finite capacity-threshold audit",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "range", "definitions", "first_success", "later_failures_after_first_success", "success_intervals", "C_success_interval_minimum_margins", "transitions", "certification", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n1-capacity-audit.v1"},
+    "result_class": {"const": "exact finite theorem audit"},
+    "source": {"type": "object", "required": ["repository", "branch", "commit", "handoff", "study"]},
+    "range": {"type": "object", "required": ["n_min", "n_max", "count"], "properties": {"n_min": {"type": "integer", "minimum": 3}, "n_max": {"type": "integer", "minimum": 3}, "count": {"type": "integer", "minimum": 1}}},
+    "first_success": {"type": "object", "required": ["A", "C", "both"]},
+    "transitions": {"type": "array"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}
