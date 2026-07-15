@@ -15,7 +15,8 @@ This is now the preferred route because it passes the exact lattice-first struct
 5. the palette attains every residue modulo `3`;
 6. the first target is directly covered;
 7. the remaining claim is a final-only quotient rainbow window theorem;
-8. the selected-term cost is `O((log n)^2)`.
+8. the selected-term cost is `O((log n)^2)`;
+9. the necessary formal profile-capacity gate holds for every `n>=120368`.
 
 ### Rank 2: N1-CON-002, marked complement-pair menu clouds
 
@@ -163,6 +164,42 @@ using at most `M_n+r_n` distinct divisors of `n!`.
 
 This is an unconditional range of size `exp(O((log n)^2))`. It is far below `X_n=exp(Theta(n log n))` and is not the half-range theorem.
 
+### N1-STR-018: explicit repaired menu lower bound
+
+Result label: **proved theorem**.
+
+Nova 3 proved, at branch `nova/analytic-density`, exact commit `e60069f797af878711e7a9d4abb1fb6188a1f724`, that for every integer `n>=120368`,
+
+\[
+\pi(n)-\pi(n/2)\ge\frac{n}{3\log n}.
+\]
+
+Nova 1 re-audited its use for the marker-three menus. For every `n>=120368` and every `1<=t<=M_n`,
+
+\[
+|U_t(n)|
+\ge2^{\pi(n)-\pi(n/2)-1}
+\ge2^{n/(3\log n)-1}.
+\]
+
+The proof uses complementary subset products of primes in `(n/2,n]`, reserves the factor `3` separately, and verifies the largest layer cutoff.
+
+### N1-CAP-002: explicit profile-capacity gate
+
+Result label: **proved theorem**.
+
+For every integer `n>=120368`,
+
+\[
+2^{r_n}
+\prod_{t=1}^{M_n}(|U_t(n)|+1)
+\ge X_n+1.
+\]
+
+This closes the necessary counting-capacity requirement. It does not control collisions between profiles or prove numerical additive occupancy.
+
+Proof location: `proofs/MARKER_THREE_MENU_CAPACITY.md`.
+
 ### Exact term cost
 
 Result label: **proved theorem**.
@@ -171,7 +208,8 @@ The architecture uses at most
 
 \[
 M_n+r_n
-=\lceil16(\log n)^2\rceil+\lceil4\log n\rceil
+=\lceil16(\log n)^2\rceil+
+\lceil4\log n\rceil
 \]
 
 terms. There is no recursion or hidden multiplicative cost.
