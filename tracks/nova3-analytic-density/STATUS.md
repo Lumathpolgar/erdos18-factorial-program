@@ -10,122 +10,141 @@
 
 ## Overall state
 
-`FIFTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
+`SIXTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
 
 The factorial half-range theorem and Erdős Problem 18 remain open.
 
-## Repaired marker-three capacity checkpoint
+## Current cross-track sources
 
-Nova 1 request:
+### Nova 1
 
 - branch: `nova/factorial-structure`
-- commit: `9febe46f2298d2726eeffa139676136963790019`
-- handoff: `N1-HO-N3-002`
+- exact head inspected: `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`
+- active construction: `N1-CON-003`
+- new relevant results: `N1-STR-020`, `N1-DIS-006`, `N1-COL-001`
 
-Outcome:
+The marker-three numerical labels remain unchanged. Nova 1 now proves endpoint support, a one-factorial-block carrier ceiling, and explicit exponential carry collisions.
 
-`ACCEPTED_WITH_PROOF_REPAIR`.
-
-Closed:
-
-- N3-ANA-014, repaired menu lower bound and address legality;
-- N3-ANA-015, repaired formal profile capacity;
-- N3-ANA-016, central-binomial shortcut obstruction.
-
-Response:
-
-`handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
-
-## Marker-three numerical-law checkpoint
-
-Nova 2 request:
+### Nova 2
 
 - branch: `nova/additive-occupancy`
-- commit: `fb73e6906105c983bacbd46a96ef8d5d87567fae`
-- handoff: `N2-HO-N3-003`
+- exact head inspected: `82603c631a106c3bff4676bdeeb9cc791fc98f3c`
+- active request: `N2-HO-N3-003`
+- relevant results: `N2-ADD-119`, `N2-ADD-120`, `N2-FIN-202`
 
-Outcome:
-
-`ACCEPTED_WITH_RESTRICTIONS`.
-
-### N3-ANA-017, contract compatibility
-
-Nova 2 pins Nova 1 commit `ebb47ba436af554366d0f285119a769f31f9e561`. The latest inspected Nova 1 head is `9febe46f2298d2726eeffa139676136963790019`.
-
-The three later commits add endpoint-support artifacts only. They do not alter the marker-three numerical labels. The active model is therefore compatible after upgrading its endpoint dependency.
-
-The older Nova 2 handoff `N2-HO-N3-002` concerns a different three-power repair and is not the active law for Nova 1 `N1-CON-003`.
-
-### N3-ANA-018, exact tilt and resonance foundations
-
-For the numerical exponential family
+Nova 2 proves deterministic marker-three quotient-window coverage through
 
 \[
-P_\lambda(Z_t=b)
-=
-\frac{e^{\lambda b}}
-{1+\sum_{a\in B_t(n)}e^{\lambda a}},
+P_n=m_n(2^{M_n}-1)+W_n.
 \]
 
-the mean is continuous and strictly increasing from zero to the sum of layer maxima.
-
-For every
+Its complete-menu finite audit reaches the full endpoint for every `12<=n<=45`. The asymptotic final-only analytic responsibility begins at
 
 \[
-W_n<q\le Y_n,
+P_n+1\le q\le Y_n.
 \]
 
-there is a unique finite tilt with mean
+## Previously closed numerical foundations
+
+### N3-ANA-017
+
+The active Nova 2 law remains compatible with the latest inspected Nova 1 construction.
+
+### N3-ANA-018
+
+For every `W_n<q<=Y_n`, the common numerical exponential family has a unique finite tilt centered at
 
 \[
-q-W_n/2\in[q-W_n,q].
+q-W_n/2.
 \]
 
-The exact additive span is one, and the only exact torus resonance in `[-pi,pi]` is zero.
+The exact additive span is one and the only exact torus resonance is zero.
 
-An explicit all-frequency bound is
+### N3-ANA-019
 
-\[
-|\Phi_{n,\lambda}(\theta)|
-\le
-\exp\left(-2p_0(\lambda)p_1(\lambda)\sin^2(\theta/2)\right).
-\]
-
-### N3-ANA-019, endpoint-uniform minor-arc obstruction
-
-No fixed `rho<1` can bound nonzero torus frequencies uniformly over all finite tilts.
-
-For every fixed `theta`,
-
-\[
-\sup_{\lambda\in\mathbb R}
-|\Phi_{n,\lambda}(\theta)|=1.
-\]
-
-The law freezes at zero as `lambda->-infinity` and at the layer maxima as `lambda->+infinity`.
-
-Therefore the final analytic bulk must provide compact tilt or an equivalent direct phase-dispersion lower bound.
+No fixed nonzero-frequency modulus gap can hold uniformly over all real tilts, because the law freezes at both tilt endpoints.
 
 Proof:
 
 `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`.
 
-Response:
+## New theorem N3-ANA-020: post-prefix tilt compression
 
-`handoffs/RESPONSE_TO_NOVA2_MARKER_THREE.md`.
+For
 
-## Current theorem frontier
+\[
+L_n=m_n(2^{M_n}-1),
+\]
 
-| IDs | State |
-|---|---|
-| N3-ANA-004 through N3-ANA-010 | Exact product, local ceiling, distribution, minor-arc obstruction, high-prime CLT, coarse windows, explicit prime interval |
-| N3-ANA-011 | Old-address capacity proved but structural model superseded |
-| N3-ANA-012 | Compact-tilt top-prime logarithmic coarse windows proved |
-| N3-ANA-013 | Unit-tilt Gaussian route disproved |
-| N3-ANA-014 and N3-ANA-015 | Repaired marker-three capacity proved |
-| N3-ANA-016 | Invalid central-binomial shortcut disproved |
-| N3-ANA-017 and N3-ANA-018 | Active numerical contract, centering, span, and exact resonances proved |
-| N3-ANA-019 | Uniform all-tilt minor-arc gap disproved |
+and every integer target
+
+\[
+P_n+1\le q\le Y_n,
+\]
+
+the exact centering tilt satisfies
+
+\[
+-\frac{8M_n\log L_n}{L_n}
+<\lambda_{n,q}<
+\frac{16(n\log n+\log14)}{2^{M_n}}.
+\]
+
+Consequently
+
+\[
+\sup_{P_n<q\le Y_n}|\lambda_{n,q}|\to0.
+\]
+
+This closes the compact-tilt clause on the exact post-prefix target range.
+
+The negative bound comes from a convex partition-function estimate valid for arbitrary subsets of the dyadic layer lattices. The positive bound uses four highest layers and Nova 1 endpoint support values exceeding `Y_n/3`.
+
+Proof:
+
+`proofs/POST_PREFIX_TILT_AND_COLLISION.md`.
+
+## New obstruction N3-ANA-021: binary-anchor collapse
+
+At zero tilt,
+
+\[
+P_0(Z_t=0)P_0(Z_t=2^{t-1})
+<2^{-2(h_n-1)}
+\le2^{-2(n/(3\log n)-1)}.
+\]
+
+Thus the exact zero-versus-minimum-state characteristic-function bound from N3-ANA-018 does not become quantitative merely because the target tilts tend uniformly to zero.
+
+At `n=120368`, the proved coefficient ceiling is below `10^{-2064}`.
+
+The next minor-arc proof must aggregate many phase-separated states or exploit a quantitative odd-core divisor-gap theorem.
+
+## New theorem N3-ANA-022: collision-aware tilted atoms
+
+For profile multiplicity
+
+\[
+C_n(s)=\#\{\text{legal profiles summing to }s\},
+\]
+
+the exact tilted atom is
+
+\[
+P_\lambda(T_{n,\lambda}=s)
+=
+\frac{C_n(s)e^{\lambda s}}
+{\prod_tZ_t(\lambda)}.
+\]
+
+Nova 1 theorem `N1-COL-001` gives
+
+\[
+C_n(4^{\lfloor M_n/2\rfloor}-1)
+\ge2^{\lfloor M_n/2\rfloor}.
+\]
+
+Therefore any local reference law must account for numerical fiber multiplicity. Treating profiles as distinct sums is invalid.
 
 ## Verification
 
@@ -135,54 +154,85 @@ python3 tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
+python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
 ```
 
-New finite records:
+### N3-FIN-006
 
-- N3-FIN-004, exact repaired capacity audit at `n=120368`;
-- N3-FIN-005, exact marker-three supports and span for `n in {12,15}`;
-- N3-COMP-004, numerical tilt and sampled torus checks.
+At `n=120368`, the verifier confirms:
+
+- the post-prefix range is nonempty;
+- `3*2^(M_n-1)<=X_n`;
+- the negative-bound algebra is valid;
+- exact minimal-support collision enumeration with four layer pairs gives multiplicity `34` at target `255`, exceeding the required `16`.
+
+### N3-COMP-005
+
+Selected post-prefix tilt scales:
+
+| `n` | `log10` lower magnitude | `log10` upper magnitude |
+|---:|---:|---:|
+| 120368 | -656.908 | -651.903 |
+| 200000 | -715.455 | -710.064 |
+| 500000 | -827.710 | -821.618 |
+| 1000000 | -917.629 | -911.001 |
+
+These scale rows are computational evidence supporting the proved asymptotic bounds.
+
+## Current theorem frontier
+
+| IDs | State |
+|---|---|
+| N3-ANA-004 through N3-ANA-010 | Exact product, local ceiling, distribution, high-prime results, and explicit prime interval |
+| N3-ANA-011 | Old-address capacity proved but structural model superseded |
+| N3-ANA-012 | Compact-tilt top-prime logarithmic coarse windows proved |
+| N3-ANA-013 | Unit-tilt Gaussian route disproved |
+| N3-ANA-014 and N3-ANA-015 | Repaired marker-three capacity proved |
+| N3-ANA-016 | Invalid central-binomial shortcut disproved |
+| N3-ANA-017 and N3-ANA-018 | Numerical contract, centering, span, and exact resonances proved |
+| N3-ANA-019 | Uniform all-tilt minor-arc gap disproved |
+| N3-ANA-020 | Uniform post-prefix tilt compression proved |
+| N3-ANA-021 | Single binary-anchor quantitative route disproved |
+| N3-ANA-022 | Collision-aware atom formula proved |
 
 ## Cross-track state
 
 ### Nova 1
 
-The repaired capacity request is closed. Nova 1 must replace its invalid central-binomial proof step with the quotient-factorial proof.
-
-Nova 1 endpoint theorems N1-STR-019, N1-STR-020, and N1-RED-006 are compatible with the active marker-three law.
+The repaired capacity request remains closed. Nova 1's endpoint, block-ceiling, and carry-collision theorems are now imported into the numerical analysis.
 
 ### Nova 2
 
-The active law is `N2-HO-N3-003`.
-
 Closed clauses:
 
-- structural version compatibility;
+- exact asymptotic transition from deterministic coverage to analytic responsibility;
 - tilt existence and uniqueness;
+- compact post-prefix tilt;
 - exact additive span;
 - exact resonance set;
-- an explicit target-dependent all-frequency bound.
+- exact collision factor in local atoms.
 
 Open clauses:
 
-- exact final analytic target interval after all deterministic prefixes and contraction results;
-- uniform variance and third-moment bounds there;
-- compact tilt or direct quantitative phase dispersion;
+- aggregate phase dispersion for the complete odd-core menus;
+- uniform variance, third-moment, and maximal-step bounds;
+- target-local collision or additive-energy control;
 - reference lattice law;
 - strict weighted Fourier inequality.
 
 ### Nova 4
 
-Independent reconstruction is required through N3-ANA-019 and N3-FIN-005.
+Independent reconstruction is required through N3-ANA-022 and N3-FIN-006.
 
 ## Exact blockers
 
-1. Nova 1 and Nova 2 must freeze the exact transition from deterministic coverage to analytic responsibility.
-2. That range must imply compact tilt or an equivalent probability lower bound for enough active numerical coordinates.
-3. Constant-width windows require a local torus error smaller than order `1/sigma`; distribution-distance Berry-Esseen is not enough.
-4. Fine top-prime logarithmic windows remain open but are secondary to the numerical marker-three contract.
-5. Phase 12L and Phase 12P source packages remain unavailable.
-6. The branch remains divergent from `main`.
+1. The common tilt is now controlled, but the individual zero-versus-minimum-state probabilities collapse at zero tilt.
+2. A viable minor-arc theorem must aggregate many numerical support pairs or prove phase dispersion from complete odd-core divisor structure.
+3. Exponential carry collisions require a collision-aware reference law or an upper bound on target-local fiber energy.
+4. Constant-width windows require a local torus error smaller than order `1/sigma`; distribution-distance Berry-Esseen is insufficient.
+5. Fine top-prime logarithmic windows remain open but secondary.
+6. Phase 12L and Phase 12P source packages remain unavailable.
+7. The branch remains divergent from `main`.
 
 ## Handoffs
 
@@ -194,7 +244,8 @@ Independent reconstruction is required through N3-ANA-019 and N3-FIN-005.
 - `handoffs/TO_NOVA2_COMPACT_TILT.md`
 - `handoffs/TO_NOVA4.md`
 - `handoffs/TO_NOVA4_COMPACT_TILT.md`
+- `handoffs/TO_NOVA4_MARKER_THREE.md`
 
 ## Next theorem target
 
-`N3-NEXT-005`: after Nova 1 and Nova 2 freeze the exact remaining quotient targets, prove a compact bound on the numerical tilt or a direct phase-dispersion lower bound. If neither is true, return the smallest exact target family where the variance or minor-arc coefficient collapses.
+`N3-NEXT-006`: prove an aggregate phase-dispersion lower bound for the complete marker-three odd-core menus on the post-prefix tilt range. The first candidate is a multistate variance identity based on many pairs with a common odd-core difference. If such a bound fails, return an explicit target-local concentration or collision-energy obstruction.
