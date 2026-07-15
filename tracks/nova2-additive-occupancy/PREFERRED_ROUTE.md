@@ -1,89 +1,55 @@
 # Preferred Additive Route
 
-## Current ranking
-
-### Rank 1: Marker-three quotient occupancy with final-only target-dependent Fourier control
+## Rank 1: Marker-three final-only numerical Fourier route
 
 **Result label: conditional theorem.**
 
-Frozen structural source:
+Structural source:
 
-- branch: `nova/factorial-structure`
-- exact commit: `ebb47ba436af554366d0f285119a769f31f9e561`
-- construction: `N1-CON-003`
-- handoff: `N1-HO-N2-002`
-- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`
+- branch: `nova/factorial-structure`;
+- commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
+- construction: `N1-CON-003`;
+- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`.
 
-The marker-three construction uses quotient labels
+The quotient layers are
 
 \[
-B_t(n)=
-\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
+B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
 \]
 
-where
+with required windows
 
 \[
-Y_n=\left\lfloor\frac{\lfloor\sqrt{n!}\rfloor}{3}\right\rfloor.
-\]
-
-The required quotient theorem is
-
-\[
-Q_n\cap[q-W_n,q]\ne\varnothing,
+[q-W_n,q],
 \qquad
 W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor.
 \]
 
-Success gives
+The structural gate passes: exact lattice `3 Z`, quotient span one, layer distinctness, palette disjointness, exact correction reduction, and term cost `M_n+r_n`.
 
-\[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
-\le M_n+r_n
-=O((\log n)^2).
-\]
+Preferred analytic engine:
 
-Why this remains preferred:
+1. use the unique numerical target-dependent tilt;
+2. exploit Nova 3's post-prefix tilt compression;
+3. prove numerical moment bounds;
+4. aggregate odd-core phase dispersion across many support pairs;
+5. retain collision multiplicities in the reference law or control target-local additive energy;
+6. prove the strict weighted bounded-torus inequality;
+7. extract a legal final rainbow sum.
 
-- exact main lattice `3 Z`;
-- quotient span one;
-- original binary correction palette suffices;
-- numerical main-palette disjointness;
-- exact term cost `M_n+r_n`;
-- polynomially wide target windows;
-- deterministic and computational endpoint evidence;
-- exact finite carrier success for every `12<=n<=46`.
+This remains rank 1 because it is final-only and survives any failure of the sequential carrier engine.
 
-Preferred proof engine:
-
-1. choose a target-dependent exponential law on the fixed numerical quotient labels;
-2. center its mean inside `[q-W_n,q]`;
-3. prove moment and maximal-step bounds;
-4. identify every bounded-torus resonance;
-5. prove a strict weighted Fourier inequality below exact reference-window mass;
-6. extract a legal final rainbow representation and apply the correction palette.
-
-Exact analytic request:
-
-`handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
-
-### Rank 2: Deterministic final restricted-sumset theorem
+## Rank 2: Deterministic final restricted-sumset theorem
 
 **Result label: conditional theorem.**
 
-This route would prove every final quotient window occupied without probabilistic approximation. It remains final-only and therefore avoids a hidden sequential interval invariant.
+Prove every final quotient window occupied while preserving one choice per layer, exact numerical values, factorial legality, downward orientation, and endpoints.
 
-Main blocker: available sumset theorems do not automatically preserve one choice per layer, numerical distinctness, factorial legality, downward orientation, and endpoint location.
-
-### Rank 3: Connected-core carrier recursion
+## Rank 3: Complete connected-core carrier recursion
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved:
-
-- N2-ADD-119: translated carrier-block lemma;
-- N2-ADD-120: connected-core recursion;
-- N2-ADD-121: unique-parent streaming divisor theorem and record-gap compression.
+Nova 2 proved N2-ADD-119, N2-ADD-120, and N2-ADD-121.
 
 At layer `t`, the allowable core gap is
 
@@ -95,104 +61,84 @@ D_t(E_{t-1})
 \right\rfloor.
 \]
 
-The recursion is now exactly certified for every
+Exact finite evidence:
+
+- N2-FIN-202: complete menus for `12<=n<=45`;
+- N2-FIN-203: bounded-memory stream at `n=46`;
+- accepted Nova 1 `N1-FIN-005`: independent complete-menu audit for `46<=n<=50`;
+- N2-FIN-204: combined exact coverage for every `12<=n<=50`.
+
+Throughout this range,
 
 \[
-12\le n\le46.
-\]
-
-N2-FIN-202 covers `12<=n<=45` by full-menu materialization. N2-FIN-203 covers `n=46` by a bounded-memory stream over `24,567,748` cores below `Y_46`, using only `631` record gaps and a maximum active frontier of `3,373,952` nodes.
-
-At `n=46`, six main layers prove
-
-\[
-H_{46!}(\lfloor\sqrt{46!}\rfloor+1)
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22.
 \]
 
-This engine is ranked third because it is sequential. Its finite success does not remove the Phase 12P audit, and a future failure would not disprove the full marker-three model unless the complete final sumset also fails.
+### Necessary entropy gate
 
-Proofs:
+Accepted Nova 1 theorem `N1-OBS-003` proves that if `K_t` is the positive connected-prefix cardinality, sequential success requires
 
-- `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`;
-- `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md`.
+\[
+\prod_{t=1}^{L}(1+K_t)
+\ge
+\frac{Y_n+1}{W_n+1}.
+\]
 
-Verification:
+For `n>=120368`, the geometric mean must be at least
 
-- `verification/marker_three_full_menu_audit.py`;
-- `verification/marker_three_streaming_audit.cpp`.
+\[
+\exp\left(\frac{n}{85\log n}\right).
+\]
 
-### Rank 4: Three-power normalized valuation-tagged fallback
+This is the decisive asymptotic gate for rank 3. The next valid theorem must either prove connected prefixes of this scale or upper-bound them below the requirement and retire the sequential engine.
+
+Finite success through `n=50` does not settle that gate.
+
+## Rank 4: Three-power normalized fallback
 
 **Result label: conditional theorem with proved prefix.**
 
-This is the former preferred route, governed by N2-ADD-116 through N2-ADD-118. It is `SUPERSEDED_AS_PREFERRED` but retained because its normalization, obstruction, repair, and binary-spine theorem are exact.
+N2-ADD-116 through N2-ADD-118 remain exact but are superseded as preferred architecture.
 
-Marker-three is stronger on current evidence because it has a smaller lattice, wider correction window, lower term count, and exact finite endpoint coverage through `n=46`.
+## Rejected or benchmark-only routes
 
-### Rank 5: Uniform rainbow convolution
+- Raw profile capacity: rejected as an occupancy proof.
+- Profile injectivity: false by Nova 1 collision theorem `N1-COL-001`.
+- One factorial arithmetic block per layer: disproved asymptotically by `N1-DIS-006`.
+- Uniform fixed-law convolution: heuristic only.
+- One-anchor characteristic-function decay: insufficient by Nova 3 `N3-ANA-021`.
 
-**Result label: heuristic.**
+## Exact finite boundary
 
-One fixed mean leaves endpoints in large-deviation tails. It remains a benchmark, not the preferred architecture.
-
-### Rank 6: Fixed-law local theorem as a standalone route
-
-**Result label: heuristic.**
-
-Fourier analysis remains essential inside the target-dependent route, but a single fixed law is not expected to cover both endpoints uniformly.
-
-## Structural gate for marker-three
-
-Accepted:
-
-1. divisor legality under the stated valuation side condition;
-2. numerical distinctness across layers;
-3. main-palette disjointness;
-4. exact lattice `3 Z`;
-5. quotient span one;
-6. correction radius `R_n=2^{r_n}-1`;
-7. quotient radius `W_n=floor((R_n-2)/3)`;
-8. first-target coverage;
-9. term count `M_n+r_n`.
-
-Still open:
-
-1. uniform global quotient occupancy;
-2. uniform endpoint reach near `Y_n`;
-3. total-sum collision collapse;
-4. final-only Fourier or deterministic sumset theorem;
-5. Phase 12P audit for the sequential carrier engine;
-6. all remaining finite exceptions.
-
-## Deterministic and finite protected region
-
-Nova 1 proves downward one-density through
+Complete-core carrier coverage is exact for
 
 \[
-A_n=m_n(2^{M_n}-1),
+12\le n\le50.
 \]
 
-where `m_n` is the largest odd integer at most `n`. Nova 2 extends required target-window occupancy through `A_n+W_n`.
+The smallest unaudited finite parameter is `n=51`.
 
-In addition, N2-FIN-202 and N2-FIN-203 prove complete quotient endpoint coverage for every `12<=n<=46`.
+Finite extension remains auxiliary. It cannot replace either an asymptotic connected-prefix theorem or a final-only additive theorem.
 
-## Exact next targets
+## Exact next theorem targets
 
-### Deterministic computational target
+### Final-only target
 
-Reduce the N2-ADD-121 active frontier enough to certify `n=47`, or implement an external-memory frontier with an independently replayable certificate.
+Prove aggregate phase dispersion or a collision-aware weighted Fourier inequality for the numerical marker-three law on the unresolved post-prefix range.
 
-### Deterministic theorem target
+### Sequential target
 
-Prove a uniform upper bound for record gaps of odd divisors of `n!/3` that forces
+Prove or refute connected-prefix geometric-mean growth
 
 \[
-E_{M_n}+W_n\ge Y_n.
+\exp\left(\frac{n}{85\log n}ight)
 \]
 
-### Final-only analytic target
+under the exact target-dependent thresholds.
 
-Prove the marker-three numerical weighted Fourier theorem on `[-pi,pi]` for every target beyond the deterministic protected region.
+### Finite target
 
-A failure of the carrier engine must not terminate the final-only route.
+Extend complete-core certification from `n=51`, clearly labeled as a finite certificate.
+
+A failure of rank 3 does not terminate ranks 1 or 2.
