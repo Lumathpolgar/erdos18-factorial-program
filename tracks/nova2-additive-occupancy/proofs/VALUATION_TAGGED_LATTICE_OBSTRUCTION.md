@@ -146,7 +146,7 @@ we have
 R_n\le g_n-2.
 \]
 
-Apply the general lemma with `S=mathcal R_n`, `g=g_n`, and `R=R_n`. The failing target is
+Apply the general lemma with `S=\mathcal R_n`, `g=g_n`, and `R=R_n`. The failing target is
 
 \[
 x_n=R_n+1=2^{r_n}.
