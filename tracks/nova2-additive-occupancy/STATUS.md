@@ -10,7 +10,7 @@ Additive Occupancy and Global Sumsets
 
 ## Overall state
 
-`FIRST_FACTORIAL_INSTANTIATION_DISPROVED`
+`VALUATION_TAGGED_ROUTE_NORMALIZED_AND_REPAIRED_CONDITIONALLY`
 
 ## Baseline
 
@@ -34,15 +34,38 @@ Additive Occupancy and Global Sumsets
 - N2-ADD-112: correction-window bridge.
 - N2-ADD-113: positive point mass gives targetwise deterministic extraction.
 - N2-ADD-115: a support contained in `g Z` cannot meet all downward windows of radius below `g-1` over a target range containing the first missing residue block.
+- N2-ADD-116: exact lattice quotient normalization. Correction range `[0,Lg-1]` is equivalent to quotient downward gaps at most `L-1`.
 
-## Conditional theorem
+## Conditional theorems
 
-- N2-ADD-114: fixed legal labels, a disjoint correction palette, and a strict weighted Fourier window inequality imply
-  \[
-  H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2).
-  \]
+### N2-ADD-114
+
+Fixed legal labels, a disjoint correction palette, and a strict weighted Fourier window inequality imply
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2).
+\]
 
 The implication is proved. Its factorial structural and analytic hypotheses remain open.
+
+### N2-ADD-117
+
+For the normalized valuation-tagged quotient model, retain the original main labels and extend the binary correction palette through `2^{r_n+2}`. If the normalized final rainbow sumset `Q_n` intersects every four-point downward window
+
+\[
+[\max(0,m-3),m]
+\]
+
+through `floor(X_n/2^{r_n+1})`, then
+
+\[
+H_{n!}(X_n+1)
+\le
+M_n+r_n+3
+=O((\log n)^2).
+\]
+
+The reduction is proved. The four-point quotient occupancy hypothesis is open.
 
 ## First factorial instantiation decision
 
@@ -58,7 +81,35 @@ Proof: `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`.
 
 Response: `handoffs/RESPONSE_TO_NOVA1.md`.
 
-## Nova 3 handoff decision
+## Minimal repair milestone
+
+The current Nova 1 head inspected is
+
+`fa11f4b2cb86a2dd791df189ada12757be791804`.
+
+No versioned repair had yet been issued, so Nova 2 derived the exact repair contract independently.
+
+Let
+
+\[
+g_n=2^{r_n+1}
+\]
+
+and divide every main layer by `g_n`. The normalized final sumset is `Q_n`.
+
+- Adding only the correction power `2^{r_n}` leaves target `g_n` unreachable.
+- Adding `2^{r_n}` and `2^{r_n+1}` leaves target `2g_n` unreachable.
+- Adding all three powers `2^{r_n}`, `2^{r_n+1}`, and `2^{r_n+2}` is the first consecutive-binary extension not killed by the initial support gap.
+
+The first two repair variants are N2-OBS-108, a disproved model. The third yields the exact four-point quotient target in N2-ADD-117.
+
+Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
+
+Model: `models/VALUATION_TAGGED_QUOTIENT_MODEL.md`.
+
+Repair handoff: `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`.
+
+## Nova 3 handoff decision and new request
 
 Nova 3 handoff `N3-HO-N2-001`, imported from branch `nova/analytic-density` at exact commit
 
@@ -73,15 +124,9 @@ Accepted restrictions:
 - low-prime coordinates may retain macroscopic variance;
 - logarithmic divisor theorems do not transfer automatically to additive numerical sums.
 
-Nova 2's required characteristic function is
+The new request `N2-HO-N3-002` freezes the exact quotient numerical-value law, the torus `[-pi,pi]`, and the four-point weighted Fourier inequality. It remains conditional on Nova 1 accepting or superseding the repair.
 
-\[
-\phi_{n,x}(t)=\mathbb E e^{itS_{n,x}}
-\]
-
-for the numerical divisor sum, with inversion on the bounded torus `[-pi,pi]`. The high-prime logarithmic CLT is not imported as an additive occupancy theorem.
-
-Response: `handoffs/RESPONSE_TO_NOVA3.md`.
+Request: `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
 
 ## Disproved models and retired shortcuts
 
@@ -93,30 +138,41 @@ Response: `handoffs/RESPONSE_TO_NOVA3.md`.
 - Target-dependent probability spaces treated as one shared random universal object.
 - The exact valuation-tagged layer and correction contract `N1-HO-N2-001`.
 - Automatic transfer from logarithmic divisor density to additive numerical occupancy.
+- One-power and two-power consecutive-binary repairs of the rejected valuation-tagged route.
 
 ## Model ranking
 
-1. Target-dependent exponential tilt with lattice-aware Fourier window control, after a structurally compatible label family is frozen.
-2. Deterministic restricted-sumset growth.
+1. Normalized valuation-tagged quotient model, using target-dependent tilt plus bounded-torus Fourier control, conditional on Nova 1 accepting the three-power repair.
+2. Deterministic restricted-sumset growth for the same quotient labels.
 3. Uniform rainbow convolution.
 4. Fixed-law Fourier or local-limit route as a standalone architecture.
 
 ## Exact open blockers
 
-1. Nova 1 must replace the rejected layer system with labels whose support lattice and correction radius are compatible.
-2. Nova 3 must analyze the exact additive numerical-value layer law once revised labels are frozen.
-3. No certified finite falsification harness from Nova 4 is available.
-4. The source-level Phase 12M through 12P package statements are not stored in the repository.
-5. Finite exceptions below the eventual `n_0` remain open.
+1. Nova 1 must accept, restrict, supersede, or reject the versioned three-power repair contract.
+2. The normalized final rainbow sumset must be proved to have maximum downward gap at most `3` throughout the required quotient range.
+3. Nova 3 must prove the exact additive numerical-value tilt, variance, resonance, reference-mass, and weighted Fourier package for the normalized labels.
+4. Nova 1 must cover every quotient endpoint excluded from the analytic bulk theorem.
+5. No certified finite quotient falsification harness from Nova 4 is available.
+6. The source-level Phase 12M through 12P package statements are not stored in the repository.
+7. Finite exceptions below the eventual `n_0` remain open.
 
 ## Handoffs maintained
 
 - `handoffs/TO_NOVA1.md`
 - `handoffs/TO_NOVA3.md`
-- `handoffs/TO_NOVA4.md`, updated with the N2-ADD-115 lattice precheck and N2-OBS-107 regression case
+- `handoffs/TO_NOVA4.md`
 - `handoffs/RESPONSE_TO_NOVA1.md`
 - `handoffs/RESPONSE_TO_NOVA3.md`
+- `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`
+- `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`
 
 ## Next theorem target
 
-Freeze a repaired structural compatibility contract before any new local-limit work. The revised contract must state the exact common lattice span, attained residues, correction radius, first-target coverage, and endpoint coverage. Then instantiate N2-ADD-114 on the integer additive-value characteristic function over `[-pi,pi]`.
+Prove or disprove the all-target normalized theorem
+
+\[
+Q_n\cap[\max(0,m-3),m]\ne\varnothing
+\]
+
+for every `0<=m<=floor(X_n/g_n)`. The immediate subtargets are an exact quotient resonance audit, a finite maximum-gap falsification study, and deterministic coverage of every endpoint excluded from target-dependent tilting.
