@@ -154,9 +154,9 @@ committed dataset-index SHA-256:
 
 ## Validation and resource record
 
-- 10 new reduced-rainbow tests pass;
+- 11 new reduced-rainbow tests pass;
+- the on-disk corrupted fixture has a valid recomputed outer checksum and is still rejected by semantic replay;
 - witness reconstruction is checked against exact layer membership and exact sums;
-- a rehashed false first-failure certificate is rejected;
 - generation completes in approximately 24 seconds in the recorded CPython 3.13.5 environment;
 - peak resident memory is approximately 316 MiB;
 - no timeout occurred.
