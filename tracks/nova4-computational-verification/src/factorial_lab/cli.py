@@ -17,6 +17,12 @@ from .lattice import (
     write_json,
 )
 from .n2_audit import audit_n2_obs_107_range, verify_n2_obs_107_certificate
+from .n1_capacity import (
+    CapacityCertificationError,
+    audit_n1_capacity_range,
+    verify_n1_capacity_audit,
+    write_capacity_audit,
+)
 
 
 def _print(value: object) -> None:
@@ -98,6 +104,27 @@ def command_audit_n2_obs_107(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_audit_n1_capacity(args: argparse.Namespace) -> int:
+    audit = audit_n1_capacity_range(args.n_min, args.n_max)
+    write_capacity_audit(audit, args.output_json, args.output_csv)
+    _print({
+        "status": "PASS",
+        "output_json": args.output_json,
+        "output_csv": args.output_csv,
+        "sha256": audit["sha256"],
+        "first_success": audit["first_success"],
+        "transition_count": len(audit["transitions"]),
+    })
+    return 0
+
+
+def command_verify_n1_capacity(args: argparse.Namespace) -> int:
+    with Path(args.path).open("r", encoding="utf-8") as handle:
+        audit = json.load(handle)
+    _print(verify_n1_capacity_audit(audit))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -141,6 +168,21 @@ def build_parser() -> argparse.ArgumentParser:
     audit.add_argument("--n-max", type=int, required=True)
     audit.add_argument("--output", required=True)
     audit.set_defaults(func=command_audit_n2_obs_107)
+
+    n1_capacity = subparsers.add_parser(
+        "audit-n1-capacity", help="audit Nova 1 capacity predicates on a finite range"
+    )
+    n1_capacity.add_argument("--n-min", type=int, default=3)
+    n1_capacity.add_argument("--n-max", type=int, required=True)
+    n1_capacity.add_argument("--output-json", required=True)
+    n1_capacity.add_argument("--output-csv", required=True)
+    n1_capacity.set_defaults(func=command_audit_n1_capacity)
+
+    verify_n1_capacity = subparsers.add_parser(
+        "verify-n1-capacity", help="recompute and verify a Nova 1 capacity audit"
+    )
+    verify_n1_capacity.add_argument("path")
+    verify_n1_capacity.set_defaults(func=command_verify_n1_capacity)
     return parser
 
 
@@ -156,6 +198,7 @@ def main(argv: list[str] | None = None) -> int:
         ValueError,
         RuntimeError,
         AssertionError,
+        CapacityCertificationError,
     ) as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         return 1
