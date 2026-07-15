@@ -10,7 +10,7 @@ Additive Occupancy and Global Sumsets
 
 ## Overall state
 
-`FIRST_SUBSTANTIVE_CHECKPOINT_PUSHED`
+`FIRST_FACTORIAL_INSTANTIATION_DISPROVED`
 
 ## Baseline
 
@@ -33,6 +33,7 @@ Additive Occupancy and Global Sumsets
 - N2-ADD-111: explicit discretized-Gaussian window lower bound.
 - N2-ADD-112: correction-window bridge.
 - N2-ADD-113: positive point mass gives targetwise deterministic extraction.
+- N2-ADD-115: a support contained in `g Z` cannot meet all downward windows of radius below `g-1` over a target range containing the first missing residue block.
 
 ## Conditional theorem
 
@@ -43,36 +44,60 @@ Additive Occupancy and Global Sumsets
 
 The implication is proved. Its factorial structural and analytic hypotheses remain open.
 
+## First factorial instantiation decision
+
+Nova 1 handoff `N1-HO-N2-001`, imported from branch `nova/factorial-structure` at exact commit
+
+`b939574eb88a08bb03abda5bbe6ff2ca97444e08`,
+
+is `REJECTED`.
+
+For its frozen addresses `e_t=r_n+t`, every main divisor and every rainbow sum is divisible by `2^{r_n+1}`. The requested first target is `x=2^{r_n}`, with downward window `[1,2^{r_n}]`. That window contains no possible main sum. This is N2-OBS-107.
+
+Proof: `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`.
+
+Response: `handoffs/RESPONSE_TO_NOVA1.md`.
+
 ## Disproved models and retired shortcuts
 
 - Raw profile capacity as a coverage criterion.
-- All-support-in-a-proper-lattice architectures without residue repair.
+- All-support-in-a-proper-lattice architectures without sufficient residue repair.
 - Ordinary convolution extraction with overlapping numerical labels.
 - Local-limit claims whose error is not smaller than the target atom or window mass.
 - A single bulk tilted local theorem extending uniformly to both support endpoints.
 - Target-dependent probability spaces treated as one shared random universal object.
+- The exact valuation-tagged layer and correction contract `N1-HO-N2-001`.
 
 ## Model ranking
 
-1. Target-dependent exponential tilt with lattice-aware Fourier window control.
+1. Target-dependent exponential tilt with lattice-aware Fourier window control, after a structurally compatible label family is frozen.
 2. Deterministic restricted-sumset growth.
 3. Uniform rainbow convolution.
 4. Fixed-law Fourier or local-limit route as a standalone architecture.
 
+## Nova 3 inspection
+
+Nova 3 branch `nova/analytic-density` was inspected at exact commit
+
+`0ce88b28dc2e6641093526f5777bb31f658e3515`.
+
+Its handoff correctly warns that results for `log d` do not automatically transfer to additive numerical divisor sums and that unbounded-frequency pointwise decay is the wrong contract. Nova 2's additive Fourier variable is on the integer torus `[-pi,pi]`. A formal restricted response is being maintained separately.
+
 ## Exact open blockers
 
-1. No frozen factorial labels from Nova 1 satisfy the full structural contract.
-2. No uniform tilt, variance, major-arc, or minor-arc theorem from Nova 3 is available.
+1. Nova 1 must replace the rejected layer system with labels whose support lattice and correction radius are compatible.
+2. Nova 3 must analyze the exact additive numerical-value layer law, not the logarithmic divisor model, once revised labels are frozen.
 3. No certified finite falsification harness from Nova 4 is available.
 4. The source-level Phase 12M through 12P package statements are not stored in the repository.
 5. Finite exceptions below the eventual `n_0` remain open.
 
-## Handoffs issued
+## Handoffs maintained
 
 - `handoffs/TO_NOVA1.md`
 - `handoffs/TO_NOVA3.md`
 - `handoffs/TO_NOVA4.md`
+- `handoffs/RESPONSE_TO_NOVA1.md`
 
 ## Next theorem target
 
-Instantiate N2-ADD-114 for the first fixed factorial label family by proving a target-uniform bulk tilt and the strict major-minor arc inequality, while Nova 1 supplies deterministic endpoint coverage.
+Freeze a repaired structural compatibility contract before any new local-limit work. The revised contract must state the exact common lattice span, attained residues, correction radius, first-target coverage, and endpoint coverage. Then instantiate N2-ADD-114 on the integer additive-value characteristic function over `[-pi,pi]`.
