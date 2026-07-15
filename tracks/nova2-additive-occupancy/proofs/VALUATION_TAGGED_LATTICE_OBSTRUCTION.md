@@ -146,7 +146,7 @@ we have
 R_n\le g_n-2.
 \]
 
-Apply the general lemma with `S=R_n`, `g=g_n`, and `R=R_n`. The failing target is
+Apply the general lemma with `S=mathcal R_n`, `g=g_n`, and `R=R_n`. The failing target is
 
 \[
 x_n=R_n+1=2^{r_n}.
@@ -196,18 +196,24 @@ Also, for all sufficiently large `n`,
 Indeed,
 
 \[
-2^{r_n}\le 2^{4\log n+1}=2n^{4\log2}<2n^3,
+2^{r_n}\le 2^{4\log n+1}=2n^{4\log2}<2n^3.
 \]
 
-whereas
+Among the factors of `n!`, at least `floor(n/2)` of them are at least `n/2`. Hence
+
+\[
+n!\ge\left(\frac n2\right)^{\lfloor n/2\rfloor}
+\]
+
+and therefore
 
 \[
 \sqrt{n!}
 \ge
-\left(\frac n2\right)^{n/4}
+\left(\frac n2\right)^{\lfloor n/2\rfloor/2}.
 \]
 
-for even `n`, with an immaterial floor adjustment and the same eventual conclusion for all integers. The right-hand side eventually exceeds `2n^3`.
+The last expression eventually exceeds `2n^3+1`, so its floor eventually exceeds `2n^3`. Thus `2^{r_n}<=X_n` for all sufficiently large `n`.
 
 Therefore the failing target `x_n=2^{r_n}` lies in the requested target range for all sufficiently large admissible `n`.
 
