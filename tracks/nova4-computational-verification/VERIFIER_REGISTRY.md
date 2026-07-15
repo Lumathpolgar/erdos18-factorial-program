@@ -163,3 +163,36 @@ Replay command:
 PYTHONPATH=src python3 src/replay.py verify-n2-obs-107 \
   certificates/lattice/n2_obs_107_n1892.json
 ```
+
+## N4-AUD-003: Nova 1 capacity-threshold verifier
+
+Status: `ACTIVE`
+
+Result class: `exact finite theorem audit`
+
+Frozen input: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, handoff `N1-HO-N4-001`, Study A.
+
+Implementation:
+
+```text
+src/factorial_lab/logcert.py
+src/factorial_lab/n1_capacity.py
+```
+
+Checks:
+
+- exact prime counts and `m_n`;
+- exact `v_2(n!)=n-popcount(n)`;
+- rationally certified transition tables for both logarithmic ceilings;
+- exact truth values of `A_n` and `C_n`;
+- all later failures after first success;
+- all truth-state transition rows;
+- certified minimum `C_n` margin on every success interval;
+- semantic checksum and exact frozen source metadata.
+
+Replay:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
+  certificates/capacity/n1_capacity_audit_n3_n1000000.json
+```
