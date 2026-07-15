@@ -22,6 +22,40 @@
 | N2-ADD-119 | proved theorem | Translated carrier blocks preserve downward window density when scaled carrier gaps are at most the previous reach plus the correction width and one | `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md` |
 | N2-ADD-121 | proved theorem | The unique-parent exponent-vector heap emits every bounded odd factorial divisor exactly once in increasing order, and record gaps suffice to replay every carrier threshold | `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md` |
 
+## Accepted imported theorem
+
+### N1-OBS-003: connected-prefix entropy requirement
+
+Source:
+
+- branch: `nova/factorial-structure`;
+- proof commit: `ac676b0fc9007117da1f1d9eaeec3e3cf65dd1e7`;
+- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`.
+
+For the complete N2-ADD-120 connected prefix, let `K_t` be its number of positive cores and put `F_t=E_t+W_n+1`. Then
+
+\[
+F_t\le F_{t-1}(1+K_t),
+\]
+
+so carrier success requires
+
+\[
+\prod_{t=1}^{L}(1+K_t)
+\ge
+\frac{Y_n+1}{W_n+1}.
+\]
+
+For `n>=120368`, success within the frozen layer budget requires geometric-mean connected-prefix size at least
+
+\[
+\exp\left(\frac{n}{85\log n}\right).
+\]
+
+This is necessary only for the sequential carrier engine. It does not prove failure and does not constrain final-only proof engines.
+
+Intake: `proofs/CONNECTED_PREFIX_ENTROPY_AND_N50_INTAKE.md`.
+
 ## Conditional theorems
 
 ### N2-ADD-114
@@ -38,13 +72,13 @@ Proof: `proofs/CANDIDATE_OCCUPANCY_THEOREM.md`.
 
 ### N2-ADD-117
 
-For the normalized first valuation-tagged model, extending the correction palette through `2^{r_n+2}` reduces the factorial theorem to four-point quotient occupancy and gives the conditional bound
+For the normalized first valuation-tagged model, extending the correction palette through `2^{r_n+2}` reduces the factorial theorem to four-point quotient occupancy and conditionally gives
 
 \[
 H_{n!}(X_n+1)\le M_n+r_n+3.
 \]
 
-This remains a valid conditional fallback, but it is no longer the preferred construction after the marker-three handoff.
+This is a preserved fallback, not the preferred construction.
 
 Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
 
@@ -60,25 +94,19 @@ D_t(E_{t-1})
 \right\rfloor.
 \]
 
-If `u_t^*` lies in the connected component of zero and
+If `u_t^*` lies in that connected component and
 
 \[
 E_t=E_{t-1}+2^{t-1}u_t^*,
 \]
 
-then the quotient sumset is downward `W_n`-dense through `E_{M_n}` and covers required windows through `E_{M_n}+W_n`. If this reaches
-
-\[
-Y_n=\lfloor X_n/3\rfloor,
-\]
-
-then
+then the quotient sumset is downward `W_n`-dense through `E_{M_n}`. If `E_{M_n}+W_n>=Y_n`, then
 
 \[
 H_{n!}(X_n+1)\le M_n+r_n.
 \]
 
-This is a sequential sufficient condition and must undergo an exact Phase 12P compatibility audit before asymptotic promotion.
+This is a sequential sufficient condition and requires a Phase 12P compatibility audit before asymptotic promotion.
 
 Proof: `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`.
 
@@ -86,33 +114,23 @@ Proof: `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`.
 
 ### N2-FIN-201
 
-A rigorous rational-log scan found the first parameter satisfying the old valuation budget at `n=1892`, with `r_n=31` and `M_n=911`. This certificate belongs to the superseded fallback route and remains valid as a recorded finite audit.
+A rational-log scan found the first parameter satisfying the superseded valuation budget at `n=1892`, with `r_n=31` and `M_n=911`.
 
 Verification: `verification/quotient_binary_spine.py`.
 
 ### N2-FIN-202
 
-The exact full odd-core menus were generated and audited for every integer
+Nova 2 generated and audited the exact full odd-core menus for every
 
 \[
 12\le n\le45.
 \]
 
-For every audited `n`, the connected-core carrier recursion reaches
+Every case reaches `Y_n` using two through six main layers and satisfies
 
 \[
-Y_n=\left\lfloor\frac{\lfloor\sqrt{n!}\rfloor}{3}\right\rfloor
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22.
 \]
-
-using between two and six legal main layers. Therefore
-
-\[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
-\le k_n+r_n
-\le22
-\]
-
-throughout the completed range.
 
 Proof and data:
 
@@ -123,36 +141,13 @@ Proof and data:
 
 ### N2-FIN-203
 
-The N2-ADD-121 streaming generator certifies the complete marker-three carrier theorem at `n=46` without materializing the complete `27,941,760`-core family.
+Nova 2's N2-ADD-121 stream certifies complete marker-three carrier coverage at `n=46` without materializing the complete `27,941,760`-core family. It emits `24,567,748` cores through `Y_46`, retains `631` record gaps, and uses a maximum active frontier of `3,373,952`.
 
-Exact parameters:
-
-\[
-r_{46}=16,
-\qquad
-M_{46}=235,
-\qquad
-v_2(46!)=42.
-\]
-
-The stream emits `24,567,748` cores through `Y_46`, retains `631` record gaps, and has maximum active frontier `3,373,952`. Six main layers give
+Six main layers give
 
 \[
-E_6+W_{46}
-=
-24{,}938{,}550{,}582{,}416{,}882{,}103{,}407{,}947{,}983
->
-Y_{46}.
+H_{46!}(\lfloor\sqrt{46!}\rfloor+1)\le22.
 \]
-
-Consequently
-
-\[
-H_{46!}(\lfloor\sqrt{46!}\rfloor+1)
-\le22.
-\]
-
-This is a finite exact theorem, not an asymptotic occupancy result. The smallest unaudited parameter is now `n=47`.
 
 Proof and data:
 
@@ -160,6 +155,24 @@ Proof and data:
 - `verification/marker_three_streaming_audit.cpp`;
 - `verification/test_marker_three_streaming_audit.py`;
 - `verification/data/marker_three_streaming_n46.json`.
+
+### N2-FIN-204
+
+Nova 2 accepted Nova 1 finite certificate `N1-FIN-005` from verifier commit `fd2819255ac17dbba6cc70ed8a78ded387e7cac0` and report commit `42e2ac49001215602be7a0808f38648a4557b771`.
+
+The independently generated `n=46` layer record matches N2-FIN-203 in every threshold, blocking gap, connected maximum, endpoint, and margin. The same verifier certifies `n=47,48,49,50`.
+
+Combining N2-FIN-202 and N1-FIN-005 gives
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le22
+\qquad(12\le n\le50).
+\]
+
+This is a finite exact result assembled from audited certificates. The smallest unaudited parameter is `n=51`.
+
+Intake: `proofs/CONNECTED_PREFIX_ENTROPY_AND_N50_INTAKE.md`.
 
 ## Disproved models
 
@@ -176,53 +189,34 @@ Proof and data:
 
 ## Cross-track decisions
 
-### Nova 1 original handoff
+### Nova 1
 
-- Handoff: `N1-HO-N2-001`.
-- Source commit: `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
-- Outcome: `REJECTED`.
-- Response: `handoffs/RESPONSE_TO_NOVA1.md`.
-
-### Nova 1 marker-three handoff
-
-- Handoff: `N1-HO-N2-002`.
-- Source branch: `nova/factorial-structure`.
-- Source commit: `ebb47ba436af554366d0f285119a769f31f9e561`.
-- Construction: `N1-CON-003`.
-- Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
-- Response: `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
-- Preferred status: promoted to Nova 2's primary factorial model.
-
-### Nova 2 three-power repair contract
-
-- Handoff: `N2-HO-N1-002`.
-- Outcome after `N1-CON-003`: `SUPERSEDED` as the preferred architecture.
-- Theorems N2-ADD-116 through N2-ADD-118 remain valid and preserved.
+- `N1-HO-N2-001`: `REJECTED`.
+- `N1-HO-N2-002`: `ACCEPTED_WITH_RESTRICTIONS`; marker-three promoted to primary model.
+- `N1-HO-N2-004`: `ACCEPTED_WITH_RESTRICTIONS`; N1-OBS-003 accepted as a necessary sequential condition and N1-FIN-005 accepted as a finite certificate.
+- Responses: `handoffs/RESPONSE_TO_NOVA1.md`, `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`, `handoffs/RESPONSE_TO_NOVA1_CONNECTED_PREFIX.md`.
 
 ### Nova 3
 
-- Prior handoff `N3-HO-N2-001`: `ACCEPTED_WITH_RESTRICTIONS` for logarithmic results only.
-- New exact request: `N2-HO-N3-003`.
+- Active exact request: `N2-HO-N3-003`.
 - Frozen law: numerical marker-three quotient sums on `[-pi,pi]`.
 - File: `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
 
 ### Nova 4
 
-- Prior lattice service at commit `82358ea18277d36475db0a7ae81d6a68d7a49c59`: accepted for the old obstruction only.
-- New exact request: `N2-HO-N4-002`.
-- Files: `handoffs/RESPONSE_TO_NOVA4.md`, `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`, and `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`.
-- Nova 2 independently completed exact carrier coverage through `n=46` in N2-FIN-202 and N2-FIN-203.
+- Active reconstruction requests: `N2-HO-N4-002` and `N2-HO-N4-004`.
+- Files: `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`, `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`, `handoffs/STREAMING_N46_TO_NOVA4.md`.
 
 ## Open factorial nodes
 
-- N2-OPEN-301: prove or disprove marker-three quotient occupancy through `Y_n` uniformly in `n`.
-- N2-OPEN-302: prove connected-core reach uniformly beyond the finite range; exact success is certified for `12<=n<=46`.
-- N2-OPEN-303: prove endpoint support near `Y_n` or produce an exact endpoint deficit.
-- N2-OPEN-304: control total-sum collisions beyond formal profile capacity.
-- N2-OPEN-305: prove the numerical target-dependent tilt, moments, resonance decomposition, and weighted Fourier inequality.
+- N2-OPEN-301: prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
+- N2-OPEN-302: prove the connected-prefix product requirement is attainable, or prove a uniform upper bound retiring the sequential engine.
+- N2-OPEN-303: prove endpoint support near `Y_n` or produce an endpoint deficit.
+- N2-OPEN-304: upper-bound target-local collision multiplicity or additive energy.
+- N2-OPEN-305: prove aggregate phase dispersion and the strict numerical weighted Fourier inequality.
 - N2-OPEN-306: audit N2-ADD-120 against the exact Phase 12P hypotheses.
-- N2-OPEN-307: extend bounded-memory finite certification from `n=47` or prove a uniform record-gap theorem.
+- N2-OPEN-307: extend exact finite certification from `n=51`.
 
 ## Promotion rule
 
-No conditional theorem becomes a proved factorial theorem until all structural, additive or analytic, endpoint, distinctness, and finite-exception nodes are proved and independently reconstructed.
+No conditional theorem becomes an asymptotic factorial theorem until every structural, additive or analytic, endpoint, distinctness, and finite-exception node is proved and independently reconstructed.
