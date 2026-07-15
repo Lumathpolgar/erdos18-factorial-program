@@ -10,169 +10,185 @@
 
 ## Overall state
 
-`FOURTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
+`FIFTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
 
 The factorial half-range theorem and Erdős Problem 18 remain open.
 
-## New cross-track result
+## Repaired marker-three capacity checkpoint
 
-Nova 1 issued repaired marker-three audit `N1-HO-N3-002` from:
+Nova 1 request:
 
 - branch: `nova/factorial-structure`
-- exact commit: `9febe46f2298d2726eeffa139676136963790019`
+- commit: `9febe46f2298d2726eeffa139676136963790019`
+- handoff: `N1-HO-N3-002`
 
-Nova 3 returns:
+Outcome:
 
-- outcome: `ACCEPTED_WITH_PROOF_REPAIR`
-- response: `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
-- theorems: N3-ANA-014, N3-ANA-015, N3-ANA-016
+`ACCEPTED_WITH_PROOF_REPAIR`.
 
-Both requested capacity statements hold for every integer
+Closed:
 
-\[
-n\ge120368.
-\]
+- N3-ANA-014, repaired menu lower bound and address legality;
+- N3-ANA-015, repaired formal profile capacity;
+- N3-ANA-016, central-binomial shortcut obstruction.
 
-## New proved theorem N3-ANA-014
+Response:
 
-For
+`handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`.
 
-\[
-U_t^{(3)}(n)=
-\{u\ge1:u\text{ odd},\ 3u\mid n!,\ 3\cdot2^{t-1}u\le X_n\},
-\]
+## Marker-three numerical-law checkpoint
 
-and every `1<=t<=M_n`,
+Nova 2 request:
 
-\[
-M_n-1\le v_2(n!),
-\]
+- branch: `nova/additive-occupancy`
+- commit: `fb73e6906105c983bacbd46a96ef8d5d87567fae`
+- handoff: `N2-HO-N3-003`
 
-\[
-|U_t^{(3)}(n)|
-\ge2^{h_n-1}
-\ge2^{n/(3\log n)-1}.
-\]
+Outcome:
 
-The exact proof uses
+`ACCEPTED_WITH_RESTRICTIONS`.
 
-\[
-H_n\mid\frac{n!}{\lfloor n/2\rfloor!}
-\]
+### N3-ANA-017, contract compatibility
 
-and proves
+Nova 2 pins Nova 1 commit `ebb47ba436af554366d0f285119a769f31f9e561`. The latest inspected Nova 1 head is `9febe46f2298d2726eeffa139676136963790019`.
+
+The three later commits add endpoint-support artifacts only. They do not alter the marker-three numerical labels. The active model is therefore compatible after upgrading its endpoint dependency.
+
+The older Nova 2 handoff `N2-HO-N3-002` concerns a different three-power repair and is not the active law for Nova 1 `N1-CON-003`.
+
+### N3-ANA-018, exact tilt and resonance foundations
+
+For the numerical exponential family
 
 \[
-9\,2^{2M_n-2}<\lfloor n/2\rfloor!.
+P_\lambda(Z_t=b)
+=
+\frac{e^{\lambda b}}
+{1+\sum_{a\in B_t(n)}e^{\lambda a}},
 \]
 
-Proof: `proofs/MARKER_THREE_REPAIRED_CAPACITY_AUDIT.md`.
+the mean is continuous and strictly increasing from zero to the sum of layer maxima.
 
-## New proved theorem N3-ANA-015
-
-For every `n>=120368`,
+For every
 
 \[
-2^{r_n}
-\prod_{t=1}^{M_n}
-(|U_t^{(3)}(n)|+1)
-\ge X_n+1.
+W_n<q\le Y_n,
 \]
 
-This is formal profile capacity only.
-
-## New disproved proof step N3-ANA-016
-
-The claim that every prime in `(n/2,n]` divides
+there is a unique finite tilt with mean
 
 \[
-\binom n{\lfloor n/2\rfloor}
+q-W_n/2\in[q-W_n,q].
 \]
 
-is false for odd `n`.
+The exact additive span is one, and the only exact torus resonance in `[-pi,pi]` is zero.
 
-For every prime `p`, take `n=2p-1`. Then
+An explicit all-frequency bound is
 
 \[
-p\in(n/2,n],
-\qquad
-v_p\binom{2p-1}{p-1}=0.
+|\Phi_{n,\lambda}(\theta)|
+\le
+\exp\left(-2p_0(\lambda)p_1(\lambda)\sin^2(\theta/2)\right).
 \]
 
-This invalidates the suggested shortcut, not the repaired menu theorem.
+### N3-ANA-019, endpoint-uniform minor-arc obstruction
 
-## Existing analytic frontier
+No fixed `rho<1` can bound nonzero torus frequencies uniformly over all finite tilts.
 
-| ID | Class | Current conclusion |
-|---|---|---|
-| N3-ANA-004 | proved theorem | Exact divisor exponent product and tilt model |
-| N3-ANA-005 | proved theorem | Uniform logarithmic local-count ceiling |
-| N3-ANA-006 | proved theorem | Full model has a non-Gaussian limit |
-| N3-ANA-007 | disproved estimate | Unrestricted pointwise minor-arc decay is false |
-| N3-ANA-008 | proved theorem | Zero-tilt high-prime CLT |
-| N3-ANA-009 | conditional theorem | Coarse high-prime window positivity |
-| N3-ANA-010 | proved theorem | Explicit upper-half prime count for `n>=120368` |
-| N3-ANA-011 | proved but superseded model | Old-address formal capacity |
-| N3-ANA-012 | proved theorem | Compact-tilt top-prime coarse logarithmic windows |
-| N3-ANA-013 | disproved estimate | Gaussian behavior fails at unit tilt |
-| N3-ANA-014 | proved theorem | Repaired marker-three menu count and address legality |
-| N3-ANA-015 | proved theorem | Repaired marker-three formal capacity |
-| N3-ANA-016 | disproved estimate | Central-binomial divisibility shortcut is false |
+For every fixed `theta`,
 
-## Exact finite certificate N3-FIN-004
+\[
+\sup_{\lambda\in\mathbb R}
+|\Phi_{n,\lambda}(\theta)|=1.
+\]
 
-At `n=120368`:
+The law freezes at zero as `lambda->-infinity` and at the layer maxima as `lambda->+infinity`.
 
-- top-prime count: `5254`;
-- prime-count margin: greater than `1824.21`;
-- `M_n=2190`;
-- `r_n=47`;
-- exact 2-adic address slack: `118171`;
-- exact formal-capacity margin: `10575208` bits;
-- repaired squared cutoff passes in exact integer arithmetic.
+Therefore the final analytic bulk must provide compact tilt or an equivalent direct phase-dispersion lower bound.
 
-Command:
+Proof:
+
+`proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`.
+
+Response:
+
+`handoffs/RESPONSE_TO_NOVA2_MARKER_THREE.md`.
+
+## Current theorem frontier
+
+| IDs | State |
+|---|---|
+| N3-ANA-004 through N3-ANA-010 | Exact product, local ceiling, distribution, minor-arc obstruction, high-prime CLT, coarse windows, explicit prime interval |
+| N3-ANA-011 | Old-address capacity proved but structural model superseded |
+| N3-ANA-012 | Compact-tilt top-prime logarithmic coarse windows proved |
+| N3-ANA-013 | Unit-tilt Gaussian route disproved |
+| N3-ANA-014 and N3-ANA-015 | Repaired marker-three capacity proved |
+| N3-ANA-016 | Invalid central-binomial shortcut disproved |
+| N3-ANA-017 and N3-ANA-018 | Active numerical contract, centering, span, and exact resonances proved |
+| N3-ANA-019 | Uniform all-tilt minor-arc gap disproved |
+
+## Verification
 
 ```text
+python3 tracks/nova3-analytic-density/proofs/scale_sanity.py
+python3 tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py
+python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
+python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 ```
 
-Selected larger rows through `n=1000000` are N3-COMP-003 computational evidence only.
+New finite records:
+
+- N3-FIN-004, exact repaired capacity audit at `n=120368`;
+- N3-FIN-005, exact marker-three supports and span for `n in {12,15}`;
+- N3-COMP-004, numerical tilt and sampled torus checks.
 
 ## Cross-track state
 
 ### Nova 1
 
-The repaired marker-three capacity request is closed. Nova 1 must replace the invalid central-binomial step with the quotient-factorial proof.
+The repaired capacity request is closed. Nova 1 must replace its invalid central-binomial proof step with the quotient-factorial proof.
+
+Nova 1 endpoint theorems N1-STR-019, N1-STR-020, and N1-RED-006 are compatible with the active marker-three law.
 
 ### Nova 2
 
-Nova 2 has frozen two numerical quotient requests:
+The active law is `N2-HO-N3-003`.
 
-- `N2-HO-N3-002`, a four-point quotient-window law for a three-power repair;
-- `N2-HO-N3-003`, a marker-three numerical-value law with window radius `W_n`.
+Closed clauses:
 
-The latest Nova 1 marker-three construction has changed beyond the exact commit imported by the Nova 2 marker-three request. Before analytic work begins, the receiving model must freeze one exact current structural commit and state which deterministic prefix remains protected.
+- structural version compatibility;
+- tilt existence and uniqueness;
+- exact additive span;
+- exact resonance set;
+- an explicit target-dependent all-frequency bound.
 
-No logarithmic theorem will be substituted for the numerical additive law.
+Open clauses:
+
+- exact final analytic target interval after all deterministic prefixes and contraction results;
+- uniform variance and third-moment bounds there;
+- compact tilt or direct quantitative phase dispersion;
+- reference lattice law;
+- strict weighted Fourier inequality.
 
 ### Nova 4
 
-Independent reconstruction is required for N3-ANA-014 through N3-ANA-016 and N3-FIN-004.
+Independent reconstruction is required through N3-ANA-019 and N3-FIN-005.
 
 ## Exact blockers
 
-1. Nova 2 has multiple repaired quotient contracts and must identify the active one against a current Nova 1 commit.
-2. The active contract must freeze the exact numerical labels, target range beyond the deterministic prefix, tilt parameterization, and endpoint handoff.
-3. Constant-width numerical windows require a local torus estimate whose error is smaller than the reference mass, not merely Berry-Esseen distribution distance.
-4. Fine logarithmic windows below `K_A log n` remain open.
-5. Phase 12L and Phase 12P source packages remain outside the repository.
+1. Nova 1 and Nova 2 must freeze the exact transition from deterministic coverage to analytic responsibility.
+2. That range must imply compact tilt or an equivalent probability lower bound for enough active numerical coordinates.
+3. Constant-width windows require a local torus error smaller than order `1/sigma`; distribution-distance Berry-Esseen is not enough.
+4. Fine top-prime logarithmic windows remain open but are secondary to the numerical marker-three contract.
+5. Phase 12L and Phase 12P source packages remain unavailable.
 6. The branch remains divergent from `main`.
 
 ## Handoffs
 
 - `handoffs/RESPONSE_TO_NOVA1.md`
 - `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`
+- `handoffs/RESPONSE_TO_NOVA2_MARKER_THREE.md`
 - `handoffs/TO_NOVA1_COMPACT_TILT.md`
 - `handoffs/TO_NOVA2.md`
 - `handoffs/TO_NOVA2_COMPACT_TILT.md`
@@ -181,4 +197,4 @@ Independent reconstruction is required for N3-ANA-014 through N3-ANA-016 and N3-
 
 ## Next theorem target
 
-`N3-NEXT-004`: audit Nova 2's competing repaired quotient requests against the latest Nova 1 construction. Freeze the one active numerical-value law, or return a precise version-mismatch obstruction before attempting any bounded-torus local theorem.
+`N3-NEXT-005`: after Nova 1 and Nova 2 freeze the exact remaining quotient targets, prove a compact bound on the numerical tilt or a direct phase-dispersion lower bound. If neither is true, return the smallest exact target family where the variance or minor-arc coefficient collapses.
