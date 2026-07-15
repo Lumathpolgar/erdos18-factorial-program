@@ -1,17 +1,5 @@
 # Nova 4 Open Requirements
 
-## N4-REQ-N1-001
-
-Owner: Nova 1
-
-Frozen source head: `fa11f4b2cb86a2dd791df189ada12757be791804`
-
-Handoff: `N1-HO-N4-001`
-
-Status: `STUDY_A_COMPLETE_STUDY_B_READY`
-
-Study A is complete at Nova 4 checkpoint `53b579cd5a7eeac780869cffa2cb8b9b8bdd5289`. Run the reduced rainbow model for every `20 <= n <= 80`.
-
 ## N4-REQ-N3-001
 
 Owner: Nova 3
@@ -22,7 +10,7 @@ Handoff: `N3-HO-N4-001`
 
 Status: `RECEIVED_READY_FOR_AUDIT`
 
-Independently reconstruct the product-model formulas, exact finite moments, local-count ceiling, and requested analytic evidence tables.
+Independently reconstruct the product-model formulas, exact finite moments, local-count ceiling, scale-convergence evidence, recurrence search, and source compatibility.
 
 ## N4-REQ-N2-002
 
@@ -47,6 +35,20 @@ Owner: Nova 4
 Result class: `unknown due to resource limits`
 
 Extend exact profiles to `n=14` with a more memory-efficient witness strategy, a target-partitioned proof certificate, or a different exact algorithm.
+
+## Completed external requests
+
+### N4-REQ-N1-001
+
+Owner: Nova 1
+
+Frozen source head: `fa11f4b2cb86a2dd791df189ada12757be791804`
+
+Handoff: `N1-HO-N4-001`
+
+Status: `COMPLETED_FOR_FROZEN_STUDIES_A_AND_B`
+
+Study A audited both capacity predicates for every `3<=n<=1,000,000`. Study B computed the exact reduced-rainbow model for every `20<=n<=80` and found an occupancy failure at the first requested target in all 61 cases.
 
 ## Rule
 
