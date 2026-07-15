@@ -2,13 +2,13 @@
 
 ## Route decision
 
-- Decision ID: `N3-ROUTE-003`
-- Status: `PROVED` as a route ranking and obstruction decision; the final additive theorem remains `OPEN`
+- Decision ID: `N3-ROUTE-004`
+- Status: `PROVED` as a route ranking and obstruction decision; the final occupancy theorem remains `OPEN`
 - Date: 2026-07-15
 
-## Cross-track correction
+## Mandatory model distinction
 
-Nova 2 has frozen the distinction between:
+Two Fourier objects remain separate:
 
 1. logarithmic divisor size,
    \[
@@ -16,144 +16,151 @@ Nova 2 has frozen the distinction between:
    \]
 2. numerical additive occupancy,
    \[
-   \mathbb E e^{itS_{n,x}},
-   \qquad S_{n,x}=\sum_iY_{i,n,x}.
+   \mathbb E e^{itT_n}.
    \]
 
-A theorem for the first object does not control the second. Numerical additive inversion is periodic on `[-pi,pi]` and must include every nonzero resonance.
+The active cross-track target is now the second object for Nova 1 marker-three construction `N1-CON-003`.
 
-The first Nova 1 layer system remains ineligible for Fourier analysis because Nova 2 proved that its main sums lie in a power-of-two sublattice missing the first required window.
+## Ranked routes
 
-## Ranked analytic routes
+### 1. Marker-three numerical product law
 
-### 1. Exact top-prime compact-tilt reservoir
+Status: `ACTIVE_CROSS_TRACK_ROUTE`.
 
-Status: `PROVED_PREFERRED_INTRINSIC_COMPONENT`.
+Exact source:
 
-Freeze
+- Nova 2 branch: `nova/additive-occupancy`
+- commit: `fb73e6906105c983bacbd46a96ef8d5d87567fae`
+- handoff: `N2-HO-N3-003`
 
-\[
-\mathcal P_n=\{p\text{ prime}:n/2<p\le n\}.
-\]
-
-Every coordinate has factorial valuation one. N3-ANA-012 proves, uniformly for each fixed
+The supports are
 
 \[
-|\theta|\le\theta_0<1,
+B_t(n)=
+\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
 \]
 
-a Gaussian approximation, variance lower bound, coarse logarithmic-window positivity at width `K_A log n`, and a lower bound for the number of distinct subset products in the window.
+Closed by N3-ANA-017 and N3-ANA-018:
 
-Advantages:
+- structural version compatibility;
+- unique finite target-dependent tilt for every `W_n<q<=Y_n`;
+- exact additive span one;
+- exact resonance set `{0}`;
+- explicit global bound
+  \[
+  |\Phi_{n,\lambda}(\theta)|
+  \le
+  \exp(-2p_0p_1\sin^2(\theta/2)).
+  \]
 
-- exact factorial divisors, not a smooth-number surrogate;
-- unique-factorization distinctness;
-- explicit threshold `n>=120368`;
-- no bounded-exponent bookkeeping because every coordinate is Bernoulli;
-- fully uniform compact-tilt constants;
-- a sharp obstruction at `|theta|=1` from N3-ANA-013.
+N3-ANA-019 proves that no minor-arc gap can be uniform over all real tilts. The next positive step must therefore use the exact post-prefix target range to prove compact tilt or direct phase dispersion.
 
-This is now the strongest clean analytic reservoir theorem on the branch.
+### 2. Deterministic-to-analytic quotient decomposition
 
-### 2. Exact low-prime conditioning plus full high-prime tilted logarithmic analysis
+Status: `REQUIRED_INTERFACE`.
 
-Status: `PREFERRED_GENERALIZATION`.
+The analytic range must begin only after combining:
 
-Split
+- Nova 2's deterministic binary-spine prefix;
+- Nova 1 multiplicative 3-density;
+- Nova 1 endpoint support;
+- Nova 1 deterministic coarse contraction;
+- any remaining deterministic transition argument.
 
-\[
-S_n=S_{\le y}+S_{>y}.
-\]
+The union of deterministic and analytic target sets must cover every required quotient without a gap.
 
-Treat the low-prime component exactly and apply a tilted theorem to the high-prime tail. N3-ANA-008 and N3-ANA-009 establish the zero-tilt coarse regime. Extending N3-ANA-012 from the top Bernoulli band to all bounded high-prime exponent coordinates remains open.
-
-### 3. Structural gate followed by matched numerical additive Fourier analysis
-
-Status: `PREFERRED_FOR_NOVA_2_AFTER_REPAIR`.
-
-Required sequence:
-
-1. Nova 1 proposes a versioned divisor layer system.
-2. Nova 2 checks lattice, residues, correction radius, first target, endpoints, distinctness, and nonsequential legality.
-3. Nova 2 freezes the exact numerical law, target weights, windows, kernel, reference law, and all major arcs.
-4. Nova 3 proves the matched bounded-torus estimate or returns a resonance obstruction.
-
-No logarithmic theorem may be substituted for this numerical additive analysis.
-
-### 4. Explicit prime-band capacity certification
+### 3. Repaired marker-three capacity
 
 Status: `PROVED_SUPPORTING_ROUTE`.
 
-N3-ANA-010 and N3-ANA-011 close Nova 1's explicit prime count and formal menu-capacity dependency with
+N3-ANA-014 and N3-ANA-015 prove legal repaired menus and formal capacity for all `n>=120368`.
+
+The proof uses
 
 \[
-n_3=n_4=n_5=120368.
+n!/H_n\ge\lfloor n/2\rfloor!
 \]
 
-Formal capacity is not profile-sum injectivity or occupancy.
+rather than the false central-binomial divisibility shortcut rejected by N3-ANA-016.
 
-### 5. Fine top-prime local analysis
+Capacity does not imply occupancy.
 
-Status: `NEXT_INTRINSIC_TARGET`.
+### 4. Compact-tilt top-prime logarithmic reservoir
 
-N3-ANA-012 reaches windows
+Status: `PROVED_INTRINSIC_COMPONENT`.
 
-\[
-\Delta\ge K_A\log n.
-\]
+N3-ANA-012 gives a Gaussian coarse-window theorem for exact top-prime subset products under `|theta|<=theta_0<1`. N3-ANA-013 proves failure at unit tilt.
 
-The next intrinsic question is whether this can be lowered. A successful theorem must analyze the bounded-frequency characteristic function of the weighted Bernoulli prime-log sum. An obstruction must distinguish average density from maximum logarithmic gap.
+This route remains useful for intrinsic divisor density but does not transfer directly to the numerical quotient law.
 
-### 6. Direct saddle point with exact low-prime convolution
+### 5. Full bounded-exponent logarithmic high-prime model
 
-Status: `SECONDARY_FOR_LOGARITHMIC_WINDOWS`.
+Status: `SECONDARY_GENERALIZATION`.
 
-The full tilted product identity remains valid. This route is retained for applications with a frozen low-prime family and an explicitly logarithmic target.
+N3-ANA-008 and N3-ANA-009 establish the zero-tilt coarse regime. Compact-tilt and fine local results remain open.
 
-### 7. Full uniform-divisor Gaussian local limit
+### 6. Fine top-prime logarithmic local analysis
 
-Status: `DISPROVED` by N3-ANA-006.
+Status: `OPEN_BUT_SECONDARY`.
 
-### 8. Unrestricted global minor-arc decay
+Lowering the current `K_A log n` width remains a valid intrinsic problem, but the active numerical marker-three contract has higher integration priority.
 
-Status: `DISPROVED` by N3-ANA-007.
+## Rejected or disproved routes
 
-### 9. Compact top-prime tilt range reaching `|theta|=1`
+### Old power-of-two address construction
 
-Status: `DISPROVED` by N3-ANA-013.
+Status: `DISPROVED_BY_NOVA_2`.
 
-At unit tilt the Bernoulli coordinates freeze at their favored endpoints with probability tending to one, and the normalized centered law converges to zero in probability.
+Its main sums lie in a sublattice missing the first target window.
 
-### 10. Smooth-number lower-bound transfer
+### Older Nova 2 three-power repair handoff
+
+Status: `NOT_ACTIVE_FOR_N1-CON-003`.
+
+`N2-HO-N3-002` describes a different repaired model. The active marker-three law is `N2-HO-N3-003`.
+
+### Uniform all-tilt minor-arc modulus gap
+
+Status: `DISPROVED_BY_N3-ANA-019`.
+
+The numerical law freezes at both tilt endpoints.
+
+### Full logarithmic Gaussian model
+
+Status: `DISPROVED_BY_N3-ANA-006`.
+
+### Unrestricted logarithmic minor-arc decay
+
+Status: `DISPROVED_BY_N3-ANA-007`.
+
+### Smooth-number lower-bound transfer
 
 Status: `REJECTED`.
 
-Lower bounds for larger smooth or ultrafriable sets do not transfer to exact factorial divisors.
-
 ## Exact current deliverable
 
-For every fixed `theta_0<1` and `A>=0`, N3-ANA-012 supplies effective constants such that top-prime subset products have positive tilted mass and explicit weighted count in every central logarithmic window satisfying
+For the active numerical marker-three law, Nova 3 now provides:
 
-\[
-K_A\log n\le\Delta\le B_{n,\theta}.
-\]
+1. unique target-dependent centering;
+2. exact lattice span;
+3. exact resonance set;
+4. an explicit target-dependent characteristic-function bound;
+5. a proof that endpoint-uniform decay is impossible.
 
-The theorem is exact in divisor legality and distinctness. It is not an additive occupancy theorem.
+The strict weighted Fourier inequality remains open.
 
 ## Stop conditions
 
-Abandon or weaken a proposed route if it requires:
+Abandon or weaken any proposed next step if it:
 
-- fixed-width logarithmic windows without a local theorem;
-- an unbounded pointwise minor arc;
-- a Gaussian theorem through `|theta|=1` on the top-prime band;
-- a full-vector Gaussian theorem without low-prime conditioning;
-- lower-bound transfer from a smooth superset;
-- direct control of numerical additive sums from logarithmic divisor estimates;
-- Fourier work before Nova 2's structural gate passes;
-- profile capacity treated as profile-sum injectivity;
-- mean spacing treated as maximum-gap control.
+- uses logarithmic divisor weights instead of numerical quotient values;
+- ignores the deterministic prefix and endpoint handoff;
+- assumes span one gives a quantitative minor-arc gap;
+- asks for a target-uniform decay constant over all tilts;
+- uses Berry-Esseen distribution distance as a constant-width local theorem;
+- treats formal profile capacity as numerical sumset coverage;
+- leaves a transition gap between deterministic and analytic target ranges.
 
 ## Next theorem target
 
-`N3-NEXT-003`: determine the sharpest true uniform logarithmic-window scale below `K_A log n` for compactly tilted top-prime subset products. Prove a bounded-frequency local theorem, weaken to the strongest true intermediate scale, or prove a resonance or maximum-gap obstruction.
+`N3-NEXT-005`: on the exact target range remaining after deterministic coverage, prove a compact bound on `lambda_{n,q}` or a direct lower bound for enough phase-dispersing coordinate probabilities. If this fails, identify the first exact target family where variance or the minor-arc coefficient collapses.
