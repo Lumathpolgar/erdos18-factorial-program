@@ -55,7 +55,8 @@ Why this is preferred:
 - numerical main-palette disjointness;
 - exact term cost `M_n+r_n`;
 - target window is polynomially wide rather than four points;
-- construction already has a proved deterministic initial interval.
+- construction has a proved deterministic initial interval;
+- exact complete-menu carrier certificates now succeed for every `12<=n<=45`.
 
 Preferred proof engine:
 
@@ -74,13 +75,13 @@ Exact analytic request:
 
 **Result label: conditional theorem.**
 
-This route would prove every final quotient window occupied without probabilistic approximation. It remains final-only and therefore avoids a hidden sequential interval invariant.
+This route would prove every final quotient window occupied without probabilistic approximation. It remains final-only and avoids a hidden sequential interval invariant.
 
 Main blocker: available sumset theorems do not automatically preserve one choice per label, numerical distinctness, factorial legality, downward orientation, and endpoint location.
 
 ### Rank 3: Connected-core carrier recursion
 
-**Result label: conditional theorem.**
+**Result label: conditional theorem with exact finite certificates.**
 
 Nova 2 proved N2-ADD-119 and N2-ADD-120.
 
@@ -94,13 +95,31 @@ D_t(E_{t-1})
 \right\rfloor.
 \]
 
-The recursion gives a scalable exact certificate of how far translated carrier blocks cover. It can also produce a first blocking core gap.
+The recursion gives an exact certificate of how far translated carrier blocks cover and records the first blocking core gap.
 
-This engine is ranked third because it is sequential. A failure does not disprove the full model, and a success requires an exact Phase 12P compatibility audit.
+N2-FIN-202 generated complete odd-core menus and certified full quotient reach for every
 
-Proof:
+\[
+12\le n\le45.
+\]
 
-`proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`.
+Only two through six legal main layers were needed, giving the finite uniform bound
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+\]
+
+on the completed range.
+
+The largest completed case has `18,627,840` odd cores at `n=45`. The next case has `27,941,760` cores and requires a streaming or bounded-memory generator.
+
+This engine remains ranked third because it is sequential. Finite success does not prove the asymptotic theorem, a future failure does not automatically disprove the full model, and any asymptotic success still requires the exact Phase 12P audit.
+
+Proof and certificate:
+
+- `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`;
+- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
+- `verification/marker_three_full_menu_audit.py`.
 
 Verification request:
 
@@ -112,7 +131,7 @@ Verification request:
 
 This is the former preferred route, governed by N2-ADD-116 through N2-ADD-118. It is now `SUPERSEDED_AS_PREFERRED` but retained because its normalization, obstruction, repair, and binary-spine theorem are exact.
 
-Marker-three is better on the current evidence because it has a smaller lattice, wider correction window, and lower term count.
+Marker-three is better on the current evidence because it has a smaller lattice, wider correction window, lower term count, and successful complete-menu finite carrier certificates.
 
 ### Rank 5: Uniform rainbow convolution
 
@@ -128,7 +147,7 @@ Fourier analysis remains essential inside the target-dependent route, but a sing
 
 ## Structural gate for marker-three
 
-The following are now accepted:
+The following are accepted:
 
 1. divisor legality under the stated valuation side condition;
 2. numerical distinctness across layers;
@@ -142,14 +161,14 @@ The following are now accepted:
 
 The following remain open:
 
-1. global quotient occupancy;
-2. endpoint reach near `Y_n`;
+1. global asymptotic quotient occupancy;
+2. uniform endpoint reach near `Y_n`;
 3. total-sum collision collapse;
 4. final-only Fourier or deterministic sumset theorem;
 5. Phase 12P audit for the sequential carrier engine;
-6. finite exceptions.
+6. exact continuation beyond `n=45` and the remaining finite exceptions.
 
-## Deterministic protected region
+## Deterministic certified regions
 
 Nova 1 proves downward one-density through
 
@@ -165,22 +184,28 @@ Nova 2 extends required target-window occupancy through
 A_n+W_n.
 \]
 
-Computational and analytic work should focus beyond this boundary.
+In addition, N2-FIN-202 proves full quotient reach through `Y_n` for each `12<=n<=45` using complete menus. Computational and analytic work must distinguish this exact finite range from the asymptotic open region.
 
-## Exact next theorem target
+## Exact next theorem targets
 
-There are now two parallel valid targets.
+There are three parallel valid targets.
 
-### Deterministic target
+### Streaming finite target
 
-Compute or prove the connected-core recursion and determine whether
+Implement a sorted odd-divisor stream or bounded-memory connected-component generator and continue exact full-menu certification from `n=46`.
+
+### Uniform deterministic target
+
+Prove a lower bound on the connected core in each layer strong enough to force
 
 \[
 E_{M_n}+W_n\ge Y_n.
 \]
 
+The finite terminal-layer saturation pattern is evidence, not a theorem.
+
 ### Final-only analytic target
 
 Prove the marker-three numerical-value weighted Fourier theorem on `[-pi,pi]` for every target beyond the deterministic protected region.
 
-A failure of the deterministic carrier engine must not terminate the final-only route.
+A failure of the sequential carrier engine must not terminate the final-only route.
