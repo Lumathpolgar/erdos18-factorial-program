@@ -18,11 +18,10 @@ Frozen commit: `fa11f4b2cb86a2dd791df189ada12757be791804`
 
 Artifact: `tracks/nova1-factorial-structure/handoffs/TO_NOVA4.md`
 
-Status: `RECEIVED_READY_FOR_AUDIT`
+Status: `STUDY_A_COMPLETE_STUDY_B_READY`
 
-Requested studies:
+Study A completed at `53b579cd5a7eeac780869cffa2cb8b9b8bdd5289`. Remaining requested studies:
 
-- exact capacity-threshold audit for `3 <= n <= 1,000,000` with certified comparisons;
 - reduced rainbow falsification model for `20 <= n <= 80`;
 - exact divisor legality, layer-address, collision, and witness checks;
 - CSV transition rows and machine-readable first-failure artifacts.
