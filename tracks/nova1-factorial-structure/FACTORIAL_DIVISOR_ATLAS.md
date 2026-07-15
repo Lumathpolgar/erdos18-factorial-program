@@ -2,116 +2,124 @@
 
 ## Scope
 
-This atlas records exact valuation resources, legal divisor-coordinate rules, collision criteria, correction reserves, and two structurally different packet architectures for `n!`.
+This atlas records the exact factorial valuation resources, independent coordinates, legal divisor criteria, numerical distinctness mechanisms, correction reserve, capacity obstructions, and the two surviving large-menu packet architectures.
 
-The target interval is always
+The frozen target interval is
 
 \[
 0\le x\le X_n:=\lfloor\sqrt{n!}\rfloor.
 \]
 
-No divisor count or profile count in this document is asserted to imply additive coverage.
+No count in this file is treated as additive coverage.
 
-## 1. Exact valuation budgets
+## 1. Valuation budgets
 
-### N1-STR-003: Legendre budget and quotient bands
+### N1-STR-003: Legendre budget
 
 Result label: **proved theorem**.
 
-For every prime `p <= n`,
+For every prime `p<=n`,
 
 \[
-v_p(n!)=\sum_{j\ge1}\left\lfloor\frac{n}{p^j}\right\rfloor
-=\frac{n-s_p(n)}{p-1},
+v_p(n!)=
+\sum_{j\ge1}\left\lfloor\frac n{p^j}\right\rfloor
+=
+\frac{n-s_p(n)}{p-1},
 \]
 
-where `s_p(n)` is the sum of the base-`p` digits of `n`. Consequently,
+where `s_p(n)` is the base-`p` digit sum. Hence
 
 \[
-\frac{n}{p-1}-\lfloor\log_p n\rfloor-1
-\le v_p(n!)\le \frac{n}{p-1}.
+\frac n{p-1}-\lfloor\log_p n\rfloor-1
+\le v_p(n!)
+\le\frac n{p-1}.
 \]
 
-If `p > sqrt(n)`, then `p^2 > n`, so
+If `p>sqrt(n)`, then
 
 \[
 v_p(n!)=\left\lfloor\frac np\right\rfloor.
 \]
 
-For an integer `q` satisfying `1 <= q < sqrt(n)`, define the quotient band
+Proof: `proofs/VALUATION_BUDGET_LEMMAS.md`.
+
+### Exact quotient bands
+
+For `1<=q<sqrt(n)`, define
 
 \[
-B_q(n)=\left\{p\text{ prime}:\max(\sqrt n,n/(q+1))<p\le n/q\right\}.
+B_q(n)=
+\left\{
+ p\text{ prime}:
+ \max(\sqrt n,n/(q+1))<p\le n/q
+\right\}.
 \]
 
-Every `p in B_q(n)` has the exact valuation
+Every `p in B_q(n)` has exact valuation
 
 \[
 v_p(n!)=q.
 \]
 
-This identifies prime bands whose coordinates have exactly `q+1` available exponent states.
+Thus each such prime supplies one independent coordinate with exactly `q+1` exponent states.
 
-### Dyadic prime intervals
+### Dyadic prime bands
 
-For every integer `k >= 0`, define
+For `k>=0`, let
 
 \[
-I_k(n)=\left(n/2^{k+1},n/2^k\right]\cap\{p\text{ prime}:p>\sqrt n\}.
+I_k(n)=
+(n/2^{k+1},n/2^k]
+\cap\{p\text{ prime}:p>\sqrt n\}.
 \]
 
 For every `p in I_k(n)`,
 
 \[
-2^k\le v_p(n!)\le 2^{k+1}-1.
+2^k\le v_p(n!)\le2^{k+1}-1.
 \]
-
-Thus a prime in `I_k(n)` supplies one independent prime coordinate with at least `2^k+1` legal exponent values.
 
 ### Small-prime multiplicity
 
-For every fixed prime `p`,
+For each fixed prime `p`,
 
 \[
-v_p(n!)=\frac{n}{p-1}+O(\log n).
+v_p(n!)=\frac n{p-1}+O(\log n).
 \]
 
 In particular,
 
 \[
-v_2(n!)=n-s_2(n)\ge n-\lfloor\log_2n\rfloor-1.
+v_2(n!)=n-s_2(n).
 \]
 
-Hence, for every fixed `A>0`,
+Therefore `n!` supplies `Theta((log n)^2)` distinct 2-adic marker exponents for all sufficiently large `n`. The lcm core does not:
 
 \[
-A(\log n)^2\le v_2(n!)
+v_2(\operatorname{lcm}(1,\ldots,n))
+=\lfloor\log_2n\rfloor.
 \]
 
-for all sufficiently large `n`. This permits `Theta((log n)^2)` distinct 2-adic marker exponents. By contrast,
+This is the factorial-specific multiplicity used by the preferred route.
 
-\[
-v_2(\operatorname{lcm}(1,\ldots,n))=\lfloor\log_2 n\rfloor,
-\]
-
-so this marker budget is factorial-specific.
-
-## 2. Independent coordinates and prime-power bands
+## 2. Independent divisor coordinates
 
 ### N1-STR-004: Valuation-box theorem
 
 Result label: **proved theorem**.
 
-Let `P` be a finite set of primes and let integers `a_p` satisfy
+Let `P` be a finite prime set and choose integers
 
 \[
-0\le a_p\le v_p(n!)\qquad(p\in P).
+0\le a_p\le v_p(n!).
 \]
 
-Then every exponent vector
+Every exponent vector
 
 \[
-(e_p)_{p\in P}\in\prod_{p\in P}\{0,1,\ldots,a_p\}
+(e_p)_{p\in P}
+\in
+\prod_{p\in P}\{0,1,\ldots,a_p\}
 \]
 
 produces the legal divisor
@@ -120,326 +128,410 @@ produces the legal divisor
 d(e)=\prod_{p\in P}p^{e_p}\mid n!,
 \]
 
-and distinct exponent vectors produce distinct numerical divisors. Therefore the box supplies exactly
+and unique factorization makes the map injective. The box therefore contains exactly
 
 \[
 \prod_{p\in P}(a_p+1)
 \]
 
-legal divisors.
+divisors.
 
-The number of independent coordinates is `|P|`, not the number of prime powers `p^j` appearing below `n`.
-
-The generated logarithmic range is exactly contained in
+The logarithmic size range is contained in
 
 \[
-0\le\log d\le W(P,a):=\sum_{p\in P}a_p\log p.
+0\le\log d\le
+\sum_{p\in P}a_p\log p.
 \]
 
-The endpoint values `1` and `exp(W(P,a))` occur as divisors, but the theorem does not assert that all intermediate logarithmic values occur.
+The endpoints occur, but intermediate logarithmic occupancy is not asserted.
 
-### Prime-power dependence obstruction
+### Prime-power dependence
 
 Result label: **disproved route**.
 
-Treating `p,p^2,p^3,...` as independent binary coordinates is invalid. They all consume the same coordinate `v_p`. For example, selecting the multiplicative atoms `p` and `p^2` creates exponent `3`, not two independent prime coordinates. Any packet construction built by multiplying prime-power atoms must prove that the total exponent used at each prime does not exceed `v_p(n!)`.
+The prime powers `p,p^2,p^3,...` are not independent coordinates. They consume one shared exponent budget. Multiplying selected atoms `p` and `p^2` uses exponent three. The independence rank of a prime-power band is the number of underlying primes, not the number of prime powers.
 
-Prime-power bands remain useful as valuation increments, but their independence rank is the number of underlying primes.
+## 3. Legality under allocated budgets
 
-## 3. Budget partition and divisor legality
-
-### N1-STR-005: Valuation-budget partition lemma
+### N1-STR-005: Valuation-budget partition
 
 Result label: **proved theorem**.
 
-Suppose each prime budget is partitioned into nonnegative allocations
+If
 
 \[
-a_{p,1}+\cdots+a_{p,L}\le v_p(n!).
+a_{p,1}+\cdots+a_{p,L}\le v_p(n!)
 \]
 
-For each layer `ell`, let
+and a divisor component in layer `ell` uses exponent at most `a_{p,ell}` at every prime, then the product of one component from each layer divides `n!`.
 
-\[
-u_\ell=\prod_p p^{e_{p,\ell}},\qquad 0\le e_{p,\ell}\le a_{p,\ell}.
-\]
+For additive representations, selected summands are not multiplied. Shared prime factors between two summands do not cause illegality; each summand is checked separately.
 
-Then every `u_ell` divides `n!`, and the product of one selected component from every layer also divides `n!` because the total exponent at `p` is at most `sum_ell a_{p,ell}`.
-
-For additive representations, selected divisors are not multiplied together, so shared prime factors between two summands do not by themselves violate legality. Legality is checked separately for each summand. Budget partition is required only when a divisor is itself assembled multiplicatively from several allocated components.
-
-## 4. Numerical distinctness mechanisms
+## 4. Numerical distinctness
 
 ### N1-STR-006: Marker-signature lemma
 
 Result label: **proved theorem**.
 
-Let `M` be a finite marker-prime set. For every label `t`, choose a signature
+Let marker-prime signatures be pairwise distinct and let cores avoid the marker primes. Equality of two labeled divisors would force equality of every marker valuation, so different signatures imply different numerical divisors.
+
+The preferred one-prime form is
 
 \[
-\sigma_t=(e_{q,t})_{q\in M}
+d=2^eu,
 \]
 
-and a core `u_t` coprime to every prime in `M`. Define
+where `u` is odd. Distinct addresses `e` give distinct divisors even when two layers reuse the same odd core.
 
-\[
-d_t=u_t\prod_{q\in M}q^{e_{q,t}}.
-\]
+Proof: `proofs/DISTINCTNESS_AND_CORRECTION.md`.
 
-If the signatures `sigma_t` are pairwise distinct, then the numerical divisors `d_t` are pairwise distinct, because equality would force equality of every marker-prime valuation.
+### Exact cross-packet criterion
 
-A one-prime specialization uses
+Packets or layers are numerically separated if they use disjoint marker-signature regions. Labels without distinct signatures provide no protection.
 
-\[
-d_t=2^{e_t}u_t,
-\]
+## 5. Correction palette
 
-with odd `u_t` and pairwise distinct `e_t`.
-
-### Cross-packet distinctness criterion
-
-Assign packet `j` a marker-signature region `Sigma_j` disjoint from every other packet's region. Require every core to avoid marker primes. Then any selections from different packets are numerically distinct. This remains true even when two cores are numerically equal.
-
-### Failure condition
-
-Labels alone provide no distinctness. If two labels use the same marker signature and the same core, they are the same divisor and cannot both appear in a legal sum.
-
-## 5. Reserved correction palette
-
-### N1-COR-001: Binary correction palette
+### N1-COR-001: Binary palette
 
 Result label: **proved theorem**.
 
-Let `r>=1` satisfy
+If `r-1<=v_2(n!)`, then
 
 \[
-r-1\le v_2(n!).
+\mathcal C_r=\{1,2,4,\ldots,2^{r-1}\}
 \]
 
-Define
-
-\[
-\mathcal C_r=\{1,2,4,\ldots,2^{r-1}\}.
-\]
-
-Every member of `C_r` divides `n!`, and every integer
+consists of legal distinct divisors and represents every integer
 
 \[
 0\le t<2^r
 \]
 
-has a unique representation as a sum of a subset of `C_r`, using at most `r` terms.
+with at most `r` terms.
 
-If every main-construction divisor has odd part greater than one, then no main divisor belongs to `C_r`. Therefore the correction terms are automatically disjoint from the main terms.
+If every main term has odd part greater than one, the main family is disjoint from the palette.
 
-### N1-RED-002: Downward-window correction reduction
+### N1-RED-002: Downward-window reduction
 
 Result label: **proved theorem**.
 
-Let `A_n` be a legal, numerically distinct main family of divisors of `n!`, disjoint from `C_r`. Suppose every integer `x` with
+Suppose every target `x` with
 
 \[
 2^r\le x\le X_n
 \]
 
-has a main-family sum `y` satisfying
+has a main sum `y` using at most `K(n)` terms and satisfying
 
 \[
-x-(2^r-1)\le y\le x
+x-(2^r-1)\le y\le x.
 \]
 
-and using at most `K(n)` terms. Then every integer `0<=x<=X_n` is a sum of at most
+Then
 
 \[
-K(n)+r
+H_{n!}(X_n+1)\le K(n)+r.
 \]
 
-distinct divisors of `n!`.
+The residual `x-y` is represented by the binary palette. The correction term count is included.
 
-Proof mechanism: represent `x-y` by the binary palette; for `x<2^r`, use the palette alone.
+## 6. Capacity gates
 
-### Entropy cost of the reserve
+### N1-OBS-002: Downward-window counting
 
-The palette consumes only the pure powers `2^0,...,2^{r-1}` as summands. It does not consume those valuations from other divisors, because additive summands are checked separately. To avoid numerical collision, main terms must have odd part greater than one. For `r=Theta(log n)`, the palette corrects a polynomial-width residual with `Theta(log n)` terms. For `r=Theta((log n)^2)`, it corrects a quasipolynomial-width residual but consumes the full allowed order of terms.
+Result label: **proved theorem**.
 
-## 6. Packet Construction A: factorial 2-adic address packets
-
-Result label: **heuristic** as a complete route; its legality and distinctness sublemmas are proved theorems.
-
-Choose constants `A,B>0`,
+If a finite attainable set `S` is downward `R`-dense on `[0,X]`, then
 
 \[
-r=\lceil B\log n\rceil,\qquad M=\lceil A(\log n)^2\rceil,
+|S|(R+1)\ge X+1.
 \]
 
-and pairwise distinct exponents
+A rainbow system with `c_i` nonzero choices in layer `i` has at most
 
 \[
-e_t=r+t,\qquad 1\le t\le M.
+\prod_i(c_i+1)
 \]
 
-For sufficiently large `n`, `e_M<=v_2(n!)`. Choose odd cores `u_t>1` satisfying
+formal profiles, so coverage requires
 
 \[
-u_t\mid n!,\qquad 2^{e_t}u_t\le X_n,
+\sum_i\log(c_i+1)
+\ge
+\log(X+1)-\log(R+1).
 \]
 
-and define
+Proof: `proofs/COUNTING_CAPACITY_OBSTRUCTION.md`.
+
+### Fixed-family obstruction
+
+Result label: **disproved route**.
+
+A fixed pool of `O((log n)^2)` binary or ternary choices has only
 
 \[
-d_t=2^{e_t}u_t.
+\exp(O((\log n)^2))
 \]
 
-Partition the indices into `J=O(log n)` packets of `O(log n)` labels each, but allow a globally chosen subset of all labels rather than one sequential choice per packet.
-
-### Legal divisor proof
-
-Each `d_t` divides `n!` when
+profiles. Even with quasipolynomial correction, it cannot cover
 
 \[
-e_t\le v_2(n!)
+X_n=\exp(\Theta(n\log n)).
 \]
 
-and every odd-prime valuation in `u_t` is within the factorial budget.
+The original fixed-divisor and fixed-pair candidate versions are permanently retired.
 
-### Independent coordinates supplied
+### N1-STR-008: Menu entropy requirement
 
-The marker system supplies `M` distinct 2-adic addresses, while the odd cores are drawn from an independent odd-prime divisor box. The addresses certify distinctness but do not themselves imply distinct sums.
+Result label: **proved theorem**.
 
-### Generated logarithmic scale
-
-For prescribed target scales `Y_t`, a core in the interval
+For `M_n<=A(log n)^2` layers and polynomial correction width, the average layer-state entropy must satisfy
 
 \[
-Y_t/2^{e_t}\le u_t\le (Y_t+W_t)/2^{e_t}
+\frac1{M_n}
+\sum_{i=1}^{M_n}\log(c_i(n)+1)
+\ge
+\frac{n}{3A\log n}
 \]
 
-places `d_t` inside `[Y_t,Y_t+W_t]`. Existence of such odd divisors is an analytic input, not a structural consequence of the valuation count.
+for all sufficiently large `n`.
 
-### Maximum legal selected terms
-
-At most `M` main divisors plus `r` correction terms may be selected. Thus the exact cost is
+Thus the geometric mean menu size must be
 
 \[
-M+r\le A(\log n)^2+B\log n+2.
+\exp(\Omega(n/\log n)).
 \]
 
-### Reserved correction
+Polynomial-size menus are a disproved route.
 
-Use `C_r`. Every main divisor has odd part `u_t>1`, so no collision with the palette occurs.
+Proof: `proofs/MENU_ENTROPY_REQUIREMENT.md`.
 
-### Current failure point
+## 7. High-prime menu source
 
-The route has no proof that a subset of `{d_t}` lies in every downward window
+### N1-STR-009
+
+Result label: **proved theorem**.
+
+Write
 
 \[
-[x-(2^r-1),x]
+n!=2^{V_n}O_n
 \]
 
-uniformly for every `x<=X_n`. The number of possible subsets is capacity, not coverage. This is the exact missing additive theorem.
-
-## 7. Packet Construction B: marked complement-pair clouds
-
-Result label: **heuristic** as a complete route; the complement-pair legality and distinctness statement is a proved theorem.
-
-For `J=O(log n)`, choose square divisors
+with `O_n` odd, and let
 
 \[
-Q_j=R_j^2\mid n!
+m_n=\pi(n)-\pi(n/2).
 \]
 
-with pairwise distinct 2-adic center valuations
+For an address
 
 \[
-E_j=v_2(R_j),
+e\le\lfloor V_n/2\rfloor-1,
 \]
 
-and with `5|R_j`. For each cloud choose `m_j=O(log n)` distinct odd multipliers `z_{j,t}` such that
+define
 
 \[
-z_{j,t}\mid R_j,\qquad \gcd(z_{j,t},10)=1,
-\qquad 1<z_{j,t}\le X_n/R_j.
+U_e(n)=
+\{u:u\mid O_n,\ u>1,\ 2^eu\le X_n\}.
 \]
 
-Define the pair
+Then
 
 \[
-a_{j,t}=R_j/z_{j,t},\qquad b_{j,t}=R_jz_{j,t}.
+|U_e(n)|\ge2^{m_n-1}-1.
 \]
 
-The selectable state for a pair is `0`, `a_{j,t}`, or `b_{j,t}`. Choices are made jointly across all pairs; there is no prescribed sequential ladder.
+The proof uses subset products of the primes in `(n/2,n]`, paired around the square root of their product.
 
-### Legal divisor proof
+Proof: `proofs/HIGH_PRIME_MENU_CAPACITY.md`.
 
-Because `z_{j,t}|R_j`, both `R_j/z_{j,t}` and `R_jz_{j,t}` divide `R_j^2=Q_j`, hence divide `n!`. The upper condition on `z_{j,t}` gives `b_{j,t}<=X_n`; the lower term is automatically below `R_j<=X_n`.
+Result label: **conditional theorem** for the explicit capacity asymptotic.
 
-### Numerical distinctness
-
-Within a cloud,
+If
 
 \[
-a_{j,t}<R_j<b_{j,t}.
+m_n\ge\frac{n}{3\log n}
 \]
 
-Distinct multipliers give distinct low terms and distinct high terms, while low/high cross-collisions are impossible. Across clouds, every term has 2-adic valuation `E_j` because the multipliers are odd; distinct `E_j` therefore separate clouds numerically. Every term remains divisible by `5`, so no term collides with the binary correction palette.
-
-### Switch-increment form
-
-Choosing the low term in a pair and then switching to the high term changes the sum by
+for all sufficiently large `n`, then the frozen preferred constants
 
 \[
-\Delta_{j,t}=R_j\left(z_{j,t}-z_{j,t}^{-1}\right)
-=b_{j,t}-a_{j,t}.
+M_n=\lceil16(\log n)^2\rceil,
+\qquad
+r_n=\lceil4\log n\rceil
 \]
 
-This exposes the route as a globally coupled restricted subset-sum problem on the increments, not as a one-choice sequential growth recurrence.
+pass the necessary profile-capacity gate.
 
-### Maximum legal selected terms
+## 8. Construction A: full-menu valuation-tagged layers
 
-At most one term is chosen from each pair. Therefore the main term cost is exactly bounded by
+Result label: **heuristic** as a half-range route.
+
+For
 
 \[
-\sum_{j=1}^Jm_j=O((\log n)^2).
+e_t=r_n+t,
+\qquad1\le t\le M_n,
 \]
 
-Adding `C_r` gives total cost
+define
 
 \[
-\sum_jm_j+r.
+\mathcal A_t(n)=
+\{2^{e_t}u:u\in U_{e_t}(n)\}.
 \]
 
-### Represented scale
+A representation chooses zero or one term from each layer.
 
-The highest available term in cloud `j` is `R_j max_t z_{j,t}` and the lowest is `R_j/max_t z_{j,t}`. A family of centers and multipliers can in principle span the half-range, but the structural theorem does not prove that suitable legal multipliers exist in every required logarithmic band.
+### Legal terms
 
-### Current failure point
+Every layer term divides `n!`.
 
-Two separate statements are missing:
+### Distinctness
 
-1. an analytic selection theorem producing legal `R_j` and `z_{j,t}` across all necessary scales with the stated marker restrictions;
-2. an additive theorem proving that the three-choice restricted sumset is downward-window dense throughout `[2^r,X_n]`.
+Within a layer, different cores give different values. Across layers, 2-adic addresses differ. Palette collision is impossible because cores are greater than one and odd.
 
-The construction is not automatically subject to Phase 12P because it is not an ordered one-choice ladder. A later proof that imposes a sequential decoding order would have to re-audit the Phase 12P hypotheses.
+### Independent choices
 
-## 8. Full term-cost comparison
+The available choices are the odd cores. The address is a label that certifies numerical distinctness; it is not an additional selectable coordinate.
 
-| Construction | Main terms | Correction terms | Total claimed architecture cost | Current status |
-|---|---:|---:|---:|---|
-| 2-adic address packets | `M=ceil(A(log n)^2)` | `r=ceil(B log n)` | `A(log n)^2+B log n+O(1)` | legality and distinctness proved; occupancy open |
-| complement-pair clouds | `sum_j m_j`, with `J,m_j=O(log n)` | `r=ceil(B log n)` | `O((log n)^2)` | legality and distinctness proved; analytic selection and occupancy open |
+### Logarithmic scale range
 
-## 9. Mandatory falsification summary
+The full menu contains every admissible addressed odd divisor up to `X_n`. Windowed submenus can be defined by imposing
 
-- Divisor legality: proved under explicit valuation conditions.
+\[
+L\le u\le U,
+\]
+
+which produces terms in
+
+\[
+2^{e_t}L\le d\le2^{e_t}U.
+\]
+
+### Maximum selected terms
+
+At most
+
+\[
+M_n+r_n
+=
+\lceil16(\log n)^2\rceil+
+\lceil4\log n\rceil
+\]
+
+terms are selected.
+
+### Missing additive theorem
+
+For every `x` in `[2^{r_n},X_n]`, prove a rainbow sum in
+
+\[
+[x-(2^{r_n}-1),x].
+\]
+
+### Exact failure point
+
+Capacity is sufficient at the formal-profile level, but no theorem controls collisions, residue classes, or maximum downward gaps.
+
+Full construction: `constructions/VALUATION_TAGGED_ADDRESS_PACKETS.md`.
+
+## 9. Construction B: complement-pair menu clouds
+
+Result label: **heuristic** as a half-range route.
+
+Choose `M_n=O((log n)^2)` square centers
+
+\[
+R_s^2\mid n!
+\]
+
+with distinct 2-adic center tags and `5|R_s`. Give each slot a large menu of odd multipliers
+
+\[
+Z_s(n)\subseteq\{z:z\mid R_s,\ \gcd(z,10)=1,\ 1<z\le X_n/R_s\}.
+\]
+
+The slot menu is
+
+\[
+\mathcal B_s(n)=
+\{R_s/z:z\in Z_s(n)\}
+\cup
+\{R_sz:z\in Z_s(n)\}.
+\]
+
+Choose zero or one term from each slot.
+
+### Legal terms
+
+Both reciprocal terms divide `R_s^2`, hence divide `n!`.
+
+### Distinctness
+
+Low terms lie below `R_s`, high terms lie above it, and distinct multipliers give distinct values. Cross-slot equality is prevented by distinct 2-adic center tags. Every term is divisible by `5`, so the palette is disjoint.
+
+### Scale range
+
+A multiplier window `[L,U]` simultaneously produces low terms in
+
+\[
+[R_s/U,R_s/L]
+\]
+
+and high terms in
+
+\[
+[R_sL,R_sU].
+\]
+
+### Maximum selected terms
+
+At most `M_n+r_n=O((log n)^2)`.
+
+### Missing analytic theorem
+
+Construct center and multiplier menus of geometric-mean size `exp(Omega(n/log n))` across the required scale windows.
+
+### Missing additive theorem
+
+Prove the corresponding global rainbow sumset is downward `2^{r_n}-1` dense on `[2^{r_n},X_n]`.
+
+### Exact failure point
+
+The route adds square-center and multiplier-distribution obligations beyond Construction A. Complement geometry does not itself imply density.
+
+Full construction: `constructions/MARKED_COMPLEMENT_PAIR_CLOUDS.md`.
+
+## 10. Term-cost table
+
+| Route | Available choices | Maximum selected main terms | Correction terms | Total selected terms |
+|---|---:|---:|---:|---:|
+| Full-menu addressed layers | `sum_t |U_t(n)|` | `M_n` | `r_n` | `M_n+r_n` |
+| Complement-pair menu clouds | `sum_s 2|Z_s(n)|` | `M_n` | `r_n` | `M_n+r_n` |
+
+Large available menus do not increase selected-term cost because at most one term is chosen per labeled layer.
+
+## 11. Mandatory falsification ledger
+
+- Divisor legality: proved under exact menu definitions.
 - Repeated numerical divisors across labels: prevented by 2-adic signatures.
-- Hidden dependence between coordinates: prime-power dependence explicitly recorded.
-- Additive shell gaps: not ruled out; they are part of the exact missing occupancy theorem.
-- Inaccessible residue classes: not ruled out; Nova 2 must test the gcd and residue span of every frozen family.
-- Capacity versus coverage: no coverage claim is made from profile count.
-- Recursive term cost: neither preferred candidate uses recursive decoding in its present definition.
-- Sequential obstruction: Construction B is globally nonsequential; Construction A also permits a global subset choice, but any sequential proof must be re-audited.
-- Finite-to-asymptotic promotion: prohibited.
+- Hidden coordinate dependence: prime-power dependence recorded; sum correlations remain open.
+- Additive shell gaps: open and explicitly requested from Nova 2.
+- Inaccessible residues: open and mandatory to test.
+- Capacity versus coverage: separated by proved counting gates.
+- Recursive cost: neither route uses recursion.
+- Sequential obstruction: both routes are frozen as global rainbow systems; any sequential decoder requires a Phase 12P audit.
+- Finite promotion: prohibited.
 
-## 10. Atlas conclusion
+## 12. Atlas conclusion
 
-The factorial lattice supplies a proved `Theta((log n)^2)` marker-address budget and a proved `Theta(log n)` binary correction palette. These remove divisor legality and numerical collision as primary obstacles for two broad architectures. The unresolved node is uniform additive occupancy, together with the analytic construction of cores or complement multipliers at the required scales.
+The factorial structure resolves three issues rigorously:
+
+1. enough marker valuations exist to label `O((log n)^2)` selected layers;
+2. full odd-divisor menus can have the necessary `exp(Omega(n/log n))` scale;
+3. binary correction converts downward window occupancy into exact representation.
+
+The preferred route is Construction A. Its exact remaining blocker is uniform additive occupancy of the frozen full-menu rainbow sumset.
