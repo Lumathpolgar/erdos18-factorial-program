@@ -1,50 +1,57 @@
 # Preferred Additive Route
 
-## Ranking
+## Current ranking
 
-### Rank 1: Target-dependent exponential tilt with lattice-aware Fourier window control
-
-**Result label: conditional theorem.**
-
-This route moves the mean toward each requested target and asks only for positive mass in a correction window. It directly addresses the fixed-law tail problem. The proof engine is the strict Fourier comparison lemma N2-ADD-110, not a visual or weak Gaussian approximation.
-
-Required supplement: deterministic lower and upper endpoint regimes because tilted variance collapses near support endpoints.
-
-Required precondition: the fixed structural labels must pass N2-ADD-115. No analytic model is opened until the support lattice, attained residues, and correction radius are compatible.
-
-### Rank 2: Deterministic restricted-sumset growth
+### Rank 1: Normalized valuation-tagged quotient occupancy
 
 **Result label: conditional theorem.**
 
-This route would give the cleanest all-target result if a strong labeled covering theorem could be verified. It is ranked second because current additive inverse and growth theorems do not automatically preserve one choice per label, numerical distinctness, interval location, or factorial divisor legality.
+Use the quotient labels from `models/VALUATION_TAGGED_QUOTIENT_MODEL.md`, the three-power repaired binary palette, target-dependent exponential tilting for centering, and the weighted bounded-torus Fourier inequality for exact four-point window positivity.
 
-### Rank 3: Uniform rainbow convolution
+This is the first route attached to an explicit factorial construction whose original lattice defect has been completely normalized and whose minimum consecutive-binary repair has been identified.
+
+### Rank 2: Deterministic restricted-sumset growth on the quotient labels
+
+**Result label: conditional theorem.**
+
+Prove directly that the final normalized sumset has maximum downward gap at most `3`, without any requirement on intermediate partial sumsets.
+
+This route avoids local-limit losses but still must preserve labels, numerical distinctness, divisor legality, and the final quotient endpoint.
+
+### Rank 3: General target-dependent exponential tilt
+
+**Result label: conditional theorem.**
+
+Retained as the general architecture underlying Rank 1 and for future structurally compatible labels.
+
+### Rank 4: Uniform rainbow convolution
 
 **Result label: heuristic.**
 
-This is a useful benchmark and may work for specially balanced packets. It is ranked below tilting because one fixed mean leaves the endpoint windows in large-deviation tails.
+Useful as a benchmark, but one fixed mean leaves endpoint targets in large-deviation tails.
 
-### Rank 4: Fixed-law Fourier or local-limit theorem
+### Rank 5: Fixed-law Fourier or local-limit theorem
 
 **Result label: heuristic as a standalone route.**
 
-Fourier analysis is essential as a proof tool, but a fixed-law local theorem is generally central rather than half-range uniform. It is retained inside Rank 1, not selected as an independent final architecture.
+Fourier analysis remains a proof tool inside Rank 1. A fixed-law central theorem is not an all-target half-range mechanism.
 
 ## Structural compatibility gate
 
-Before tilting, moment computation, or Fourier inversion, every fixed label family must pass all of the following.
+Before tilting, moment computation, dynamic programming, or Fourier inversion, every fixed label family must pass all of the following.
 
 1. Compute the common support lattice `g_n Z` of the final main sumset.
 2. Determine the exact attained residues if the support is not a single lattice coset.
-3. Compare the correction radius `R_n` with every unresolved downward residue gap.
-4. Test the first requested target directly.
-5. Test the minimum nonzero main sum and the top endpoint.
-6. Verify that the correction palette is numerically disjoint from every main label.
-7. Verify that the full construction remains final-only and does not impose sequential interval growth.
+3. Divide out every common factor and state the quotient labels explicitly.
+4. Compare the correction range with every unresolved quotient downward gap using N2-ADD-116.
+5. Test the first requested target directly.
+6. Test the minimum nonzero quotient sum and the top endpoint.
+7. Verify that the correction palette is numerically disjoint from every main label.
+8. Verify that the full construction remains final-only and does not impose sequential interval growth.
 
-N2-ADD-115 proves that if the main support is contained in `g_n Z` and the target range contains `R_n+1` with `R_n<g_n-1`, then all-target downward-window occupancy is impossible.
+N2-ADD-115 rejects a radius smaller than the first missing lattice block. N2-ADD-116 gives the exact quotient theorem after any valid correction range is frozen.
 
-## First frozen instantiation outcome
+## Rejected original instantiation
 
 Nova 1 handoff `N1-HO-N2-001`, imported from branch `nova/factorial-structure` at commit
 
@@ -52,114 +59,178 @@ Nova 1 handoff `N1-HO-N2-001`, imported from branch `nova/factorial-structure` a
 
 failed the structural gate.
 
-Its addresses satisfy
+Its entire main sumset lies in
 
 \[
-e_t=r_n+t\ge r_n+1,
+2^{r_n+1}\mathbb Z,
 \]
 
-so its entire main sumset lies in
-
-\[
-2^{r_n+1}\mathbb Z.
-\]
-
-Its correction radius is only
+while the original correction radius is only
 
 \[
 2^{r_n}-1.
 \]
 
-The first requested target `x=2^{r_n}` has window `[1,2^{r_n}]`, which is disjoint from the main support. The exact model is therefore `REJECTED` before analytic evaluation.
+The first requested window is disjoint from the support. The exact model is `REJECTED`.
 
 Proof: `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md`.
 
-Response: `handoffs/RESPONSE_TO_NOVA1.md`.
+## Exact quotient normalization
 
-## Selected architecture after structural acceptance
-
-For each `n`, Nova 1 supplies:
-
-1. fixed pairwise numerically disjoint main labels
-   \[
-   A_{1,n},...,A_{k_n,n}\subseteq D(n!);
-   \]
-2. a numerically disjoint correction palette `C_n`;
-3. a correction radius `R_n` and term cost `ell_n`;
-4. exact common span and residue data;
-5. deterministic endpoint coverage where the tilted variance theorem is not valid.
-
-For each bulk target `x`, choose a target-dependent exponential tilt on the fixed labels so that the mean lies near the midpoint of
+For the retained main layers, set
 
 \[
-I_{n,x}=[x-R_n,x]\cap\mathbb Z.
+g_n=2^{r_n+1}
 \]
 
-Nova 3 proves a major-arc and minor-arc estimate strong enough to establish
+and define
+
+\[
+B_t(n)
+=
+\{2^{t-1}u:
+ u\mid n!,\ u>1,\ u\text{ odd},\ g_n2^{t-1}u\le X_n\}.
+\]
+
+Let
+
+\[
+Q_n
+=
+(B_1(n)\cup\{0\})+\cdots+(B_{M_n}(n)\cup\{0\}).
+\]
+
+Then the original main sumset is exactly
+
+\[
+R_n=g_nQ_n.
+\]
+
+N2-ADD-116 proves that if correction covers `[0,Lg_n-1]`, then exact original-target coverage is equivalent to quotient downward gaps at most `L-1`.
+
+## Minimal consecutive-binary repair
+
+The original palette ends at `2^{r_n-1}`.
+
+- Adding only `2^{r_n}` gives correction maximum `g_n-1` and fails at quotient target `m=1`.
+- Adding through `2^{r_n+1}` gives correction maximum `2g_n-1` and fails at quotient target `m=2`.
+- Adding through `2^{r_n+2}` gives correction maximum `4g_n-1` and is the first consecutive-binary extension not blocked by the initial support gap.
+
+The first two variants are N2-OBS-108.
+
+The proposed repaired palette is
+
+\[
+C_n^+=\{2^0,2^1,\ldots,2^{r_n+2}\}.
+\]
+
+Nova 1 must accept, restrict, supersede, or reject this repair in a versioned handoff. Contract: `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`.
+
+## Frozen exact additive theorem
+
+The surviving global target is
+
+\[
+Q_n\cap[\max(0,m-3),m]\ne\varnothing
+\]
+
+for every integer
+
+\[
+0\le m\le\lfloor X_n/g_n\rfloor.
+\]
+
+Under this hypothesis, N2-ADD-117 proves
+
+\[
+H_{n!}(X_n+1)
+\le
+M_n+r_n+3
+=O((\log n)^2).
+\]
+
+This is a final-only theorem. It does not require intermediate sumsets to cover intervals.
+
+## Preferred probabilistic proof engine
+
+For target `m`, use independent quotient-layer choices with target-dependent Gibbs weights
+
+\[
+\Pr(Y_{t,\beta}=b)
+=
+\frac{e^{\beta b}}
+{\sum_{c\in B_t(n)\cup\{0\}}e^{\beta c}}.
+\]
+
+Let
+
+\[
+T_{n,\beta}=\sum_tY_{t,\beta}.
+\]
+
+Center the mean inside the exact window
+
+\[
+W_{n,m}=[\max(0,m-3),m].
+\]
+
+The additive numerical-value characteristic function is
+
+\[
+\Phi_{n,m}(\theta)
+=
+\mathbb E e^{i\theta T_{n,\beta_{n,m}}},
+\qquad
+\theta\in[-\pi,\pi].
+\]
+
+For an explicit lattice reference law `G_{n,m}` with characteristic function `Psi_{n,m}`, it is sufficient to prove
 
 \[
 \int_{-\pi}^{\pi}
-|\phi_{n,x}(t)-\psi_{n,x}(t)|
-|K_{I_{n,x}}(t)|\,dt
-<2\pi Q_{n,x}(I_{n,x}),
+|\Phi_{n,m}(\theta)-\Psi_{n,m}(\theta)|
+\left|\sum_{a\in W_{n,m}}e^{-ia\theta}\right|d\theta
+<
+2\pi G_{n,m}(W_{n,m}).
 \]
 
-where `Q_{n,x}` is a lattice reference law with known positive mass in the target window.
+The exact analytic contract is `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
 
-The characteristic function is the additive numerical-value characteristic function
+## Deterministic alternative
 
-\[
-\phi_{n,x}(t)=\mathbb E e^{itS_{n,x}},
-\]
+A deterministic proof may replace all probability and Fourier work by proving directly that the final labeled quotient sumset has maximum downward gap at most `3`.
 
-not a characteristic function of `log d`. Integer-valued inversion takes place on the bounded torus `[-pi,pi]`. Every resonance inside that torus must be included in the major arcs or controlled explicitly.
+It must still establish:
 
-N2-ADD-110 then gives positive main-window mass. Pairwise disjoint supports give deterministic extraction. N2-ADD-112 adds the correction residual and proves the target representation.
+- fixed labels;
+- numerical distinctness;
+- legal lift by multiplication with `g_n`;
+- every quotient target;
+- the top partial block;
+- no hidden sequential interval invariant.
 
-## Nova 3 compatibility ruling
+## Why the route survives historical no-go results
 
-Nova 3 handoff `N3-HO-N2-001` was inspected at exact commit
-
-`0ce88b28dc2e6641093526f5777bb31f658e3515`.
-
-The following restrictions are accepted:
-
-- a full uniform-divisor Gaussian model for `log d` is unavailable;
-- unbounded-frequency pointwise decay is not a valid Fourier contract;
-- logarithmic divisor estimates do not transfer automatically to additive numerical sums;
-- the exact fixed layer law must be frozen before moments and resonances can be audited.
-
-These restrictions are compatible with the selected route because its inversion domain is bounded and periodic. The high-prime logarithmic CLT is not imported as an additive occupancy theorem.
-
-## Why this route survives the historical no-go results
-
-- It is not independently decoded across CRT coordinates.
-- It does not infer coverage from raw profile count.
-- It does not use a magnitude-separated high-prime shell atlas without a residue audit.
+- It does not infer coverage from profile count.
+- It removes the common lattice before analytic modeling.
 - It does not require partial sumsets to cover intervals.
-- It is not a one-choice sequential ladder in the Phase 12P sense.
-- It tests final occupancy only after all labels are globally convolved.
-- It rejects structurally impossible supports before probabilistic modeling.
-
-## Frozen bulk theorem target
-
-Find absolute constants `K,L,c_0,n_0` and sequences `R_n`, `sigma_{n,x}` such that:
-
-- `k_n<=K(log n)^2`;
-- every residual in `[0,R_n]` uses at most `L(log n)^2` correction divisors;
-- the fixed main support and correction palette pass the structural compatibility gate;
-- for every bulk target, the tilted variance satisfies `sigma_{n,x}>=c_0` and the weighted Fourier error is strictly below the explicit reference window mass;
-- all terms are numerically distinct;
-- the deterministic endpoint regimes and bulk regime cover every integer `0<=x<=X_n`.
+- It is not an independently decoded CRT product.
+- It is not a one-choice sequential ladder.
+- It tests the final globally coupled quotient sumset.
+- It uses a correction range matched exactly to the quotient gap theorem.
+- It rejects logarithmic-divisor estimates unless a transfer theorem is proved.
 
 ## Exact blockers
 
-1. The first frozen factorial label system was rejected by an exact lattice obstruction.
-2. No revised Nova 1 label family yet passes the structural compatibility gate.
-3. No uniform additive-value tilt and variance theorem is available.
-4. No major-arc or minor-arc inequality has been proved for an accepted factorial layer system.
-5. No finite search has tested a repaired candidate against exact target-window minima.
+1. Nova 1 has not yet accepted or superseded the three-power repair.
+2. The final quotient maximum-gap-`3` theorem is open.
+3. The exact quotient span and secondary resonances are unknown.
+4. No target-uniform quotient tilt and variance theorem is available.
+5. No strict four-point weighted Fourier inequality has been proved.
+6. No deterministic endpoint contract has been returned.
+7. No exact finite quotient falsification harness has been published.
+8. Finite exceptions remain open.
 
 ## Next theorem target
 
-Receive or construct a versioned repair of the Nova 1 labels with an exact span and residue theorem. Only then freeze the additive numerical-value law and request the bounded-torus Fourier estimate from Nova 3.
+Prove or disprove that the final normalized rainbow sumset `Q_n` has maximum downward gap at most `3` through `floor(X_n/g_n)`. The immediate work is to run exact finite quotient-gap searches, determine all additive resonances, and identify a bulk range where a four-point local theorem could be quantitatively strong enough.
