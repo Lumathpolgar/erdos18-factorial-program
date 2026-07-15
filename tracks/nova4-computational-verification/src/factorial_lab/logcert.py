@@ -82,3 +82,83 @@ def factorial_at_least(n: int, threshold: int) -> bool:
         if product >= threshold:
             return True
     return product >= threshold
+
+
+def _certified_scaled_log_leq(n: int, k: int, *, square: bool) -> bool:
+    """Certify 4 log(n)<=k or 16 log(n)^2<=k with adaptive rational bounds."""
+    n = _require_int("n", n, minimum=1)
+    k = _require_int("k", k, minimum=0)
+    for terms in (8, 12, 16, 24, 32, 48, 64, 96):
+        lower, upper = natural_log_bounds(n, terms=terms)
+        if square:
+            low_value = 16 * lower * lower
+            high_value = 16 * upper * upper
+        else:
+            low_value = 4 * lower
+            high_value = 4 * upper
+        if high_value <= k:
+            return True
+        if low_value > k:
+            return False
+    raise LogCertificationError(
+        f"could not certify scaled logarithm comparison for n={n}, k={k}"
+    )
+
+
+def _parameter_upper_boundaries(n_max: int, *, square: bool) -> list[int]:
+    """Return upper[k]=max n<=n_max with f(n)<=k for monotone f."""
+    n_max = _require_int("n_max", n_max, minimum=1)
+    r_max, m_max = certified_log_parameters(n_max)
+    k_max = m_max if square else r_max
+    upper = [0] * (k_max + 1)
+    lo_floor = 0
+    for k in range(k_max + 1):
+        lo = lo_floor
+        hi = n_max
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if _certified_scaled_log_leq(mid, k, square=square):
+                lo = mid
+            else:
+                hi = mid - 1
+        upper[k] = lo
+        lo_floor = lo
+        if lo == n_max:
+            for rest in range(k + 1, k_max + 1):
+                upper[rest] = n_max
+            break
+    return upper
+
+
+def certified_log_parameter_tables(n_max: int) -> tuple[list[int], list[int]]:
+    """Build exact r_n and M_n tables from certified monotone thresholds."""
+    n_max = _require_int("n_max", n_max, minimum=1)
+    r_upper = _parameter_upper_boundaries(n_max, square=False)
+    m_upper = _parameter_upper_boundaries(n_max, square=True)
+    r_values = [0] * (n_max + 1)
+    m_values = [0] * (n_max + 1)
+
+    def fill(values: list[int], upper: list[int]) -> None:
+        previous = 0
+        for k, boundary in enumerate(upper):
+            if boundary > previous:
+                for n in range(previous + 1, boundary + 1):
+                    values[n] = k
+                previous = boundary
+            if previous == n_max:
+                break
+        if previous != n_max:
+            raise LogCertificationError("parameter boundary table did not cover full range")
+
+    fill(r_values, r_upper)
+    fill(m_values, m_upper)
+    for values in (r_values, m_values):
+        prior = None
+        for n in range(1, n_max + 1):
+            if values[n] != prior:
+                r, m = certified_log_parameters(n)
+                expected = m if values is m_values else r
+                if values[n] != expected:
+                    raise LogCertificationError(f"transition table mismatch at n={n}")
+                prior = values[n]
+    return r_values, m_values
