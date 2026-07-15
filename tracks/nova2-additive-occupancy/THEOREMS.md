@@ -17,8 +17,9 @@
 | N2-ADD-112 | proved theorem | Main-window occupancy plus a disjoint correction palette gives exact coverage | `models/TOY_SUFFICIENT_CONDITIONS.md` |
 | N2-ADD-113 | proved theorem | Positive point mass gives targetwise extraction for fixed legal labels | `models/TOY_SUFFICIENT_CONDITIONS.md` |
 | N2-ADD-115 | proved theorem | A subset of `g Z` cannot meet all downward windows of radius below `g-1`; applying this to the first Nova 1 layers gives an exact first-target failure | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
+| N2-ADD-116 | proved theorem | If `S subseteq g Z` and corrections cover `[0,Lg-1]`, exact original-target coverage is equivalent to quotient downward gaps at most `L-1` | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
 
-## Conditional theorem
+## Conditional theorems
 
 ### N2-ADD-114
 
@@ -33,6 +34,40 @@
 - Boundary treatment: lower endpoint by correction; upper endpoint included in the Fourier hypothesis; finite `n<n_0` open.
 - Proof: `proofs/CANDIDATE_OCCUPANCY_THEOREM.md`.
 
+### N2-ADD-117
+
+- Result label: `conditional theorem`
+- Source construction: Nova 1 full-menu valuation-tagged address packets, inspected at head `fa11f4b2cb86a2dd791df189ada12757be791804`.
+- Normalization:
+  \[
+  g_n=2^{r_n+1},
+  \qquad
+  R_n=g_nQ_n.
+  \]
+- Repaired correction palette:
+  \[
+  C_n^+=\{2^0,2^1,\ldots,2^{r_n+2}\},
+  \]
+  representing `[0,4g_n-1]`.
+- Exact open hypothesis:
+  \[
+  Q_n\cap[\max(0,m-3),m]\ne\varnothing
+  \]
+  for every integer
+  \[
+  0\le m\le\lfloor X_n/g_n\rfloor.
+  \]
+- Conclusion:
+  \[
+  H_{n!}(X_n+1)
+  \le
+  M_n+r_n+3
+  =O((\log n)^2).
+  \]
+- Structural dependency: Nova 1 must accept or supersede the repair and certify the three added powers, quotient identity, and finite exceptions.
+- Analytic dependency: exact additive numerical-value tilt and bounded-torus weighted Fourier theorem, or a deterministic quotient covering theorem.
+- Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
+
 ## Disproved models
 
 | ID | Result label | Statement | Location |
@@ -44,10 +79,11 @@
 | N2-OBS-105 | disproved model | A bulk tilted local theorem remains uniform to both support endpoints | `models/TOY_COUNTEREXAMPLES.md` |
 | N2-OBS-106 | disproved model | Separate target-dependent probability spaces define one universal random object | `models/TOY_COUNTEREXAMPLES.md` |
 | N2-OBS-107 | disproved model | The exact valuation-tagged occupancy request `N1-HO-N2-001` covers every target with radius `2^{r_n}-1` | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
+| N2-OBS-108 | disproved model | Adding only one or two consecutive binary powers above the original palette repairs the valuation-tagged initial support gap | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
 
-## Cross-track decisions
+## Cross-track decisions and contracts
 
-### Nova 1
+### Nova 1 original handoff
 
 - Handoff: `N1-HO-N2-001`.
 - Source branch: `nova/factorial-structure`.
@@ -56,7 +92,15 @@
 - Reason: all main sums lie in `2^{r_n+1} Z`, while the first requested window is `[1,2^{r_n}]`.
 - Response: `handoffs/RESPONSE_TO_NOVA1.md`.
 
-### Nova 3
+### Nova 1 repair contract
+
+- Handoff: `N2-HO-N1-002`.
+- Source head inspected: `fa11f4b2cb86a2dd791df189ada12757be791804`.
+- Status: awaiting receiver decision.
+- Exact proposal: retain the main labels, add correction powers through `2^{r_n+2}`, and version the quotient four-point theorem.
+- Contract: `handoffs/REPAIR_CONTRACT_TO_NOVA1.md`.
+
+### Nova 3 prior handoff
 
 - Handoff: `N3-HO-N2-001`.
 - Source branch: `nova/analytic-density`.
@@ -64,18 +108,27 @@
 - Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
 - Accepted domain: the stated results for logarithmic divisor size and the obstruction to unbounded-frequency pointwise decay.
 - Prohibited transfer: no theorem for `log d` may be used as a theorem for additive numerical sums without a separate proved compatibility result.
-- Required additive object: `phi_{n,x}(t)=E exp(it S_{n,x})` on `[-pi,pi]`.
 - Response: `handoffs/RESPONSE_TO_NOVA3.md`.
+
+### Nova 3 quotient request
+
+- Handoff: `N2-HO-N3-002`.
+- Status: conditional on Nova 1 structural acceptance.
+- Exact law: target-dependent exponential tilt on the normalized numerical labels `B_t(n)`.
+- Exact inversion domain: `[-pi,pi]`.
+- Exact target window: `[max(0,m-3),m]`.
+- Request: `handoffs/QUOTIENT_REQUEST_TO_NOVA3.md`.
 
 ## Open factorial instantiation nodes
 
-- N2-OPEN-201-v2: obtain a revised fixed factorial label family whose common lattice span and correction radius are compatible.
-- N2-OPEN-202: prove a uniform target-dependent tilt and variance theorem in the bulk for an accepted additive-value layer law.
-- N2-OPEN-203: prove the weighted major-minor arc inequality on the integer torus `[-pi,pi]`.
-- N2-OPEN-204: cover excluded endpoint regimes deterministically.
+- N2-OPEN-201-v3: obtain Nova 1 acceptance or a versioned superseding construction for the three-power quotient repair.
+- N2-OPEN-202-v2: prove a uniform target-dependent tilt and variance theorem for the normalized additive-value layer law.
+- N2-OPEN-203-v2: prove the weighted major-minor arc inequality for every four-point quotient window on `[-pi,pi]`.
+- N2-OPEN-204-v2: cover all quotient endpoint regimes omitted by the analytic theorem.
 - N2-OPEN-205: certify finite exceptions.
 - N2-OPEN-206: verify that any imported theorem for `log d` has a proved transfer to additive numerical sums before use.
+- N2-OPEN-207: independently prove or disprove that the final normalized rainbow sumset has maximum downward gap at most `3`.
 
 ## Promotion rule
 
-No conditional theorem becomes a proved factorial theorem until all structural, analytic, endpoint, and finite-exception nodes are proved and independently reconstructed.
+No conditional theorem becomes a proved factorial theorem until all structural, analytic or deterministic occupancy, endpoint, and finite-exception nodes are proved and independently reconstructed.
