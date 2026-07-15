@@ -1,8 +1,10 @@
-# Construction N1-CON-002: Marked Complement-Pair Clouds
+# Construction N1-CON-002: Marked Complement-Pair Menu Clouds
 
 Result label: **heuristic** as a half-range route.
 
-The construction is globally nonsequential. Its legality, numerical distinctness, and term budget are proved theorems. Its analytic scale selection and additive occupancy remain open.
+This revision replaces the disproved fixed-pair family with `O((log n)^2)` labeled slots, each carrying a large menu of complement-paired choices. The selected-term count is polylogarithmic, while the available-choice count can meet the factorial capacity scale.
+
+The construction is globally nonsequential.
 
 ## 1. Formal definition
 
@@ -11,70 +13,53 @@ Let
 \[
 X_n=\lfloor\sqrt{n!}\rfloor,
 \qquad
-r_n=\lceil B\log n\rceil.
-\]
-
-Choose integers
-
-\[
-J_n\le C_1\log n,
+r_n=\lceil B\log n\rceil,
 \qquad
-m_j\le C_2\log n.
+M_n\le C(\log n)^2.
 \]
 
-For every cloud `1<=j<=J_n`, choose a square divisor
+For every slot `1<=s<=M_n`, choose a square divisor
 
 \[
-Q_j=R_j^2\mid n!
+Q_s=R_s^2\mid n!
 \]
 
-satisfying:
+such that:
 
-1. `R_j<=X_n`;
-2. `5|R_j`;
+1. `R_s<=X_n`;
+2. `5|R_s`;
 3. the center tags
    \[
-   E_j=v_2(R_j)
+   E_s=v_2(R_s)
    \]
    are pairwise distinct.
 
-Choose distinct multipliers
+Choose a finite multiplier menu `Z_s(n)` satisfying, for every `z in Z_s(n)`,
 
 \[
-z_{j,1},\ldots,z_{j,m_j}
-\]
-
-with
-
-\[
-z_{j,t}\mid R_j,
+z\mid R_s,
 \qquad
-\gcd(z_{j,t},10)=1,
+\gcd(z,10)=1,
 \qquad
-1<z_{j,t}\le X_n/R_j.
+1<z\le X_n/R_s.
 \]
 
-Define the complement pair
+Define the slot menu
 
 \[
-a_{j,t}=R_j/z_{j,t},
-\qquad
-b_{j,t}=R_jz_{j,t}.
+\mathcal B_s(n)=
+\{R_s/z:z\in Z_s(n)\}
+\cup
+\{R_sz:z\in Z_s(n)\}.
 \]
 
-For each pair the legal choice set is
+A main representation selects either zero terms or exactly one term from each slot. The global rainbow sumset is
 
 \[
-\{0,a_{j,t},b_{j,t}\}.
-\]
-
-All pair choices are made jointly. The attainable main set is
-
-\[
-\mathcal S_n=
+\Sigma_{\rm cp}(n)=
 \left\{
-\sum_{j=1}^{J_n}\sum_{t=1}^{m_j}c_{j,t}:
- c_{j,t}\in\{0,a_{j,t},b_{j,t}\}
+\sum_{s=1}^{M_n}c_s:
+ c_s\in\mathcal B_s(n)\cup\{0\}
 \right\}.
 \]
 
@@ -84,123 +69,153 @@ The correction palette is
 \mathcal C_{r_n}=\{1,2,\ldots,2^{r_n-1}\}.
 \]
 
-## 2. Legal divisor proof
+## 2. Disproved predecessor
+
+Result label: **disproved route**.
+
+The predecessor with one frozen pair in each of `M_n=O((log n)^2)` slots had at most `3^{M_n}` formal profiles. With quasipolynomial or smaller correction width, it cannot cover the `exp(Theta(n log n))` factorial half-range. The proof is in `proofs/COUNTING_CAPACITY_OBSTRUCTION.md`.
+
+The surviving route requires large multiplier menus.
+
+## 3. Legal divisor proof
+
+Result label: **proved theorem** under the slot hypotheses.
+
+For `z|R_s`, write
+
+\[
+v_p(R_s)=A_p,
+\qquad
+v_p(z)=u_p.
+\]
+
+Then
+
+\[
+v_p(R_s/z)=A_p-u_p,
+\qquad
+v_p(R_sz)=A_p+u_p,
+\]
+
+and both exponents lie in `[0,2A_p]=[0,v_p(Q_s)]`. Therefore every menu term divides `Q_s`, hence divides `n!`.
+
+The upper multiplier bound gives `R_sz<=X_n`; the reciprocal term is below `R_s<=X_n`.
+
+## 4. Numerical distinctness proof
 
 Result label: **proved theorem**.
 
-Because `z_{j,t}|R_j`, prime valuations satisfy
+Within one slot, distinct multipliers produce distinct low terms and distinct high terms. Every low term is below `R_s`, and every high term is above `R_s`, so low/high collisions are impossible.
+
+Every multiplier is odd, hence every term in slot `s` has
 
 \[
-0\le v_p(R_j)-v_p(z_{j,t})
-\le v_p(R_j)+v_p(z_{j,t})
-\le2v_p(R_j)=v_p(Q_j).
+v_2(c)=E_s.
 \]
 
-Therefore
+Pairwise distinct center tags prevent equality across slots.
 
-\[
-a_{j,t}\mid Q_j,
-\qquad
-b_{j,t}\mid Q_j,
-\]
+Because `5|R_s` and every multiplier is coprime to `5`, every slot term is divisible by `5`. Thus no main term equals a pure power of two from the correction palette.
 
-and both divide `n!`.
+## 5. Selectable term budget
 
-The upper multiplier condition gives
-
-\[
-b_{j,t}=R_jz_{j,t}\le X_n.
-\]
-
-The low term satisfies `a_{j,t}<R_j<=X_n`.
-
-## 3. Numerical distinctness proof
-
-Result label: **proved theorem**.
-
-Within cloud `j`, every low term is below `R_j` and every high term is above `R_j`. Distinct multipliers produce distinct low terms and distinct high terms, so all terms within a cloud are pairwise distinct.
-
-Every multiplier is odd, hence
-
-\[
-v_2(a_{j,t})=v_2(b_{j,t})=E_j.
-\]
-
-Distinct center tags `E_j` therefore prevent equality across clouds.
-
-Because `5|R_j` and `5` divides no multiplier,
-
-\[
-5\mid a_{j,t},
-\qquad
-5\mid b_{j,t}.
-\]
-
-Thus no pair term equals a pure power of two from the correction palette.
-
-## 4. Selectable term budget
-
-At most one divisor is chosen from each pair. Hence the main cost is bounded exactly by
-
-\[
-M_n:=\sum_{j=1}^{J_n}m_j
-\le C_1C_2(\log n)^2.
-\]
-
-The total architecture cost, including correction, is
+At most one term is selected from each of `M_n` slots. Therefore the main cost is at most `M_n`, independent of the menu sizes. Including correction gives
 
 \[
 M_n+r_n
-\le C_1C_2(\log n)^2+B\log n+1.
+\le C(\log n)^2+B\log n+1.
 \]
 
-No recursion is present.
+There is no recursion.
 
-## 5. Represented scale
+## 6. Necessary capacity gate
 
-Cloud `j` occupies the multiplicative interval
+Result label: **proved theorem**.
+
+Slot `s` has at most `1+2|Z_s(n)|` formal states, including zero. Thus
 
 \[
-\left[
-R_j/z_{j,\max},
-R_jz_{j,\max}
-\right],
-\qquad
-z_{j,\max}=\max_t z_{j,t}.
+P_n=\prod_{s=1}^{M_n}(1+2|Z_s(n)|)
 \]
 
-Its high terms can approach `X_n` when `z_{j,max}` approaches `X_n/R_j`. Its low terms simultaneously occupy reciprocal scales around the center `R_j`.
+is an upper bound for the number of distinct attainable main sums.
 
-This reciprocal geometry is materially different from a magnitude-separated high-prime atlas. It creates coupled low/high options around each center.
+Downward-window coverage with width
 
-## 6. Global nonsequential structure
+\[
+R_n=2^{r_n}-1
+\]
+
+requires
+
+\[
+P_n(R_n+1)\ge X_n+1,
+\]
+
+or
+
+\[
+\sum_{s=1}^{M_n}\log(1+2|Z_s(n)|)
+\ge
+\log(X_n+1)-r_n\log2.
+\]
+
+This is necessary only. Arithmetic collisions can reduce the actual sumset.
+
+## 7. Represented scale and complement geometry
+
+Slot `s` supplies reciprocal terms around the center `R_s`:
+
+\[
+R_s/z<R_s<R_sz.
+\]
+
+A multiplier window `z in [L,U]` supplies low terms in
+
+\[
+[R_s/U,R_s/L]
+\]
+
+and high terms in
+
+\[
+[R_sL,R_sU].
+\]
+
+Thus one analytic multiplier menu populates two coupled magnitude ranges. This is materially different from a one-sided high-prime atlas.
+
+If a representation uses a low term `R_s/z` and switches to the paired high term `R_sz`, the exact increment is
+
+\[
+\Delta_s(z)=R_sz-R_s/z.
+\]
+
+The menu contains many possible increments, but a legal representation chooses at most one state from the slot.
+
+## 8. Global nonsequential structure
 
 Result label: **proved theorem** as a classification of the frozen selection rule.
 
-The construction does not define an ordered sequence of covered intervals, does not require one choice from each ordered layer, and does not decode targets greedily. It defines one restricted sumset generated by all three-choice pairs at once.
+All slot choices are made jointly in one rainbow sumset. The definition has:
 
-The switch identity
+- no ordered interval-extension recurrence;
+- no greedy target decoder;
+- no requirement to choose a nonzero term from every slot;
+- no fixed one-choice sequential ladder.
 
-\[
-b_{j,t}-a_{j,t}
-=R_jz_{j,t}-R_j/z_{j,t}
-\]
+Therefore Phase 12P does not apply automatically. Any proof that later imposes an ordered sequential decoder must be audited separately.
 
-allows a representation to be analyzed as a baseline low-term selection plus a globally chosen subset of switch increments, but no ordering of increments is prescribed.
+## 9. Collision and dependence analysis
 
-Therefore the Phase 12P theorem does not apply automatically. Any later proof that introduces a sequential one-choice decoding must perform a new hypothesis-by-hypothesis audit.
+- Within a slot: low/low and high/high equality force equal multipliers; low/high equality is impossible.
+- Across slots: distinct 2-adic center tags prevent equality.
+- With the palette: divisibility by `5` prevents collision.
+- Duplicate total sums: possible.
+- Hidden dependence: multiplier menus may share prime supports, creating correlated increments and residue obstructions.
+- Capacity versus coverage: the profile bound is only a necessary gate.
+- Complement symmetry: it provides paired scales, not additive density by itself.
 
-## 7. Collision analysis
-
-- Low/low collision within a cloud: impossible unless multipliers are equal.
-- High/high collision within a cloud: impossible unless multipliers are equal.
-- Low/high collision within a cloud: impossible by separation around `R_j`.
-- Cross-cloud collision: impossible by distinct 2-adic center tags.
-- Main/palette collision: impossible because every main term is divisible by `5`.
-- Duplicate total sums: possible. The restricted sum map need not be injective, and occupancy cannot be inferred from the formal count `3^{M_n}`.
-- Hidden dependence: different pairs may share prime factors. This creates arithmetic correlations among increments and must be tested for residue obstructions.
-
-## 8. Correction mechanism
+## 10. Correction mechanism
 
 Result label: **conditional theorem**.
 
@@ -210,142 +225,140 @@ Assume that for every integer
 2^{r_n}\le x\le X_n
 \]
 
-there exists `s in S_n` satisfying
+there exists `s in Sigma_cp(n)` such that
 
 \[
 x-(2^{r_n}-1)\le s\le x.
 \]
 
-Then the binary correction lemma yields
+Then
 
 \[
 H_{n!}(X_n+1)
 \le M_n+r_n
-=O((\log n)^2).
+=O((\log n)^2)
 \]
 
-The lower targets are handled by the palette alone.
+by the binary correction lemma.
 
-## 9. Exact missing additive theorem
+## 11. Exact missing additive theorem
 
 ### N1-REQ-N2-001-B
 
-For the exact frozen clouds and pairs supplied by Nova 1, prove that the restricted sumset
-
-\[
-\mathcal S_n=
-\left\{
-\sum c_{j,t}:c_{j,t}\in\{0,a_{j,t},b_{j,t}\}
-\right\}
-\]
-
-satisfies, uniformly for every integer `x` in the range
+For the exact frozen slot menus `B_s(n)`, prove that for every sufficiently large `n` and every integer
 
 \[
 2^{r_n}\le x\le X_n,
 \]
 
-the downward occupancy condition
+there exist choices
 
 \[
-[x-(2^{r_n}-1),x]\cap\mathcal S_n\ne\varnothing.
+c_s\in\mathcal B_s(n)\cup\{0\}
 \]
 
-The theorem must preserve the one-term-per-pair restriction. It must explicitly address the gcd and residue span of the pair terms or switch increments. It need not prove injectivity or exact representation by main terms.
+such that
 
-## 10. Exact missing analytic theorem
+\[
+x-(2^{r_n}-1)
+\le\sum_{s=1}^{M_n}c_s\le x.
+\]
+
+The theorem must preserve at most one selected term per slot and explicitly address gcd, residue-span, shell-gap, and collision-loss issues.
+
+## 12. Exact missing analytic theorem
 
 ### N1-REQ-N3-001-B
 
-For all sufficiently large `n`, construct lists
+For every sufficiently large `n`, construct square centers `R_s^2|n!` and multiplier menus `Z_s(n)` satisfying all of the following:
 
-\[
-(R_j,E_j,Z_j)_{1\le j\le J_n},
-\qquad
-Z_j=\{z_{j,1},\ldots,z_{j,m_j}\},
-\]
+1. `M_n<=C(log n)^2`;
+2. `R_s<=X_n`, `5|R_s`, and the values `v_2(R_s)` are pairwise distinct;
+3. each multiplier is an odd divisor of `R_s`, coprime to `5`, and at most `X_n/R_s`;
+4. for every frozen multiplier window `J_{s,k}(n)`,
+   \[
+   |Z_s(n)\cap J_{s,k}(n)|\ge Q_{s,k}(n);
+   \]
+5. the total menu sizes satisfy the necessary capacity inequality;
+6. the bounds hold uniformly over all frozen slots and windows.
 
-with absolute constants `C_1,C_2` and the following exact properties:
+No additive conclusion is requested from Nova 3.
 
-1. `J_n<=C_1 log n` and `m_j<=C_2 log n`;
-2. `R_j^2|n!`, `R_j<=X_n`, and `5|R_j`;
-3. the integers `E_j=v_2(R_j)` are pairwise distinct;
-4. every `z in Z_j` is an odd divisor of `R_j`, is coprime to `5`, and satisfies `1<z<=X_n/R_j`;
-5. the induced pair terms collectively meet the scale-window list frozen in the handoff, with at least the stated number of terms in every window.
-
-No additive coverage conclusion is requested from Nova 3. The final window list is chosen only after computational falsification identifies a viable reciprocal scale schedule.
-
-## 11. Known historical obstruction audit
+## 13. Known historical obstruction audit
 
 ### Phase 12K
 
-All multiplier and center windows must have integer width sufficient to contain actual divisors. No continuous mesh assumption is allowed.
+Every center and multiplier window must contain actual integer divisors. No continuous mesh assumption is permitted.
 
 ### Phase 12L
 
-The construction is not greedy. A greedy proof on sorted pair terms could inherit the maximum-gap lower bound and must be audited separately.
+The construction is not greedy. A sorted greedy decoder may inherit the historical lower bound.
 
 ### Phase 12M
 
-The formal profile count `3^{M_n}` is not used as coverage. Arithmetic correlation among pair increments is an active risk.
+The large formal profile count is not decoded independently and is not treated as coverage.
 
 ### Phase 12N
 
-Complement coupling repairs the strict low-shell/high-shell separation of the retired high-prime atlas at the structural level, but an additive shell gap may still exist. Only the occupancy theorem can rule it out.
+Reciprocal low/high menus weaken the old shell separation, but only the additive theorem can rule out shell gaps.
 
 ### Phase 12O
 
-The route retains the useful shared-core idea, now encoded through exact reciprocal pairs. Finite success remains finite evidence.
+The shared-core idea survives in exact complement form. Finite success remains finite evidence.
 
 ### Phase 12P
 
-The frozen construction is globally nonsequential and permits zero, low, or high choice in each pair. It does not satisfy the historical one-choice sequential-ladder definition. The obstruction may reappear if a proof imposes such an order.
+The object is globally nonsequential and has large menus with zero allowed. A later sequential one-choice proof would require a new audit.
 
-## 12. Mandatory falsification duties
+## 14. Mandatory falsification duties
 
-The route fails if any of the following occurs for infinitely many `n`:
+The route fails if any of the following occurs:
 
-1. no square centers with distinct 2-adic tags satisfy the scale requirements;
-2. a multiplier does not divide its center or places a high term above `X_n`;
-3. multiplier parity or a missing factor of `5` destroys cross-cloud or palette distinctness;
-4. the pair-term gcd excludes a residue class;
-5. the switch increments lie in a proper residue subgroup incompatible with correction;
-6. the restricted sumset has a gap larger than `2^{r_n}-1`;
-7. the number of required pairs exceeds `O((log n)^2)`;
-8. the proof becomes sequential and falls under a Phase 12P-type information ceiling;
-9. finite cloud patterns are promoted to an asymptotic statement.
+1. a center square does not divide `n!`;
+2. a multiplier is illegal, even, divisible by `5`, or too large;
+3. two slots share a 2-adic center tag;
+4. the capacity inequality fails;
+5. menu correlations collapse most formal profiles;
+6. a residue class remains inaccessible after correction;
+7. a downward gap exceeds `2^{r_n}-1`;
+8. more than one term from a slot is needed;
+9. the total selected-term count exceeds `M_n+r_n`;
+10. a sequential decoder is used without a Phase 12P audit;
+11. finite success is promoted asymptotically.
 
-## 13. Finite test plan
+## 15. Finite test plan
 
 For each tested `n`:
 
 1. compute exact factorial valuations;
-2. generate candidate square centers `R_j` and verify `R_j^2|n!`;
-3. generate legal multiplier lists and all pair terms;
-4. assert pair-term divisibility, upper range, and global numerical distinctness;
-5. assert every main term is divisible by `5` and every palette term is not;
-6. compute gcds of term sets and switch-increment sets;
-7. compute restricted reachability with a state that enforces at most one choice per pair;
-8. record maximum downward gap and first inaccessible residue class;
-9. compare global restricted selection against any sequential decoding heuristic to detect false dependence on ordering;
-10. retain exact witnesses or exact first failures.
+2. generate and verify square centers;
+3. generate multiplier menus and pair terms;
+4. assert legality, upper range, within-slot uniqueness, cross-slot address separation, and palette disjointness;
+5. check the necessary capacity inequality before occupancy search;
+6. compute restricted rainbow reachability with at most one term per slot;
+7. record maximum downward gap and first inaccessible residue class;
+8. compare formal profiles with distinct sums to measure collision loss;
+9. test whether any successful decoder secretly depends on sequential ordering;
+10. retain exact witnesses and exact first failures.
 
 Finite success is computational evidence only.
 
-## 14. Asymptotic failure condition
+## 16. Asymptotic failure condition
 
-Result label: **disproved route** if one proves that every marked complement-cloud family with
+Result label: **disproved route** if one proves that every admissible complement-menu system with
 
 \[
-\sum_jm_j=O((\log n)^2),
+M_n=O((\log n)^2),
 \qquad
-r_n=O(\log n),
+r_n=O(\log n)
 \]
 
-has, for infinitely many `n`, a target `x<=X_n` such that
+has infinitely many `n` and targets `x<=X_n` for which
 
 \[
-[x-(2^{r_n}-1),x]\cap\mathcal S_n=\varnothing.
+[x-(2^{r_n}-1),x]
+\cap\Sigma_{\rm cp}(n)
+=\varnothing.
 \]
 
-A residue obstruction that persists after the binary palette is included would also disprove the route.
+A persistent residue obstruction after correction also disproves the route.
