@@ -78,3 +78,9 @@ The complete unit suite now contains 32 tests and completes in approximately 0.2
 The exact transition audit for every `3 <= n <= 10000` completes in approximately 1.9 seconds. It uses rational interval bounds for logarithmic ceilings and exact integer checks for factorial valuation and target admissibility.
 
 These timings are engineering diagnostics, not mathematical claims.
+
+## Nova 1 capacity benchmark
+
+The exact audit of all 999,998 integers in `3 <= n <= 1,000,000` completed in approximately 6.7 seconds in the recorded container. Peak resident memory was approximately 333 MB.
+
+The complete unit suite contains 39 tests and completed in approximately 7.0 seconds. These are engineering diagnostics, not mathematical claims.
