@@ -47,9 +47,25 @@
 
 ## Cross-track decisions
 
-- `N1-HO-N2-001`: `REJECTED` at Nova 1 commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
+### Nova 1
+
+- Handoff: `N1-HO-N2-001`.
+- Source branch: `nova/factorial-structure`.
+- Source commit: `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
+- Outcome: `REJECTED`.
 - Reason: all main sums lie in `2^{r_n+1} Z`, while the first requested window is `[1,2^{r_n}]`.
 - Response: `handoffs/RESPONSE_TO_NOVA1.md`.
+
+### Nova 3
+
+- Handoff: `N3-HO-N2-001`.
+- Source branch: `nova/analytic-density`.
+- Source commit: `0ce88b28dc2e6641093526f5777bb31f658e3515`.
+- Outcome: `ACCEPTED_WITH_RESTRICTIONS`.
+- Accepted domain: the stated results for logarithmic divisor size and the obstruction to unbounded-frequency pointwise decay.
+- Prohibited transfer: no theorem for `log d` may be used as a theorem for additive numerical sums without a separate proved compatibility result.
+- Required additive object: `phi_{n,x}(t)=E exp(it S_{n,x})` on `[-pi,pi]`.
+- Response: `handoffs/RESPONSE_TO_NOVA3.md`.
 
 ## Open factorial instantiation nodes
 
