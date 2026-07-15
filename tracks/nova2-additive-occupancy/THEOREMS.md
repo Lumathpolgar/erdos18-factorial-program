@@ -20,6 +20,7 @@
 | N2-ADD-116 | proved theorem | If `S subseteq g Z` and corrections cover `[0,Lg-1]`, exact original-target coverage is equivalent to quotient downward gaps at most `L-1` | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
 | N2-ADD-118 | proved theorem | The three-power fallback has an exponentially long binary-spine prefix with four-point occupancy through `3*2^{M_n}` | `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md` |
 | N2-ADD-119 | proved theorem | Translated carrier blocks preserve downward window density when scaled carrier gaps are at most the previous reach plus the correction width and one | `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md` |
+| N2-ADD-121 | proved theorem | The unique-parent exponent-vector heap emits every bounded odd factorial divisor exactly once in increasing order, and record gaps suffice to replay every carrier threshold | `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md` |
 
 ## Conditional theorems
 
@@ -113,14 +114,52 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 
 throughout the completed range.
 
-This is a finite certificate, not an asymptotic theorem. The next case `n=46` is untested because its `27,941,760` odd cores exceed the declared generation cap.
-
 Proof and data:
 
 - `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
 - `verification/marker_three_full_menu_audit.py`;
 - `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
 - `verification/data/marker_three_full_menu_n12_n45.csv`.
+
+### N2-FIN-203
+
+The N2-ADD-121 streaming generator certifies the complete marker-three carrier theorem at `n=46` without materializing the complete `27,941,760`-core family.
+
+Exact parameters:
+
+\[
+r_{46}=16,
+\qquad
+M_{46}=235,
+\qquad
+v_2(46!)=42.
+\]
+
+The stream emits `24,567,748` cores through `Y_46`, retains `631` record gaps, and has maximum active frontier `3,373,952`. Six main layers give
+
+\[
+E_6+W_{46}
+=
+24{,}938{,}550{,}582{,}416{,}882{,}103{,}407{,}947{,}983
+>
+Y_{46}.
+\]
+
+Consequently
+
+\[
+H_{46!}(\lfloor\sqrt{46!}\rfloor+1)
+\le22.
+\]
+
+This is a finite exact theorem, not an asymptotic occupancy result. The smallest unaudited parameter is now `n=47`.
+
+Proof and data:
+
+- `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md`;
+- `verification/marker_three_streaming_audit.cpp`;
+- `verification/test_marker_three_streaming_audit.py`;
+- `verification/data/marker_three_streaming_n46.json`.
 
 ## Disproved models
 
@@ -171,18 +210,18 @@ Proof and data:
 
 - Prior lattice service at commit `82358ea18277d36475db0a7ae81d6a68d7a49c59`: accepted for the old obstruction only.
 - New exact request: `N2-HO-N4-002`.
-- Files: `handoffs/RESPONSE_TO_NOVA4.md`, `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
-- Nova 2 independently completed the full-menu carrier audit through `n=45` in N2-FIN-202.
+- Files: `handoffs/RESPONSE_TO_NOVA4.md`, `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`, and `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`.
+- Nova 2 independently completed exact carrier coverage through `n=46` in N2-FIN-202 and N2-FIN-203.
 
 ## Open factorial nodes
 
-- N2-OPEN-301: prove or disprove marker-three quotient occupancy through `Y_n`.
-- N2-OPEN-302: prove connected-core reach uniformly beyond the finite range; exact success is certified only for `12<=n<=45`.
+- N2-OPEN-301: prove or disprove marker-three quotient occupancy through `Y_n` uniformly in `n`.
+- N2-OPEN-302: prove connected-core reach uniformly beyond the finite range; exact success is certified for `12<=n<=46`.
 - N2-OPEN-303: prove endpoint support near `Y_n` or produce an exact endpoint deficit.
 - N2-OPEN-304: control total-sum collisions beyond formal profile capacity.
 - N2-OPEN-305: prove the numerical target-dependent tilt, moments, resonance decomposition, and weighted Fourier inequality.
 - N2-OPEN-306: audit N2-ADD-120 against the exact Phase 12P hypotheses.
-- N2-OPEN-307: extend finite certification beyond `n=45` with a bounded-memory or streaming core generator.
+- N2-OPEN-307: extend bounded-memory finite certification from `n=47` or prove a uniform record-gap theorem.
 
 ## Promotion rule
 
