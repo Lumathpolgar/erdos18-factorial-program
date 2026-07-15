@@ -2,15 +2,34 @@
 
 ## Route decision
 
-- Decision ID: `N3-ROUTE-001`
-- Status: `PROVED` as a route obstruction and ranking decision; the preferred theorem remains `OPEN`
+- Decision ID: `N3-ROUTE-002`
+- Status: `PROVED` as a route obstruction and ranking decision; the final local theorem remains `OPEN`
 - Date: 2026-07-15
 
-## Ranked routes
+## Cross-track correction
 
-### 1. Low-prime conditioning plus high-prime tilted local analysis
+Nova 2 has now frozen the distinction between two different analytic objects.
 
-Status: `PREFERRED`.
+1. Logarithmic divisor size:
+   \[
+   \mathbb E e^{it\log d}.
+   \]
+2. Numerical additive occupancy:
+   \[
+   \mathbb E e^{itS_{n,x}},
+   \qquad
+   S_{n,x}=\sum_iY_{i,n,x}.
+   \]
+
+A theorem for the first object does not automatically control the second. Numerical additive inversion is periodic on `[-pi,pi]` and must include every nonzero resonance. This correction is accepted from Nova 2 branch `nova/additive-occupancy`, commit `45c74a5fa747551422ffcad7d3ddf22788fbe622`.
+
+The first Nova 1 layer system is not eligible for Fourier analysis because Nova 2 proved that every main sum lies in a power-of-two sublattice that misses the first required window.
+
+## Ranked analytic routes
+
+### 1. Exact low-prime conditioning plus high-prime tilted logarithmic analysis
+
+Status: `PREFERRED_FOR_INTRINSIC_DIVISOR_DENSITY`.
 
 Split the exponent vector at a cutoff `y=y(n)`:
 
@@ -18,90 +37,113 @@ Split the exponent vector at a cutoff `y=y(n)`:
 S_n=S_{\le y}+S_{>y}.
 \]
 
-Treat `S_{<=y}` exactly or structurally. Apply an exponential tilt and a local or coarse-window theorem only to `S_{>y}`. The reason is quantitative:
+Treat `S_{<=y}` exactly or structurally. Apply an exponential tilt and a local or coarse-window theorem only to `S_{>y}`.
+
+Quantitative reasons:
 
 - the full model has bounded effective dimension;
-- small primes retain a fixed share of the total variance;
+- small primes retain a fixed share of total variance;
 - after `y->infinity`, the largest high-prime coordinate becomes negligible compared with the tail standard deviation;
-- `N3-ANA-008` then proves a high-prime central limit theorem;
-- `N3-ANA-009` gives rigorous coarse-window positivity at width at least a constant multiple of the largest remaining coordinate span.
+- N3-ANA-008 proves a high-prime central limit theorem;
+- N3-ANA-009 gives coarse-window positivity when the width is at least a constant multiple of the largest remaining coordinate span.
 
-The next analytic target is to lower the admissible width below that coordinate span by proving a bounded-frequency characteristic-function estimate for a selected high-prime band.
+This route remains the correct intrinsic route for logarithmic divisor density.
 
-### 2. Direct saddle point with exact low-prime convolution
+### 2. Structural gate followed by matched numerical additive Fourier analysis
 
-Status: `SECONDARY`.
+Status: `PREFERRED_FOR_NOVA_2_OCCUPANCY_AFTER_REPAIR`.
 
-The exact tilted product identity is valid across the full bulk range. One may compute the low-prime distribution exactly, prove a local theorem for the high-prime tail, and convolve. This route is mathematically compatible with Route 1 but places more bookkeeping into a single theorem. It is retained if Nova 1 supplies a fixed low-prime structure that makes the convolution finite and explicit.
+The required sequence is now fixed.
 
-### 3. Full uniform-divisor Gaussian local limit
+1. Nova 1 proposes a versioned factorial divisor layer system.
+2. Nova 2 checks the common lattice, attained residues, correction radius, first target, endpoints, numerical distinctness, and nonsequential selection rule.
+3. Only after that gate passes, Nova 2 freezes the exact numerical law, weights, target windows, interval kernel, reference law, and all major arcs.
+4. Nova 3 proves the matched bounded-torus estimate or returns a resonance obstruction.
+
+No logarithmic density result may be substituted for this numerical additive theorem.
+
+### 3. Explicit prime-band capacity certification
+
+Status: `PROVED_SUPPORTING_ROUTE`.
+
+N3-ANA-010 and N3-ANA-011 close Nova 1's explicit upper-half prime count and formal menu-capacity dependency with
+
+\[
+n_3=n_4=n_5=120368.
+\]
+
+This route certifies that the factorial divisor lattice contains enough legal formal profiles. It does not establish that profile sums are distinct or that they occupy every required window.
+
+### 4. Direct saddle point with exact low-prime convolution
+
+Status: `SECONDARY_FOR_LOGARITHMIC_WINDOWS`.
+
+The exact tilted product identity is valid across the full bulk range. One may compute the low-prime distribution exactly, prove a local theorem for the high-prime tail, and convolve. This route is retained if a structural application supplies a fixed low-prime family and asks specifically about logarithmic divisor windows.
+
+### 5. Full uniform-divisor Gaussian local limit
 
 Status: `DISPROVED`.
 
-`N3-ANA-006` proves that
+N3-ANA-006 proves that
 
 \[
 \frac{\log d-\frac12\log(n!)}n
 \]
 
-for a uniformly selected divisor converges to a non-Gaussian infinite convolution. The limiting characteristic function has zeros inherited from small-prime uniform coordinates. A Gaussian local theorem for the full vector is therefore false.
+converges to a non-Gaussian infinite convolution. A Gaussian local theorem for the full vector is false.
 
-### 4. Unrestricted global minor-arc decay
+### 6. Unrestricted global minor-arc decay
 
 Status: `DISPROVED`.
 
-`N3-ANA-007` proves
+N3-ANA-007 proves
 
 \[
 \limsup_{|t|\to\infty}|\phi_n(t)|=1
 \]
 
-for every fixed `n`. Any viable Fourier theorem must have a bounded frequency range, smoothing, averaging, or explicit major-arc removal.
+for every fixed `n`. Any viable Fourier theorem needs a bounded range, smoothing, averaging, or explicit major-arc removal.
 
-### 5. Smooth-number lower-bound transfer
+### 7. Smooth-number lower-bound transfer
 
 Status: `REJECTED`.
 
-Divisors of `n!` form a constrained subset of smooth or ultrafriable sets. Lower bounds for a superset do not transfer to the subset. No source audited in this checkpoint supplies deterministic local lower bounds for the exact factorial divisor set.
+Divisors of `n!` form a constrained subset of smooth or ultrafriable sets. Lower bounds for a superset do not transfer to the subset.
 
-## Preferred theorem target
+## Immediate theorem target
 
-Freeze a prime band
+The strongest independent next target is a compact-tilt extension of N3-ANA-009.
 
-\[
-P=(y,2y],\qquad y\to\infty,\qquad 2y\le\sqrt n,
-\]
-
-and a compact tilt range. Prove a bounded-frequency estimate sufficient to upgrade `N3-ANA-009` from windows
+Freeze constants `A>0` and a high-prime cutoff `y=y(n)` with
 
 \[
-\Delta\gg M_{n,y}
+y\to\infty,
+\qquad
+2y\le\sqrt n.
 \]
 
-to the smallest width actually requested by Nova 2. The theorem must be stated only after Nova 2 supplies the exact inversion cutoff and main-term scale.
+For saddle parameters whose coordinate biases stay in a compact interior range, prove uniformly:
 
-## Why this route can support the repository target
+1. lower and upper variance bounds;
+2. a maximal-coordinate to standard-deviation ratio tending to zero;
+3. a uniform third-moment bound;
+4. a Berry-Esseen estimate;
+5. positive mass in central windows of width at least a constant multiple of the largest tilted coordinate span.
 
-The structural track can use low-prime exponents for deterministic control and high-prime exponents for entropy. The additive track can use the high-prime component as a diffuse convolution factor. This division directly exploits factorial valuation multiplicity and avoids the historical one-choice sequential architectures obstructed in Phases 12L and 12P.
-
-## Exact current deliverable
-
-The strongest current positive theorem is:
-
-> After removing primes at most `y`, with `y->infinity` and `2y<=sqrt n`, the centered uniform logarithmic contribution of the remaining prime exponents is asymptotically Gaussian. Under Berry-Esseen, every central window of width at least `K M_{n,y}` has probability at least a constant multiple of `Delta/B_{n,y}`.
-
-This is not yet fine enough to imply local additive occupancy. It is, however, a proved analytic regime with explicit scale and a precise next obstruction.
+This theorem can be proved without pretending that the currently rejected additive layer system is valid.
 
 ## Stop conditions
 
-Abandon or weaken this route if any receiving track requires:
+Abandon or weaken a proposed route if it requires:
 
 - fixed-width logarithmic windows uniformly from the endpoints;
-- an unbounded pointwise minor-arc theorem;
+- unbounded pointwise minor-arc decay;
 - a Gaussian theorem without conditioning out low primes;
-- a lower-bound transfer from a smooth superset;
-- direct Fourier control of additive divisor values from logarithmic-size estimates.
+- lower-bound transfer from a smooth superset;
+- direct control of numerical additive sums from logarithmic divisor estimates;
+- Fourier work before the layer lattice and residue gate passes;
+- profile capacity treated as profile-sum injectivity.
 
 ## Next theorem target
 
-`N3-NEXT-001`: Given an explicit finite inversion range from Nova 2, prove an averaged minor-arc estimate for a high-prime band under a compact exponential tilt, or prove that the requested frequency range contains unavoidable resonant sets too large for the intended main term.
+`N3-NEXT-002`: prove the compact nonzero-tilt high-prime coarse-window theorem with explicit uniform constants, then hand it to Nova 4 for reconstruction.
