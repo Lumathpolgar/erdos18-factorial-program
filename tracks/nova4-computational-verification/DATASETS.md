@@ -134,3 +134,54 @@ PYTHONPATH=src python3 src/replay.py audit-n2-obs-107 \
   --n-min 3 --n-max 10000 \
   --output data/lattice/n2_obs_107_range_n3_n10000.json
 ```
+
+## N4-DATA-004: Nova 1 capacity-threshold audit
+
+Result class: `exact finite theorem audit`
+
+Frozen source:
+
+```text
+branch: nova/factorial-structure
+commit: fa11f4b2cb86a2dd791df189ada12757be791804
+handoff: N1-HO-N4-001, Study A
+Nova 4 certificate checkpoint: 53b579cd5a7eeac780869cffa2cb8b9b8bdd5289
+```
+
+Parameter range: every `3 <= n <= 1,000,000`.
+
+Artifacts:
+
+```text
+data/capacity/n1_capacity_audit_n3_n1000000.json
+data/capacity/n1_capacity_transitions_n3_n1000000.csv
+certificates/capacity/n1_capacity_audit_n3_n1000000.json
+```
+
+Semantic checksum:
+
+```text
+3c88c2e578af86f8a760ead6f9f12bc77af5349106f9e0406aae06cfb981a7d4
+```
+
+File SHA-256:
+
+```text
+JSON: 508feff0c91a03f8097b3dbeca8982d143417ee38d31449bc26c8a3c45d992d6
+CSV:  289c5cafbedd3c6501518289f0e5d150c831014ab5ede7c17f1c823446f16ba4
+```
+
+Exact findings:
+
+- first `A_n` success: `1892`;
+- first simultaneous success: `1892`;
+- later `A_n` failures: `1893,1894,1895`;
+- simultaneous success for every checked `1896<=n<=1,000,000`;
+- only `C_n` failure after its initial success: `n=10`.
+
+Replay:
+
+```bash
+PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
+  data/capacity/n1_capacity_audit_n3_n1000000.json
+```
