@@ -4,88 +4,79 @@ Date: 2026-07-15
 
 Nova 4 never changes another track's theorem status. Every request freezes the sending branch and exact commit SHA before testing.
 
-## N4-REQ-N1-001
-
-Sending track: Nova 1
-
-Frozen branch: `nova/factorial-structure`
-
-Frozen commit: `f2e011d689d56af07ed01de08e00c05457ca9c80`
-
-Status: `AWAITING_FROZEN_ARTIFACT`
-
-Requested input:
-
-- exact theorem or construction statement;
-- divisor formulas and parameter ranges;
-- selection and correction rules;
-- claimed distinctness mechanism;
-- expected term bound;
-- replay or construction command.
-
-Planned audit:
-
-- exact divisor legality;
-- numerical collision search;
-- exact target and endpoint checks;
-- smallest failing parameter search;
-- term-count recomputation.
-
 ## N4-REQ-N2-001
+
+Priority: `1`
 
 Sending track: Nova 2
 
+Handoff: `N2-HO-N4-001-v2`
+
 Frozen branch: `nova/additive-occupancy`
 
-Frozen commit: `71370633b1e6726bf6f9e3b334d42cfc34512c06`
+Frozen commit: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
 
-Status: `AWAITING_FROZEN_ARTIFACT`
+Artifact: `tracks/nova2-additive-occupancy/handoffs/TO_NOVA4.md`
 
-Requested input:
+Status: `RECEIVED_READY_FOR_AUDIT`
 
-- exact finite layer or sumset model;
-- selection multiplicities;
-- target interval and window orientation;
-- completeness claim;
-- pruning or convolution assumptions.
+First audit:
 
-Planned audit:
+- implement the exact common-gcd and residue-lattice gate;
+- reproduce the frozen `N2-OBS-107` obstruction before any convolution;
+- reject numerical duplicates and illegal factorial divisors;
+- return the lexicographically smallest exact failure;
+- identify every tested external input by branch and commit SHA.
 
-- exact support generation;
-- first uncovered target;
-- lattice obstruction detection;
-- duplicate numerical divisor detection;
-- exhaustive finite-domain classification.
+Reason for priority: the handoff marks this as a mandatory first gate, and a symbolic lattice obstruction takes precedence over expensive enumeration.
+
+## N4-REQ-N1-001
+
+Priority: `2`
+
+Sending track: Nova 1
+
+Handoff: `N1-HO-N4-001`
+
+Frozen branch: `nova/factorial-structure`
+
+Frozen commit: `fa11f4b2cb86a2dd791df189ada12757be791804`
+
+Artifact: `tracks/nova1-factorial-structure/handoffs/TO_NOVA4.md`
+
+Status: `RECEIVED_READY_FOR_AUDIT`
+
+Requested studies:
+
+- exact capacity-threshold audit for `3 <= n <= 1,000,000` with certified comparisons;
+- reduced rainbow falsification model for `20 <= n <= 80`;
+- exact divisor legality, layer-address, collision, and witness checks;
+- CSV transition rows and machine-readable first-failure artifacts.
 
 ## N4-REQ-N3-001
 
+Priority: `3`
+
 Sending track: Nova 3
+
+Handoff: `N3-HO-N4-001`
 
 Frozen branch: `nova/analytic-density`
 
-Frozen commit: `c79cddee6e8940e27ff256c29a85a3fc93766f7b`
+Frozen commit: `0ce88b28dc2e6641093526f5777bb31f658e3515`
 
-Status: `READY_FOR_PARAMETER_REQUEST`
+Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Available exact data:
+Status: `RECEIVED_READY_FOR_AUDIT`
 
-- prime valuations of `n!`;
-- divisor counts;
-- eligible half-range divisor counts;
-- exact `lambda_{n!}(x)` profiles for `1 <= n <= 13`;
-- exact maxima and hardest-target lists;
-- greedy failure counts.
+Requested studies:
 
-Requested input:
+- independent exact moment audit for `2 <= n <= 12`;
+- exhaustive local-count ceiling audit with corrupted-bound rejection;
+- scale convergence tables labeled computational evidence;
+- characteristic-function recurrence search labeled evidence;
+- source-compatibility reconstruction for imported analytic results.
 
-- exact analytic expression to test;
-- finite parameter range;
-- rounding and endpoint conventions;
-- error metric and claimed inequality.
+## Intake rule
 
-Planned audit:
-
-- exact finite comparison;
-- transition-range stress test;
-- smallest inequality failure;
-- status separation between evidence and theorem.
+A received handoff is not accepted merely because its file exists. Nova 4 records `ACCEPTED`, `ACCEPTED_WITH_RESTRICTIONS`, `NEEDS_REPAIR`, or `REJECTED` only after independent reconstruction and replay.

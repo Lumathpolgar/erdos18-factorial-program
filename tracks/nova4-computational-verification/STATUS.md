@@ -40,10 +40,10 @@ unit tests: 21 passing
 
 - No asymptotic theorem is proved.
 - No Track B source package is present for reconstruction.
-- No frozen theorem artifact has yet been received from Nova 1 or Nova 2.
-- Nova 3 has not yet supplied a specific analytic inequality to audit.
+- Formal handoffs from Novas 1, 2, and 3 were received after the initial dataset build and are queued by exact commit SHA.
+- Those handoffs have been inspected but not yet independently executed or accepted.
 - The full detailed profile JSON is reproducibly generated and checksummed; the compact first-checkpoint summary is committed.
 
 ## Next audit target
 
-Audit the first frozen construction or occupancy artifact received from Nova 1 or Nova 2. In parallel, begin the clean reconstruction of the Track B implication if its archived source package is added to the repository.
+Implement the Nova 2 exact lattice and residue gate and reproduce the frozen `N2-OBS-107` obstruction. Then run Nova 1 capacity and reduced-rainbow studies, followed by Nova 3 independent theorem audits.
