@@ -137,11 +137,11 @@ Independently replay the marker-three structural gate from Nova 1 commit
 
 Return separate verdicts for legality, distinctness, lattice, quotient span, correction coverage, quotient reduction, and term count.
 
-### N2-REQ-N4-002-v3
+### N2-REQ-N4-002-v4
 
-Requirement status: `OPEN`
+Requirement status: `PARTIALLY_COMPLETED_BY_NOVA2`
 
-Implement N2-ADD-120's connected-core recursion.
+Implement and independently reconstruct N2-ADD-120's connected-core recursion.
 
 At layer `t`, compute
 
@@ -158,9 +158,9 @@ then return:
 - the first blocking core gap;
 - the exact two cores bordering the gap;
 - the certified endpoint `E_t`;
-- the final comparison of `E_{M_n}+W_n` with `Y_n`.
+- the final comparison of the occupied endpoint with `Y_n`.
 
-Failure of this recursion is failure of one proof engine only.
+Nova 2 completed this exact audit with full menus for every `12<=n<=45`. Nova 4 must independently replay N2-FIN-202. Failure of this recursion outside the completed range is failure of one proof engine only.
 
 ### N2-REQ-N4-003-v3
 
@@ -197,6 +197,28 @@ Requirement status: `OPEN`
 
 Audit endpoint support. If the exact maximum reachable quotient is below `Y_n-W_n`, return the smallest endpoint counterexample and classify the marker-three model as disproved.
 
+### N2-REQ-N4-006
+
+Requirement status: `OPEN`
+
+Independently reconstruct finite certificate `N2-FIN-202`:
+
+- exact range: `12<=n<=45`;
+- complete odd-core menus, not reduced menus;
+- all 34 cases reach `Y_n`;
+- layer-count transitions `2,3,4,5,6` on the frozen ranges;
+- exact largest completed case at `n=45`;
+- exact classification of `n=46` as resource-limited.
+
+Then implement a bounded-memory or streaming sorted odd-divisor generator capable of continuing at `n=46`, whose exact odd-core count is `27,941,760`.
+
+Frozen artifacts:
+
+- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
+- `verification/marker_three_full_menu_audit.py`;
+- `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
+- `verification/data/marker_three_full_menu_n12_n45.csv`.
+
 Exact request:
 
 `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`.
@@ -227,11 +249,17 @@ for every
 W_n+1\le q\le Y_n.
 \]
 
-### N2-REQ-INT-002-v3
+### N2-REQ-INT-002-v4
 
-Requirement status: `OPEN`
+Requirement status: `FINITE_RANGE_COMPLETED_ASYMPTOTIC_OPEN`
 
-Determine the connected-core reach under N2-ADD-120 and identify the first layer at which the carrier recursion stops extending.
+N2-FIN-202 proves that the connected-core recursion reaches `Y_n` for every `12<=n<=45` using complete odd-core menus.
+
+Remaining task:
+
+- continue exact certification from `n=46` using streaming generation;
+- prove a uniform connected-core reach theorem; or
+- produce an exact first failure beyond the completed range.
 
 ### N2-REQ-INT-003-v3
 
@@ -262,11 +290,23 @@ Requirement status: `OPEN`
 
 Prove the bulk and deterministic endpoint regimes cover every quotient target with no transition gap.
 
-### N2-REQ-INT-007
+### N2-REQ-INT-007-v2
+
+Requirement status: `PARTIALLY_COMPLETED`
+
+Finite marker-three coverage is certified for `12<=n<=45`. Remaining finite-exception work includes `n<12`, any gap before an eventual asymptotic threshold, and independent reconstruction.
+
+### N2-REQ-INT-008
 
 Requirement status: `OPEN`
 
-Certify finite exceptions below the eventual threshold.
+Derive a uniform lower bound on the connected core at each layer strong enough to force
+
+\[
+E_{M_n}+W_n\ge Y_n.
+\]
+
+The finite data suggests terminal-layer saturation, but that observation is computational evidence only until a divisor-gap theorem is proved.
 
 ## Rule
 
