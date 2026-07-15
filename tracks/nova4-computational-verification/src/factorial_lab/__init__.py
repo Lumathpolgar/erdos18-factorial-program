@@ -11,6 +11,7 @@ from .search import exact_profile_dp, exact_reachability_by_cardinality
 from .lattice import verify_label_family_certificate
 from .logcert import certified_log_parameters
 from .n2_audit import audit_n2_obs_107_range, verify_n2_obs_107_certificate
+from .n1_capacity import audit_n1_capacity_range, verify_n1_capacity_audit
 
 __all__ = [
     "CertificateError",
@@ -25,4 +26,6 @@ __all__ = [
     "certified_log_parameters",
     "verify_label_family_certificate",
     "verify_n2_obs_107_certificate",
+    "audit_n1_capacity_range",
+    "verify_n1_capacity_audit",
 ]
