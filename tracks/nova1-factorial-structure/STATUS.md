@@ -18,16 +18,34 @@ The factorial half-range theorem remains open.
 
 Prove or disprove quotient downward-window occupancy for the repaired marker-three valuation rainbow construction `N1-CON-003`.
 
-## Imported cross-track result
+## Imported cross-track results
 
-The first preferred route was rejected by Nova 2 at:
+### Nova 2 obstruction
+
+The first preferred route was rejected at:
 
 - branch: `nova/additive-occupancy`
 - exact commit: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
 - theorem: `N2-ADD-115`
 - disproved model: `N2-OBS-107`
 
-Every old main sum was divisible by `2^(r_n+1)`, while the old correction radius was `2^r_n-1`. The route is permanently recorded as disproved.
+Every old main sum was divisible by `2^(r_n+1)`, while the old correction radius was `2^r_n-1`.
+
+### Nova 3 prime interval theorem
+
+The explicit prime interval input was accepted from:
+
+- branch: `nova/analytic-density`
+- exact commit: `e60069f797af878711e7a9d4abb1fb6188a1f724`
+- theorems: `N3-ANA-010`, `N3-ANA-011`
+
+For every `n>=120368`,
+
+\[
+\pi(n)-\pi(n/2)\ge\frac{n}{3\log n}.
+\]
+
+Nova 1 separately translated this theorem to the repaired marker-three menus.
 
 ## Proved results
 
@@ -48,13 +66,14 @@ Every old main sum was divisible by `2^(r_n+1)`, while the old correction radius
 | N1-RED-004 | proved theorem | Quotient `W_n`-window occupancy implies exact factorial half-range coverage | `proofs/MARKER_THREE_LATTICE_REPAIR.md` |
 | N1-STR-016 | proved theorem | Odd positional digits have maximum downward gap one | `proofs/MARKER_THREE_LATTICE_REPAIR.md` |
 | N1-STR-017 | proved theorem | Repaired construction covers an unconditional `exp(O((log n)^2))` initial interval | `proofs/MARKER_THREE_LATTICE_REPAIR.md` |
+| N1-STR-018 | proved theorem | Every repaired layer has at least `2^(pi(n)-pi(n/2)-1)` legal high-prime cores for `n>=120368` | `proofs/MARKER_THREE_MENU_CAPACITY.md` |
+| N1-CAP-002 | proved theorem | Repaired menus pass the necessary profile-capacity gate for every `n>=120368` | `proofs/MARKER_THREE_MENU_CAPACITY.md` |
 
 ## Conditional results
 
 | ID | Result label | Statement | Open dependency |
 |---|---|---|---|
 | N1-RED-005 | conditional theorem | Frozen quotient rainbow occupancy implies `H_{n!}(floor(sqrt(n!))+1)=O((log n)^2)` | Nova 2 quotient occupancy theorem |
-| N1-CAP-001 | conditional theorem | Frozen menus pass the necessary capacity gate | Explicit prime-interval lower bound from Nova 3 |
 | HIST-001 | conditional theorem | Half-range theorem implies `h(n!)=O((log n)^3)` | Current-notation Track B reconstruction |
 
 ## Computational evidence
@@ -93,7 +112,7 @@ The tested quotient maximum downward distance is at most one. The result is fini
 ## Handoffs
 
 - Nova 2: `handoffs/TO_NOVA2.md`, revised as `N1-HO-N2-002`.
-- Nova 3: `handoffs/TO_NOVA3.md`, analytic request paused until Nova 2 accepts the revised structure.
+- Nova 3: `handoffs/TO_NOVA3.md`, original prime interval request accepted; additive request paused until Nova 2 accepts the revised structure.
 - Nova 4: `handoffs/TO_NOVA4.md`, requires a marker-three lattice and reduced-rainbow regression update.
 
 ## Verification
