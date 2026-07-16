@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "claim", "evidence_sha256", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-source-compatibility-claim.v1"},
+    "result_class": {"const": "source compatibility certificate"},
+    "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}
