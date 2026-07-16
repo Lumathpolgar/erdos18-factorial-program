@@ -127,12 +127,13 @@ N3-ANA-021 proves the zero-versus-minimum-state coefficient is exponentially sma
 
 Status: `CLOSED_NEGATIVELY`
 
-N3-ANA-023 proves the unnormalized characteristic function has a secondary near-resonance at `pi`:
+N3-ANA-023 proves
 
 \[
 |\Phi(\pi)|
 \ge
-1-rac{4e^{\varepsilon_n}}{m_n+1}
+1-
+\frac{4e^{\varepsilon_n}}{m_n+1}
 \to1.
 \]
 
@@ -169,29 +170,81 @@ J_{n,q}
 \right]\cap\mathbb Z.
 \]
 
-### N3-REQ-N2-012, transformed resonance audit
+### N3-REQ-N2-012, transformed exact resonance audit
+
+Status: `PARTIALLY_CLOSED`
+
+Closed by N3-ANA-026 through N3-ANA-028:
+
+1. no nonzero exact dyadic frequency is a global modulus-one resonance;
+2. at
+   \[
+   \theta_j=\pi/2^{j-1},
+   \]
+   every layer after `j+1` is exactly invisible;
+3. the matching layer is a two-phase factor;
+4. the transformed target-window kernel has no dyadic zero of denominator at least `4`.
+
+Still open:
+
+- non-dyadic rational resonance audit;
+- neighborhoods of every dyadic ladder point;
+- quantitative prefix residue mixing.
+
+### N3-REQ-N2-013, transformed many-tail-layers dispersion
+
+Status: `CLOSED_NEGATIVELY`
+
+For
+
+\[
+J_n
+=
+\min\left(
+M_n-1,
+\left\lfloor
+1+\log_2
+\frac{2^{M_n}-1}{16M_n\log L_n}
+\right\rfloor
+\right),
+\]
+
+N3-ANA-027 proves
+
+\[
+J_n=M_n-O(\log\log n)
+\]
+
+and, for every `j<=J_n`,
+
+\[
+\sum_{t=j+1}^{M_n}
+\widetilde{\mathcal D}_t(\theta_j)
+\le
+\frac{4e}{m_n+1}.
+\]
+
+A positive-proportion tail-dispersion mechanism is therefore false on the dyadic ladder.
+
+### N3-REQ-N2-014, transformed prefix-residue theorem
 
 Status: `OPEN_AND_BLOCKING`
 
-For the exact normalized law from N3-ANA-025:
+For every relevant dyadic scale, prove one of:
 
-1. identify every remaining exact and approximate secondary resonance;
-2. determine transformed residue concentration modulo small integers;
-3. freeze complete transformed major and minor arcs;
-4. do not assume parity normalization removes all rational resonances.
+1. a bound for
+   \[
+   \prod_{t=1}^{j}
+   \widetilde\phi_{t,n,q}(\theta)
+   \]
+   in a neighborhood of `theta_j`;
+2. quantitative residue spreading of the first `j` transformed coordinates modulo `2^j`;
+3. a measure bound for weak-prefix-dispersion neighborhoods;
+4. an exact prefix residue concentration obstruction.
 
-### N3-REQ-N2-013, transformed aggregate phase dispersion
+The result must be target-uniform on the post-prefix range and matched to the transformed interval kernel.
 
-Status: `OPEN_AND_BLOCKING`
-
-Prove one of:
-
-- a lower bound for the transformed dispersion sum outside all transformed major arcs;
-- a measure bound for weak-dispersion frequencies;
-- a weighted transformed integral estimate;
-- a target-local transformed concentration obstruction.
-
-### N3-REQ-N2-014, transformed moment package
+### N3-REQ-N2-015, transformed moment package
 
 Status: `OPEN`
 
@@ -202,13 +255,13 @@ Still required:
 - largest transformed step versus standard deviation;
 - exact endpoint exclusions.
 
-### N3-REQ-N2-015, collision-aware transformed reference law
+### N3-REQ-N2-016, collision-aware transformed reference law
 
 Status: `OPEN`
 
 A local theorem must retain `C_n(s)`, prove a target-local upper fiber bound, establish an additive-energy estimate, or show collision concentration obstructs approximation.
 
-### N3-REQ-N2-016, transformed weighted Fourier inequality
+### N3-REQ-N2-017, transformed weighted Fourier inequality
 
 Status: `OPEN`
 
@@ -217,7 +270,8 @@ The final required inequality must be written for the transformed law and transf
 \[
 P(T\in I_{n,q})
 \ge
-(1-p^{(0)})P(\widetilde T\in J_{n,q}).
+(1-p^{(0)})
+P(\widetilde T\in J_{n,q}).
 \]
 
 Berry-Esseen distribution distance alone remains insufficient.
@@ -238,9 +292,10 @@ python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/parity_twin_sanity.py
+python3 tracks/nova3-analytic-density/proofs/transformed_dyadic_sanity.py
 ```
 
-Return separate verdicts through N3-ANA-025 and N3-FIN-007.
+Return separate verdicts through N3-ANA-028 and N3-FIN-008.
 
 ### N3-REQ-N4-002, source audit reconstruction
 
@@ -270,9 +325,26 @@ Verify N3-ANA-020 through N3-ANA-022 and N3-FIN-006.
 
 Status: `OPEN`
 
-Verify N3-ANA-023 through N3-ANA-025 and N3-FIN-007. Handoff:
+Verify N3-ANA-023 through N3-ANA-025 and N3-FIN-007.
 
-`handoffs/TO_NOVA4_PARITY_TWIN.md`.
+### N3-REQ-N4-007, transformed dyadic ladder audit
+
+Status: `OPEN`
+
+Verify:
+
+1. the low-state legality argument;
+2. the matching-layer factor at every dyadic denominator;
+3. exact invisibility of later layers;
+4. the `J_n` safe-depth formula;
+5. the tail-dispersion ceiling;
+6. transformed-window length and `v_2` classification;
+7. the dyadic kernel-zero criterion;
+8. N3-FIN-008 and selected N3-COMP-007 rows.
+
+Handoff:
+
+`handoffs/TO_NOVA4_TRANSFORMED_DYADIC.md`.
 
 ## Self-owned requirements
 
@@ -288,18 +360,18 @@ Status: `PARTIALLY_CLOSED`
 
 Closed:
 
-- exact centering;
-- exact target range;
+- exact centering and target range;
 - compact numerical tilt;
-- exact span and exact modulus-one resonances;
+- exact span and modulus-one resonances;
 - collision factor in atoms;
-- parity twin obstruction;
-- exact odd-lattice normalization.
+- parity twin obstruction and odd-lattice normalization;
+- exact dyadic finite-prefix skeleton;
+- transformed window dyadic kernel classification.
 
 Open:
 
-- transformed resonance audit;
-- transformed aggregate dispersion;
+- prefix residue control near dyadic frequencies;
+- non-dyadic resonance audit;
 - transformed moments;
 - collision-aware reference law;
 - strict transformed Fourier comparison.
@@ -334,14 +406,20 @@ Closed by N3-ANA-020.
 
 Status: `CLOSED_NEGATIVELY`
 
-Closed by the parity twin obstruction N3-ANA-023.
+Closed by N3-ANA-023.
 
-### N3-SELF-012, parity-normalized numerical phase dispersion
+### N3-SELF-012, transformed many-tail-layers dispersion
+
+Status: `CLOSED_NEGATIVELY`
+
+Closed by N3-ANA-026 and N3-ANA-027.
+
+### N3-SELF-013, transformed prefix residue mixing
 
 Status: `OPEN`
 
-Audit and control the exact transformed law from N3-ANA-025.
+Control the first `j` transformed coordinates modulo `2^j` and in neighborhoods of the dyadic ladder frequencies.
 
 ## Rule
 
-Do not solve an undefined stronger problem. Every theorem must name its exact labels, target range, transformed supports, resonance set, endpoint exclusions, legal comparison direction, and receiving theorem node.
+Do not solve an undefined stronger problem. Every theorem must name its exact labels, target range, transformed supports, resonance scale, endpoint exclusions, legal comparison direction, kernel interaction, and receiving theorem node.
