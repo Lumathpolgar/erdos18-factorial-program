@@ -100,28 +100,7 @@ Claim SHA-256: `7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703
 
 Result class: `finite certificate`.
 
-Frozen source:
-
-```text
-handoff: N3-HO-N4-002
-handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
-Nova 3 proof blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
-Nova 3 sanity script blob: 519c900b616a33d95f3b2a8a8dec10d04a0a24f5
-Nova 1 theorem: N1-STR-009
-Nova 1 commit: fa11f4b2cb86a2dd791df189ada12757be791804
-Nova 1 proof blob: 4255e76ff18f675ae80a0192381070d9a934fc97
-```
-
-Coverage:
-
-```text
-every integer 120368 <= n <= 1000000
-integers checked: 879633
-exact prime-prefix counts
-exact v_2(n!) by Legendre division and n-bit_count(n)
-r_n transitions: 10
-M_n transitions: 865
-```
+Coverage: every integer `120368 <= n <= 1000000`, totaling 879,633 integers, with exact prime-prefix counts, dual exact `v_2(n!)` formulas, certified logarithmic ceilings, address legality, and conservative formal capacity.
 
 Minimum findings:
 
@@ -142,37 +121,9 @@ Decision: request G is accepted as a finite certificate.
 
 Result class: `semantic adversarial theorem audit`.
 
-Coverage:
-
-```text
-canonical N3-ANA-011 theorem contract
-six rehashed semantic corruption fixtures
-independent uniform address proof reconstruction
-exact Nova 1 menu-definition compatibility check
-formal profile-capacity proof reconstruction
-```
-
-Required corruptions rejected:
-
-```text
-lower threshold without finite supplementation
-larger legal address range without proof
-removed menu-unit correction
-formal profiles treated as distinct numerical sums
-ceil half-endpoint substitution without analysis
-finite sweep reported as asymptotic proof
-```
+Coverage: canonical `N3-ANA-011` theorem contract, six rehashed semantic corruption fixtures, independent uniform address proof reconstruction, exact Nova 1 menu-definition compatibility, and formal profile-capacity proof reconstruction.
 
 Exact endpoint witness: `n=120417`, `floor(n/2)=60208`, `ceil(n/2)=60209`, and `60209` is prime.
-
-Artifacts:
-
-```text
-data/analytic/n3_ana_011_contract.json
-data/analytic/n3_threshold_adversarial_audit.json
-certificates/analytic/n3_ana_011_final_claim.json
-tests/n3_adversarial_fixtures/*.json
-```
 
 Contract SHA-256: `63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b`.
 
@@ -181,5 +132,48 @@ Audit SHA-256: `785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9
 Claim SHA-256: `a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c`.
 
 Decision: request H and `N3-ANA-011` are accepted. The theorem is restricted to address legality, menu cardinality, and formal profile capacity.
+
+## N4-DATA-013: Nova 3 full-model variance and non-Gaussian limit audit
+
+Result class: `proved theorem audit with finite diagnostics`.
+
+Frozen source:
+
+```text
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+proof file blob: 6260f8db0b377cf7dbc1850cbe25c91243099e10
+source ledger blob: da81e6aaf2674fdae036d72df002547d4a71b18a
+object: N3-ANA-006
+```
+
+Accepted results:
+
+```text
+Var(S_n)/n^2 -> (1/12) sum_p (log p)^2/(p-1)^2
+X_n => sum_p (log p) U_p
+the limiting series converges in L^2
+the limiting characteristic function vanishes at 2*pi/log(2)
+the full-model limit is non-Gaussian
+```
+
+Finite diagnostics contain ten exact-valuation rows from `n=50` through `n=1,000,000`. At prime cutoff `1,000,000`, the limiting-series partial sum is `0.1154658352305299` and the elementary remaining-tail bound is `0.00007349978436438362`.
+
+Artifacts:
+
+```text
+data/analytic/n3_variance_limit_audit.json
+data/analytic/n3_variance_limit_audit.schema.json
+data/analytic/n3_variance_convergence.csv
+certificates/analytic/n3_ana_006_final_claim.json
+certificates/analytic/n3_ana_006_final_claim.schema.json
+tests/n3_variance_fixtures/*.json
+```
+
+Audit SHA-256: `e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119`.
+
+Claim SHA-256: `efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4`.
+
+Decision: `N3-ANA-006` is accepted. The finite table remains computational evidence only and does not decide the separately truncated high-prime-tail theorem.
 
 No finite dataset or semantic audit in this registry proves additive occupancy or the factorial half-range theorem.
