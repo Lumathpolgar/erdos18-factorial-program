@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 3 moment and local ceiling finite audit",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "range", "moment_records", "local_ceiling_records", "totals", "decisions", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-moment-local-audit.v1"},
+    "result_class": {"const": "finite certificate"},
+    "range": {
+      "type": "object",
+      "required": ["n_min", "n_max"],
+      "properties": {"n_min": {"const": 2}, "n_max": {"const": 12}}
+    },
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}
