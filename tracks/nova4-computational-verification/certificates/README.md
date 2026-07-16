@@ -36,3 +36,12 @@ PYTHONPATH=src python3 src/replay_rainbow.py verify-failure \
 ```
 
 See `certificates/rainbow/README.md` for the exact frozen Study B scope and corruption-rejection contract.
+
+## Nova 3 analytic replay
+
+```bash
+PYTHONPATH=src python3 src/replay_n3.py verify-local-claim \
+  certificates/analytic/n3_local_ceiling_tight_n2.json
+```
+
+See `certificates/analytic/README.md` for the first tight local-ceiling case and the rehashed corruption contract.
