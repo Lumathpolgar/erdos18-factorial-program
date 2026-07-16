@@ -2,13 +2,14 @@
 
 ## Scope
 
-This file continues the exact marker-three numerical quotient analysis. It uses numerical quotient values, not logarithmic divisor size.
+This file studies the exact marker-three numerical quotient law. It does not substitute logarithmic divisor size.
 
-Imported sources:
+Imported current heads:
 
-- Nova 1 branch `nova/factorial-structure`, inspected head `1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`;
-- Nova 2 branch `nova/additive-occupancy`, inspected head `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`;
-- Nova 3 theorems `N3-ANA-018` and `N3-ANA-020`.
+- Nova 1: `nova/factorial-structure@1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`;
+- Nova 2: `nova/additive-occupancy@e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`.
+
+Dependencies: `N3-ANA-018` and `N3-ANA-020`.
 
 The factorial half-range theorem remains open.
 
@@ -17,12 +18,8 @@ The factorial half-range theorem remains open.
 For every integer `n>=120368`, define
 
 \[
-X_n=\lfloor\sqrt{n!}\rfloor,
+Y_n=\left\lfloor\frac{\lfloor\sqrt{n!}\rfloor}{3}\right\rfloor,
 \qquad
-Y_n=\left\lfloor\frac{X_n}{3}\right\rfloor,
-\]
-
-\[
 r_n=\lceil4\log n\rceil,
 \qquad
 M_n=\lceil16(\log n)^2\rceil,
@@ -40,13 +37,13 @@ L_n=m_n(2^{M_n}-1),
 P_n=L_n+W_n.
 \]
 
-The exact asymptotic final-only target range is
+The exact final-only target range is
 
 \[
 P_n+1\le q\le Y_n.
 \]
 
-For `1<=t<=M_n`, let
+For `1<=t<=M_n`, define
 
 \[
 B_t(n)=
@@ -54,20 +51,15 @@ B_t(n)=
  u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
 \]
 
-For a real common tilt `lambda`, let the independent coordinates satisfy
+Under a real common tilt `lambda`, let independent variables satisfy
 
 \[
 \mathbb P_\lambda(Z_t=b)
 =
-\frac{e^{\lambda b}}{Z_t(\lambda)},
+\frac{e^{\lambda b}}
+{1+\sum_{a\in B_t(n)}e^{\lambda a}},
 \qquad
-b\in B_t(n)\cup\{0\},
-\]
-
-where
-
-\[
-Z_t(\lambda)=1+\sum_{b\in B_t(n)}e^{\lambda b}.
+b\in B_t(n)\cup\{0\}.
 \]
 
 Set
@@ -76,29 +68,23 @@ Set
 T_{n,\lambda}=\sum_{t=1}^{M_n}Z_t,
 \qquad
 \Phi_{n,\lambda}(\theta)
-=
-\mathbb E_\lambda e^{i\theta T_{n,\lambda}}.
+=\mathbb E_\lambda e^{i\theta T_{n,\lambda}}.
 \]
 
-For every target `q` in the post-prefix range, let `lambda_{n,q}` be the unique tilt from `N3-ANA-018` whose mean is `q-W_n/2`.
+For every post-prefix target, let `lambda_{n,q}` be the unique centering tilt from `N3-ANA-018`.
 
-## Uniform zero-state bound in the first layer
+## Uniform first-layer zero-state bound
 
 Define
 
 \[
-s_n=\frac{8M_n\log L_n}{L_n}
-\]
-
-and
-
-\[
+s_n=\frac{8M_n\log L_n}{L_n},
+\qquad
 \varepsilon_n=s_nm_n
-=
-\frac{8M_n\log L_n}{2^{M_n}-1}.
+=\frac{8M_n\log L_n}{2^{M_n}-1}.
 \]
 
-By `N3-ANA-020`, every post-prefix target tilt satisfies
+By `N3-ANA-020`,
 
 \[
 \lambda_{n,q}>-s_n.
@@ -110,51 +96,36 @@ The first-layer menu contains
 1,3,5,\ldots,m_n.
 \]
 
-Write
+There are
 
 \[
-k_n=\frac{m_n+1}{2}.
+k_n=\frac{m_n+1}{2}
 \]
 
-For every displayed small state `b<=m_n`, one has
+such states. For each of them,
 
 \[
 e^{\lambda_{n,q}b}\ge e^{-\varepsilon_n}.
 \]
 
-Indeed, this is immediate when the tilt is nonnegative, and when it is negative it follows from `lambda_{n,q}>-s_n`.
-
 Let
 
 \[
 p_{n,q}^{(0)}
-=
-\mathbb P_{\lambda_{n,q}}(Z_1=0)
-=
-\frac1{Z_1(\lambda_{n,q})}.
+=\mathbb P_{\lambda_{n,q}}(Z_1=0).
 \]
 
 Then
 
 \[
-Z_1(\lambda_{n,q})
-\ge
-1+k_ne^{-\varepsilon_n},
-\]
-
-so
-
-\[
 p_{n,q}^{(0)}
 \le
-\frac1{1+k_ne^{-\varepsilon_n}}
+\frac{1}{1+k_ne^{-\varepsilon_n}}
 \le
-\frac{e^{\varepsilon_n}}{k_n}
-=
 \frac{2e^{\varepsilon_n}}{m_n+1}.
 \]
 
-The quantity `epsilon_n` tends to zero superpolynomially in `n` because `M_n` is quadratic in `log n` and the denominator is `2^{M_n}`.
+The quantity `epsilon_n` tends to zero faster than every negative power of `n`.
 
 ## N3-ANA-023: parity twin near-resonance
 
@@ -162,7 +133,7 @@ Result class: **disproved estimate with exact replacement identity**.
 
 ### Exact parity law
 
-Every nonzero value in `B_1(n)` is odd. Every value in `B_t(n)` for `t>=2` is even. Therefore
+Every nonzero state in `B_1(n)` is odd. Every state in `B_t(n)` for `t>=2` is even. Therefore
 
 \[
 T_{n,\lambda}\text{ is even}
@@ -170,7 +141,7 @@ T_{n,\lambda}\text{ is even}
 Z_1=0.
 \]
 
-Consequently, for every post-prefix target,
+Consequently,
 
 \[
 \mathbb P_{\lambda_{n,q}}
@@ -186,10 +157,10 @@ and
 \mathbb P_{\lambda_{n,q}}
 \{T_{n,\lambda_{n,q}}\text{ is odd}\}
 \ge
-1-rac{2e^{\varepsilon_n}}{m_n+1}.
+1-\frac{2e^{\varepsilon_n}}{m_n+1}.
 \]
 
-Thus the law has exact span one but is asymptotically concentrated on the odd residue class modulo two.
+The law has exact span one but is asymptotically concentrated on odd integers.
 
 ### Exact value at `pi`
 
@@ -203,7 +174,6 @@ For the first layer,
 
 \[
 \phi_{1,\lambda}(\pi)
-=p^{(0)}-(1-p^{(0)})
 =2p^{(0)}-1.
 \]
 
@@ -214,16 +184,15 @@ Hence
 =2p_{n,q}^{(0)}-1,
 \]
 
-and therefore
+and
 
 \[
 \left|\Phi_{n,\lambda_{n,q}}(\pi)\right|
-=1-2p_{n,q}^{(0)}
 \ge
-1-rac{4e^{\varepsilon_n}}{m_n+1}.
+1-\frac{4e^{\varepsilon_n}}{m_n+1}.
 \]
 
-Uniformly over the entire exact post-prefix target range,
+Uniformly over the post-prefix target range,
 
 \[
 \inf_{P_n<q\le Y_n}
@@ -231,11 +200,11 @@ Uniformly over the entire exact post-prefix target range,
 \longrightarrow1.
 \]
 
-This disproves any aggregate-dispersion theorem asserting a fixed positive lower bound on the complete dispersion sum throughout a minor arc that contains `pi`.
+Thus no minor arc containing `pi` can have a fixed positive aggregate-dispersion lower bound.
 
-### Exact dispersion collapse at `pi`
+### Exact dispersion collapse
 
-For one coordinate define
+Define
 
 \[
 \mathcal D_{t,\lambda}(\theta)
@@ -251,44 +220,40 @@ Then
 =1-2\mathcal D_{t,\lambda}(\theta).
 \]
 
-At `theta=pi`, every layer `t>=2` has zero dispersion, while
+At `theta=pi`, every layer `t>=2` has zero dispersion and
 
 \[
 \mathcal D_{1,\lambda}(\pi)
 =2p^{(0)}(1-p^{(0)}).
 \]
 
-Thus
+Therefore
 
 \[
 \sum_{t=1}^{M_n}
 \mathcal D_{t,\lambda_{n,q}}(\pi)
-=2p_{n,q}^{(0)}(1-p_{n,q}^{(0)})
 \le
 \frac{4e^{\varepsilon_n}}{m_n+1}.
 \]
 
-The aggregate dispersion tends to zero at the nonzero torus frequency `pi`.
-
-### Exact parity-twin identity
+### Exact twin identity
 
 Let
 
 \[
 R_{n,\lambda}(u)
 =
-\prod_{t=2}^{M_n}
-\phi_{t,\lambda}(u).
+\prod_{t=2}^{M_n}\phi_{t,\lambda}(u).
 \]
 
-Because first-layer nonzero states are odd,
+Odd first-layer states give
 
 \[
 \phi_{1,\lambda}(\pi+u)
-=2p^{(0)}-\phi_{1,\lambda}(u).
+=2p^{(0)}-\phi_{1,\lambda}(u),
 \]
 
-Because all later-layer states are even,
+while even later-layer states give
 
 \[
 \phi_{t,\lambda}(\pi+u)
@@ -296,7 +261,7 @@ Because all later-layer states are even,
 \qquad(t>=2).
 \]
 
-Multiplication gives the exact torus identity
+Hence
 
 \[
 \Phi_{n,\lambda}(\pi+u)
@@ -306,7 +271,7 @@ Multiplication gives the exact torus identity
 2p^{(0)}R_{n,\lambda}(u).
 \]
 
-Hence, for every real `u`,
+In particular,
 
 \[
 \left|
@@ -315,105 +280,68 @@ Hence, for every real `u`,
 \Phi_{n,\lambda_{n,q}}(u)
 \right|
 \le
-2p_{n,q}^{(0)}
-\le
 \frac{4e^{\varepsilon_n}}{m_n+1}.
 \]
 
 The characteristic function is uniformly almost anti-periodic under translation by `pi`.
 
-## N3-ANA-024: parity mismatch obstruction for reference laws
+## N3-ANA-024: parity mismatch obstruction
 
 Result class: **proved obstruction**.
 
-Let `G` be any integer-valued reference law, and write
-
-\[
-G_{\rm even}=G(2\mathbb Z).
-\]
-
-Total variation distance satisfies
+Let `G` be any integer-valued reference law. Since total variation dominates the discrepancy of every event,
 
 \[
 d_{\rm TV}
-\left(
-\mathcal L(T_{n,\lambda_{n,q}}),G
-\right)
+\left(\mathcal L(T_{n,\lambda_{n,q}}),G\right)
 \ge
-\left|G_{\rm even}-p_{n,q}^{(0)}\right|.
+\left|G(2\mathbb Z)-p_{n,q}^{(0)}\right|.
 \]
 
-Therefore, if a proposed reference family has
-
-\[
-G_{\rm even}\ge\eta_n,
-\]
-
-then
+If `G(2Z)>=eta_n`, then
 
 \[
 d_{\rm TV}
-\left(
-\mathcal L(T_{n,\lambda_{n,q}}),G
-\right)
+\left(\mathcal L(T_{n,\lambda_{n,q}}),G\right)
 \ge
-\eta_n-rac{2e^{\varepsilon_n}}{m_n+1}.
+\eta_n-\frac{2e^{\varepsilon_n}}{m_n+1}.
 \]
 
-In particular, no reference law assigning a fixed positive proportion of its mass to even integers can approximate the marker-three law in total variation on the post-prefix range.
+Thus a reference law assigning a fixed positive mass to even integers cannot approximate the post-prefix law in total variation.
 
-This does not by itself disprove a window-specific weighted Fourier inequality. It proves that the reference law must encode the parity bias, or that the Fourier argument must include the `pi` major arc explicitly.
+This does not by itself disprove a window-specific weighted Fourier inequality. It forces parity into the reference law or major-arc decomposition.
 
 ## N3-ANA-025: exact odd-lattice normalization
 
 Result class: **proved theorem**.
 
-The parity obstruction has an exact repair.
-
-Condition on the overwhelmingly likely event
+Condition on `Z_1!=0` and define
 
 \[
-Z_1\ne0.
-\]
-
-Define independent transformed coordinates by
-
-\[
-\widetilde Z_1
-=
-\frac{Z_1-1}{2}
-\quad\text{under the conditional law }Z_1\ne0,
-\]
-
-and, for `t>=2`,
-
-\[
-\widetilde Z_t
-=
-\frac{Z_t}{2}.
+\widetilde Z_1=\frac{Z_1-1}{2},
+\qquad
+\widetilde Z_t=\frac{Z_t}{2}
+\quad(t>=2).
 \]
 
 Then
 
 \[
 \widetilde T
-=
-\sum_{t=1}^{M_n}\widetilde Z_t
-=
-\frac{T_{n,\lambda}-1}{2}
-\quad\text{conditional on }T_{n,\lambda}\text{ odd}.
+=\sum_{t=1}^{M_n}\widetilde Z_t
+=\frac{T_{n,\lambda}-1}{2}
 \]
 
-### Exact transformed supports
+under the odd conditional law.
+
+### Transformed supports and span
 
 The first transformed support is
 
 \[
 \widetilde B_1(n)
 =
-\left\{
-\frac{b-1}{2}:b\in B_1(n)
-\right\}.
+\left\{\frac{b-1}{2}:b\in B_1(n)\right\}.
 \]
 
 For `t>=2`, the transformed support is
@@ -421,57 +349,49 @@ For `t>=2`, the transformed support is
 \[
 \widetilde B_t(n)
 =
-\left\{
-\frac b2:b\in B_t(n)
-\right\}
-\cup\{0\}.
+\{0\}\cup
+\left\{\frac b2:b\in B_t(n)\right\}.
 \]
 
-Since `1,3 in B_1(n)`, the first transformed support contains `0` and `1`. Therefore the transformed product law has exact additive span one.
+Since `1,3 in B_1(n)`, the first transformed support contains `0` and `1`. The transformed product law has exact span one.
 
-### Exact transformed tilt
+### Transformed independence and tilt
 
-For the first coordinate, writing `b=2x+1`,
+For the first coordinate, write `b=2x+1`. Then
 
 \[
-e^{\lambda b}
-=e^\lambda e^{2\lambda x}.
+e^{\lambda b}=e^\lambda e^{2\lambda x},
 \]
 
-The common factor `e^lambda` cancels under conditioning on `Z_1\ne0`. For every later coordinate, writing `b=2y`,
+and the common factor cancels under conditioning. For every later coordinate, write `b=2y`, so
 
 \[
 e^{\lambda b}=e^{2\lambda y}.
 \]
 
-Thus the transformed coordinates are independent and share the exact common tilt
+The transformed coordinates remain independent and share common tilt
 
 \[
 \widetilde\lambda=2\lambda.
 \]
 
-On the post-prefix target range, `N3-ANA-020` gives
+Thus, on the post-prefix range,
 
 \[
 -\frac{16M_n\log L_n}{L_n}
-<
-\widetilde\lambda_{n,q}
-<
+<\widetilde\lambda_{n,q}<
 \frac{32(n\log n+\log14)}{2^{M_n}}.
 \]
 
-Hence the normalized odd-lattice tilt also tends uniformly to zero.
-
-### Exact target-window map
+### Transformed target window
 
 Let
 
 \[
-I_{n,q}
-=[q-W_n,q]\cap\mathbb Z.
+I_{n,q}=[q-W_n,q]\cap\mathbb Z.
 \]
 
-The odd integers in this window correspond bijectively under `m=2x+1` to
+The odd integers in `I_{n,q}` correspond under `m=2x+1` to
 
 \[
 J_{n,q}
@@ -479,19 +399,16 @@ J_{n,q}
 \left[
 \left\lceil\frac{q-W_n-1}{2}\right\rceil,
 \left\lfloor\frac{q-1}{2}\right\rfloor
-\right]
-\cap\mathbb Z.
+\right]\cap\mathbb Z.
 \]
 
 Therefore
 
 \[
-\mathbb P_\lambda
-\{T_{n,\lambda}\in I_{n,q}\}
+\mathbb P_\lambda\{T_{n,\lambda}\in I_{n,q}\}
 \ge
 (1-p^{(0)})
-\mathbb P_{2\lambda}
-\{\widetilde T\in J_{n,q}\}.
+\mathbb P_{2\lambda}\{\widetilde T\in J_{n,q}\}.
 \]
 
 Since
@@ -499,41 +416,35 @@ Since
 \[
 1-p^{(0)}
 \ge
-1-rac{2e^{\varepsilon_n}}{m_n+1},
+1-\frac{2e^{\varepsilon_n}}{m_n+1},
 \]
 
-positive mass for the transformed interval proves positive mass for the original interval.
+positive transformed-window mass proves positive original-window mass.
 
-The transformed window has either
+The transformed window has either floor or ceiling of `(W_n+1)/2` integer points.
 
-\[
-\left\lfloor\frac{W_n+1}{2}\right\rfloor
-\quad\text{or}\quad
-\left\lceil\frac{W_n+1}{2}\right\rceil
-\]
+## Route consequence
 
-integer points.
-
-### Interpretation
-
-The exact span-one statement for the original law concealed an asymptotic parity collapse. The correct final-only Fourier route is:
+The correct final-only Fourier route is:
 
 1. isolate the negligible even component;
-2. pass to the exact odd conditional law;
-3. divide by two and shift by one;
-4. prove aggregate phase dispersion for the normalized product law;
-5. use a collision-aware reference law on the transformed integer lattice.
+2. condition on the odd component;
+3. subtract one and divide by two;
+4. audit all transformed secondary resonances;
+5. prove transformed aggregate phase dispersion or a transformed weighted integral estimate;
+6. use a collision-aware transformed reference law.
 
-This normalization removes the forced `pi` twin resonance. It does not prove that no additional secondary resonance remains.
+The normalization removes the forced original `pi` twin. It does not prove that no transformed secondary resonance remains.
 
 ## Claim boundary
 
-The following remain open:
+Still open:
 
-- aggregate phase dispersion for the normalized odd-lattice law;
-- uniform variance, third-moment, and maximal-step estimates;
-- a collision-aware local reference law;
-- the strict weighted Fourier inequality;
+- the transformed resonance audit;
+- transformed aggregate phase dispersion;
+- transformed moments;
+- collision-aware local approximation;
+- the strict transformed weighted Fourier inequality;
 - quotient occupancy;
 - the factorial half-range theorem;
 - Erdős Problem 18.
