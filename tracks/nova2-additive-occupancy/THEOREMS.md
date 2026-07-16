@@ -2,221 +2,171 @@
 
 ## Proved theorems
 
-| ID | Result label | Statement summary | Proof location |
+| ID | Result label | Statement summary | Location |
 |---|---|---|---|
-| N2-ADD-101 | proved theorem | More legal profiles than targets does not imply coverage | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-ADD-102 | proved theorem | A common gcd confines all rainbow sums to a proper lattice | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-ADD-103 | proved theorem | Ordinary convolution mass can come only from an illegal repeated divisor | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-ADD-104 | proved theorem | Pointwise approximation error must be smaller than the reference atom to force positivity | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-ADD-105 | proved theorem | Window approximation error must be smaller than the reference window mass | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-ADD-106 | proved theorem | Tilted Bernoulli variance is at most `a_max min(m,A-m)` | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-ADD-108 | proved theorem | Positive collision-free convolution mass gives a deterministic legal representation | `models/TOY_SUFFICIENT_CONDITIONS.md` |
-| N2-ADD-109 | proved theorem | `M exp(-L p_min)` controls sampled-catalogue failure over `M` targets | `models/TOY_SUFFICIENT_CONDITIONS.md` |
-| N2-ADD-110 | proved theorem | Strict weighted Fourier discrepancy below reference window mass implies occupancy | `models/TOY_SUFFICIENT_CONDITIONS.md` |
-| N2-ADD-111 | proved theorem | Explicit lower bound for a discretized-Gaussian window | `models/TOY_SUFFICIENT_CONDITIONS.md` |
-| N2-ADD-112 | proved theorem | Main-window occupancy plus a disjoint correction palette gives exact coverage | `models/TOY_SUFFICIENT_CONDITIONS.md` |
-| N2-ADD-113 | proved theorem | Positive point mass gives targetwise extraction for fixed legal labels | `models/TOY_SUFFICIENT_CONDITIONS.md` |
-| N2-ADD-115 | proved theorem | A subset of `g Z` cannot meet all downward windows of radius below `g-1`; the first Nova 1 construction fails at its first requested window | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
-| N2-ADD-116 | proved theorem | If `S subseteq g Z` and corrections cover `[0,Lg-1]`, exact original-target coverage is equivalent to quotient downward gaps at most `L-1` | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
-| N2-ADD-118 | proved theorem | The three-power fallback has an exponentially long binary-spine prefix with four-point occupancy through `3*2^{M_n}` | `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md` |
-| N2-ADD-119 | proved theorem | Translated carrier blocks preserve downward window density when scaled carrier gaps are at most the previous reach plus the correction width and one | `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md` |
-| N2-ADD-121 | proved theorem | The unique-parent exponent-vector heap emits every bounded odd factorial divisor exactly once in increasing order, and record gaps suffice to replay every carrier threshold | `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md` |
+| N2-ADD-101 | proved theorem | Profile count alone does not imply coverage | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-ADD-102 | proved theorem | A common gcd confines sums to a proper lattice | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-ADD-103 | proved theorem | Ordinary convolution may use an illegal repeated divisor | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-ADD-104 | proved theorem | Pointwise approximation error must be below the reference atom | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-ADD-105 | proved theorem | Window approximation error must be below reference window mass | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-ADD-106 | proved theorem | Tilted Bernoulli variance ceiling | `models/TOY_COUNTEREXAMPLES.md` |
+| N2-ADD-108 | proved theorem | Positive collision-free mass gives a legal representation | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-109 | proved theorem | Sampled-catalogue failure bound | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-110 | proved theorem | Strict weighted Fourier discrepancy implies occupancy | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-111 | proved theorem | Discretized-Gaussian window lower bound | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-112 | proved theorem | Main-window occupancy plus corrections gives exact coverage | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-113 | proved theorem | Positive point mass gives targetwise extraction | `models/TOY_SUFFICIENT_CONDITIONS.md` |
+| N2-ADD-115 | proved theorem | The original valuation-tagged model fails its first window | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
+| N2-ADD-116 | proved theorem | Quotient normalization converts correction width to downward-gap width | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
+| N2-ADD-118 | proved theorem | The three-power fallback covers an exponential binary-spine prefix | `proofs/QUOTIENT_BINARY_SPINE_PREFIX.md` |
+| N2-ADD-119 | proved theorem | Translated carrier blocks preserve downward-window density | `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md` |
+| N2-ADD-121 | proved theorem | Unique-parent streaming emits exact odd factorial divisors in order | `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md` |
+| N2-ADD-122 | proved theorem | Exact carrier growth factors into prefix cardinality and packing utilization | `proofs/EFFECTIVE_CARRIER_ENTROPY_FACTORIZATION.md` |
 
-## Accepted imported theorem
+## Accepted imported theorems
 
-### N1-OBS-003: connected-prefix entropy requirement
+### N1-OBS-003
 
-Source:
+Source proof commit: `ac676b0fc9007117da1f1d9eaeec3e3cf65dd1e7`.
 
-- branch: `nova/factorial-structure`;
-- proof commit: `ac676b0fc9007117da1f1d9eaeec3e3cf65dd1e7`;
-- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`.
-
-For the complete N2-ADD-120 connected prefix, let `K_t` be its number of positive cores and put `F_t=E_t+W_n+1`. Then
+For connected-prefix counts `K_t`, sequential success requires
 
 \[
-F_t\le F_{t-1}(1+K_t),
+\prod_{t=1}^{L}(1+K_t)\ge\frac{Y_n+1}{W_n+1}.
 \]
 
-so carrier success requires
+For `n>=120368`, the required geometric mean is at least `exp(n/(85 log n))`. Outcome: `ACCEPTED_WITH_RESTRICTIONS` as a necessary condition only.
 
-\[
-\prod_{t=1}^{L}(1+K_t)
-\ge
-\frac{Y_n+1}{W_n+1}.
-\]
+### N1-STR-023 and N1-STR-024
 
-For `n>=120368`, success within the frozen layer budget requires geometric-mean connected-prefix size at least
+Inspected source: `nova/factorial-structure@a6bdab1b917f3b3688f5a0c86e80c8a026bfbc07`.
 
-\[
-\exp\left(\frac{n}{85\log n}\right).
-\]
-
-This is necessary only for the sequential carrier engine. It does not prove failure and does not constrain final-only proof engines.
-
-Intake: `proofs/CONNECTED_PREFIX_ENTROPY_AND_N50_INTAKE.md`.
+- `N1-STR-023`: disjoint-coordinate meet-in-the-middle product streams recover exact divisor order with heap size `O(sqrt(tau(D_n)))`. Outcome: `ACCEPTED`.
+- `N1-STR-024`: the normalized count surplus `Gamma_n` exactly tests the necessary count gate. Outcome: `ACCEPTED_WITH_RESTRICTIONS`; by N2-ADD-122 it is not sufficient without packing utilization.
 
 ## Conditional theorems
 
 ### N2-ADD-114
 
-Fixed legal pairwise-disjoint factorial labels, a disjoint correction palette, and a strict weighted Fourier comparison for every target window imply
+Fixed legal disjoint labels, correction coverage, and a strict weighted Fourier comparison for every target imply
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2).
 \]
 
-Dependencies: N2-ADD-108, N2-ADD-110, N2-ADD-112.
-
 Proof: `proofs/CANDIDATE_OCCUPANCY_THEOREM.md`.
 
 ### N2-ADD-117
 
-For the normalized first valuation-tagged model, extending the correction palette through `2^{r_n+2}` reduces the factorial theorem to four-point quotient occupancy and conditionally gives
+The three-power fallback reduces the theorem to four-point quotient occupancy and conditionally gives
 
 \[
 H_{n!}(X_n+1)\le M_n+r_n+3.
 \]
 
-This is a preserved fallback, not the preferred construction.
-
 Proof: `proofs/LATTICE_QUOTIENT_NORMALIZATION.md`.
 
 ### N2-ADD-120
 
-For the marker-three construction, let `E_0=0`. At layer `t`, connect consecutive cores from zero whenever their gap is at most
+For the marker-three model, connect cores from zero at layer `t` across gaps at most
 
 \[
-D_t(E_{t-1})
+D_t=\left\lfloor\frac{E_{t-1}+W_n+1}{2^{t-1}}\right\rfloor.
+\]
+
+If the resulting carrier reaches `E_L+W_n>=Y_n`, then
+
+\[
+H_{n!}(X_n+1)\le L+r_n.
+\]
+
+This is a sequential sufficient condition and still requires a Phase 12P audit.
+
+## N2-ADD-122 effective criterion
+
+Put `F_t=E_t+W_n+1`, `s_t=2^{t-1}`, and let `U_t` and `K_t` be the connected maximum and positive prefix count. Define
+
+\[
+a_t=\frac{s_tU_t}{F_{t-1}},
+\qquad
+b_t=\frac{1+a_t}{1+K_t}.
+\]
+
+Then exactly
+
+\[
+\frac{F_L}{W_n+1}
 =
-\left\lfloor
-\frac{E_{t-1}+W_n+1}{2^{t-1}}
-\right\rfloor.
+\left(\prod_t(1+K_t)\right)
+\left(\prod_tb_t\right).
 \]
 
-If `u_t^*` lies in that connected component and
+Thus the sequential route must control both count entropy and utilization. The exact active condition is
 
 \[
-E_t=E_{t-1}+2^{t-1}u_t^*,
+\widetilde\Gamma_n\mathcal B_n\ge1.
 \]
-
-then the quotient sumset is downward `W_n`-dense through `E_{M_n}`. If `E_{M_n}+W_n>=Y_n`, then
-
-\[
-H_{n!}(X_n+1)\le M_n+r_n.
-\]
-
-This is a sequential sufficient condition and requires a Phase 12P compatibility audit before asymptotic promotion.
-
-Proof: `proofs/MARKER_THREE_CARRIER_BLOCK_REDUCTION.md`.
 
 ## Finite certificates
 
-### N2-FIN-201
+- `N2-FIN-201`: superseded-route rational-log certificate at `n=1892`.
+- `N2-FIN-202`: exact complete-menu carrier coverage for `12<=n<=45`.
+- `N2-FIN-203`: bounded-memory Nova 2 streaming certificate at `n=46`.
+- `N2-FIN-204`: accepted Nova 1 full-core certificate for `47<=n<=50`, with exact `n=46` overlap.
+- `N2-FIN-205`: accepted Nova 1 certificates `N1-FIN-006`, `N1-FIN-007`, and `N1-FIN-008` for `n=51,52,53` from inspected commit `a6bdab1b917f3b3688f5a0c86e80c8a026bfbc07`.
 
-A rational-log scan found the first parameter satisfying the superseded valuation budget at `n=1892`, with `r_n=31` and `M_n=911`.
-
-Verification: `verification/quotient_binary_spine.py`.
-
-### N2-FIN-202
-
-Nova 2 generated and audited the exact full odd-core menus for every
+Combined exact finite result:
 
 \[
-12\le n\le45.
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+\qquad(12\le n\le53).
 \]
 
-Every case reaches `Y_n` using two through six main layers and satisfies
+The smallest unaudited finite parameter is `n=54`.
 
-\[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22.
-\]
+## Finite effective-entropy diagnostics
 
-Proof and data:
+| `n` | count surplus | utilization root | endpoint surplus |
+|---:|---:|---:|---:|
+| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 |
+| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 |
+| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 |
 
-- `proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md`;
-- `verification/marker_three_full_menu_audit.py`;
-- `verification/data/marker_three_full_menu_n12_n45.manifest.json`;
-- `verification/data/marker_three_full_menu_n12_n45.csv`.
-
-### N2-FIN-203
-
-Nova 2's N2-ADD-121 stream certifies complete marker-three carrier coverage at `n=46` without materializing the complete `27,941,760`-core family. It emits `24,567,748` cores through `Y_46`, retains `631` record gaps, and uses a maximum active frontier of `3,373,952`.
-
-Six main layers give
-
-\[
-H_{46!}(\lfloor\sqrt{46!}\rfloor+1)\le22.
-\]
-
-Proof and data:
-
-- `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md`;
-- `verification/marker_three_streaming_audit.cpp`;
-- `verification/test_marker_three_streaming_audit.py`;
-- `verification/data/marker_three_streaming_n46.json`.
-
-### N2-FIN-204
-
-Nova 2 accepted Nova 1 finite certificate `N1-FIN-005` from verifier commit `fd2819255ac17dbba6cc70ed8a78ded387e7cac0` and report commit `42e2ac49001215602be7a0808f38648a4557b771`.
-
-The independently generated `n=46` layer record matches N2-FIN-203 in every threshold, blocking gap, connected maximum, endpoint, and margin. The same verifier certifies `n=47,48,49,50`.
-
-Combining N2-FIN-202 and N1-FIN-005 gives
-
-\[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
-\le22
-\qquad(12\le n\le50).
-\]
-
-This is a finite exact result assembled from audited certificates. The smallest unaudited parameter is `n=51`.
-
-Intake: `proofs/CONNECTED_PREFIX_ENTROPY_AND_N50_INTAKE.md`.
+These are finite diagnostics, not an asymptotic trend.
 
 ## Disproved models
 
-| ID | Result label | Statement | Location |
-|---|---|---|---|
-| N2-OBS-101 | disproved model | Raw profile capacity alone forces coverage | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-OBS-102 | disproved model | Proper-lattice supports can cover every consecutive target | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-OBS-103 | disproved model | Positive ordinary convolution mass always respects numerical distinctness | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-OBS-104 | disproved model | A Gaussian-looking or weak local approximation forces every atom or window positive | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-OBS-105 | disproved model | A bulk tilted local theorem remains uniform to both support endpoints | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-OBS-106 | disproved model | Separate target-dependent probability spaces define one universal random object | `models/TOY_COUNTEREXAMPLES.md` |
-| N2-OBS-107 | disproved model | The exact first valuation-tagged request covers every target with radius `2^{r_n}-1` | `proofs/VALUATION_TAGGED_LATTICE_OBSTRUCTION.md` |
-| N2-OBS-108 | disproved model | Adding only one or two consecutive binary powers repairs the first valuation-tagged construction | `proofs/LATTICE_QUOTIENT_NORMALIZATION.md` |
+`N2-OBS-101` through `N2-OBS-108` remain recorded in the cited model and proof files. They include raw-capacity, proper-lattice, repeated-divisor, weak-approximation, endpoint-uniformity, target-space, original-lattice, and one-or-two-power repair failures.
 
 ## Cross-track decisions
 
 ### Nova 1
 
 - `N1-HO-N2-001`: `REJECTED`.
-- `N1-HO-N2-002`: `ACCEPTED_WITH_RESTRICTIONS`; marker-three promoted to primary model.
-- `N1-HO-N2-004`: `ACCEPTED_WITH_RESTRICTIONS`; N1-OBS-003 accepted as a necessary sequential condition and N1-FIN-005 accepted as a finite certificate.
-- Responses: `handoffs/RESPONSE_TO_NOVA1.md`, `handoffs/RESPONSE_TO_NOVA1_MARKER_THREE.md`, `handoffs/RESPONSE_TO_NOVA1_CONNECTED_PREFIX.md`.
+- `N1-HO-N2-002`: `ACCEPTED_WITH_RESTRICTIONS`.
+- `N1-HO-N2-004`: `ACCEPTED_WITH_RESTRICTIONS`.
+- `N1-HO-N2-007`: `ACCEPTED_WITH_RESTRICTIONS`.
+- Latest response: `handoffs/RESPONSE_TO_NOVA1_N53_EFFECTIVE_ENTROPY.md`.
 
 ### Nova 3
 
-- Active exact request: `N2-HO-N3-003`.
-- Frozen law: numerical marker-three quotient sums on `[-pi,pi]`.
-- File: `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
+The active request remains the exact numerical marker-three law, aggregate phase dispersion, collision-aware reference mass, and strict weighted Fourier inequality.
 
 ### Nova 4
 
-- Active reconstruction requests: `N2-HO-N4-002` and `N2-HO-N4-004`.
-- Files: `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`, `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`, `handoffs/STREAMING_N46_TO_NOVA4.md`.
+Independent reconstruction is required for the carrier algorithms, finite certificates through `n=53`, effective-entropy identities, and extension from `n=54`.
 
 ## Open factorial nodes
 
-- N2-OPEN-301: prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
-- N2-OPEN-302: prove the connected-prefix product requirement is attainable, or prove a uniform upper bound retiring the sequential engine.
-- N2-OPEN-303: prove endpoint support near `Y_n` or produce an endpoint deficit.
-- N2-OPEN-304: upper-bound target-local collision multiplicity or additive energy.
-- N2-OPEN-305: prove aggregate phase dispersion and the strict numerical weighted Fourier inequality.
-- N2-OPEN-306: audit N2-ADD-120 against the exact Phase 12P hypotheses.
-- N2-OPEN-307: extend exact finite certification from `n=51`.
+1. Prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
+2. Prove a utilization lower bound strong enough that `widetilde Gamma_n B_n>=1`, or prove an upper bound retiring the sequential engine.
+3. Extend exact finite certification from `n=54`.
+4. Prove asymptotic endpoint-window coverage.
+5. Upper-bound target-local collision multiplicity or additive energy.
+6. Prove aggregate numerical phase dispersion and the strict weighted Fourier inequality.
+7. Audit N2-ADD-120 against exact Phase 12P hypotheses.
+8. Handle finite exceptions after an effective threshold exists.
 
 ## Promotion rule
 
-No conditional theorem becomes an asymptotic factorial theorem until every structural, additive or analytic, endpoint, distinctness, and finite-exception node is proved and independently reconstructed.
+No conditional result becomes an asymptotic factorial theorem until every structural, additive or analytic, endpoint, distinctness, and finite-exception node is proved and independently reconstructed.
