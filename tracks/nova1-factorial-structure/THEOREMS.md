@@ -46,49 +46,66 @@ No finite result is promoted to an asymptotic theorem. No formal profile count i
 | N1-OBS-003 | proved theorem | Sequential carrier success requires sufficient connected-prefix entropy | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent streaming plus record-gap counts exactly recovers `u_t^*` and `K_t` | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
 | N1-STR-023 | proved theorem | Meet-in-the-middle row merging exactly recovers divisor order; balanced partitions give `O(sqrt(tau(D_n)))` heap size | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
-| N1-STR-024 | proved theorem | Layer-normalized surplus `Gamma_n=(P_n/Q_n)^{1/L}` meets the exact entropy gate iff `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
+| N1-STR-024 | proved theorem | Layer-normalized count surplus `Gamma_n=(P_n/Q_n)^{1/L}` meets the exact count gate iff `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
+| N1-STR-025 | proved theorem | Exact carrier growth factors into connected-prefix count and packing utilization | `proofs/EFFECTIVE_CARRIER_FACTORIZATION_RECONSTRUCTION.md` |
 
-## Detail for N1-OBS-003 and N1-STR-024
+## Effective carrier factorization
+
+Nova 1 independently reconstructed Nova 2 theorem `N2-ADD-122` from exact source
+
+`nova/additive-occupancy@2ab09dd980f7116b82530368e3d98bb53240bf0c`.
 
 Let
 
 \[
+F_0=W_n+1,
+\qquad
+F_t=F_{t-1}+s_tU_t,
+\qquad
+s_t=2^{t-1}.
+\]
+
+Put
+
+\[
+a_t=\frac{s_tU_t}{F_{t-1}},
+\qquad
 P_n=\prod_{t=1}^{L}(1+K_t),
 \qquad
-Q_n=\left\lceil\frac{Y_n+1}{W_n+1}\right\rceil.
+b_t=\frac{1+a_t}{1+K_t}.
 \]
 
-Sequential success requires
+Then
 
 \[
-P_n\ge Q_n.
+\frac{F_L}{W_n+1}
+=
+\prod_{t=1}^{L}(1+a_t)
+=
+P_n\prod_{t=1}^{L}b_t.
 \]
 
-For `n>=120368`, `N1-OBS-003` gives the necessary geometric-mean connected-prefix scale
+With
 
 \[
-P_n^{1/L}\ge\exp\left(\frac{n}{85\log n}\right).
+R_n=\frac{Y_n+1}{W_n+1},
 \]
 
-`N1-STR-024` defines
-
 \[
-\Gamma_n=(P_n/Q_n)^{1/L},
+\widetilde\Gamma_n=(P_n/R_n)^{1/L},
 \qquad
-\Lambda_n=\frac{\log P_n-\log Q_n}{L},
+\mathcal B_n=\left(\prod_tb_t\right)^{1/L},
+\qquad
+\Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L},
 \]
 
-and proves
+one has
 
 \[
-P_n\ge Q_n
-\iff
-\Gamma_n\ge1
-\iff
-\Lambda_n\ge0.
+\Delta_n=\widetilde\Gamma_n\mathcal B_n.
 \]
 
-The normalization permits per-layer finite comparisons but does not imply monotonicity or asymptotic success.
+Endpoint success is equivalent to `Delta_n>=1`. Therefore count surplus alone is necessary but not sufficient.
 
 ## Conditional results
 
@@ -105,23 +122,40 @@ The normalization permits per-layer finite comparisons but does not imply monoto
 | N1-CMP-004 | finite certificate | Endpoint-support and coarse-contraction checks | `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md` |
 | N1-CMP-005 | finite certificate | Block and collision checks | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
 | N1-CMP-006 | computational evidence | `Gamma_51`, `Gamma_52`, `Gamma_53` are all above one and non-monotone | `verification/connected_prefix_normalized_n51_n53.csv` |
-| N1-CMP-007 | computational evidence | `Gamma_51` through `Gamma_54` are non-monotone and the first-blocking-gap ratio is below `1.108` on twenty finite blocked layers | `verification/connected_prefix_normalized_n51_n54.csv` |
+| N1-CMP-007 | computational evidence | Count surplus through `n=54` is non-monotone and the first-blocking-gap ratio is below `1.108` on twenty finite blocked layers | `verification/connected_prefix_normalized_n51_n54.csv` |
+| N1-CMP-008 | computational evidence | Count, utilization, and endpoint factors through `n=55`; first-blocking-gap ratio remains below `1.108` on twenty-five blocked layers | `verification/effective_carrier_n51_n55.csv` |
 | N2-FIN-202 | finite certificate | Imported complete-menu carrier coverage for `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 | N1-FIN-005 | finite certificate | Exact complete-core coverage for `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
 | N1-FIN-006 | finite certificate | Exact streaming coverage at `n=51` | `verification/FULL_CORE_N51_REPORT.md` |
 | N1-FIN-007 | finite certificate | Exact meet-in-the-middle coverage at `n=52` | `verification/FULL_CORE_N52_REPORT.md` |
 | N1-FIN-008 | finite certificate | Exact dual-partition meet-in-the-middle coverage at `n=53` | `verification/FULL_CORE_N53_REPORT.md` |
 | N1-FIN-009 | finite certificate | Exact dual-partition runtime-aware meet-in-the-middle coverage at `n=54` | `verification/FULL_CORE_N54_REPORT.md` |
+| N1-FIN-010 | finite certificate | Exact dual-partition effective-carrier coverage at `n=55` | `verification/FULL_CORE_N55_REPORT.md` |
 
-Combined exact finite range:
+The sharper exact finite statements are
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le54).
+\qquad(12\le n\le54),
 \]
 
-No conclusion is asserted for `n>=55`.
+and
+
+\[
+H_{55!}(\lfloor\sqrt{55!}\rfloor+1)
+\le23.
+\]
+
+Consequently,
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le23
+\qquad(12\le n\le55).
+\]
+
+No conclusion is asserted for `n>=56`.
 
 ## Disproved routes
 
