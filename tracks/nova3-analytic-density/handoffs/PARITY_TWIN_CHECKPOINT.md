@@ -21,7 +21,8 @@ Branch: `nova/analytic-density`
 
 ## Core commits
 
-- proof: `70b08c43f8ecf64751ce36534c1558c3577010c3`
+- initial proof: `70b08c43f8ecf64751ce36534c1558c3577010c3`
+- proof formatting correction: `a1625416075f71a170ca17f1f67114ca8ded9c49`
 - verifier: `39ba9e699bff049c607e9ec256513e36ebcfeb82`
 - Nova 2 handoff: `bb3f26013df869080af7ab6bac5f812bacdaf702`
 - Nova 4 handoff: `80af9e4dad28c530613403668fe2b6f265b065c0`
@@ -40,7 +41,7 @@ python3 tracks/nova3-analytic-density/proofs/parity_twin_sanity.py
 
 ## Exact route decision
 
-The unnormalized zero-only major-arc plan is rejected. The exact preferred route is:
+The unnormalized zero-only major-arc plan is rejected. The preferred route is:
 
 1. condition on the odd component;
 2. subtract one and divide by two;
