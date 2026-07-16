@@ -1,6 +1,6 @@
 # Nova 4 Status
 
-Date: 2026-07-15
+Date: 2026-07-16
 
 ## Track
 
@@ -12,7 +12,7 @@ Computation, Falsification, and Verification
 
 ## Overall state
 
-`NOVA3_REQUEST_D_COMPLETE`
+`NOVA3_REQUEST_E_SOURCE_AUDIT_COMPLETE`
 
 ## Active results
 
@@ -28,6 +28,7 @@ Computation, Falsification, and Verification
 | N4-AUD-005 | `finite certificate` | `N3-ANA-004` and `N3-ANA-005` independently reconstructed and accepted; exact finite moments and local ceilings replayed for every `2 <= n <= 12` | `audits/N3_MOMENT_LOCAL_CEILING_AUDIT.md` |
 | N4-AUD-006 | `computational evidence` | Nova 3 request C scale rows, low-prime shares, effective dimension, and high-prime tail grid independently generated | `audits/N3_SCALE_CONVERGENCE_AUDIT.md` |
 | N4-AUD-007 | `proved theorem audit` and `computational evidence` | `N3-ANA-007` independently reconstructed and accepted; request D scanned 19,990,010 bounded recurrence scores | `audits/N3_CHARACTERISTIC_RECURRENCE_AUDIT.md` |
+| N4-AUD-008 | `source compatibility audit` | Ford, Drappeau–Tenenbaum, and ultrafriable source scopes reconstructed; none directly selects the factorial sequence | `audits/N3_RESTRICTED_SOURCE_COMPATIBILITY_AUDIT.md` |
 | N4-CE-001 | `counterexample` | Descending greedy is suboptimal at `n=8, x=155` | `certificates/n8_target155_optimal.json` |
 | N4-CE-002 | `disproved finite claim` | Frozen `N1-HO-N2-001` fails at its first requested target when admissible | `certificates/lattice/n2_obs_107_n1892.json` |
 | N4-CE-003 | `disproved finite claim` | Every frozen reduced Study B model for `20 <= n <= 80` fails at its first requested target | `certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json` |
@@ -47,17 +48,11 @@ Nova 3 local windows checked: 45,840
 Nova 3 scale rows: 8
 Nova 3 high-prime cutoff rows: 63
 Nova 3 theorem-path rows: 8
-Nova 3 recurrence n values: 3 through 12
-Nova 3 recurrence q values per n: 1,999,001
 Nova 3 recurrence scores: 19,990,010
-Nova 3 recurrence block winners: 40
-Nova 3 recurrence global winners: 10
-previous complete unit suite: 39 passing
-new reduced-rainbow tests: 11 passing
-new Nova 3 moment/local tests: 10 passing
-new Nova 3 scale tests: 13 passing
-new Nova 3 recurrence tests: 12 passing
-arithmetic: exact integers, rational identities, rational interval bounds, binary64 exhaustive ranking, and 80-digit Decimal finalist evaluation
+Nova 3 restricted primary sources reconstructed: 3
+Nova 3 source-compatibility witnesses: 3
+new Nova 3 source tests: 10 passing
+arithmetic: exact integers, rational identities, rational interval bounds, and semantic source-scope replay
 ```
 
 ## Current limitations
@@ -66,11 +61,11 @@ arithmetic: exact integers, rational identities, rational interval bounds, binar
 - The accepted Nova 2 obstruction applies only to the frozen Nova 1 model at commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
 - The reduced-rainbow disproof applies only to Study B at Nova 1 commit `fa11f4b2cb86a2dd791df189ada12757be791804`; it does not disprove the full-menu preferred route.
 - Nova 3 request C is computational evidence only. `N3-ANA-006` and `N3-ANA-008` remain theorem-audit pending.
-- The frozen Nova 3 script labels `b_p log p/B` as `M/B`, but the theorem defines `M=b_p log p/2`; that script label requires repair.
-- Request D is a bounded recurrence search. It does not prove a quantitative recurrence rate or certify a maximum outside its declared grid.
+- Request D does not prove a quantitative recurrence rate or certify a maximum outside its grid.
+- Request E confirms source scope only. It does not reprove the cited papers or establish a deterministic factorial divisor law.
 - No Track B source package is present for reconstruction.
 - The `n=14` exact representation profile remains unknown due to resource limits.
 
 ## Next audit target
 
-Run request E of superseding Nova 3 handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`: independently reconstruct the scope of the restricted external divisor-distribution sources and verify that none directly selects the factorial sequence.
+Run request F of superseding Nova 3 handoff `N3-HO-N4-002`: reconstruct Dusart Theorem 6.9 from the primary source and independently derive the explicit prime-interval threshold used by `N3-ANA-010`.
