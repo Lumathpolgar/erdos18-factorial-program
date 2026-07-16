@@ -2,40 +2,37 @@
 
 ## Registry rule
 
-Every entry has one research result class. Finite computation, asymptotic proof, conditional implication, and disproved inference remain separate.
+Every entry has one research result class. Symbolic proof, conditional implication, finite certificate, computational evidence, and disproved inference remain separate.
 
 ## Product and logarithmic divisor model
 
 ### N3-ANA-004, exact exponent product and exponential tilt
 
 - Class: `proved theorem`
-- Status: `PROVED`
-- Conclusion: exact independent exponent model, moments, factorized tilt, and unique saddle parameter for every interior logarithmic target
+- Conclusion: exact independent factorial-prime exponent model, moments, factorized tilt, and unique saddle parameter for every interior logarithmic target
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ### N3-ANA-005, logarithmic local-count ceiling
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Conclusion:
   \[
   L_n(u,\Delta)
   \le
-  \tau(n!)\frac{\lfloor\Delta/\log q\rfloor+1}{v_q(n!)+1}
+  \tau(n!)
+  \frac{\lfloor\Delta/\log q\rfloor+1}{v_q(n!)+1}
   \]
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ### N3-ANA-006, non-Gaussian full-model limit
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Conclusion: the centered uniform log-divisor model divided by `n` converges to a non-Gaussian infinite convolution
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
-### N3-ANA-007, unrestricted minor-arc obstruction
+### N3-ANA-007, unrestricted logarithmic minor-arc obstruction
 
 - Class: `disproved estimate`
-- Status: `DISPROVED`
 - Conclusion:
   \[
   \limsup_{|t|\to\infty}|\phi_n(t)|=1
@@ -46,16 +43,14 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 ### N3-ANA-008, zero-tilt high-prime CLT
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Conclusion: after a growing low-prime cutoff, the high-prime logarithmic tail is asymptotically Gaussian and its largest coordinate is negligible relative to its standard deviation
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ### N3-ANA-009, coarse high-prime window positivity
 
 - Class: `conditional theorem`
-- Status: `CONDITIONAL`
-- Dependency: Berry-Esseen N3-SRC-003
-- Conclusion: central windows with width at least a constant multiple of the largest coordinate span have mass `>>Delta/B`
+- Dependency: Berry-Esseen `N3-SRC-003`
+- Conclusion: central windows wider than a constant multiple of the largest coordinate have mass comparable to width divided by standard deviation
 - Proof: `proofs/PRODUCT_MODEL_THEOREMS.md`
 
 ## Explicit prime interval and old-address capacity
@@ -63,21 +58,20 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 ### N3-ANA-010, explicit upper-half prime interval
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Hypothesis: integer `n>=120368`
 - Conclusion:
   \[
   \pi(n)-\pi(n/2)\ge\frac{n}{3\log n}
   \]
-- Dependency: Dusart N3-SRC-008
+- Dependency: Dusart `N3-SRC-008`
 - Proof: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md`
 
 ### N3-ANA-011, old-address formal capacity
 
 - Class: `proved theorem`
 - Status: `PROVED_BUT_STRUCTURAL_MODEL_SUPERSEDED`
-- Conclusion: the old Nova 1 address system had sufficient formal menu capacity for `n>=120368`
-- Boundary: Nova 2 later disproved its additive occupancy route by a lattice obstruction
+- Conclusion: the old Nova 1 address model had enough formal menu capacity for `n>=120368`
+- Boundary: Nova 2 later disproved its additive route by a lattice obstruction
 - Proof: `proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md`
 
 ## Compact-tilt top-prime logarithmic model
@@ -85,16 +79,14 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 ### N3-ANA-012, compact-tilt Gaussian coarse windows
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Exact family: subset products of primes in `(n/2,n]`
-- Hypotheses: fixed `|theta|<=theta_0<1`, fixed central displacement constant, `n>=120368`
+- Hypotheses: fixed `|theta|<=theta_0<1`, fixed central displacement, `n>=120368`
 - Conclusions: explicit variance lower bound, Berry-Esseen bound, and positive logarithmic-window mass for `Delta>=K_A log n`
 - Proof: `proofs/COMPACT_TILT_TOP_PRIME_BAND.md`
 
 ### N3-ANA-013, unit-tilt freezing
 
 - Class: `disproved estimate`
-- Status: `DISPROVED`
 - Conclusion:
   \[
   T_{n,1}/B_{n,1}\to0
@@ -107,17 +99,15 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 ### N3-ANA-014, repaired menu lower bound
 
 - Class: `proved theorem`
-- Status: `PROVED`
-- Imported request: Nova 1 `N1-HO-N3-002`, commit `9febe46f2298d2726eeffa139676136963790019`
-- Conclusions:
+- Conclusion for every `n>=120368` and `1<=t<=M_n`:
   \[
   M_n-1\le v_2(n!),
   \]
   \[
-  |U_t^{(3)}(n)|\ge2^{h_n-1}
+  |U_t^{(3)}(n)|
+  \ge2^{h_n-1}
   \ge2^{n/(3\log n)-1}
   \]
-  for all `n>=120368` and `1<=t<=M_n`
 - Key repair:
   \[
   n!/H_n\ge\lfloor n/2\rfloor!
@@ -127,22 +117,21 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 ### N3-ANA-015, repaired formal profile capacity
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Conclusion:
   \[
-  2^{r_n}\prod_{t=1}^{M_n}(|U_t^{(3)}(n)|+1)
+  2^{r_n}
+  \prod_{t=1}^{M_n}(|U_t^{(3)}(n)|+1)
   \ge X_n+1
   \]
   for every `n>=120368`
-- Claim boundary: formal capacity only
+- Boundary: formal capacity only
 - Proof: `proofs/MARKER_THREE_REPAIRED_CAPACITY_AUDIT.md`
 
 ### N3-ANA-016, central-binomial shortcut obstruction
 
 - Class: `disproved estimate`
-- Status: `DISPROVED`
 - Disproved claim: every prime in `(n/2,n]` divides `binom(n,floor(n/2))`
-- Counterexample family: `n=2p-1`, `p` prime, for which
+- Counterexample family: `n=2p-1`, `p` prime, with
   \[
   v_p\binom{2p-1}{p-1}=0
   \]
@@ -153,67 +142,40 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 ### N3-ANA-017, active contract compatibility
 
 - Class: `proved theorem`
-- Status: `PROVED`
-- Current Nova 2 source: branch `nova/additive-occupancy`, commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c`
-- Structural source: Nova 1 marker-three construction at `ebb47ba436af554366d0f285119a769f31f9e561`
-- Latest compatible Nova 1 head inspected: `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`
-- Conclusion: later Nova 1 endpoint, carrier-block, and carry-collision commits preserve the numerical label definitions
-- Proofs: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md` and `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
+- Current Nova 1 inspected head: `1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`
+- Current Nova 2 inspected head: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`
+- Conclusion: later structural, endpoint, carrier, streaming, and collision commits preserve the exact marker-three numerical label definitions
+- Proofs: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`, `proofs/POST_PREFIX_TILT_AND_COLLISION.md`, and `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
 
 ### N3-ANA-018, tilt existence, span, and exact resonance set
 
 - Class: `proved theorem`
-- Status: `PROVED`
-- Numerical law:
-  \[
-  P_\lambda(Z_t=b)
-  =
-  \frac{e^{\lambda b}}
-  {1+\sum_{a\in B_t(n)}e^{\lambda a}}
-  \]
 - Mean map: continuous and strictly increasing from zero to the sum of layer maxima
-- Target conclusion: for every
-  \[
-  W_n<q\le Y_n,
-  \]
-  there is a unique finite tilt centered at
-  \[
-  q-W_n/2\in[q-W_n,q]
-  \]
-- Lattice conclusion: exact additive span one
-- Resonance conclusion: on `[-pi,pi]`, the only exact modulus-one point is `theta=0`
-- Global bound:
-  \[
-  |\Phi_{n,\lambda}(\theta)|
-  \le
-  \exp\left(-2p_0(\lambda)p_1(\lambda)\sin^2(\theta/2)\right)
-  \]
+- For every `W_n<q<=Y_n`, a unique finite tilt centers the mean at `q-W_n/2`
+- Exact additive span: one
+- Exact modulus-one resonance set on `[-pi,pi]`: `{0}`
 - Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
 
 ### N3-ANA-019, endpoint-uniform minor-arc obstruction
 
 - Class: `disproved estimate`
-- Status: `DISPROVED`
-- Disproved estimate: a fixed `rho<1` minor-arc modulus bound uniform over all finite tilts
 - Conclusion:
   \[
   \sup_{\lambda\in\mathbb R}
   |\Phi_{n,\lambda}(\theta)|=1
   \]
   for every fixed torus frequency
-- Mechanism: the law freezes at zero as `lambda->-infinity` and at layer maxima as `lambda->+infinity`
-- Consequence: the final analytic bulk must provide compact tilt or direct phase-dispersion bounds
+- Mechanism: freezing at zero and at the layer maxima
 - Proof: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`
 
 ### N3-ANA-020, post-prefix tilt compression
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - Deterministic prefix endpoint:
   \[
   P_n=m_n(2^{M_n}-1)+W_n
   \]
-- Exact analytic target range:
+- Exact analytic range:
   \[
   P_n+1\le q\le Y_n
   \]
@@ -229,58 +191,135 @@ Every entry has one research result class. Finite computation, asymptotic proof,
   \[
   \sup_{P_n<q\le Y_n}|\lambda_{n,q}|\to0
   \]
-- Dependencies: N1-STR-020, N1-DIS-006, N2-ADD-120, N3-ANA-018
 - Proof: `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
 
 ### N3-ANA-021, binary-anchor coefficient collapse
 
 - Class: `disproved estimate`
-- Status: `DISPROVED`
-- Disproved inference: compact numerical tilt, or even tilt tending to zero, automatically supplies a fixed lower bound for the zero-versus-minimum-state minor-arc coefficient
+- Disproved inference: shrinking numerical tilt supplies a fixed lower bound for the zero-versus-minimum-state phase coefficient
 - At zero tilt:
   \[
   P_0(Z_t=0)P_0(Z_t=2^{t-1})
   <2^{-2(h_n-1)}
-  \le2^{-2(n/(3\log n)-1)}
   \]
-- Consequence: the exact two-state bound in N3-ANA-018 cannot close the minor arc without aggregate phase dispersion
+- Consequence: the two-state bound from N3-ANA-018 cannot close the minor arc
 - Proof: `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
 
 ### N3-ANA-022, collision-aware tilted atom formula
 
 - Class: `proved theorem`
-- Status: `PROVED`
 - For exact profile multiplicity `C_n(s)`:
   \[
-  P_\lambda(T_{n,\lambda}=s)
+  P_\lambda(T=s)
   =
   \frac{C_n(s)e^{\lambda s}}
   {\prod_tZ_t(\lambda)}
   \]
-- Nova 1 collision input: for
+- Nova 1 input:
   \[
-  J_n=\lfloor M_n/2\rfloor,
-  \qquad S_n=4^{J_n}-1,
+  C_n(4^{\lfloor M_n/2\rfloor}-1)
+  \ge2^{\lfloor M_n/2\rfloor}
   \]
-  one has
-  \[
-  C_n(S_n)\ge2^{J_n}
-  \]
-- Consequence: every local approximation must account for numerical fiber multiplicity
-- Dependency: Nova 1 `N1-COL-001` at commit `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`
+- Consequence: every local reference law must retain or control numerical fiber multiplicity
 - Proof: `proofs/POST_PREFIX_TILT_AND_COLLISION.md`
+
+### N3-ANA-023, parity twin near-resonance
+
+- Class: `disproved estimate with exact replacement identity`
+- Put
+  \[
+  \varepsilon_n
+  =
+  \frac{8M_n\log L_n}{2^{M_n}-1}.
+  \]
+- Uniform first-layer zero-state bound:
+  \[
+  p^{(0)}_{n,q}
+  \le
+  \frac{2e^{\varepsilon_n}}{m_n+1}.
+  \]
+- Exact parity law:
+  \[
+  P(T\text{ even})=p^{(0)}_{n,q}.
+  \]
+- Exact nonzero-frequency value:
+  \[
+  \Phi(\pi)=2p^{(0)}-1.
+  \]
+- Uniform consequence:
+  \[
+  |\Phi(\pi)|
+  \ge
+  1-rac{4e^{\varepsilon_n}}{m_n+1}
+  \to1.
+  \]
+- Exact twin identity:
+  \[
+  \Phi(\pi+u)+\Phi(u)
+  =
+  2p^{(0)}\prod_{t=2}^{M_n}\phi_t(u).
+  \]
+- Consequence: an unnormalized minor arc containing `pi` cannot have a fixed aggregate-dispersion gap
+- Proof: `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
+
+### N3-ANA-024, parity mismatch obstruction for reference laws
+
+- Class: `proved obstruction`
+- For every integer-valued reference law `G`:
+  \[
+  d_{TV}(\mathcal L(T),G)
+  \ge
+  |G(2\mathbb Z)-p^{(0)}|.
+  \]
+- Consequence: a reference law with fixed positive even mass cannot approximate the post-prefix law in total variation
+- Boundary: this does not itself disprove a window-specific weighted Fourier inequality
+- Proof: `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
+
+### N3-ANA-025, exact odd-lattice normalization
+
+- Class: `proved theorem`
+- Conditional transformation:
+  \[
+  \widetilde Z_1=(Z_1-1)/2
+  \quad\text{given }Z_1\ne0,
+  \qquad
+  \widetilde Z_t=Z_t/2\quad(t>=2).
+  \]
+- Exact transformed sum:
+  \[
+  \widetilde T=(T-1)/2
+  \quad\text{given }T\text{ odd}.
+  \]
+- The transformed coordinates remain independent and have common tilt `2 lambda`
+- The transformed first support contains `0` and `1`, so the transformed law has exact span one
+- Exact transformed window:
+  \[
+  J_{n,q}
+  =
+  \left[
+  \left\lceil\frac{q-W_n-1}{2}\right\rceil,
+  \left\lfloor\frac{q-1}{2}\right\rfloor
+  \right]\cap\mathbb Z.
+  \]
+- Positivity transfer:
+  \[
+  P_\lambda(T\in I_{n,q})
+  \ge
+  (1-p^{(0)})
+  P_{2\lambda}(\widetilde T\in J_{n,q}).
+  \]
+- Proof: `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
 
 ## Finite certificates
 
 ### N3-FIN-001
 
-- Exact range: every `2<=n<=12`
+- Exact factorial-divisor checks for every `2<=n<=12`
 - Verifier: `proofs/scale_sanity.py`
 
 ### N3-FIN-002
 
-- Exact range: every `120368<=n<=1000000`
-- Content: explicit prime interval and old-address threshold checks
+- Exact explicit-threshold checks for every `120368<=n<=1000000`
 - Verifier: `proofs/prime_interval_capacity_sanity.py`
 
 ### N3-FIN-003
@@ -290,53 +329,34 @@ Every entry has one research result class. Finite computation, asymptotic proof,
 
 ### N3-FIN-004
 
-- Exact threshold: `n=120368`
-- Content: repaired cutoff, address legality, formal capacity, and central-binomial regression
+- Exact repaired capacity threshold audit at `n=120368`
 - Verifier: `proofs/marker_three_capacity_sanity.py`
 
 ### N3-FIN-005
 
-- Exact supports: `n in {12,15}`
-- Content: marker-three support span, endpoint crossing, and finite support construction
-- Numerical evidence: tilt centering and sampled torus resonance checks
+- Exact marker-three support and span checks for `n in {12,15}`
 - Verifier: `proofs/marker_three_numerical_law_sanity.py`
 
 ### N3-FIN-006
 
-- Exact threshold: `n=120368`
-- Content: nonempty post-prefix range, largest minimum-state legality, lower-bound algebra, and exact carry-collision enumeration for four layer pairs
-- Observed minimal-support collision multiplicity at target `255`: `34`, exceeding the required `16`
+- Exact threshold and collision checks for the post-prefix tilt theorem
 - Verifier: `proofs/post_prefix_tilt_sanity.py`
+
+### N3-FIN-007
+
+- Exact small support construction for `n in {12,15}`
+- Checks: parity structure, `pi` identity, parity-twin identity, transformed coordinate law, and transformed interval map
+- Large closed-form rows: `n in {120368,200000,500000,1000000}`
+- Verifier: `proofs/parity_twin_sanity.py`
 
 ## Computational evidence
 
-### N3-COMP-001
-
-Full-model scale tables from `proofs/scale_sanity.py`.
-
-### N3-COMP-002
-
-Compact-tilt scale tables from `proofs/compact_tilt_sanity.py`.
-
-### N3-COMP-003
-
-Repaired marker-three capacity margins through selected `n<=1000000` from `proofs/marker_three_capacity_sanity.py`.
-
-### N3-COMP-004
-
-Small marker-three numerical-law tilt and characteristic-function grids from `proofs/marker_three_numerical_law_sanity.py`.
-
-### N3-COMP-005
-
-Post-prefix tilt bound scales at selected `n in {120368,200000,500000,1000000}` from `proofs/post_prefix_tilt_sanity.py`.
-
-At `n=120368`, the logarithmic magnitudes satisfy approximately
-
-\[
-\log_{10}\Lambda_n^-<-656.90,
-\qquad
-\log_{10}\Lambda_n^+<-651.90.
-\]
+- `N3-COMP-001`: full logarithmic model scales
+- `N3-COMP-002`: compact top-prime tilt scales
+- `N3-COMP-003`: repaired capacity margins
+- `N3-COMP-004`: small numerical marker-three tilt grids
+- `N3-COMP-005`: post-prefix tilt scales
+- `N3-COMP-006`: parity-zero ceiling and `pi` modulus floors at selected large `n`
 
 ## Open candidate contracts
 
@@ -350,8 +370,8 @@ Compact-tilt coarse logarithmic windows are proved for the top-prime band. Fine 
 
 ### N3-CAND-CF-001
 
-For the numerical marker-three law, the exact span, exact resonance set, active post-prefix target range, and uniform shrinking tilt are now known. The single binary anchor is quantitatively insufficient. The open node is an aggregate phase-dispersion theorem for the complete odd-core menus with collision-aware atoms.
+The unnormalized numerical law has a forced parity twin at `pi`. The active candidate is aggregate phase dispersion for the exact odd-lattice normalized product law from `N3-ANA-025`, together with a collision-aware reference law and transformed weighted Fourier inequality.
 
 ## Promotion rule
 
-N3-ANA-020 closes the compact-tilt clause on the exact post-prefix target range. N3-ANA-021 prevents promotion of the existing two-state minor-arc bound. N3-ANA-022 freezes how profile collisions enter numerical atoms. None of N3-ANA-014 through N3-ANA-022 proves the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
+N3-ANA-023 rejects a zero-only major-arc partition for the unnormalized law. N3-ANA-025 supplies the exact parity normalization. None of N3-ANA-014 through N3-ANA-025 proves the transformed dispersion theorem, the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
