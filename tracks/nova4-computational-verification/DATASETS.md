@@ -205,14 +205,84 @@ Findings:
 - the frozen script's scale fields agree within `1.6e-15`;
 - its high-prime routine computes `2M/B`, so the printed ratio label is `NEEDS_REPAIR`.
 
+## N4-DATA-008: Nova 3 bounded characteristic recurrence evidence
+
+Result class: `computational evidence` supporting an independently accepted theorem audit.
+
+Frozen source:
+
+```text
+branch: nova/analytic-density
+superseding handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+proof commit: ff57005b975c4917341306bd0eceb6d05a9b18f6
+request: D
+object: N3-ANA-007
+```
+
+Coverage:
+
+```text
+n values: every 3 <= n <= 12
+q values: every 1,000 <= q <= 2,000,000
+frequency: t_q = 2*pi*q/log(2)
+q values per n: 1,999,001
+total characteristic scores: 19,990,010
+frequency blocks: 4
+block winners: 40
+global winners: 10
+finalist precision: 80 Decimal digits
+```
+
+Artifacts:
+
+```text
+data/analytic/n3_characteristic_recurrence_index.json
+data/analytic/n3_characteristic_recurrence_index.schema.json
+data/analytic/n3_characteristic_recurrence_evidence.schema.json
+data/analytic/n3_characteristic_recurrence_blocks.csv
+data/analytic/n3_characteristic_recurrence_best.csv
+certificates/analytic/n3_recurrence_candidate_n12.json
+certificates/analytic/n3_recurrence_candidate.schema.json
+```
+
+Full generated evidence semantic SHA-256:
+
+```text
+b15ad70a01046ec292ab3197faafc357bf4c9be155e97a5d498b10a6681123fc
+```
+
+Candidate certificate semantic SHA-256:
+
+```text
+ab8e8a6d0aa24440ceb1379b86d9ae70dd02b2a5b263f4db4ea89eb354f49a24
+```
+
+Selected finite finding:
+
+```text
+n = 12
+q = 1,161,483
+t approximately 1.0528518509e7
+|phi_12(t)| approximately 0.9963479152311605
+exact divisor exponent vectors cross-checked: 792
+product/direct-average difference approximately 1.86e-15
+```
+
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_scale.py generate \
-  --output-json /tmp/n3_scale_evidence.json \
-  --scale-csv /tmp/n3_scale_rows.csv \
-  --tail-csv /tmp/n3_high_prime_tail_rows.csv
-PYTHONPATH=src python3 src/replay_n3_scale.py verify /tmp/n3_scale_evidence.json
+PYTHONPATH=src python3 src/replay_n3_recurrence.py audit \
+  --output /tmp/n3_characteristic_recurrence_evidence.json \
+  --block-csv /tmp/n3_characteristic_recurrence_blocks.csv \
+  --best-csv /tmp/n3_characteristic_recurrence_best.csv \
+  --candidate /tmp/n3_recurrence_candidate_n12.json
+PYTHONPATH=src python3 src/replay_n3_recurrence.py verify \
+  /tmp/n3_characteristic_recurrence_evidence.json
+PYTHONPATH=src python3 src/replay_n3_recurrence.py verify-candidate \
+  certificates/analytic/n3_recurrence_candidate_n12.json
 ```
+
+The bounded dataset is evidence only. It does not prove a recurrence rate, certify a global maximum outside the grid, or replace the independent proof of `N3-ANA-007`.
 
 No finite dataset in this registry is an asymptotic theorem.
