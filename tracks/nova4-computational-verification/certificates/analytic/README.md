@@ -34,13 +34,28 @@ N3-SRC-005: Drappeau–Tenenbaum method only, fixed sequence not certified
 N3-SRC-006: ultrafriable common-cap model, direct factorial use rejected
 ```
 
-Its exact ultrafriable witness uses `n=10`: `v_2(10!)=8`, so `256` must be included, while any common cap large enough to include `256` also includes prime `11`, which does not divide `10!`.
-
 ```bash
 PYTHONPATH=src python3 src/replay_n3_sources.py verify-claim \
   certificates/analytic/n3_restricted_source_compatibility.json
 ```
 
-The adversarial fixture changes the direct-use conclusion to true, recomputes the outer checksum, and must still fail semantic verification.
+## Dusart prime-interval theorem certificate
 
-These certificates preserve finite evidence and source-scope decisions only. They do not prove the factorial half-range theorem.
+The request F certificate records the independently accepted theorem:
+
+```text
+N3-ANA-010: ACCEPTED
+pi(n)-pi(n/2) >= n/(3 log n) for every integer n>=120368
+source thresholds: 5393 and 60184
+endpoint prime count: 5254
+```
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_dusart.py verify-claim \
+  certificates/analytic/n3_dusart_prime_interval_claim.json \
+  --audit data/analytic/n3_dusart_prime_interval_audit.json
+```
+
+The adversarial fixture lowers the claimed threshold to `120367`, recomputes the outer checksum, and must still fail semantic verification.
+
+These certificates preserve finite evidence, source-scope decisions, and theorem audit decisions. They do not prove the factorial half-range theorem.
