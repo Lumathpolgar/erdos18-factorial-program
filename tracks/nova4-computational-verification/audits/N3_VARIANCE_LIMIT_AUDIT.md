@@ -229,10 +229,10 @@ This conclusion applies to the full divisor model at its natural variance scale.
 The exact valuation formula was evaluated for selected values through `n=1,000,000`.
 
 ```text
-n=50       Var(S_n)/n^2 = 0.10558484561623833
-n=1,000    Var(S_n)/n^2 = 0.11485212177618963
-n=10,000   Var(S_n)/n^2 = 0.11544768625558857
-n=100,000  Var(S_n)/n^2 = 0.11546927713679392
+n=50        Var(S_n)/n^2 = 0.10558484561623833
+n=1,000     Var(S_n)/n^2 = 0.11485212177618963
+n=10,000    Var(S_n)/n^2 = 0.11544768625558857
+n=100,000   Var(S_n)/n^2 = 0.11546927713679392
 n=1,000,000 Var(S_n)/n^2 = 0.11546830343704997
 ```
 
@@ -273,14 +273,15 @@ claim: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
 
 ## Validation
 
-- 12 new variance-limit tests pass;
+- 13 new variance-limit tests pass;
 - full semantic audit replay passes;
 - final claim replay passes;
-- all five generated rehashed theorem corruptions are rejected;
+- all five generated and committed rehashed theorem corruptions are rejected;
 - wrong frozen-source metadata and wrong evidence hashes are rejected;
 - standalone audit replay completes in approximately 1.43 seconds;
 - standalone claim replay completes in approximately 1.33 seconds;
-- peak resident memory is approximately 304,400 KiB;
+- committed fixture-directory replay completes in approximately 2.16 seconds;
+- peak resident memory across the replay runs is approximately 313,424 KiB;
 - no timeout or unknown result occurred.
 
 ## Scope restriction
