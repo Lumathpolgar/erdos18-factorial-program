@@ -7,6 +7,11 @@ on:
   pull_request:
     branches:
       - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
     paths:
       - 'tracks/nova4-computational-verification/**'
       - '.github/workflows/nova4-integration.yml'
@@ -19,13 +24,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Check out candidate branch
+      - name: Check out tested revision
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Construct current-main plus candidate combined tree
-        id: integration
+      - name: Record GitHub pull-request merge tree
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "event=${GITHUB_EVENT_NAME}"
+          echo "candidate_head=${{ github.event.pull_request.head.sha }}"
+          echo "base_head=${{ github.event.pull_request.base.sha }}"
+          echo "tested_merge_commit=$(git rev-parse HEAD)"
+          echo "combined_tree=$(git rev-parse HEAD^{tree})"
+          git status --short
+
+      - name: Construct current-main plus candidate combined tree for push runs
+        if: github.event_name == 'push'
         shell: bash
         run: |
           set -euo pipefail
@@ -38,14 +55,10 @@ jobs:
               -c user.email='nova4-integration@users.noreply.github.com' \
               merge --no-commit --no-ff "$SOURCE_HEAD"
 
-          TREE_SHA="$(git write-tree)"
           echo "event=${GITHUB_EVENT_NAME}"
           echo "candidate_head=${SOURCE_HEAD}"
           echo "base_head=${BASE_HEAD}"
-          echo "combined_tree=${TREE_SHA}"
-          echo "candidate_head=${SOURCE_HEAD}" >> "$GITHUB_OUTPUT"
-          echo "base_head=${BASE_HEAD}" >> "$GITHUB_OUTPUT"
-          echo "combined_tree=${TREE_SHA}" >> "$GITHUB_OUTPUT"
+          echo "combined_tree=$(git write-tree)"
           git status --short
 
       - name: Compile Nova 4 Python sources
