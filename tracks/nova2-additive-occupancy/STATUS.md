@@ -4,7 +4,7 @@
 
 - Track: Additive Occupancy and Global Sumsets
 - Branch: `nova/additive-occupancy`
-- Overall state: `MARKER_THREE_CERTIFIED_N12_N55_COMPLEMENT_QUANTILE_OPEN`
+- Overall state: `MARKER_THREE_CERTIFIED_N12_N55_RANKIN_SMOOTH_DIVISOR_OPEN`
 
 The factorial formulation of Erdos Problem 18 remains open.
 
@@ -31,6 +31,8 @@ Nova 2 proved:
 - `N2-ADD-124`: sharp parity-span count-to-threshold criterion;
 - `N2-ADD-125`: exact divisor-complement order-statistic identity;
 - `N2-ADD-126`: lower-tail quantile and median carrier bounds;
+- `N2-ADD-127`: Rankin weighted-divisor span bound;
+- `N2-ADD-128`: explicit Rankin-median carrier criterion;
 - `N2-OBS-109`: first-blocking-gap non-identifiability;
 - `N2-OBS-110`: optimality of parity and count information without factorial-specific spacing.
 
@@ -78,7 +80,7 @@ write its positive divisors as
 1=c_1<\cdots<c_{\tau_n}=C_n.
 \]
 
-Because the connected prefix contains exactly the first `K_t` divisors, N2-ADD-125 gives the exact identity
+N2-ADD-125 gives the exact identity
 
 \[
 U_t c_{\tau_n+1-K_t}=C_n.
@@ -105,13 +107,32 @@ K_t>\frac{\tau_n}{2}
 U_t\ge\left\lceil\sqrt{C_n}\right\rceil.
 \]
 
+For every `sigma>0`, define
+
+\[
+Z_n(\sigma)
+=\sum_{d\mid C_n}d^{-\sigma}
+=\prod_{p^e\parallel C_n}
+\frac{1-p^{-(e+1)\sigma}}{1-p^{-\sigma}}.
+\]
+
+N2-ADD-127 proves the factorial-specific bound
+
+\[
+U_t\ge
+\left(\frac{K_t}{Z_n(\sigma)}\right)^{1/\sigma}.
+\]
+
+This bound applies at every layer and uses the complete exact prime-exponent profile of `C_n`.
+
 ## Retired or insufficient sequential inputs
 
 1. First external blocking gaps are non-identifying by N2-OBS-109.
 2. Prefix count and parity alone are optimal but quantitatively insufficient by N2-OBS-110 and N2-CMP-206.
 3. Divisor median symmetry is stronger, but N2-CMP-207 still leaves a finite endpoint deficit of roughly `10^23` through `10^25`.
+4. The one-parameter Rankin moment improves the median-hybrid product by a further `10^3.4` through `10^4.2`, but N2-CMP-208 still leaves a deficit of roughly `10^19.6` through `10^20.6`.
 
-The exact missing input is now a substantially deeper lower-tail divisor-count theorem, equivalently an upper bound for
+The missing input is now a sharper lower-tail divisor theorem than the one-parameter Rankin moment, equivalently a stronger upper bound for
 
 \[
 c_{\tau_n+1-K_t}.
@@ -150,28 +171,28 @@ The term-bound transition occurs because `r_55=17`. The smallest unaudited finit
 
 ## Finite effective diagnostics
 
-| `n` | endpoint surplus | parity-only root ratio | median-hybrid root ratio |
-|---:|---:|---:|---:|
-| 51 | 1.000004144206103 | 0.0000257773398727324 | 0.000145487587879522 |
-| 52 | 1.000001025305911 | 0.0000185652131315783 | 0.000123906257046752 |
-| 53 | 1.000001967025492 | 0.0000139117330218277 | 0.0000907853071519960 |
-| 54 | 1.000000334888580 | 0.00000997734788683994 | 0.0000892960011035230 |
-| 55 | 1.000000290721510 | 0.00000761958530584015 | 0.0000740382055592177 |
+| `n` | endpoint surplus | parity root | median-hybrid root | Rankin-median root |
+|---:|---:|---:|---:|---:|
+| 51 | 1.000004144206103 | 0.0000257773398727324 | 0.000145487587879522 | 0.000542135786332180 |
+| 52 | 1.000001025305911 | 0.0000185652131315783 | 0.000123906257046752 | 0.000488608023294683 |
+| 53 | 1.000001967025492 | 0.0000139117330218277 | 0.0000907853071519960 | 0.000443191288757114 |
+| 54 | 1.000000334888580 | 0.00000997734788683994 | 0.0000892960011035230 | 0.000438131601230971 |
+| 55 | 1.000000290721510 | 0.00000761958530584015 | 0.0000740382055592177 | 0.000374184125626777 |
 
-For every row, layers five and six cross the divisor median. Median symmetry improves the parity baseline by about five to six decimal orders, but still does not approach the true endpoint factor. No asymptotic trend is inferred.
+These values are finite diagnostics only. No asymptotic trend is inferred.
 
 ## Preferred proof engines
 
 1. Final-only target-dependent numerical tilt and aggregate phase dispersion.
 2. Deterministic final restricted-sumset growth.
-3. Connected-core recursion, now requiring a complementary lower-tail divisor theorem and a Phase 12P audit.
+3. Connected-core recursion, now requiring a multi-parameter or saddle-point lower-tail divisor theorem and a Phase 12P audit.
 4. Preserved three-power fallback.
 
 ## Cross-track requests
 
 ### Nova 1
 
-Prove lower-tail divisor-count bounds for the reserved odd factorial core strong enough to upper-bound `c_(tau_n+1-K_t)` beyond the median theorem.
+Improve the Rankin lower-tail bound through a multi-parameter exponent box, a saddle-point divisor estimate, or a direct smooth-divisor counting theorem for `C_n`.
 
 ### Nova 3
 
@@ -179,12 +200,12 @@ Continue aggregate odd-core phase dispersion, collision-aware reference laws, an
 
 ### Nova 4
 
-Independently reconstruct N2-ADD-125 and N2-ADD-126, replay N2-CMP-207, and extend exact finite certification from `n=56`.
+Independently reconstruct N2-ADD-127 and N2-ADD-128, replay N2-CMP-208, and extend exact finite certification from `n=56`.
 
 ## Exact open blockers
 
 1. Uniform marker-three quotient occupancy through `Y_n`.
-2. A lower-tail divisor-count theorem forcing `Delta_n>=1`, or a contrary complementary-quantile upper bound retiring the sequential engine.
+2. A lower-tail divisor theorem stronger than the one-parameter Rankin moment, or a contrary complementary-quantile obstruction retiring the sequential engine.
 3. Exact finite extension from `n=56`.
 4. Uniform endpoint-window coverage.
 5. Target-local collision multiplicity or additive-energy control.
@@ -194,8 +215,8 @@ Independently reconstruct N2-ADD-125 and N2-ADD-126, replay N2-CMP-207, and exte
 
 ## Claim boundary
 
-Exact coverage through `n=55`, complement symmetry, and the median-hybrid theorem do not prove asymptotic occupancy, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
+Exact coverage through `n=55`, complement symmetry, the median theorem, and the Rankin theorem do not prove asymptotic occupancy, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
 
 ## Next theorem target
 
-Construct a certified lower-tail divisor family for `C_n` large enough to bound the complementary order statistics required by the active carrier layers.
+Replace the one-parameter Rankin moment by a sharper certified lower-tail count, preferably a saddle-point or multi-parameter exponent allocation for divisors of `C_n`.
