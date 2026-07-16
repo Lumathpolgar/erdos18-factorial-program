@@ -1,0 +1,175 @@
+{
+  "N3_ANA_008": {
+    "definitions": {
+      "B_ny_squared": "Var(T_ny)",
+      "M_ny": "max_{p>y} b_p log p / 2",
+      "T_ny": "sum_{y<p<=n} (A_p-b_p/2) log p"
+    },
+    "hypotheses": [
+      "n tends to infinity through integers",
+      "y=y(n) tends to infinity",
+      "2*y <= sqrt(n) eventually",
+      "independent uniform factorial exponent coordinates"
+    ],
+    "proof_reconstruction": {
+      "band": "y<p<=2y",
+      "half_span_upper": "M_ny << n log(y)/y",
+      "lindeberg": "each centered summand has absolute value at most M_ny, so the Lindeberg sum is eventually zero",
+      "monotonicity": "log(x)/(x-1) is decreasing for x>1",
+      "prime_band_count": "pi(2y)-pi(y) >> y/log(y) by N3-SRC-002",
+      "ratio_upper": "M_ny/B_ny << sqrt(log(y)/y) -> 0",
+      "single_variance_lower": "b_p(b_p+2)(log p)^2/12 >> n^2(log y)^2/y^2",
+      "valuation_lower": "b_p>=floor(n/p)>=n/(2p) eventually",
+      "valuation_upper": "b_p<=n/(p-1)",
+      "variance_lower": "B_ny^2 >> n^2 log(y)/y"
+    },
+    "proved_statements": [
+      "B_ny^2 >> n^2 log(y)/y",
+      "M_ny << n log(y)/y",
+      "M_ny/B_ny << sqrt(log(y)/y)",
+      "T_ny/B_ny converges weakly to N(0,1)"
+    ],
+    "semantic_guards": {
+      "M_is_half_span": true,
+      "does_not_imply_full_model_gaussian": true,
+      "full_span_is_2M": true,
+      "requires_scale_admissibility": true,
+      "requires_y_to_infinity": true
+    }
+  },
+  "N3_ANA_009": {
+    "explicit_constants": {
+      "K": "4*C_BE/phi_2",
+      "lower_probability_constant": "phi_2/2",
+      "phi_2": "exp(-2)/sqrt(2*pi)",
+      "phi_2_decimal": "0.053990966513188063"
+    },
+    "external_dependency": "N3-SRC-003 Berry-Esseen inequality",
+    "hypotheses": [
+      "all N3-ANA-008 hypotheses",
+      "0<Delta<=B_ny",
+      "abs(x)<=B_ny",
+      "Delta>=K*M_ny"
+    ],
+    "proof_reconstruction": {
+      "chosen_K": "4*C_BE/phi(2)",
+      "conclusion": "remaining mass at least (phi(2)/2)*Delta/B_ny",
+      "kolmogorov_error": "at most C_BE*M_ny/B_ny",
+      "normal_density_floor": "the interval lies in [-1,2], where phi>=phi(2)",
+      "standardized_interval": "left endpoint in [-1,1] and length in (0,1]",
+      "third_moment": "sum E|Y_p|^3 <= M_ny * B_ny^2",
+      "two_endpoint_loss": "subtract 2*C_BE*M_ny/B_ny"
+    },
+    "proved_statement": "P{T_ny in [x,x+Delta]} >= (phi_2/2)*Delta/B_ny",
+    "semantic_guards": {
+      "coarse_windows_only": true,
+      "does_not_give_arbitrary_x_uniformity": true,
+      "does_not_prove_additive_occupancy": true,
+      "does_not_reach_Delta_below_M": true
+    },
+    "status_classification": "conditional theorem with accepted external dependency"
+  },
+  "decisions": {
+    "N3_ANA_008": "ACCEPTED",
+    "N3_ANA_009": "ACCEPTED_WITH_EXTERNAL_BERRY_ESSEEN_DEPENDENCY",
+    "finite_table_is_asymptotic_proof": false,
+    "request_C_full_span_label_is_theorem_M": false
+  },
+  "finite_diagnostics": {
+    "classification": "computational evidence only",
+    "path": "y=floor(sqrt(n))/2",
+    "rows": [
+      {
+        "M_over_B": "0.42704100199186046",
+        "admissible_2y_le_sqrt_n": true,
+        "band_prime_count": 10,
+        "band_variance": "313323.59223831393",
+        "full_span": "758.32575548845534",
+        "full_span_over_B": "0.85408200398372092",
+        "maximizing_prime": 53,
+        "n": 10000,
+        "standard_deviation": "887.88401108016944",
+        "tail_prime_count": 1214,
+        "theorem_half_span_M": "379.16287774422767",
+        "variance": "788338.01713181043",
+        "variance_over_n2_logy_over_y": "0.10075835648690566",
+        "y": 50
+      },
+      {
+        "M_over_B": "0.28088934761914103",
+        "admissible_2y_le_sqrt_n": true,
+        "band_prime_count": 28,
+        "band_variance": "13651378.760824833",
+        "full_span": "3137.7501236969656",
+        "full_span_over_B": "0.56177869523828206",
+        "maximizing_prime": 163,
+        "n": 100000,
+        "standard_deviation": "5585.3846902579116",
+        "tail_prime_count": 9555,
+        "theorem_half_span_M": "1568.8750618484828",
+        "variance": "31196522.138167471",
+        "variance_over_n2_logy_over_y": "0.097362132773305007",
+        "y": 158
+      },
+      {
+        "M_over_B": "0.18044353517209441",
+        "admissible_2y_le_sqrt_n": true,
+        "band_prime_count": 73,
+        "band_variance": "520554449.07673591",
+        "full_span": "12385.195028668581",
+        "full_span_over_B": "0.36088707034418882",
+        "maximizing_prime": 503,
+        "n": 1000000,
+        "standard_deviation": "34318.75521851323",
+        "tail_prime_count": 78403,
+        "theorem_half_span_M": "6192.5975143342903",
+        "variance": "1177776959.748229",
+        "variance_over_n2_logy_over_y": "0.094758747542524141",
+        "y": 500
+      },
+      {
+        "M_over_B": "0.11145145759650005",
+        "admissible_2y_le_sqrt_n": true,
+        "band_prime_count": 197,
+        "band_variance": "19668939407.216007",
+        "full_span": "46559.927018447997",
+        "full_span_over_B": "0.2229029151930001",
+        "maximizing_prime": 1583,
+        "n": 10000000,
+        "standard_deviation": "208879.84788415246",
+        "tail_prime_count": 664330,
+        "theorem_half_span_M": "23279.963509223999",
+        "variance": "43630790852.106667",
+        "variance_over_n2_logy_over_y": "0.093649243962209763",
+        "y": 1581
+      }
+    ]
+  },
+  "result_class": "proved theorem audits with finite diagnostics",
+  "schema": "nova4.n3-high-prime-limit-audit.v1",
+  "scope_excludes": [
+    "full-model Gaussian limit",
+    "windows below the largest coordinate half-span",
+    "formal-profile injectivity",
+    "distinct numerical sums",
+    "additive occupancy",
+    "factorial half-range theorem",
+    "Erdos Problem 18"
+  ],
+  "sha256": "a9c089489b38990c6de044611a21d8a488166dd0ad570456fee54a0020dc9dd2",
+  "source": {
+    "audit_stage": "POST_N3_ANA_006_CLOSURE",
+    "branch": "nova/analytic-density",
+    "external_sources": {
+      "N3-SRC-002": "prime number theorem",
+      "N3-SRC-003": "Berry-Esseen inequality for independent summands"
+    },
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "proof_file": "tracks/nova3-analytic-density/proofs/PRODUCT_MODEL_THEOREMS.md",
+    "proof_file_blob_sha": "6260f8db0b377cf7dbc1850cbe25c91243099e10",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "source_ledger_blob_sha": "da81e6aaf2674fdae036d72df002547d4a71b18a",
+    "source_ledger_file": "tracks/nova3-analytic-density/SOURCE_LEDGER.md"
+  }
+}
