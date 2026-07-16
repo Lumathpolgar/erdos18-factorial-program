@@ -20,7 +20,7 @@ Source-ledger commit for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadc
 
 Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Status: `REQUESTS_A_B_C_D_E_F_COMPLETE_REQUEST_G_READY`
+Status: `REQUESTS_A_B_C_D_E_F_G_COMPLETE_REQUEST_H_READY`
 
 Completed work:
 
@@ -30,30 +30,38 @@ Completed work:
 - request D exhaustive bounded recurrence evidence over 19,990,010 scores;
 - request E primary-source scope reconstruction for three restricted sources;
 - request F primary-source reconstruction of Dusart Theorem 6.9 and independent derivation of the `n/(3 log n)` prime-interval bound;
-- exact threshold prime counts `11330-6076=5254`;
-- rational certificate `Q(L)>L^2-(11/5)L-18/5>0` for `L>4`;
-- valid theorem certificate and rehashed threshold corruption rejection.
+- request G exact sweep of every one of the 879,633 integers in `120368 <= n <= 1000000`;
+- exact upper-half prime counts, two exact `v_2(n!)` formulas, rationally certified logarithmic ceilings, address legality, and conservative formal-profile capacity;
+- valid finite certificate and rehashed minimum-slack corruption rejection.
 
-Request F disposition:
+Request G disposition:
 
 ```text
-request F: ACCEPTED
-N3-ANA-010: ACCEPTED
-integer threshold: 120368
-audit SHA-256: 42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212
-claim SHA-256: 7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703
+request G: ACCEPTED_AS_FINITE_CERTIFICATE
+N3-ANA-011 swept interval: CONFIRMED
+final N3-ANA-011 theorem decision: PENDING_REQUEST_H
+minimum prime margin: n=120370
+minimum Legendre proof margin: n=131071
+minimum address slack: 57942 at n=120368..120371
+minimum capacity margin: n=120370
+audit SHA-256: e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0
+claim SHA-256: e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88
 ```
 
 Next requested study:
 
-- request G exact sweep for every integer `120368 <= n <= 1000000`;
-- verify exact `pi(n)-pi(floor(n/2))`, `v_2(n!)`, ceilings in `r_n` and `M_n`, address legality, and conservative capacity exponent;
-- record the exact minimum margin and its first `n` for each check.
+- request H adversarial threshold and semantics tests;
+- reject a threshold below source coverage without supplementation;
+- reject a larger unproved legal-address range;
+- reject removal of the unit exclusion from the menu bound;
+- reject formal-profile count as distinct numerical sums;
+- reject `pi(ceil(n/2))` without endpoint analysis;
+- reject reporting the finite sweep as an asymptotic proof.
 
 Later studies:
 
-- request H adversarial threshold tests;
-- final independent decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, and `N3-ANA-011`.
+- final decision for `N3-ANA-011` after request H;
+- final independent decisions for `N3-ANA-006`, `N3-ANA-008`, and `N3-ANA-009`.
 
 ## N4-REQ-N1-001
 
