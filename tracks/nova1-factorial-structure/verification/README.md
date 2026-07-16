@@ -5,11 +5,12 @@
 Every verification artifact is classified as one of:
 
 - **finite certificate**;
-- **computational evidence**.
+- **computational evidence**;
+- **disproved route** when a verifier or finite candidate is rejected.
 
-Verification never promotes an open asymptotic statement to a proved theorem.
+Verification does not promote an open asymptotic statement to a proved theorem.
 
-## Baseline exact checks
+## Baseline checks
 
 ```text
 python tracks/nova1-factorial-structure/verification/structural_sanity.py
@@ -18,66 +19,89 @@ python tracks/nova1-factorial-structure/verification/endpoint_support_sanity.py
 python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
 ```
 
-These deterministic scripts use exact integer arithmetic and check valuation identities, legality, distinctness, support lattices, correction residues, endpoint support, factorial blocks, and carry collisions.
+These scripts use deterministic inputs and exact integer arithmetic.
 
-## Materialized complete-core verifier
+## Historical complete-core verifiers
+
+### Materialized verifier
+
+`marker_three_full_core_u128.cpp` materializes every truncated odd core and is restricted to the small finite range used by `N1-FIN-005`.
+
+### Unique-parent streaming verifier
+
+`marker_three_streaming_prefix_u128.cpp` independently reconstructs the unique-parent divisor stream used for `N1-FIN-006` at `n=51`.
+
+### Retired unguarded MITM verifier
+
+`marker_three_mitm_prefix_u128.cpp` is intentionally fail closed.
+
+Result label: **disproved route**.
+
+The former implementation generated unrestricted half divisors and multiplied unsigned 128-bit values before applying the endpoint cutoff. At `n=57`, masks `6` and `424` produced different connected-prefix counts. A partition-independent exact divisor stream cannot do this.
+
+Do not use this source for a certificate.
+
+## Authoritative overflow-safe checkpointed verifier
 
 Source:
 
-`marker_three_full_core_u128.cpp`
-
-This materializes every truncated odd core and is deliberately restricted to `12<=n<=50`.
-
-`N1-FIN-005`, **finite certificate**, proves exact carrier coverage for `46<=n<=50`. Combined with Nova 2 `N2-FIN-202`, the exact range through `n=50` is closed.
-
-## Unique-parent streaming verifier
-
-Source:
-
-`marker_three_streaming_prefix_u128.cpp`
-
-This reconstructs Nova 2 `N2-ADD-121` with a unique-parent priority-queue divisor stream and record-gap left counts.
-
-`N1-FIN-006`, **finite certificate**, certifies `n=51` with six carrier layers and term bound `22`.
-
-## Meet-in-the-middle verifier
-
-Source:
-
-`marker_three_mitm_prefix_u128.cpp`
+`marker_three_mitm_checkpoint_u128.cpp`
 
 Build:
 
 ```text
 g++ -O3 -std=c++20 \
-  tracks/nova1-factorial-structure/verification/marker_three_mitm_prefix_u128.cpp \
-  -o marker_three_mitm_prefix_u128
+  tracks/nova1-factorial-structure/verification/marker_three_mitm_checkpoint_u128.cpp \
+  -o marker_three_mitm_checkpoint_u128
 ```
 
 Usage:
 
 ```text
-./marker_three_mitm_prefix_u128 n partition_mask
+./marker_three_mitm_checkpoint_u128 n partition_mask
+./marker_three_mitm_checkpoint_u128 n partition_mask chunk_divisors
+```
+
+When `chunk_divisors` is present, the process emits an exact resource checkpoint and exits with status `3` after at least that many newly consumed divisors. Repeating the same command resumes from the saved frontier.
+
+The default cache and checkpoint directory is `/tmp`. To isolate state:
+
+```text
+export NOVA_MITM_STATE_DIR=/path/to/exact-state-directory
 ```
 
 The verifier performs:
 
 1. exact rational certification of `r_n` and `M_n`;
 2. exact factorial valuations and integer square roots;
-3. exact generation and sorting of two half-divisor lists;
-4. duplicate rejection within each half;
-5. exact count verification `|A||B|=tau(D_n)`;
-6. exact minimum-heap row merge;
-7. strict global-order and duplicate rejection;
-8. exact connected-prefix thresholds and counts;
-9. exact endpoint, margin, entropy-product, and requirement calculations;
-10. fail-closed unsigned 128-bit endpoint checks.
+3. endpoint-truncated generation of two half-divisor lists;
+4. division-based multiplication guards before every product;
+5. duplicate rejection and exact half-list ordering checks;
+6. unique product row merge in global increasing order;
+7. exact connected-prefix thresholds, counts, and blocking gaps;
+8. exact effective endpoint, margin, and term-bound calculations;
+9. exact serialization of the carrier and heap frontier;
+10. deterministic continuation from the serialized frontier;
+11. fail-closed cache, checkpoint, mask, integer, and ordering checks.
 
 Proof:
 
-`../proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`.
+`../proofs/OVERFLOW_SAFE_CHECKPOINTED_MITM_STREAM.md`.
 
-## Runtime-aware partition planner
+## Why endpoint truncation is exact
+
+All half divisors are positive. If a half divisor exceeds `Y_n`, multiplying it by any positive divisor cannot produce a required product at or below `Y_n`.
+
+Therefore replacing both half lists by their intersections with `[1,Y_n]` preserves exactly every merged product relevant to the carrier. The source checks multiplication using division:
+
+```text
+current <= Y_n / prime
+row_factor <= Y_n / column_factor
+```
+
+No wrapped unsigned-128 value can enter the stream.
+
+## Partition planner
 
 Source:
 
@@ -87,143 +111,144 @@ Usage:
 
 ```text
 python tracks/nova1-factorial-structure/verification/plan_mitm_partition.py \
-  n --max-columns 3000000 --limit 10
+  n --max-columns 5000000 --limit 10
 ```
 
-The planner enumerates exact prime-coordinate masks, verifies total divisor count, and ranks partitions by active merge rows subject to an explicit stored-column bound.
+The planner enumerates prime-coordinate masks and ranks exact partitions by active row count under an explicit full half-list column bound. The authoritative verifier can truncate the actual stored columns below this full count.
 
-## Exact certificates
+## Overflow-safe regression through n=56
 
-### N1-FIN-007 at n=52
+Report:
 
-Result label: **finite certificate**.
+`OVERFLOW_SAFE_REGRESSION_N52_N56.md`
 
-Six layers reach the endpoint with term bound `22`.
+Overflow-safe replays reproduce every accepted mathematical field at:
 
-Artifacts:
+| `n` | safe mask | emitted | layers | term bound |
+|---:|---:|---:|---:|---:|
+| 52 | 511 | 128,277,372 | 6 | 22 |
+| 53 | 511 | 255,794,579 | 6 | 22 |
+| 54 | 292 | 287,853,491 | 6 | 22 |
+| 55 | 808 | 369,103,338 | 6 | 23 |
+| 56 | 98 | 411,604,587 | 7 | 24 |
 
-- `FULL_CORE_N52_REPORT.md`;
-- `full_core_n52_mitm.txt`;
-- `full_core_n51_mitm_overlap.txt`;
-- `test_mitm_overlap.py`.
+This preserves all earlier finite mathematical conclusions while replacing their authoritative replay method.
 
-### N1-FIN-008 at n=53
-
-Result label: **finite certificate**.
-
-Masks `350` and `414` produce identical exact mathematical output. Six layers reach the endpoint with term bound `22`.
-
-Artifacts:
-
-- `FULL_CORE_N53_REPORT.md`;
-- `full_core_n53_mitm.txt`;
-- `full_core_n53_mitm_mask414.txt`;
-- `test_mitm_n53_normalized.py`.
-
-### N1-FIN-009 at n=54
-
-Result label: **finite certificate**.
-
-- total odd-core divisors: `350,438,400`;
-- primary mask `255`: `128 x 2,737,800`;
-- alternate mask `223`: `512 x 684,450`;
-- emitted through certificate: `287,853,491`;
-- layers: `6`;
-- term bound: `22`.
-
-The balanced `18,720 x 18,720` partition did not complete within its execution boundary. This was a partition-specific resource boundary, not a mathematical failure.
-
-### N1-FIN-010 at n=55
-
-Result label: **finite certificate**.
-
-- total odd-core divisors: `452,874,240`;
-- primary mask `9`: `156 x 2,903,040`;
-- alternate mask `808`: `96 x 4,717,440`;
-- emitted through certificate: `369,103,338`;
-- layers: `6`;
-- term bound: `23`.
-
-The term-bound increase is caused by `r_55=17`.
-
-### N1-FIN-011 at n=56
+## N1-FIN-012 at n=57
 
 Result label: **finite certificate**.
 
 Exact parameters:
 
-\[
-r_{56}=17,
-\qquad
-M_{56}=260,
-\qquad
-v_2(56!)=53.
-\]
+- `r_57=17`;
+- `M_57=262`;
+- `v_2(57!)=53`;
+- total odd-core divisor count: `696,729,600`.
 
-- total odd-core divisors: `503,193,600`;
-- primary mask `98`: `168 x 2,995,200`;
-- alternate mask `33`: `104 x 4,838,400`;
-- emitted through certificate: `411,604,587`;
-- layers: `7`;
-- term bound: `24`;
-- final margin: `2,123,056,480,890,000,163,585,785,602,493,899,728`.
+Primary safe replay:
+
+- mask `6`;
+- truncated split `140 x 4,974,362`.
+
+Alternate safe replay:
+
+- mask `424`;
+- truncated split `144 x 4,807,084`.
+
+Both emit `565,913,305` divisors through certificate completion and agree on every mathematical field.
 
 Connected-prefix counts:
 
-\[
-90{,}625,
-1{,}870{,}175,
-18{,}876{,}460,
-95{,}201{,}963,
-252{,}731{,}752,
-404{,}825{,}440,
-411{,}604{,}587.
-\]
+```text
+93,284
+1,968,508
+21,512,180
+115,705,564
+322,620,612
+543,303,166
+565,913,305
+```
 
-After six layers,
+Six layers are insufficient and seven layers suffice. The exact term bound is `24`.
 
-\[
-F_6/(Y_{56}+1)=0.23886288252245\ldots<1.
-\]
+Artifacts:
 
-The seventh layer is therefore necessary and completes without a blocking gap before its cutoff.
+- `FULL_CORE_N57_REPORT.md`;
+- `full_core_n57_safe_mask6.txt`;
+- `full_core_n57_safe_mask424.txt`;
+- `factorial_span_layers_n57.csv`;
+- `effective_carrier_n51_n57.csv`;
+- `parity_span_effective_n51_n57.csv`;
+- `blocking_gap_ratios_n51_n57.csv`;
+- `test_mitm_n57_overflow_safe.py`.
 
 Reproduction:
 
 ```text
-python tracks/nova1-factorial-structure/verification/plan_mitm_partition.py \
-  56 --max-columns 3000000 --limit 10
+export NOVA_MITM_STATE_DIR=/tmp/nova57-mask6
+./marker_three_mitm_checkpoint_u128 57 6 100000000
+# Repeat until the finite certificate is printed.
 
-./marker_three_mitm_prefix_u128 56 98
-./marker_three_mitm_prefix_u128 56 33
-python tracks/nova1-factorial-structure/verification/test_mitm_n56_parity.py
+export NOVA_MITM_STATE_DIR=/tmp/nova57-mask424
+./marker_three_mitm_checkpoint_u128 57 424 100000000
+# Repeat until the finite certificate is printed.
+
+python tracks/nova1-factorial-structure/verification/test_mitm_n57_overflow_safe.py
 ```
 
-Expected result:
+Expected test result:
 
 ```text
-PASS exact n=56
-PASS alternate partition n=56
-PASS seven-layer transition and term bound 24
-PASS effective factorization through n=56
-PASS parity-only deficit diagnostic
-PASS finite first-blocking-gap ratio below 1.108 through n=56
-PASS all n=56 parity-span carrier checks
+PASS safe dual-partition n=57
+PASS seven-layer necessity and sufficiency n=57
+PASS 1.108 candidate counterexample
+PASS overflow guards and checkpoint source audit
+PASS all n=57 overflow-safe carrier checks
 ```
 
-Artifacts:
+## Finite effective diagnostics
 
-- `FULL_CORE_N56_REPORT.md`;
-- `full_core_n56_mitm_mask98.txt`;
-- `full_core_n56_mitm_mask33.txt`;
-- `effective_carrier_n51_n56.csv`;
-- `blocking_gap_ratios_n51_n56.csv`;
-- `parity_span_effective_n51_n56.csv`;
-- `test_mitm_n56_parity.py`.
+At `n=57`,
+
+\[
+\widetilde\Gamma_{57}=604.565529127372549\ldots,
+\]
+
+\[
+\mathcal B_{57}=0.00167399672600756826\ldots,
+\]
+
+\[
+\Delta_{57}=1.0120407164162547937\ldots.
+\]
+
+The parity-only endpoint product misses by approximately `2.82e32`. The factorial-span amplification root is approximately `43,743.7573`, and the geometric mean of `eta_t=U_t/(K_tD_t)` is approximately `0.00165403239909`.
+
+Result label: **computational evidence**.
+
+## Blocking-gap counterexample
+
+Result label: **disproved route**.
+
+At `n=57`, layer `3`,
+
+\[
+D_3=2{,}911{,}465{,}312{,}076,
+\qquad
+g_3=3{,}399{,}069{,}458{,}070,
+\]
+
+so
+
+\[
+g_3/D_3=1.1674772300983786\ldots>1.108.
+\]
+
+The finite candidate constant `1.108` is false.
 
 ## Exact finite boundary
 
-Combining Nova 2 and Nova 1 certificates gives
+Combining Nova 2 `N2-FIN-202` with Nova 1 certificates gives
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
@@ -239,92 +264,11 @@ and
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le24
-\qquad(12\le n\le56).
+\qquad(12\le n\le57).
 \]
 
-These are finite only. The smallest unaudited parameter is `n=57`.
-
-## Exact effective carrier theorem
-
-`N1-STR-025` is a **proved theorem**. For
-
-\[
-P_n=\prod_{t=1}^{L}(1+K_t),
-\qquad
-b_t=\frac{F_t/F_{t-1}}{1+K_t},
-\]
-
-\[
-\frac{F_L}{W_n+1}=P_n\prod_tb_t.
-\]
-
-With
-
-\[
-\widetilde\Gamma_n=(P_n/R_n)^{1/L},
-\qquad
-\mathcal B_n=\left(\prod_tb_t\right)^{1/L},
-\]
-
-\[
-\Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L},
-\]
-
-one has
-
-\[
-\Delta_n=\widetilde\Gamma_n\mathcal B_n.
-\]
-
-At `n=56`:
-
-\[
-\widetilde\Gamma_{56}=673.791460795324\ldots,
-\]
-
-\[
-\mathcal B_{56}=0.001530254006653\ldots,
-\]
-
-\[
-\Delta_{56}=1.031072082530349\ldots.
-\]
-
-## Sharp parity-span baseline
-
-`N1-STR-026` and `N1-OBS-004` are **proved theorems**.
-
-Every positive odd-core prefix satisfies
-
-\[
-U_t\ge2K_t-1.
-\]
-
-The resulting parity-only carrier product is optimal if only oddness, count, and threshold are supplied. At `n=56`, its endpoint-ratio seventh root is
-
-\[
-0.0000307763983342963\ldots,
-\]
-
-and its unrooted endpoint deficit is approximately `3.82e31`.
-
-The next theorem must exploit factorial-specific internal span or average gaps.
-
-## Finite divisor-gap diagnostic
-
-Result label: **computational evidence**.
-
-Across the 31 blocked layers for `51<=n<=56`,
-
-\[
-\max g_t/D_t
-=
-\frac{6963896442939750}{6290170063344679}
-<1.108.
-\]
-
-The maximum occurs at `n=51`, layer `4`. This does not imply an internal average-gap theorem.
+These results are finite only. The smallest unaudited parameter is `n=58`.
 
 ## Evidence boundary
 
-None of these runs proves uniform internal-span amplification, a uniform utilization lower bound, asymptotic quotient-window occupancy, the final downward endpoint window, target-local collision bounds, weighted Fourier positivity, the factorial half-range theorem for all sufficiently large `n`, or Erdős Problem 18.
+None of these runs proves uniform connected-prefix growth, a uniform packing-utilization or factorial-span lower bound, asymptotic quotient occupancy, the final endpoint window, target-local collision control, the weighted Fourier theorem, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
