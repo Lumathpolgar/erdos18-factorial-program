@@ -12,26 +12,31 @@ Frozen marker-three source:
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
 - construction: `N1-CON-003`.
 
-### N2-REQ-N1-002-v6
+### N2-REQ-N1-002-v7
 
-Status: `OPEN_AVERAGE_INTERNAL_GAP`.
+Status: `OPEN_FACTORIAL_SPAN_AMPLIFICATION`.
 
-Under N2-ADD-123, define
+Under N2-ADD-124 define
 
 \[
-D_t=\left\lfloor\frac{F_{t-1}}{2^{t-1}}\right\rfloor,
+A_t=\frac{U_t}{2K_t-1},
 \qquad
 \eta_t=\frac{U_t}{K_tD_t}.
 \]
 
+Parity gives the sharp universal baseline `A_t>=1`. N2-OBS-110 proves that oddness, count `K_t`, and threshold `D_t` alone cannot improve this by a fixed factor.
+
 Provide one of:
 
-1. pointwise lower bounds `eta_t>=rho_t` strong enough to force `Delta_n>=1`;
-2. an averaged lower bound for the product of the exact utilization factors;
+1. pointwise factorial-specific lower bounds for `A_t` or `eta_t` strong enough to force `Delta_n>=1`;
+2. an averaged lower bound for the exact utilization product;
 3. pointwise or averaged upper bounds strong enough to force `Delta_n<1` and retire N2-ADD-120;
-4. an explicit divisor-spacing theorem that implies either bound.
+4. an explicit divisor-distribution theorem that implies either bound.
 
-The first external blocking gap is not an acceptable substitute. N2-OBS-109 proves that identical `(D_t,K_t,g_t)` data can coexist with utilization tending to zero or one.
+The following are no longer acceptable substitutes:
+
+- first external blocking-gap estimates, by N2-OBS-109;
+- count and parity alone, by N2-OBS-110 and finite diagnostic N2-CMP-206.
 
 Latest inspected source:
 
@@ -86,15 +91,16 @@ Status: `OPEN`.
 
 Independently replay the marker-three structural gate from commit `ebb47ba436af554366d0f285119a769f31f9e561`.
 
-### N2-REQ-N4-002-v7
+### N2-REQ-N4-002-v8
 
 Status: `PARTIALLY_CLOSED_BY_NOVA2_AND_NOVA1`.
 
 Independently reconstruct:
 
-- N2-ADD-119 through N2-ADD-123;
-- N2-OBS-109;
+- N2-ADD-119 through N2-ADD-124;
+- N2-OBS-109 and N2-OBS-110;
 - finite certificates through `n=55`;
+- N2-CMP-206;
 - the dual-partition replays at `n=53` and `n=55`.
 
 ### N2-REQ-N4-003-v7
@@ -163,11 +169,11 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
 
 Extend from `n=56` only as a finite auxiliary program.
 
-### N2-REQ-INT-003-v6
+### N2-REQ-INT-003-v7
 
-Status: `OPEN_AVERAGE_INTERNAL_GAP`.
+Status: `OPEN_FACTORIAL_SPAN_AMPLIFICATION`.
 
-Use N2-ADD-123 to prove lower or upper bounds for `eta_t=U_t/(K_tD_t)`. First-blocking-gap estimates are retired by N2-OBS-109.
+Use N2-ADD-123 and N2-ADD-124 to prove lower or upper bounds for `A_t=U_t/(2K_t-1)` or `eta_t=U_t/(K_tD_t)`. First-blocking-gap estimates and parity-only estimates are retired as complete proof engines.
 
 ### N2-REQ-INT-004-v4
 
