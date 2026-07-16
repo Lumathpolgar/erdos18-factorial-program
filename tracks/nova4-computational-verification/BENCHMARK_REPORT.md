@@ -95,4 +95,27 @@ All factorial valuations were exact integers. Logarithms, variance contributions
 
 Thirteen new scale-evidence tests passed in approximately 2.7 seconds. They cover exact sieving and valuations, scale-row consistency, low-prime share totals, theorem half-span, cutoff admissibility flags, semantic replay, rehashed ratio and share corruption, wrong source metadata, frozen-script numerical cross-check, and the admissible theorem path.
 
-No timeout or unknown result occurred in request C. All timings are engineering diagnostics, not mathematical claims.
+No timeout or unknown result occurred in request C.
+
+## Nova 3 characteristic-recurrence benchmark
+
+Request D scanned every integer `q` from `1,000` through `2,000,000` for every `3 <= n <= 12`, evaluating:
+
+```text
+q values per n: 1,999,001
+n values: 10
+total characteristic scores: 19,990,010
+frequency blocks: 4
+block winners: 40
+global winners: 10
+```
+
+Every grid point was ranked with IEEE 754 binary64 arithmetic. The top eight candidates per `n` and block were reevaluated with 80-digit Decimal logarithms, a Decimal Machin-formula value of pi, and Decimal sine series. Every winner was cross-checked by direct averaging over all exact divisor exponent vectors.
+
+Production generation completed in approximately 15.0 seconds. Full semantic recomputation completed in approximately 15.6 seconds. Peak resident memory was approximately 300 MiB.
+
+Twelve new recurrence tests pass. They cover Decimal pi, the exact prime-2 return, small-range full replay, block coverage, candidate replay, direct-vector agreement, wrong-source rejection, in-memory rehashed corruption, and the committed rehashed corrupted fixture.
+
+No timeout or unknown result occurred in request D. The recurrence timings and numerical values are engineering diagnostics and computational evidence, not an asymptotic proof.
+
+All timings in this report are engineering diagnostics, not mathematical claims.
