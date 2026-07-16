@@ -200,7 +200,7 @@ def selected_large_scales() -> None:
         rho = math.ceil(4 * math.log(n))
         M = math.ceil(16 * math.log(n) ** 2)
         secondary = rho - 3
-        central_lobe_ladder_points = M - secondary
+        central_lobe_ladder_points = (M - 1) - secondary
         assert secondary > 0
         assert central_lobe_ladder_points > 0
         print(
