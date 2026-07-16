@@ -1,0 +1,51 @@
+{
+  "claim": {
+    "all_six_required_corruptions_rejected": true,
+    "conclusions": [
+      "address legality for every integer n>=120368",
+      "menu cardinality lower bound for every addressed layer",
+      "formal profile capacity at least X_n+1"
+    ],
+    "decision": "ACCEPTED",
+    "exclusions": [
+      "formal-profile injectivity",
+      "distinct numerical sums",
+      "additive occupancy",
+      "factorial half-range theorem",
+      "Erdos Problem 18"
+    ],
+    "finite_sweep_is_not_asymptotic_proof": true,
+    "integer_threshold": 120368,
+    "object": "N3-ANA-011"
+  },
+  "evidence_sha256": "785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9",
+  "result_class": "final theorem audit certificate",
+  "schema": "nova4.n3-ana-011-final-claim.v1",
+  "sha256": "a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "imported_n1": {
+      "blob_sha": "4255e76ff18f675ae80a0192381070d9a934fc97",
+      "commit": "fa11f4b2cb86a2dd791df189ada12757be791804",
+      "file": "tracks/nova1-factorial-structure/proofs/HIGH_PRIME_MENU_CAPACITY.md",
+      "object": "N1-STR-009"
+    },
+    "object": "N3-ANA-011",
+    "proof_file": "tracks/nova3-analytic-density/proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md",
+    "proof_file_blob_sha": "e36daf98db86da16bd5ed8c6c82f43530d745f66",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "H",
+    "request_G": {
+      "audit_sha256": "e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0",
+      "claim_sha256": "e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88",
+      "range": [
+        120368,
+        1000000
+      ]
+    },
+    "sanity_file": "tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py",
+    "sanity_file_blob_sha": "519c900b616a33d95f3b2a8a8dec10d04a0a24f5"
+  }
+}
