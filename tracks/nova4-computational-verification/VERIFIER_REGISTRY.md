@@ -127,50 +127,82 @@ request: G
 object: N3-ANA-011
 ```
 
+Implementation: `src/factorial_lab/n3_threshold.py` and `src/replay_n3_threshold.py`.
+
+Checks every integer `120368 <= n <= 1000000`, exact prime counts, dual exact valuations, rigorous logarithmic ceilings, address legality, conservative capacity, minima, runners-up, source metadata, and semantic checksums.
+
+The verifier records request G as a finite certificate only. It does not infer distinct numerical sums or additive occupancy from formal profile capacity.
+
+## N4-AUD-011: Nova 3 semantic adversarial theorem verifier
+
+Status: `ACTIVE`.
+
+Result class: `semantic adversarial theorem audit`.
+
+Frozen input:
+
+```text
+branch: nova/analytic-density
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+Nova 3 proof blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
+Nova 3 sanity script blob: 519c900b616a33d95f3b2a8a8dec10d04a0a24f5
+Nova 1 theorem: N1-STR-009
+Nova 1 commit: fa11f4b2cb86a2dd791df189ada12757be791804
+Nova 1 proof blob: 4255e76ff18f675ae80a0192381070d9a934fc97
+request G audit: e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0
+request G claim: e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88
+request: H
+object: N3-ANA-011
+```
+
 Implementation:
 
 ```text
-src/factorial_lab/n3_threshold.py
-src/replay_n3_threshold.py
+src/factorial_lab/n3_adversarial.py
+src/replay_n3_adversarial.py
 ```
 
 Schemas:
 
 ```text
-data/analytic/n3_threshold_sweep.schema.json
-certificates/analytic/n3_threshold_sweep_claim.schema.json
+data/analytic/n3_ana_011_contract.schema.json
+data/analytic/n3_threshold_adversarial_audit.schema.json
+certificates/analytic/n3_ana_011_final_claim.schema.json
 ```
 
 Independent checks:
 
-- every integer `120368 <= n <= 1000000` is visited;
-- exact `pi(n)-pi(floor(n/2))` from a deterministic prime-prefix table;
-- exact `v_2(n!)` from Legendre division and the independent identity `n-bit_count(n)`;
-- exact `r_n=ceil(4 log n)` and `M_n=ceil(16(log n)^2)` from rigorous rational log intervals;
-- every address inequality and conservative formal-profile capacity inequality;
-- 64 full-range finalists per logarithmic margin and 80-digit Decimal replay of the minima and runners-up;
-- exact parameter-transition counts and boundary rows;
-- frozen Nova 3 and imported Nova 1 metadata;
-- semantic checksums.
+- uniform address proof from exact ceiling and Legendre bounds;
+- exact definition match between Nova 3 menus and imported `N1-STR-009`;
+- preservation of the unit-exclusion correction `2^(m_n-1)-1`;
+- formal profile capacity without injectivity or distinct-sum inflation;
+- exact endpoint semantics `pi(n/2)=pi(floor(n/2))`;
+- witness `n=120417`, where `ceil(n/2)=60209` is prime;
+- finite request G evidence remains finite only;
+- frozen source metadata and semantic checksums.
 
 Corruption behavior:
 
-- a rehashed false minimum address slack is rejected;
-- an altered range is rejected;
-- wrong proof or source metadata is rejected;
-- a claim that the finite sweep is asymptotic is not accepted by the schema and semantic replay.
+- rehashed threshold `120367` without supplementation is rejected;
+- rehashed larger legal address range is rejected;
+- rehashed removed menu-unit correction is rejected;
+- rehashed profile-injectivity claim is rejected;
+- rehashed ceil endpoint substitution is rejected;
+- rehashed finite-asymptotic claim is rejected.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_threshold.py verify \
-  data/analytic/n3_threshold_sweep_n120368_n1000000.json
-PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
-  certificates/analytic/n3_threshold_sweep_claim.json \
-  --audit data/analytic/n3_threshold_sweep_n120368_n1000000.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify \
+  data/analytic/n3_threshold_adversarial_audit.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-contract \
+  data/analytic/n3_ana_011_contract.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-claim \
+  certificates/analytic/n3_ana_011_final_claim.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
+  tests/n3_adversarial_fixtures
 ```
-
-The verifier records request G as a finite certificate only. It does not infer distinct numerical sums or additive occupancy from formal profile capacity.
 
 ## Test command
 
