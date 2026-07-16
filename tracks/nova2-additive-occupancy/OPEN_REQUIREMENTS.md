@@ -12,31 +12,40 @@ Frozen marker-three source:
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
 - construction: `N1-CON-003`.
 
-### N2-REQ-N1-002-v7
+### N2-REQ-N1-002-v8
 
-Status: `OPEN_FACTORIAL_SPAN_AMPLIFICATION`.
+Status: `OPEN_COMPLEMENTARY_DIVISOR_QUANTILE`.
 
-Under N2-ADD-124 define
+Put
 
 \[
-A_t=\frac{U_t}{2K_t-1},
-\qquad
-\eta_t=\frac{U_t}{K_tD_t}.
+C_n=\frac{n!}{3\,2^{v_2(n!)}},
 \]
 
-Parity gives the sharp universal baseline `A_t>=1`. N2-OBS-110 proves that oddness, count `K_t`, and threshold `D_t` alone cannot improve this by a fixed factor.
+and list its divisors as
+
+\[
+1=c_1<\cdots<c_{\tau_n}=C_n.
+\]
+
+N2-ADD-125 proves the exact identity
+
+\[
+U_t c_{\tau_n+1-K_t}=C_n.
+\]
 
 Provide one of:
 
-1. pointwise factorial-specific lower bounds for `A_t` or `eta_t` strong enough to force `Delta_n>=1`;
-2. an averaged lower bound for the exact utilization product;
-3. pointwise or averaged upper bounds strong enough to force `Delta_n<1` and retire N2-ADD-120;
-4. an explicit divisor-distribution theorem that implies either bound.
+1. a lower-tail divisor-count theorem `L_n(B)>=tau_n-K_t+1` strong enough to force `Delta_n>=1`;
+2. a direct upper bound for `c_(tau_n+1-K_t)` strong enough to force endpoint coverage;
+3. a contrary lower bound for the complementary order statistic strong enough to force `Delta_n<1` and retire N2-ADD-120;
+4. an averaged theorem across exact carrier layers that closes the utilization product.
 
-The following are no longer acceptable substitutes:
+The following are insufficient as complete proof inputs:
 
-- first external blocking-gap estimates, by N2-OBS-109;
-- count and parity alone, by N2-OBS-110 and finite diagnostic N2-CMP-206.
+- first external blocking gaps, by N2-OBS-109;
+- count and parity alone, by N2-OBS-110 and N2-CMP-206;
+- divisor median symmetry alone, by N2-CMP-207.
 
 Latest inspected source:
 
@@ -91,16 +100,16 @@ Status: `OPEN`.
 
 Independently replay the marker-three structural gate from commit `ebb47ba436af554366d0f285119a769f31f9e561`.
 
-### N2-REQ-N4-002-v8
+### N2-REQ-N4-002-v9
 
 Status: `PARTIALLY_CLOSED_BY_NOVA2_AND_NOVA1`.
 
 Independently reconstruct:
 
-- N2-ADD-119 through N2-ADD-124;
+- N2-ADD-119 through N2-ADD-126;
 - N2-OBS-109 and N2-OBS-110;
 - finite certificates through `n=55`;
-- N2-CMP-206;
+- N2-CMP-206 and N2-CMP-207;
 - the dual-partition replays at `n=53` and `n=55`.
 
 ### N2-REQ-N4-003-v7
@@ -169,11 +178,15 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
 
 Extend from `n=56` only as a finite auxiliary program.
 
-### N2-REQ-INT-003-v7
+### N2-REQ-INT-003-v8
 
-Status: `OPEN_FACTORIAL_SPAN_AMPLIFICATION`.
+Status: `OPEN_COMPLEMENTARY_DIVISOR_QUANTILE`.
 
-Use N2-ADD-123 and N2-ADD-124 to prove lower or upper bounds for `A_t=U_t/(2K_t-1)` or `eta_t=U_t/(K_tD_t)`. First-blocking-gap estimates and parity-only estimates are retired as complete proof engines.
+Use N2-ADD-125 and N2-ADD-126 to construct a certified lower-tail divisor family for `C_n`, or prove a contrary complementary-order-statistic bound. The exact active quantity is
+
+\[
+c_{\tau_n+1-K_t}.
+\]
 
 ### N2-REQ-INT-004-v4
 
