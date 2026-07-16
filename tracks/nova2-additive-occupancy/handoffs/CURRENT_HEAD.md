@@ -1,11 +1,13 @@
 # Current Nova 2 Checkpoint
 
 - branch: `nova/additive-occupancy`
-- checkpoint head before PR metadata refresh: `f5eb03d6327f523fb6a019a79344a4852fde3085`
-- carrier results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`
-- imported necessary theorem: `N1-OBS-003`
-- finite results: `N2-FIN-202`, `N2-FIN-203`, `N2-FIN-204`
-- exact finite carrier range: `12<=n<=50`
-- smallest unaudited finite parameter: `n=51`
-- asymptotic connected-prefix entropy requirement: open
+- checkpoint head before this metadata commit: `5d88ccb980a645cf43270d5c0b4befb6e594f461`
+- carrier results: `N2-ADD-119` through `N2-ADD-123`
+- new obstruction: `N2-OBS-109`
+- imported reconstruction: `N1-STR-025`
+- finite results: `N2-FIN-202` through `N2-FIN-206`
+- sharp finite bounds: term bound `22` through `n=54`, term bound `23` through `n=55`
+- smallest unaudited finite parameter: `n=56`
+- active sequential statistic: `eta_t=U_t/(K_tD_t)`
+- first-blocking-gap route: retired as a utilization input
 - final-only numerical quotient theorem: open
