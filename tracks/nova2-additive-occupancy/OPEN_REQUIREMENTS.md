@@ -1,182 +1,159 @@
 # Nova 2 Open Requirements
 
-## Requirements from Nova 1
+## Nova 1 requirements
 
 ### N2-REQ-N1-001-v5
 
-Requirement status: `STRUCTURAL_INPUT_ACCEPTED`
+Status: `STRUCTURAL_INPUT_ACCEPTED`.
 
-Accepted source:
+Frozen marker-three source:
 
-- branch: `nova/factorial-structure`
-- exact commit: `ebb47ba436af554366d0f285119a769f31f9e561`
-- construction: `N1-CON-003`
-- handoff: `N1-HO-N2-002`
-- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`
+- branch: `nova/factorial-structure`;
+- commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
+- construction: `N1-CON-003`.
 
-Accepted facts include legal marker-three divisors, exact 2-adic layer separation, main-palette disjointness, exact main lattice `3 Z`, quotient span one, exact correction reduction, and term cost `M_n+r_n`.
+Accepted facts include legality, exact 2-adic separation, numerical palette disjointness, exact lattice `3 Z`, quotient span one, correction reduction, and term cost `M_n+r_n`.
 
-### N2-REQ-N1-002-v4
+### N2-REQ-N1-002-v5
 
-Requirement status: `OPEN`
+Status: `OPEN_EFFECTIVE_UTILIZATION`.
 
-Provide a pointwise or averaged theorem for complete zero-connected prefix cardinalities `K_t` under the exact thresholds
+The count-only entropy condition from `N1-OBS-003` is necessary but not sufficient. Under `N2-ADD-122`, define
 
 \[
-D_t=\left\lfloor\frac{E_{t-1}+W_n+1}{2^{t-1}}\right\rfloor.
+a_t=\frac{2^{t-1}U_t}{F_{t-1}},
+\qquad
+b_t=\frac{1+a_t}{1+K_t}.
 \]
 
-By accepted theorem `N1-OBS-003`, sequential carrier success requires
+The exact sequential requirement is
 
 \[
-\prod_{t=1}^{L}(1+K_t)
+\left(\prod_t(1+K_t)\right)
+\left(\prod_tb_t\right)
 \ge
 \frac{Y_n+1}{W_n+1}.
 \]
 
-For `n>=120368`, the geometric mean must be at least
+Provide one of:
 
-\[
-\exp\left(\frac{n}{85\log n}\right).
-\]
+1. pointwise lower bounds for `b_t`;
+2. averaged lower bounds for `prod b_t`;
+3. lower bounds for average-gap utilization `eta_t=U_t/(K_tD_t)`;
+4. a uniform upper bound proving the effective product fails and retiring N2-ADD-120.
 
-A lower bound meeting this requirement would support N2-ADD-120. A uniform upper bound below it would retire that sequential engine.
+Exact inspected source:
 
-Exact source:
+`nova/factorial-structure@a6bdab1b917f3b3688f5a0c86e80c8a026bfbc07`.
 
-- handoff head: `471c7122cb2ac96402d133b5af91c97a2f00a23c`;
-- proof commit: `ac676b0fc9007117da1f1d9eaeec3e3cf65dd1e7`;
-- Nova 2 response: `handoffs/RESPONSE_TO_NOVA1_CONNECTED_PREFIX.md`.
+Response:
+
+`handoffs/RESPONSE_TO_NOVA1_N53_EFFECTIVE_ENTROPY.md`.
 
 ### N2-REQ-N1-003-v2
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Provide target-local collision-energy or maximum-fiber upper bounds for sums in `[q-W_n,q]`. Nova 1 theorem `N1-COL-001` proves large fibers exist, so raw profile count is not support cardinality.
+Provide target-local collision-energy or maximum-fiber upper bounds for sums in `[q-W_n,q]`. Raw profile count is not numerical support cardinality.
 
-### N2-REQ-N1-004
-
-Requirement status: `SUPERSEDED`
-
-The earlier three-power repair remains a valid fallback but is not the preferred route.
-
-## Requirements from Nova 3
+## Nova 3 requirements
 
 ### N2-REQ-N3-001-v5
 
-Requirement status: `PARTIALLY_CLOSED`
+Status: `PARTIALLY_CLOSED`.
 
-Nova 3 has proved existence and uniqueness of the numerical centering tilt, span one, exact resonance set `{0}`, and post-prefix tilt compression. The active range remains the exact final-only post-prefix interval.
+Tilt existence, uniqueness, span one, exact resonances, and post-prefix tilt compression are accepted with restrictions.
 
 ### N2-REQ-N3-002-v5
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Prove explicit uniform numerical bounds for variance, third centered moment, maximal step, and endpoint collapse on the marker-three quotient law.
+Prove uniform numerical variance, third-moment, maximal-step, and endpoint-collapse bounds for the exact marker-three quotient law.
 
 ### N2-REQ-N3-003-v5
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Prove aggregate phase dispersion for the complete tilted odd-core menus. With
+Prove aggregate phase dispersion
 
 \[
 \mathcal D_{t,\lambda}(\theta)
 =
 \sum_{a,b}p_t(a)p_t(b)
-\sin^2\left(\frac{(a-b)\theta}{2}\right),
+\sin^2\left(\frac{(a-b)\theta}{2}\right)
 \]
 
-establish a lower bound strong enough to control
-
-\[
-|\Phi_{n,\lambda}(\theta)|^2
-\le
-\exp\left(-2\sum_t\mathcal D_{t,\lambda}(\theta)\right)
-\]
-
-on the required minor arcs.
+strong enough to control the complete characteristic function on required minor arcs.
 
 ### N2-REQ-N3-004-v4
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Construct a collision-aware integer reference law or target-local energy bound and prove the strict weighted Fourier inequality for every declared bulk target.
+Construct a collision-aware integer reference law or a target-local energy bound and prove the strict weighted Fourier inequality for every declared target.
 
 ### N2-REQ-N3-005
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-No logarithmic divisor theorem may be transferred to numerical additive sums without a separate proved bridge.
+No logarithmic divisor theorem transfers to numerical additive sums without a separate proved bridge.
 
-Exact request: `handoffs/MARKER_THREE_REQUEST_TO_NOVA3.md`.
-
-## Requirements from Nova 4
+## Nova 4 requirements
 
 ### N2-REQ-N4-001-v4
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Independently replay the marker-three structural gate from Nova 1 commit `ebb47ba436af554366d0f285119a769f31f9e561`.
+Independently replay the marker-three structural gate from commit `ebb47ba436af554366d0f285119a769f31f9e561`.
 
-### N2-REQ-N4-002-v5
+### N2-REQ-N4-002-v6
 
-Requirement status: `PARTIALLY_CLOSED_BY_NOVA2_AND_NOVA1`
+Status: `PARTIALLY_CLOSED_BY_NOVA2_AND_NOVA1`.
 
 Independently reconstruct:
 
-- N2-ADD-119 carrier blocks;
-- N2-ADD-120 recursion;
-- N2-ADD-121 unique-parent stream;
-- N2-FIN-202 for `12<=n<=45`;
-- N2-FIN-203 at `n=46`;
-- accepted Nova 1 finite certificate `N1-FIN-005` for `46<=n<=50`.
+- `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, and `N2-ADD-122`;
+- `N2-FIN-202` for `12<=n<=45`;
+- `N2-FIN-203` at `n=46`;
+- accepted Nova 1 finite certificates through `n=53`;
+- the dual-partition replay at `n=53`.
 
-The Nova 1 `n=46` overlap matches N2-FIN-203 exactly.
+### N2-REQ-N4-003-v6
 
-### N2-REQ-N4-003-v5
+Status: `OPEN`.
 
-Requirement status: `OPEN`
-
-Extend exact complete-core finite certification from the smallest unaudited parameter
+Extend exact complete-core certification from
 
 \[
-n=51.
+n=54.
 \]
 
-Resource limits must remain fail-closed and must not be reported as counterexamples.
+Resource limits must remain fail-closed and are not counterexamples.
 
-### N2-REQ-N4-004-v3
+### N2-REQ-N4-004-v4
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-For feasible ranges, compute full restricted sumsets and report numerical support size, collision multiplicity, maximum downward gap, first empty target window, and exact witnesses. A reduced-menu failure is not a full-model counterexample.
+For feasible ranges, compute full restricted sumsets and report support size, collision multiplicity, maximum downward gap, first empty window, and exact witnesses. Reduced-menu failure is not full-model failure.
 
-### N2-REQ-N4-005-v2
+### N2-REQ-N4-005-v3
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Audit endpoint-window support. Total maximum support above `Y_n` is insufficient unless every required downward window is occupied.
-
-Exact requests:
-
-- `handoffs/MARKER_THREE_REQUEST_TO_NOVA4.md`;
-- `handoffs/FULL_MENU_FINITE_TO_NOVA4.md`;
-- `handoffs/STREAMING_N46_TO_NOVA4.md`.
+Audit endpoint-window support. Total maximum support above `Y_n` does not prove every downward window occupied.
 
 ## Archive requirement
 
 ### N2-REQ-ARC-001
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Import the source-level Phase 12M through 12P statements so their exact hypotheses can be audited rather than inferred from summaries.
+Import source-level Phase 12M through 12P statements so exact hypotheses can be audited.
 
 ## Internal Nova 2 requirements
 
 ### N2-REQ-INT-001-v5
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
 Prove or disprove
 
@@ -184,47 +161,47 @@ Prove or disprove
 Q_n\cap[q-W_n,q]\ne\varnothing
 \]
 
-for every `W_n+1<=q<=Y_n`, uniformly for all sufficiently large `n`.
+for every required quotient target, uniformly for all sufficiently large `n`.
 
-### N2-REQ-INT-002-v5
+### N2-REQ-INT-002-v6
 
-Requirement status: `FINITE_RANGE_CLOSED_THROUGH_N50`
+Status: `FINITE_RANGE_CLOSED_THROUGH_N53`.
 
-N2-FIN-202, N2-FIN-203, and accepted N1-FIN-005 certify complete-core carrier coverage for every `12<=n<=50`. Extend from `n=51`.
+Exact complete-core carrier coverage is established for every `12<=n<=53`. Extend from `n=54` only as a finite auxiliary program.
 
-### N2-REQ-INT-003-v4
+### N2-REQ-INT-003-v5
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Prove the connected-prefix product requirement is attainable under exact thresholds, or prove an upper bound retiring N2-ADD-120. Separately audit any asymptotic sequential proof against Phase 12P.
+Prove the effective carrier condition `widetilde Gamma_n B_n>=1`, or upper-bound the utilization product strongly enough to retire the sequential engine. Separately audit Phase 12P.
 
 ### N2-REQ-INT-004-v4
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Upper-bound target-local collision multiplicity or additive energy. Formal profile capacity is not numerical support cardinality.
+Upper-bound target-local collision multiplicity or additive energy.
 
 ### N2-REQ-INT-005-v3
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Compare the final-only engines on the same marker-three labels:
+Compare the two final-only engines on identical labels:
 
-1. collision-aware target-dependent bounded-torus Fourier positivity;
+1. collision-aware bounded-torus Fourier positivity;
 2. deterministic final restricted-sumset growth.
 
 ### N2-REQ-INT-006
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Prove that bulk and deterministic endpoint regimes cover every quotient target with no transition gap.
+Prove the bulk and deterministic endpoint regimes cover every target with no transition gap.
 
-### N2-REQ-INT-007-v3
+### N2-REQ-INT-007-v4
 
-Requirement status: `OPEN`
+Status: `OPEN`.
 
-Exact carrier coverage is established for `12<=n<=50`. Certify smaller exceptions and extend the upper finite boundary from `n=51` only as a finite auxiliary program.
+Certify smaller exceptions and extend the upper finite boundary from `n=54`, clearly separated from the asymptotic theorem program.
 
 ## Rule
 
-Every theorem, finite certificate, computation, heuristic, or disproved architecture must use an allowed evidence label. Failure of a sufficient proof engine must not be promoted to failure of the full marker-three model.
+Every result must use an allowed evidence label. Failure of a sufficient proof engine must not be promoted to failure of the complete marker-three model.
