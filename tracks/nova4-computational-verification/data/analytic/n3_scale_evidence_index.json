@@ -1,0 +1,76 @@
+{
+  "files": [
+    {
+      "path": "n3_scale_rows.csv",
+      "sha256": "ce94c0d70ea0a711f2506a14dbec2e6cc20152bcabc5945ae1179e4e46faccca"
+    },
+    {
+      "path": "n3_theorem_path_rows.csv",
+      "sha256": "58badf52b97be81fd50fbfe9bd121f0c2506dbb65a9dbb9a36dd6b86f5bc1e2f"
+    },
+    {
+      "n_max": 200,
+      "n_min": 50,
+      "path": "n3_high_prime_tail_n50_n200.csv",
+      "rows": 23,
+      "sha256": "f184530b2e15b16b602793931a9d3b31848829592d10d24948dca63e4420f192"
+    },
+    {
+      "n_max": 1000,
+      "n_min": 500,
+      "path": "n3_high_prime_tail_n500_n1000.csv",
+      "rows": 16,
+      "sha256": "8b58d48c5d3806a7c20d93179d3c87ca57a56ba1f436af4e644ece91654b9c85"
+    },
+    {
+      "n_max": 5000,
+      "n_min": 2000,
+      "path": "n3_high_prime_tail_n2000_n5000.csv",
+      "rows": 16,
+      "sha256": "447673a791b9a5ed7a9d5538c32009315ac9d23f5633c41e40726280d33b331b"
+    },
+    {
+      "n_max": 10000,
+      "n_min": 10000,
+      "path": "n3_high_prime_tail_n10000_n10000.csv",
+      "rows": 8,
+      "sha256": "2d2f41d395a3922174bf65b26471bb593d3b235e538c8ac85719e097e527576b"
+    }
+  ],
+  "full_generated_audit_semantic_sha256": "28bd8b9a6aeb3c2f4771c1bb861c0fc0f04f9e521982f56763ebac72e220cd94",
+  "full_generated_json_file_sha256": "a9c15706bed590d4fbad1845bb0901ddee2c40fa19bff1f8aaac7120673998f6",
+  "grid_tail_rows": 63,
+  "limit_proxy": {
+    "classification": "computational evidence proxy, not a certified full infinite sum",
+    "prime_count": 78498,
+    "prime_limit": 1000000,
+    "truncated_variance_limit_constant": "1.15465835230529902456952892434742827354191666300733E-1"
+  },
+  "maximum_scale_absolute_difference": "1.54727601027359849309155827600000000000000000000000E-15",
+  "maximum_tail_absolute_difference": "2.26056198301226295249992157200000000000000000000000E-15",
+  "n_values": [50, 100, 200, 500, 1000, 2000, 5000, 10000],
+  "result_class": "computational evidence",
+  "scale_rows": 8,
+  "schema": "nova4.n3-scale-evidence-index.v1",
+  "selected_findings": {
+    "effective_dimension_n10000": "5.23115894720808745272398972640150690844172386369760E+0",
+    "theorem_path_first_M_over_B": "8.86528435497037166541093963029354467632502528991794E-1",
+    "theorem_path_last_M_over_B": "4.27041001991860268477121259989384430148508446438166E-1",
+    "tracked_prime_share_n10000": "7.56789621824208451686893768026779784559904791482557E-1",
+    "variance_ratio_n10000": "1.15447686255588565354932636883116611598305008308257E-1",
+    "variance_ratio_over_proxy_n10000": "9.99842819524016759570277201800000000000000000000000E-1"
+  },
+  "sha256": "d3b20098620e532634ecb32cf722a6c524223ec8880e4ee4aabb84d1cf8866db",
+  "source": {
+    "branch": "nova/analytic-density",
+    "commit": "0ce88b28dc2e6641093526f5777bb31f658e3515",
+    "handoff": "N3-HO-N4-001",
+    "objects": ["N3-ANA-006", "N3-ANA-008"],
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "C"
+  },
+  "supplied_script_decision": "NEEDS_REPAIR_FOR_TAIL_RATIO_LABEL",
+  "theorem_path_rows": 8,
+  "tracked_primes": [2, 3, 5, 7],
+  "y_grid": [2, 3, 5, 7, 10, 20, 25, 50]
+}
