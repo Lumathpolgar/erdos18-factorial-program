@@ -31,7 +31,10 @@ The branch contains:
 - uniform post-prefix tilt compression;
 - exact collision-aware numerical atoms;
 - an exact parity-twin obstruction at `pi`;
-- an exact odd-lattice normalization with common tilt `2 lambda`.
+- an exact odd-lattice normalization with common tilt `2 lambda`;
+- an exact transformed dyadic finite-prefix factorization;
+- a proof that transformed tail dispersion collapses at almost every dyadic layer scale;
+- an exact transformed-window dyadic kernel classification.
 
 ## Current cross-track sources
 
@@ -69,8 +72,6 @@ Thus the common numerical tilt tends uniformly to zero.
 
 ## Parity twin obstruction
 
-The exact span-one statement conceals severe parity concentration.
-
 Every nonzero first-layer state is odd. Every later-layer state is even. Hence
 
 \[
@@ -101,16 +102,7 @@ so
 |\Phi(\pi)|\to1.
 \]
 
-The exact twin identity is
-
-\[
-\Phi(\pi+u)+\Phi(u)
-=
-2P(Z_1=0)
-\prod_{t=2}^{M_n}\phi_t(u).
-\]
-
-Therefore the unnormalized zero-only major-arc plan is invalid.
+The unnormalized zero-only major-arc plan is invalid.
 
 ## Exact odd-lattice repair
 
@@ -119,7 +111,8 @@ Condition on `Z_1!=0` and define
 \[
 \widetilde Z_1=(Z_1-1)/2,
 \qquad
-\widetilde Z_t=Z_t/2\quad(t>=2).
+\widetilde Z_t=Z_t/2
+\quad(t>=2).
 \]
 
 Then
@@ -151,16 +144,106 @@ J_{n,q}
 
 Positive transformed-window mass implies positive original-window mass.
 
+## Transformed dyadic resonance ladder
+
+For
+
+\[
+\theta_j=\frac{\pi}{2^{j-1}},
+\qquad
+1\le j\le M_n-1,
+\]
+
+N3-ANA-026 proves
+
+\[
+\widetilde\Phi(\theta_j)
+=
+\left(
+\prod_{t=1}^{j}
+\widetilde\phi_t(\theta_j)
+\right)
+(2p_{j+1}^{(0)}-1).
+\]
+
+Every layer after `j+1` is exactly invisible at `theta_j`.
+
+Define
+
+\[
+J_n
+=
+\min\left(
+M_n-1,
+\left\lfloor
+1+\log_2
+\frac{2^{M_n}-1}{16M_n\log L_n}
+\right\rfloor
+\right).
+\]
+
+Then
+
+\[
+J_n=M_n-O(\log\log n),
+\]
+
+and, for every `j<=J_n`,
+
+\[
+|2p_{j+1}^{(0)}-1|
+\ge
+1-rac{4e}{m_n+1},
+\]
+
+\[
+\sum_{t=j+1}^{M_n}
+\widetilde{\mathcal D}_t(\theta_j)
+\le
+\frac{4e}{m_n+1}.
+\]
+
+Thus later layers do not supply useful aggregate dispersion at the dyadic ladder. Any decay must come from the first `j` transformed coordinates.
+
+## Transformed interval kernel
+
+Let
+
+\[
+N_{n,q}=|J_{n,q}|.
+\]
+
+N3-ANA-028 proves
+
+\[
+v_2(N_{n,q})\in\{0,1\}.
+\]
+
+The transformed interval kernel never vanishes at a reduced dyadic frequency of denominator at least `4`. At `pi`, it vanishes only when `rho_n` and `q` are both even.
+
+Pointwise nonvanishing does not itself create an integral obstruction. It means that higher dyadic ladder neighborhoods must be controlled analytically rather than discarded by exact kernel zeros.
+
 ## Active theorem target
 
-Audit the normalized odd-lattice law for every remaining rational or dyadic secondary resonance. Then prove one of:
+Prove target-uniform prefix control for
 
-1. aggregate transformed phase dispersion outside all genuine transformed major arcs;
-2. a measure bound for weak transformed dispersion;
-3. a transformed weighted Fourier estimate;
-4. a target-local transformed concentration or additive-energy obstruction.
+\[
+\widetilde\Phi^{\langle j\rangle}_{n,q}(\theta)
+=
+\prod_{t=1}^{j}
+\widetilde\phi_{t,n,q}(\theta)
+\]
 
-The final local law must remain collision-aware.
+in neighborhoods of every transformed dyadic ladder frequency.
+
+Equivalent formulations include:
+
+1. residue spreading of the first `j` transformed coordinates modulo `2^j`;
+2. direct prefix characteristic decay;
+3. a measure bound for weak-prefix neighborhoods;
+4. a prefix residue concentration or additive-energy obstruction.
+
+The final local law must remain collision-aware and must be matched to the transformed interval kernel.
 
 ## Mandatory distinction
 
@@ -188,10 +271,11 @@ python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/parity_twin_sanity.py
+python3 tracks/nova3-analytic-density/proofs/transformed_dyadic_sanity.py
 ```
 
 Finite checks and computational tables remain separate from symbolic proof.
 
 ## Claim boundary
 
-The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, compact numerical tilt, span one, exact parity normalization, and collision identities do not by themselves prove quotient occupancy or maximum-gap control.
+The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, compact numerical tilt, span one, parity normalization, dyadic factorization, and collision identities do not by themselves prove quotient occupancy or maximum-gap control.
