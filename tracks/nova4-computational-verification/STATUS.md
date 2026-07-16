@@ -12,7 +12,7 @@ Computation, Falsification, and Verification
 
 ## Overall state
 
-`NOVA3_REQUEST_E_SOURCE_AUDIT_COMPLETE`
+`NOVA3_REQUEST_F_DUSART_AUDIT_COMPLETE`
 
 ## Active results
 
@@ -29,6 +29,7 @@ Computation, Falsification, and Verification
 | N4-AUD-006 | `computational evidence` | Nova 3 request C scale rows, low-prime shares, effective dimension, and high-prime tail grid independently generated | `audits/N3_SCALE_CONVERGENCE_AUDIT.md` |
 | N4-AUD-007 | `proved theorem audit` and `computational evidence` | `N3-ANA-007` independently reconstructed and accepted; request D scanned 19,990,010 bounded recurrence scores | `audits/N3_CHARACTERISTIC_RECURRENCE_AUDIT.md` |
 | N4-AUD-008 | `source compatibility audit` | Ford, Drappeau–Tenenbaum, and ultrafriable source scopes reconstructed; none directly selects the factorial sequence | `audits/N3_RESTRICTED_SOURCE_COMPATIBILITY_AUDIT.md` |
+| N4-AUD-009 | `primary-source theorem audit` | Dusart Theorem 6.9 and the algebra proving `N3-ANA-010` independently reconstructed and accepted | `audits/N3_DUSART_PRIME_INTERVAL_AUDIT.md` |
 | N4-CE-001 | `counterexample` | Descending greedy is suboptimal at `n=8, x=155` | `certificates/n8_target155_optimal.json` |
 | N4-CE-002 | `disproved finite claim` | Frozen `N1-HO-N2-001` fails at its first requested target when admissible | `certificates/lattice/n2_obs_107_n1892.json` |
 | N4-CE-003 | `disproved finite claim` | Every frozen reduced Study B model for `20 <= n <= 80` fails at its first requested target | `certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json` |
@@ -51,8 +52,11 @@ Nova 3 theorem-path rows: 8
 Nova 3 recurrence scores: 19,990,010
 Nova 3 restricted primary sources reconstructed: 3
 Nova 3 source-compatibility witnesses: 3
+Dusart primary theorem reconstructed: Theorem 6.9, equation (6.6)
+Dusart threshold witness: pi(120368)-pi(60184) = 5254
 new Nova 3 source tests: 10 passing
-arithmetic: exact integers, rational identities, rational interval bounds, and semantic source-scope replay
+new Nova 3 Dusart tests: 12 passing
+arithmetic: exact integers, rational proof bounds, exact prime counts, 80-digit threshold evaluation, and semantic replay
 ```
 
 ## Current limitations
@@ -63,9 +67,10 @@ arithmetic: exact integers, rational identities, rational interval bounds, and s
 - Nova 3 request C is computational evidence only. `N3-ANA-006` and `N3-ANA-008` remain theorem-audit pending.
 - Request D does not prove a quantitative recurrence rate or certify a maximum outside its grid.
 - Request E confirms source scope only. It does not reprove the cited papers or establish a deterministic factorial divisor law.
+- Request F accepts only `N3-ANA-010`; address legality, menu size, and profile capacity remain request G/H work.
 - No Track B source package is present for reconstruction.
 - The `n=14` exact representation profile remains unknown due to resource limits.
 
 ## Next audit target
 
-Run request F of superseding Nova 3 handoff `N3-HO-N4-002`: reconstruct Dusart Theorem 6.9 from the primary source and independently derive the explicit prime-interval threshold used by `N3-ANA-010`.
+Run request G of superseding Nova 3 handoff `N3-HO-N4-002`: exact threshold sweep for every integer `120368 <= n <= 1000000`, recording minimum margins for prime counts, Legendre valuations, address legality, and conservative profile capacity.
