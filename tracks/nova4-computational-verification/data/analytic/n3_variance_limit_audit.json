@@ -1,0 +1,112 @@
+{
+  "decision": {
+    "N3_ANA_006": "ACCEPTED",
+    "finite_table_is_asymptotic_proof": false,
+    "full_model_weak_limit": "ACCEPTED",
+    "non_gaussian_limit": "ACCEPTED",
+    "variance_asymptotic": "ACCEPTED"
+  },
+  "finite_diagnostics": {
+    "classification": "computational evidence only",
+    "rows": [
+      {"n": 50, "variance_over_n_squared": "0.10558484561623833"},
+      {"n": 100, "variance_over_n_squared": "0.11137065932640752"},
+      {"n": 200, "variance_over_n_squared": "0.1128315616426365"},
+      {"n": 500, "variance_over_n_squared": "0.1143125576334303"},
+      {"n": 1000, "variance_over_n_squared": "0.11485212177618963"},
+      {"n": 2000, "variance_over_n_squared": "0.11505429356237171"},
+      {"n": 5000, "variance_over_n_squared": "0.11541327763289279"},
+      {"n": 10000, "variance_over_n_squared": "0.11544768625558857"},
+      {"n": 100000, "variance_over_n_squared": "0.11546927713679392"},
+      {"n": 1000000, "variance_over_n_squared": "0.11546830343704997"}
+    ]
+  },
+  "limiting_variance_series": {
+    "convergent": true,
+    "cutoff": 1000000,
+    "definition": "(1/12)sum_p (log p)^2/(p-1)^2",
+    "enclosure": ["0.1154658352305299", "0.11553933501489429"],
+    "partial_sum": "0.1154658352305299",
+    "positive": true,
+    "rigorous_tail_upper": "7.349978436438362e-05"
+  },
+  "proof_reconstruction": {
+    "characteristic_function": {
+      "compact_convergence_reason": "sum_p (log p)^2/(p-1)^2 converges and 1-sinc(x)=O(x^2)",
+      "factor": "sinc(t log(p)/(2(p-1)))",
+      "product": "product_p sin(t log(p)/(2(p-1)))/(t log(p)/(2(p-1)))"
+    },
+    "exact_starting_formula": "Var(S_n)/n^2=(1/12) sum_{p<=n} [b_p(n)^2/n^2+2b_p(n)/n^2](log p)^2",
+    "fixed_prime_limit": {
+      "coordinate_limit": "(A_p-b_p/2)/n converges to Uniform[-1/(2(p-1)),1/(2(p-1))]",
+      "limit": "b_p(n)/n -> sum_{k>=1} p^(-k)=1/(p-1)",
+      "valuation_identity": "b_p(n)=sum_{k>=1} floor(n/p^k)"
+    },
+    "non_gaussian": {
+      "decision": "ACCEPTED",
+      "gaussian_characteristic_function_nonzero": true,
+      "limit_variance_positive": true,
+      "p_equals_2_argument": "pi",
+      "p_equals_2_factor": "0",
+      "zero_frequency": "2*pi/log(2)"
+    },
+    "scope": {
+      "does_not_rule_out_high_prime_tail_clt": true,
+      "gaussian_local_limit_at_full_variance_scale": false,
+      "not_additive_occupancy": true,
+      "not_factorial_half_range_theorem": true,
+      "standard_gaussian_limit_for_full_model": false
+    },
+    "tail_control": {
+      "conclusion": "limsup_n Var(X_n-X_n^{<=Y}) is bounded by the limiting variance tail",
+      "finite_n_remainder_upper": "log(n)^2*(1+log(n-1))/(6n), which tends to zero",
+      "limiting_series_tail": "for Y>=8, at most (log(Y)^2+2log(Y)+2)/(3Y)",
+      "normalized_tail_upper": "(1/12)sum_{p>Y}(log p)^2/(p-1)^2 + (1/(6n))sum_{Y<p<=n}(log p)^2/(p-1)",
+      "valuation_upper": "b_p(n)<=n/(p-1)"
+    },
+    "variance_asymptotic": {
+      "decision": "ACCEPTED",
+      "statement": "Var(S_n)/n^2 -> (1/12)sum_p (log p)^2/(p-1)^2"
+    },
+    "weak_limit": {
+      "converging_together": true,
+      "decision": "ACCEPTED",
+      "finite_truncations": "joint convergence follows from coordinate independence",
+      "infinite_limit": "sum_p (log p)U_p converges in L^2 because the variance series converges",
+      "statement": "X_n converges weakly to sum_p (log p)U_p"
+    }
+  },
+  "result_class": "proved theorem audit with finite diagnostics",
+  "schema": "nova4.n3-variance-limit-audit.v1",
+  "scope": {
+    "accepted": [
+      "variance asymptotic",
+      "full normalized weak limit",
+      "L2 construction of the limiting series",
+      "limiting characteristic-function product",
+      "non-Gaussianity of the full-model limit"
+    ],
+    "not_proved": [
+      "Gaussian local limit for the full model",
+      "high-prime tail theorem N3-ANA-008",
+      "coarse local lower bound N3-ANA-009",
+      "additive occupancy",
+      "factorial half-range theorem",
+      "Erdos Problem 18"
+    ]
+  },
+  "sha256": "e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119",
+  "source": {
+    "audit_stage": "POST_H_THEOREM_CLOSURE",
+    "branch": "nova/analytic-density",
+    "external_dependency": "none beyond elementary convergence and unique factorization",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "object": "N3-ANA-006",
+    "proof_file": "tracks/nova3-analytic-density/proofs/PRODUCT_MODEL_THEOREMS.md",
+    "proof_file_blob_sha": "6260f8db0b377cf7dbc1850cbe25c91243099e10",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "source_ledger_blob_sha": "da81e6aaf2674fdae036d72df002547d4a71b18a",
+    "source_ledger_file": "tracks/nova3-analytic-density/SOURCE_LEDGER.md"
+  }
+}
