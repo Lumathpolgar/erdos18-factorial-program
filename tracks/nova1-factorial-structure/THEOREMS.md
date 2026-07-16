@@ -45,57 +45,47 @@ No finite result is promoted to an asymptotic theorem. No formal profile count i
 | N1-COL-001 | proved theorem | At least `2^{floor(M_n/2)}` legal profiles collide at one quotient sum | `proofs/RAINBOW_CARRY_COLLISIONS.md` |
 | N1-OBS-003 | proved theorem | Sequential carrier success requires sufficient connected-prefix entropy | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent streaming plus record-gap counts exactly recovers `u_t^*` and `K_t` | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
-| N1-STR-023 | proved theorem | Meet-in-the-middle row merging exactly recovers divisor order; balanced partitions give `O(sqrt(tau(D_n)))` heap size | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
-| N1-STR-024 | proved theorem | Layer-normalized count surplus `Gamma_n=(P_n/Q_n)^{1/L}` meets the exact count gate iff `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
+| N1-STR-023 | proved theorem | Meet-in-the-middle row merging exactly recovers divisor order | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
+| N1-STR-024 | proved theorem | Layer-normalized count surplus meets the exact count gate iff `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
 | N1-STR-025 | proved theorem | Exact carrier growth factors into connected-prefix count and packing utilization | `proofs/EFFECTIVE_CARRIER_FACTORIZATION_RECONSTRUCTION.md` |
+| N1-STR-026 | proved theorem | Every positive odd-core prefix satisfies `U_t>=2K_t-1`, yielding a parity-span expansion lower bound | `proofs/PARITY_SPAN_CRITERION_RECONSTRUCTION.md` |
+| N1-OBS-004 | proved theorem | The parity-span bound is optimal when only oddness, `K_t`, and `D_t` are specified | `proofs/PARITY_SPAN_CRITERION_RECONSTRUCTION.md` |
 
-## Effective carrier factorization
+## Exact effective carrier identities
 
-Nova 1 independently reconstructed Nova 2 theorem `N2-ADD-122` from exact source
-
-`nova/additive-occupancy@2ab09dd980f7116b82530368e3d98bb53240bf0c`.
-
-Let
+For executed layers,
 
 \[
 F_0=W_n+1,
 \qquad
-F_t=F_{t-1}+s_tU_t,
-\qquad
-s_t=2^{t-1}.
+F_t=F_{t-1}+2^{t-1}U_t.
 \]
 
 Put
 
 \[
-a_t=\frac{s_tU_t}{F_{t-1}},
-\qquad
 P_n=\prod_{t=1}^{L}(1+K_t),
 \qquad
-b_t=\frac{1+a_t}{1+K_t}.
+b_t=\frac{F_t/F_{t-1}}{1+K_t}.
 \]
 
-Then
+Then `N1-STR-025` proves
 
 \[
-\frac{F_L}{W_n+1}
-=
-\prod_{t=1}^{L}(1+a_t)
-=
-P_n\prod_{t=1}^{L}b_t.
+\frac{F_L}{W_n+1}=P_n\prod_{t=1}^{L}b_t.
 \]
 
 With
 
 \[
 R_n=\frac{Y_n+1}{W_n+1},
+\quad
+\widetilde\Gamma_n=(P_n/R_n)^{1/L},
+\quad
+\mathcal B_n=\left(\prod_tb_t\right)^{1/L},
 \]
 
 \[
-\widetilde\Gamma_n=(P_n/R_n)^{1/L},
-\qquad
-\mathcal B_n=\left(\prod_tb_t\right)^{1/L},
-\qquad
 \Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L},
 \]
 
@@ -105,7 +95,17 @@ one has
 \Delta_n=\widetilde\Gamma_n\mathcal B_n.
 \]
 
-Endpoint success is equivalent to `Delta_n>=1`. Therefore count surplus alone is necessary but not sufficient.
+Endpoint success is equivalent to `Delta_n>=1`.
+
+`N1-STR-026` gives the parity-only sufficient criterion
+
+\[
+\prod_{t=1}^{L}\frac{D_t+2K_t}{D_t+1}
+\ge
+R_n.
+\]
+
+`N1-OBS-004` proves no fixed-factor improvement is possible from oddness, count, and threshold alone. Any stronger sequential theorem must use factorial-specific internal spacing.
 
 ## Conditional results
 
@@ -121,41 +121,39 @@ Endpoint success is equivalent to `Delta_n>=1`. Therefore count surplus alone is
 | N1-CMP-003 | computational evidence | Reduced quotient audit for `7<=n<=14` | `verification/MARKER_THREE_FINITE_REPORT.md` |
 | N1-CMP-004 | finite certificate | Endpoint-support and coarse-contraction checks | `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md` |
 | N1-CMP-005 | finite certificate | Block and collision checks | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
-| N1-CMP-006 | computational evidence | `Gamma_51`, `Gamma_52`, `Gamma_53` are all above one and non-monotone | `verification/connected_prefix_normalized_n51_n53.csv` |
-| N1-CMP-007 | computational evidence | Count surplus through `n=54` is non-monotone and the first-blocking-gap ratio is below `1.108` on twenty finite blocked layers | `verification/connected_prefix_normalized_n51_n54.csv` |
-| N1-CMP-008 | computational evidence | Count, utilization, and endpoint factors through `n=55`; first-blocking-gap ratio remains below `1.108` on twenty-five blocked layers | `verification/effective_carrier_n51_n55.csv` |
+| N1-CMP-006 | computational evidence | Count surplus at `n=51,52,53` is non-monotone | `verification/connected_prefix_normalized_n51_n53.csv` |
+| N1-CMP-007 | computational evidence | Count surplus through `n=54` and finite blocking-gap audit | `verification/connected_prefix_normalized_n51_n54.csv` |
+| N1-CMP-008 | computational evidence | Exact count, utilization, and endpoint factors through `n=55` | `verification/effective_carrier_n51_n55.csv` |
+| N1-CMP-009 | computational evidence | Seven-layer effective and parity-span diagnostics at `n=56`; 31 finite blocked layers retain `g_t/D_t<1.108` | `verification/effective_carrier_n51_n56.csv` |
 | N2-FIN-202 | finite certificate | Imported complete-menu carrier coverage for `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 | N1-FIN-005 | finite certificate | Exact complete-core coverage for `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
 | N1-FIN-006 | finite certificate | Exact streaming coverage at `n=51` | `verification/FULL_CORE_N51_REPORT.md` |
 | N1-FIN-007 | finite certificate | Exact meet-in-the-middle coverage at `n=52` | `verification/FULL_CORE_N52_REPORT.md` |
-| N1-FIN-008 | finite certificate | Exact dual-partition meet-in-the-middle coverage at `n=53` | `verification/FULL_CORE_N53_REPORT.md` |
-| N1-FIN-009 | finite certificate | Exact dual-partition runtime-aware meet-in-the-middle coverage at `n=54` | `verification/FULL_CORE_N54_REPORT.md` |
-| N1-FIN-010 | finite certificate | Exact dual-partition effective-carrier coverage at `n=55` | `verification/FULL_CORE_N55_REPORT.md` |
+| N1-FIN-008 | finite certificate | Exact dual-partition coverage at `n=53` | `verification/FULL_CORE_N53_REPORT.md` |
+| N1-FIN-009 | finite certificate | Exact runtime-aware dual-partition coverage at `n=54` | `verification/FULL_CORE_N54_REPORT.md` |
+| N1-FIN-010 | finite certificate | Exact effective-carrier coverage at `n=55` | `verification/FULL_CORE_N55_REPORT.md` |
+| N1-FIN-011 | finite certificate | Exact seven-layer dual-partition coverage at `n=56` | `verification/FULL_CORE_N56_REPORT.md` |
 
-The sharper exact finite statements are
+The sharp exact finite statements are
 
 \[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
-\le22
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
 \qquad(12\le n\le54),
+\]
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
+\qquad(12\le n\le55),
 \]
 
 and
 
 \[
-H_{55!}(\lfloor\sqrt{55!}\rfloor+1)
-\le23.
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le24
+\qquad(12\le n\le56).
 \]
 
-Consequently,
-
-\[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
-\le23
-\qquad(12\le n\le55).
-\]
-
-No conclusion is asserted for `n>=56`.
+No conclusion is asserted for `n>=57`.
 
 ## Disproved routes
 
