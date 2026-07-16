@@ -4,11 +4,13 @@
 
 Owner: Nova 3
 
-Frozen source head: `0ce88b28dc2e6641093526f5777bb31f658e3515`
+Superseding handoff: `N3-HO-N4-002`
 
-Handoff: `N3-HO-N4-001`
+Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
-Status: `REQUESTS_A_B_C_COMPLETE_REQUEST_D_READY`
+Product-model proof commit used for request D: `ff57005b975c4917341306bd0eceb6d05a9b18f6`
+
+Status: `REQUESTS_A_B_C_D_COMPLETE_REQUEST_E_READY`
 
 Completed:
 
@@ -18,23 +20,30 @@ Completed:
 - exact local-count ceiling audit at every requested endpoint and width;
 - rehashed corrupted-bound rejection;
 - request C scale table, low-prime shares, effective dimension, cutoff grid, and theorem-path evidence;
-- frozen-script numerical cross-check;
-- identification of the frozen script's factor-of-two tail-ratio label error.
+- frozen-script numerical cross-check and factor-of-two tail-ratio label diagnosis;
+- independent proof reconstruction and acceptance of `N3-ANA-007`;
+- request D bounded recurrence search for every `3 <= n <= 12` and every `1,000 <= q <= 2,000,000`;
+- 80-digit finalist replay and direct divisor-vector cross-check;
+- rehashed recurrence-candidate corruption rejection.
 
-Request C decision:
+Request D decision:
 
 ```text
-scale evidence: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
-N3-ANA-006: EVIDENCE_CONSISTENT, THEOREM NOT YET ACCEPTED
-N3-ANA-008: EVIDENCE_CONSISTENT, THEOREM NOT YET ACCEPTED
-scale_sanity.py tail label: NEEDS_REPAIR_FOR_TAIL_RATIO_LABEL
+N3-ANA-007: ACCEPTED
+request D: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
+bounded search scores: 19,990,010
+full evidence semantic SHA-256: b15ad70a01046ec292ab3197faafc357bf4c9be155e97a5d498b10a6681123fc
 ```
+
+The earlier requests A through C were received under `N3-HO-N4-001`. Request D was re-frozen against superseding handoff `N3-HO-N4-002`, which preserves the same product-model theorem and explicitly retains request D.
 
 Remaining:
 
-- request D characteristic-function recurrence search;
-- request E source-compatibility reconstruction;
-- independent proof decisions for `N3-ANA-006` through `N3-ANA-009`.
+- request E source-compatibility reconstruction for Ford, Drappeau-Tenenbaum, and ultrafriable exponent caps;
+- request F independent Dusart source reconstruction;
+- request G exact threshold sweep for `120368 <= n <= 1000000`;
+- request H adversarial threshold tests;
+- independent final decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, `N3-ANA-010`, and `N3-ANA-011`.
 
 ## N4-REQ-N2-002
 
