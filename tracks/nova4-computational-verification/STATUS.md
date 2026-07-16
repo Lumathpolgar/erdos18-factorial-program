@@ -12,7 +12,7 @@ Computation, Falsification, and Verification
 
 ## Overall state
 
-`NOVA3_REQUEST_G_THRESHOLD_SWEEP_COMPLETE`
+`NOVA3_REQUEST_H_ADVERSARIAL_AUDIT_COMPLETE`
 
 ## Active results
 
@@ -31,6 +31,7 @@ Computation, Falsification, and Verification
 | N4-AUD-008 | `source compatibility audit` | Ford, Drappeau–Tenenbaum, and ultrafriable source scopes reconstructed; none directly selects the factorial sequence | `audits/N3_RESTRICTED_SOURCE_COMPATIBILITY_AUDIT.md` |
 | N4-AUD-009 | `primary-source theorem audit` | Dusart Theorem 6.9 and the algebra proving `N3-ANA-010` independently reconstructed and accepted | `audits/N3_DUSART_PRIME_INTERVAL_AUDIT.md` |
 | N4-AUD-010 | `finite certificate` | Every integer `120368 <= n <= 1000000` passes the exact prime, Legendre, ceiling, address, and conservative profile-capacity checks | `audits/N3_THRESHOLD_SWEEP_AUDIT.md` |
+| N4-AUD-011 | `semantic adversarial theorem audit` | All six required request H corruptions are rejected and `N3-ANA-011` is independently accepted with formal-profile-only scope | `audits/N3_THRESHOLD_ADVERSARIAL_AUDIT.md` |
 | N4-CE-001 | `counterexample` | Descending greedy is suboptimal at `n=8, x=155` | `certificates/n8_target155_optimal.json` |
 | N4-CE-002 | `disproved finite claim` | Frozen `N1-HO-N2-001` fails at its first requested target when admissible | `certificates/lattice/n2_obs_107_n1892.json` |
 | N4-CE-003 | `disproved finite claim` | Every frozen reduced Study B model for `20 <= n <= 80` fails at its first requested target | `certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json` |
@@ -58,9 +59,12 @@ Dusart threshold witness: pi(120368)-pi(60184) = 5254
 Nova 3 request G integers checked: 879,633
 certified r_n transitions in request G: 10
 certified M_n transitions in request G: 865
+request H semantic corruptions rejected: 6 of 6
+request H endpoint witness: n=120417, ceil(n/2)=60209 prime
 new Nova 3 source tests: 10 passing
 new Nova 3 Dusart tests: 12 passing
 new Nova 3 threshold-sweep tests: 12 passing
+new Nova 3 adversarial tests: 14 passing
 arithmetic: exact integers, rational logarithm bounds, exact prime counts, dual Legendre identities, 80-digit finalist evaluation, and semantic replay
 ```
 
@@ -70,13 +74,14 @@ arithmetic: exact integers, rational logarithm bounds, exact prime counts, dual 
 - The accepted Nova 2 obstruction applies only to the frozen Nova 1 model at commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
 - The reduced-rainbow disproof applies only to Study B at Nova 1 commit `fa11f4b2cb86a2dd791df189ada12757be791804`; it does not disprove the full-menu preferred route.
 - Nova 3 request C is computational evidence only. `N3-ANA-006` and `N3-ANA-008` remain theorem-audit pending.
+- `N3-ANA-009` remains theorem-audit pending.
 - Request D does not prove a quantitative recurrence rate or certify a maximum outside its grid.
 - Request E confirms source scope only. It does not reprove the cited papers or establish a deterministic factorial divisor law.
-- Request G is a finite certificate. It confirms the requested range but does not establish profile injectivity or additive occupancy.
-- Final theorem-status disposition for `N3-ANA-011` remains pending request H's adversarial semantic audit.
+- Request G remains a finite certificate rather than an asymptotic proof.
+- Accepted `N3-ANA-011` proves address legality, menu cardinality, and formal profile capacity only. It does not prove profile injectivity, distinct numerical sums, or additive occupancy.
 - No Track B source package is present for reconstruction.
 - The `n=14` exact representation profile remains unknown due to resource limits.
 
 ## Next audit target
 
-Run request H of superseding Nova 3 handoff `N3-HO-N4-002`: reject all six specified semantic corruptions, including larger unproved address ranges, removal of the menu-unit exclusion, profile-count versus distinct-sum conflation, the `pi(ceil(n/2))` endpoint substitution, and reporting the finite sweep as an asymptotic proof.
+Requests A through H are complete. Independently reconstruct and decide `N3-ANA-006`, the variance asymptotic, then close `N3-ANA-008` and `N3-ANA-009`.
