@@ -156,53 +156,77 @@ request: H
 object: N3-ANA-011
 ```
 
+Implementation: `src/factorial_lab/n3_adversarial.py` and `src/replay_n3_adversarial.py`.
+
+Checks the uniform address proof, exact Nova 1 menu-definition match, unit-exclusion correction, formal profile interpretation, half-endpoint semantics, finite-only status of request G, source metadata, and semantic checksums.
+
+Required corruptions for threshold, legal range, unit correction, profile interpretation, half endpoint, and finite/asymptotic status are rejected.
+
+## N4-AUD-012: Nova 3 full-model variance and non-Gaussian limit verifier
+
+Status: `ACTIVE`.
+
+Result class: `proved theorem audit with finite diagnostics`.
+
+Frozen input:
+
+```text
+branch: nova/analytic-density
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+proof file: tracks/nova3-analytic-density/proofs/PRODUCT_MODEL_THEOREMS.md
+proof file blob: 6260f8db0b377cf7dbc1850cbe25c91243099e10
+source ledger blob: da81e6aaf2674fdae036d72df002547d4a71b18a
+object: N3-ANA-006
+```
+
 Implementation:
 
 ```text
-src/factorial_lab/n3_adversarial.py
-src/replay_n3_adversarial.py
+src/factorial_lab/n3_variance_limit.py
+src/replay_n3_variance.py
 ```
 
 Schemas:
 
 ```text
-data/analytic/n3_ana_011_contract.schema.json
-data/analytic/n3_threshold_adversarial_audit.schema.json
-certificates/analytic/n3_ana_011_final_claim.schema.json
+data/analytic/n3_variance_limit_audit.schema.json
+certificates/analytic/n3_ana_006_final_claim.schema.json
 ```
 
 Independent checks:
 
-- uniform address proof from exact ceiling and Legendre bounds;
-- exact definition match between Nova 3 menus and imported `N1-STR-009`;
-- preservation of the unit-exclusion correction `2^(m_n-1)-1`;
-- formal profile capacity without injectivity or distinct-sum inflation;
-- exact endpoint semantics `pi(n/2)=pi(floor(n/2))`;
-- witness `n=120417`, where `ceil(n/2)=60209` is prime;
-- finite request G evidence remains finite only;
+- exact Legendre valuation formula and fixed-prime limit `b_p(n)/n -> 1/(p-1)`;
+- normalized variance decomposition with the coefficient `1/12`;
+- uniform prime-tail variance bound and elementary convergent-series tail;
+- finite-prime joint convergence and converging-together argument;
+- `L^2` construction of `sum_p (log p)U_p`;
+- compact convergence of the sinc product;
+- exact `p=2` zero at `2*pi/log(2)`;
+- non-Gaussianity of the full-model limit;
+- ten finite variance diagnostics through `n=1,000,000`, classified as evidence only;
 - frozen source metadata and semantic checksums.
 
 Corruption behavior:
 
-- rehashed threshold `120367` without supplementation is rejected;
-- rehashed larger legal address range is rejected;
-- rehashed removed menu-unit correction is rejected;
-- rehashed profile-injectivity claim is rejected;
-- rehashed ceil endpoint substitution is rejected;
-- rehashed finite-asymptotic claim is rejected.
+- rehashed coefficient `1/6` is rejected;
+- rehashed denominator `p^2` is rejected;
+- rehashed Gaussian claim is rejected;
+- rehashed zero frequency `pi/log(2)` is rejected;
+- rehashed finite-as-asymptotic claim is rejected;
+- wrong proof metadata and wrong evidence hashes are rejected.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_adversarial.py verify \
-  data/analytic/n3_threshold_adversarial_audit.json
-PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-contract \
-  data/analytic/n3_ana_011_contract.json
-PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-claim \
-  certificates/analytic/n3_ana_011_final_claim.json
-PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
-  tests/n3_adversarial_fixtures
+PYTHONPATH=src python3 src/replay_n3_variance.py verify \
+  data/analytic/n3_variance_limit_audit.json
+PYTHONPATH=src python3 src/replay_n3_variance.py verify-claim \
+  certificates/analytic/n3_ana_006_final_claim.json \
+  --audit data/analytic/n3_variance_limit_audit.json
 ```
+
+The accepted full-model non-Gaussian theorem does not preclude the separately truncated high-prime-tail central limit theorem `N3-ANA-008`.
 
 ## Test command
 
