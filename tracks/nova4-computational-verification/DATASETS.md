@@ -95,19 +95,61 @@ H(120,6,7) = 17 while tau(120;6,7) = 0
 v_2(10!) = 8; y<256 excludes 256, while y>=256 includes prime 11
 ```
 
-Artifacts:
-
-```text
-data/analytic/n3_restricted_source_compatibility.json
-data/analytic/n3_restricted_source_compatibility.schema.json
-certificates/analytic/n3_restricted_source_compatibility.json
-certificates/analytic/n3_source_compatibility_claim.schema.json
-```
-
 Audit semantic SHA-256: `a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f`.
 
 Claim semantic SHA-256: `ae60e9e8758df8113ac249404d8660c5ae4bb5edf02b3aab342c43c47a8124ba`.
 
 Decision: none of the three sources directly selects the deterministic factorial sequence.
+
+## N4-DATA-010: Dusart primary-source prime-interval audit
+
+Result class: `primary-source theorem audit`.
+
+Frozen source:
+
+```text
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+source-ledger commit: 697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4
+proof file blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
+request: F
+object: N3-ANA-010
+```
+
+Primary source: Pierre Dusart, arXiv:1002.0442v1, Theorem 6.9, equation (6.6), PDF page 9.
+
+Confirmed source inequalities:
+
+```text
+pi(x) >= x/(log(x)-1) for x>=5393
+pi(x) <= x/(log(x)-1.1) for x>=60184
+```
+
+Derived result:
+
+```text
+pi(n)-pi(n/2) >= n/(3 log n) for every integer n>=120368
+```
+
+Exact endpoint witness:
+
+```text
+pi(120368) = 11330
+pi(60184) = 6076
+upper-half prime count = 5254
+```
+
+Artifacts:
+
+```text
+data/analytic/n3_dusart_prime_interval_audit.json
+data/analytic/n3_dusart_prime_interval_audit.schema.json
+certificates/analytic/n3_dusart_prime_interval_claim.json
+certificates/analytic/n3_dusart_prime_interval_claim.schema.json
+```
+
+Audit semantic SHA-256: `42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212`.
+
+Claim semantic SHA-256: `7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703`.
 
 No finite dataset or source-scope audit in this registry is an asymptotic factorial theorem.
