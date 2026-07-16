@@ -151,20 +151,68 @@ Semantic audit SHA-256:
 85fdfcd360faa9009531c10bf46a85bf0312e6e46252d06544e72787183f4e03
 ```
 
-Exact findings:
+Exact findings: divisor uniqueness, exact moments, complement symmetry, all cross covariances, and every requested local ceiling pass. There are 21 tight windows, first at `n=2`, `q=2`, `Delta=0`, endpoint divisor `1`; lowering the bound from `1` to `0` and rehashing is rejected.
 
-- divisor uniqueness, `tau(n!)`, and complement symmetry pass for every case;
-- exact rational coordinate moments and all cross covariances match the product model;
-- 80-digit decimal mean and variance replay pass with errors far below `1e-12`;
-- every requested local ceiling passes;
-- 21 windows are tight, first at `n=2`, `q=2`, `Delta=0`, endpoint divisor `1`;
-- lowering that bound from `1` to `0` and rehashing the artifact is rejected.
+## N4-DATA-007: Nova 3 scale and high-prime tail evidence
+
+Result class: `computational evidence`.
+
+Frozen source:
+
+```text
+nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515
+handoff: N3-HO-N4-001
+request: C
+objects: N3-ANA-006 and N3-ANA-008
+```
+
+Coverage:
+
+```text
+scale n values: 50,100,200,500,1000,2000,5000,10000
+cutoff grid: 2,3,5,7,10,20,25,50
+scale rows: 8
+grid tail rows: 63
+theorem-path rows: 8
+theorem path: y_n=floor(sqrt(n))/2
+```
+
+Artifacts:
+
+```text
+data/analytic/n3_scale_evidence_index.json
+data/analytic/n3_scale_evidence_index.schema.json
+data/analytic/n3_scale_rows.csv
+data/analytic/n3_theorem_path_rows.csv
+data/analytic/n3_high_prime_tail_n50_n200.csv
+data/analytic/n3_high_prime_tail_n500_n1000.csv
+data/analytic/n3_high_prime_tail_n2000_n5000.csv
+data/analytic/n3_high_prime_tail_n10000_n10000.csv
+```
+
+Full generated audit semantic SHA-256:
+
+```text
+28bd8b9a6aeb3c2f4771c1bb861c0fc0f04f9e521982f56763ebac72e220cd94
+```
+
+Findings:
+
+- `Var(S_n)/n^2` at `n=10000` is `0.11544768625558856535`, or `0.9998428195240168` of the one-million-prime truncated proxy;
+- primes `2,3,5,7` contribute `0.7567896218242085` of the variance at `n=10000`;
+- effective dimension at `n=10000` is approximately `5.23116`;
+- along `y_n=floor(sqrt(n))/2`, theorem-defined `M/B` decreases from `0.88653` to `0.42704` over the tested rows;
+- the frozen script's scale fields agree within `1.6e-15`;
+- its high-prime routine computes `2M/B`, so the printed ratio label is `NEEDS_REPAIR`.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3.py verify \
-  data/analytic/n3_moment_local_n2_n12.json
+PYTHONPATH=src python3 src/replay_n3_scale.py generate \
+  --output-json /tmp/n3_scale_evidence.json \
+  --scale-csv /tmp/n3_scale_rows.csv \
+  --tail-csv /tmp/n3_high_prime_tail_rows.csv
+PYTHONPATH=src python3 src/replay_n3_scale.py verify /tmp/n3_scale_evidence.json
 ```
 
 No finite dataset in this registry is an asymptotic theorem.
