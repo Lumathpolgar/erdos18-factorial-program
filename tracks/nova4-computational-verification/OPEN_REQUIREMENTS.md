@@ -8,9 +8,22 @@ Frozen source head: `0ce88b28dc2e6641093526f5777bb31f658e3515`
 
 Handoff: `N3-HO-N4-001`
 
-Status: `RECEIVED_READY_FOR_AUDIT`
+Status: `MOMENT_AND_LOCAL_AUDITS_COMPLETE_SCALE_READY`
 
-Independently reconstruct the product-model formulas, exact finite moments, local-count ceiling, scale-convergence evidence, recurrence search, and source compatibility.
+Completed:
+
+- independent proof reconstruction and acceptance of `N3-ANA-004`;
+- independent proof reconstruction and acceptance of `N3-ANA-005`;
+- exact moment audit for every `2 <= n <= 12`;
+- exact local-count ceiling audit at every requested endpoint and width;
+- rehashed corrupted-bound rejection.
+
+Remaining:
+
+- scale-convergence evidence table;
+- characteristic-function recurrence search;
+- source-compatibility reconstruction;
+- independent decisions for `N3-ANA-006` through `N3-ANA-009`.
 
 ## N4-REQ-N2-002
 
