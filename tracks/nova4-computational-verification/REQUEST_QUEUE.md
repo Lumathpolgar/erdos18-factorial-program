@@ -10,15 +10,17 @@ Priority: `1`
 
 Sending track: Nova 3
 
-Handoff: `N3-HO-N4-001`
+Superseding handoff: `N3-HO-N4-002`
 
 Frozen branch: `nova/analytic-density`
 
-Frozen commit: `0ce88b28dc2e6641093526f5777bb31f658e3515`
+Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
+
+Request D proof commit: `ff57005b975c4917341306bd0eceb6d05a9b18f6`
 
 Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Status: `REQUESTS_A_B_C_COMPLETE_REQUEST_D_READY`
+Status: `REQUESTS_A_B_C_D_COMPLETE_REQUEST_E_READY`
 
 Completed work:
 
@@ -28,34 +30,38 @@ Completed work:
 - exact rational coordinate moments and covariance checks;
 - 45,840 exact local-window checks;
 - valid tight certificate and rehashed corrupted-bound rejection;
-- eight request C scale rows;
-- 63 exact cutoff-grid high-prime rows;
-- eight admissible `y_n=floor(sqrt(n))/2` path rows;
-- variance shares for primes `2`, `3`, `5`, and `7`;
-- participation-ratio effective dimension;
-- one-million-prime truncated variance proxy;
-- frozen-script float cross-check and factor-of-two tail-label diagnosis.
+- eight request C scale rows, 63 cutoff-grid rows, and eight admissible theorem-path rows;
+- variance shares, effective dimension, one-million-prime proxy, and frozen-script cross-check;
+- factor-of-two tail-label diagnosis in `scale_sanity.py`;
+- independent reconstruction and acceptance of `N3-ANA-007`;
+- exhaustive request D ranking of 19,990,010 bounded recurrence scores;
+- 40 block winners and 10 global winners;
+- 80-digit finalist evaluation and direct exact exponent-vector cross-check;
+- valid `n=12` candidate and rehashed candidate-corruption rejection.
 
-Request C disposition:
+Request D disposition:
 
 ```text
-scale table: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
-N3-ANA-006: EVIDENCE_CONSISTENT, THEOREM NOT YET ACCEPTED
-N3-ANA-008: EVIDENCE_CONSISTENT, THEOREM NOT YET ACCEPTED
-scale_sanity.py tail label: NEEDS_REPAIR_FOR_TAIL_RATIO_LABEL
+N3-ANA-007: ACCEPTED
+request D: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
+q range: 1,000 through 2,000,000
+n range: 3 through 12
+semantic SHA-256: b15ad70a01046ec292ab3197faafc357bf4c9be155e97a5d498b10a6681123fc
 ```
 
 Next requested study:
 
-- bounded characteristic-function recurrence search for small `n`;
-- explicit frequency range, resolution, and numerical precision;
-- near-one values of `|phi_n(t)|` with reproducible witnesses;
-- all results labeled computational evidence.
+- request E source reconstruction for Ford's `H(x,y,z)`;
+- verify the scope of the Drappeau-Tenenbaum exceptional friable subset;
+- compare the ultrafriable common exponent cap with the prime-dependent exponents `v_p(n!)`;
+- determine whether any restricted source directly selects the factorial sequence.
 
 Later studies:
 
-- source-compatibility reconstruction;
-- final independent proof decisions for `N3-ANA-006` through `N3-ANA-009`.
+- request F Dusart theorem reconstruction;
+- request G exact threshold sweep for every `120368 <= n <= 1000000`;
+- request H adversarial threshold tests;
+- final independent decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, `N3-ANA-010`, and `N3-ANA-011`.
 
 ## N4-REQ-N1-001
 
