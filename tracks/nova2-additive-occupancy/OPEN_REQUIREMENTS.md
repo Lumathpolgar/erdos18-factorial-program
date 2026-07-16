@@ -12,9 +12,9 @@ Frozen marker-three source:
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
 - construction: `N1-CON-003`.
 
-### N2-REQ-N1-002-v8
+### N2-REQ-N1-002-v9
 
-Status: `OPEN_COMPLEMENTARY_DIVISOR_QUANTILE`.
+Status: `OPEN_BEYOND_RANKIN_LOWER_TAIL`.
 
 Put
 
@@ -28,24 +28,37 @@ and list its divisors as
 1=c_1<\cdots<c_{\tau_n}=C_n.
 \]
 
-N2-ADD-125 proves the exact identity
+N2-ADD-125 proves
 
 \[
 U_t c_{\tau_n+1-K_t}=C_n.
 \]
 
+For every `sigma>0`, N2-ADD-127 gives
+
+\[
+U_t\ge
+\left(\frac{K_t}{Z_n(\sigma)}\right)^{1/\sigma},
+\qquad
+Z_n(\sigma)=
+\prod_{p^e\parallel C_n}
+\frac{1-p^{-(e+1)\sigma}}{1-p^{-\sigma}}.
+\]
+
 Provide one of:
 
-1. a lower-tail divisor-count theorem `L_n(B)>=tau_n-K_t+1` strong enough to force `Delta_n>=1`;
-2. a direct upper bound for `c_(tau_n+1-K_t)` strong enough to force endpoint coverage;
-3. a contrary lower bound for the complementary order statistic strong enough to force `Delta_n<1` and retire N2-ADD-120;
-4. an averaged theorem across exact carrier layers that closes the utilization product.
+1. a multi-parameter exponent-box or saddle-point lower-tail theorem stronger than the Rankin bound and strong enough to force `Delta_n>=1`;
+2. a direct smooth-divisor counting theorem `L_n(B)>=tau_n-K_t+1` at the active complementary ranks;
+3. a direct upper bound for `c_(tau_n+1-K_t)` strong enough to force endpoint coverage;
+4. a contrary lower bound for the complementary order statistic strong enough to force `Delta_n<1` and retire N2-ADD-120;
+5. an averaged theorem across exact carrier layers that closes the utilization product.
 
 The following are insufficient as complete proof inputs:
 
 - first external blocking gaps, by N2-OBS-109;
 - count and parity alone, by N2-OBS-110 and N2-CMP-206;
-- divisor median symmetry alone, by N2-CMP-207.
+- divisor median symmetry alone, by N2-CMP-207;
+- the one-parameter Rankin moment alone, by N2-CMP-208.
 
 Latest inspected source:
 
@@ -100,16 +113,16 @@ Status: `OPEN`.
 
 Independently replay the marker-three structural gate from commit `ebb47ba436af554366d0f285119a769f31f9e561`.
 
-### N2-REQ-N4-002-v9
+### N2-REQ-N4-002-v10
 
 Status: `PARTIALLY_CLOSED_BY_NOVA2_AND_NOVA1`.
 
 Independently reconstruct:
 
-- N2-ADD-119 through N2-ADD-126;
+- N2-ADD-119 through N2-ADD-128;
 - N2-OBS-109 and N2-OBS-110;
 - finite certificates through `n=55`;
-- N2-CMP-206 and N2-CMP-207;
+- N2-CMP-206 through N2-CMP-208;
 - the dual-partition replays at `n=53` and `n=55`.
 
 ### N2-REQ-N4-003-v7
@@ -178,15 +191,23 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
 
 Extend from `n=56` only as a finite auxiliary program.
 
-### N2-REQ-INT-003-v8
+### N2-REQ-INT-003-v9
 
-Status: `OPEN_COMPLEMENTARY_DIVISOR_QUANTILE`.
+Status: `OPEN_BEYOND_RANKIN_LOWER_TAIL`.
 
-Use N2-ADD-125 and N2-ADD-126 to construct a certified lower-tail divisor family for `C_n`, or prove a contrary complementary-order-statistic bound. The exact active quantity is
+Use N2-ADD-125 through N2-ADD-128 to improve the lower-tail divisor count beyond the one-parameter Rankin moment. The exact active quantities are
 
 \[
-c_{\tau_n+1-K_t}.
+c_{\tau_n+1-K_t}
 \]
+
+and
+
+\[
+Z_n(\sigma)=\sum_{d\mid C_n}d^{-\sigma}.
+\]
+
+The next proof engine should use a saddle-point estimate, multiple weighted constraints, a multi-parameter exponent box, or a direct smooth-divisor count.
 
 ### N2-REQ-INT-004-v4
 
