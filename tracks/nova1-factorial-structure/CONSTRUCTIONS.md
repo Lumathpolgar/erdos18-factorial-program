@@ -58,20 +58,35 @@ C_n=\{1,2,4,\ldots,2^{r_n-1}\}.
 - multiplicative 3-density of the reserved odd core;
 - total quotient endpoint support;
 - exact unique-parent and meet-in-the-middle divisor streams;
-- exact layer-normalized entropy surplus identity.
+- exact layer-normalized count-surplus identity;
+- exact effective carrier count-utilization factorization.
 
 ### Finite certificates
 
 The complete connected-core carrier is exactly certified for
 
 \[
-12\le n\le54.
+12\le n\le55.
 \]
 
-In this range,
+The sharper finite bounds are
 
 \[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22.
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+\qquad(12\le n\le54),
+\]
+
+and
+
+\[
+H_{55!}(\lfloor\sqrt{55!}\rfloor+1)\le23.
+\]
+
+Therefore
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
+\qquad(12\le n\le55).
 \]
 
 Recent certificates:
@@ -82,28 +97,42 @@ Recent certificates:
 | N1-FIN-007 | 52 | meet-in-the-middle stream | 6 | 22 |
 | N1-FIN-008 | 53 | dual-partition meet-in-the-middle stream | 6 | 22 |
 | N1-FIN-009 | 54 | runtime-aware dual-partition meet-in-the-middle stream | 6 | 22 |
+| N1-FIN-010 | 55 | dual-partition effective-carrier stream | 6 | 23 |
 
-Normalized finite surplus values are
-
-\[
-\Gamma_{51}=120.322026489,
-\quad
-\Gamma_{52}=97.645052132,
-\quad
-\Gamma_{53}=124.609364763,
-\quad
-\Gamma_{54}=92.273264367.
-\]
-
-The finite sequence is non-monotone. No asymptotic conclusion is drawn.
-
-Across the twenty blocked layers for `51<=n<=54`, the finite first-blocking-gap ratio satisfies
+The term-bound transition occurs because
 
 \[
-\max g_t/D_t<1.108.
+r_{55}=17.
 \]
 
-Result label: **computational evidence**. This is not a uniform theorem.
+### Effective finite diagnostics
+
+`N1-STR-025` independently reconstructs Nova 2 theorem `N2-ADD-122` from
+
+`nova/additive-occupancy@2ab09dd980f7116b82530368e3d98bb53240bf0c`.
+
+For the exact root-normalized count surplus, utilization, and endpoint growth:
+
+| `n` | count surplus | utilization root | endpoint surplus |
+|---:|---:|---:|---:|
+| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 |
+| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 |
+| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 |
+| 54 | 92.273264366777 | 0.010837378971591 | 1.000000334888580 |
+| 55 | 98.919733584849 | 0.010109209300122 | 1.000000290721510 |
+
+The count surplus is large but is almost entirely consumed by utilization loss. No asymptotic conclusion is drawn.
+
+Across the twenty-five blocked layers for `51<=n<=55`, the finite first-blocking-gap ratio satisfies
+
+\[
+\max g_t/D_t
+=
+\frac{20891689328819250}{18870510190034037}
+<1.108.
+\]
+
+Result label: **computational evidence**. This is not a uniform theorem, and the first blocking gap alone does not control average utilization.
 
 ### Exact computational architecture
 
@@ -115,7 +144,12 @@ At `n=54`:
 - mask `255`: `128 x 2,737,800`, exact certificate in `15.31` seconds;
 - mask `223`: `512 x 684,450`, exact certificate in `18.57` seconds.
 
-The balanced timeout is a resource boundary for that partition, not a mathematical failure.
+At `n=55`:
+
+- mask `9`: `156 x 2,903,040`, exact certificate in `20.68` seconds;
+- mask `808`: `96 x 4,717,440`, exact certificate in `20.40` seconds.
+
+Partition-dependent resource behavior does not alter the exact mathematical output.
 
 ### Exact open component
 
@@ -131,13 +165,21 @@ has a rainbow sum in
 [q-W_n,q].
 \]
 
+For the sequential engine, this requires control of the exact product
+
+\[
+\widetilde\Gamma_n\mathcal B_n,
+\]
+
+not count surplus alone.
+
 ### Primary risks
 
 - final downward endpoint-window gaps;
 - collision concentration;
 - quotient additive shell gaps;
-- insufficient normalized connected-prefix entropy;
-- failure of a uniform divisor record-gap bound;
+- insufficient packing utilization despite large connected-prefix counts;
+- failure of a uniform divisor average-gap or record-gap bound;
 - failure of compact phase dispersion;
 - a proof that silently becomes sequential when claiming a final-only result.
 
@@ -215,4 +257,5 @@ Every future revision must include:
 17. asymptotic failure condition;
 18. exact result labels;
 19. replayable certificates with fail-closed resource boundaries;
-20. runtime-aware partition planning for exact streams.
+20. runtime-aware partition planning for exact streams;
+21. exact count-utilization factorization for every sequential claim.
