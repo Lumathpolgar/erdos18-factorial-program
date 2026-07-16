@@ -92,45 +92,67 @@ source-ledger commit: 697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4
 request: E
 ```
 
+Implementation: `src/factorial_lab/n3_sources.py` and `src/replay_n3_sources.py`.
+
+Checks Ford’s ambient quantifier, the friable exceptional-set qualifier, the ultrafriable common-cap mismatch, exact witnesses, source classifications, frozen metadata, and semantic checksums.
+
+## N4-AUD-009: Nova 3 Dusart primary-source verifier
+
+Status: `ACTIVE`.
+
+Result class: `primary-source theorem audit`.
+
+Frozen input:
+
+```text
+branch: nova/analytic-density
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+source-ledger commit: 697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4
+proof file blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
+request: F
+object: N3-ANA-010
+```
+
 Implementation:
 
 ```text
-src/factorial_lab/n3_sources.py
-src/replay_n3_sources.py
+src/factorial_lab/n3_dusart.py
+src/replay_n3_dusart.py
 ```
 
 Schemas:
 
 ```text
-data/analytic/n3_restricted_source_compatibility.schema.json
-certificates/analytic/n3_source_compatibility_claim.schema.json
+data/analytic/n3_dusart_prime_interval_audit.schema.json
+certificates/analytic/n3_dusart_prime_interval_claim.schema.json
 ```
 
 Independent checks:
 
-- exact reconstruction of Ford’s ambient `H(x,y,z)` quantifier scope;
-- exact witness `H(120,6,7)=17` while `tau(120;6,7)=0`;
-- exact verification that `10!` is `10`-friable;
-- preservation of the Drappeau–Tenenbaum exceptional-set qualifier;
-- exact `v_2(10!)=8`, `256|10!`, and `11∤10!` ultrafriable mismatch;
-- all three source classifications and legal comparison directions;
-- frozen handoff and source-ledger metadata;
-- full semantic checksums.
+- exact primary-source metadata for arXiv:1002.0442v1, Theorem 6.9, equation (6.6);
+- source thresholds `5393` and `60184` and their application at `n` and `n/2`;
+- source-derived integer threshold `120368` and failure of unsupplemented predecessor coverage;
+- rational certificate `log(2)<7/10`, `b<9/5`, `log(n)>4`, and `Q(L)>0`;
+- exact sieve counts `pi(120368)=11330` and `pi(60184)=6076`;
+- 80-digit source and target margins;
+- frozen handoff, source-ledger, proof-file metadata, and semantic checksums.
 
 Corruption behavior:
 
-- a rehashed claim that a restricted source directly selects `n!` is rejected;
-- rehashed removal of the friable exceptional-set qualifier is rejected;
-- rehashed assertion of exact ultrafriable/factorial support equality is rejected;
-- wrong handoff metadata is rejected.
+- rehashed threshold `120367` is rejected;
+- rehashed source upper threshold `60183` is rejected;
+- rehashed predecessor-coverage claim is rejected;
+- wrong frozen-source metadata is rejected.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_sources.py verify \
-  data/analytic/n3_restricted_source_compatibility.json
-PYTHONPATH=src python3 src/replay_n3_sources.py verify-claim \
-  certificates/analytic/n3_restricted_source_compatibility.json
+PYTHONPATH=src python3 src/replay_n3_dusart.py verify \
+  data/analytic/n3_dusart_prime_interval_audit.json
+PYTHONPATH=src python3 src/replay_n3_dusart.py verify-claim \
+  certificates/analytic/n3_dusart_prime_interval_claim.json \
+  --audit data/analytic/n3_dusart_prime_interval_audit.json
 ```
 
 ## Test command
