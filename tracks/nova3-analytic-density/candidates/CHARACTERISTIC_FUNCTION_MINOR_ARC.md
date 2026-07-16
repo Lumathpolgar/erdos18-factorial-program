@@ -1,14 +1,14 @@
-# Candidate 3: Marker-Three Aggregate Phase Dispersion
+# Candidate 3: Parity-Normalized Marker-Three Dispersion
 
-## Theorem contract
+## Contract
 
 - Candidate ID: `N3-CAND-CF-001`
-- Original unrestricted logarithmic form: `disproved estimate`
-- Active numerical bounded-torus form: `open`
+- Original unrestricted logarithmic form: `DISPROVED`
+- Unnormalized numerical form with only the zero major arc: `DISPROVED`
+- Active parity-normalized numerical form: `OPEN`
 - Intended consumer: Nova 2
-- Exact source law: marker-three quotient model `N2-HO-N3-003`
 
-## Active numerical law
+## Original numerical law
 
 For
 
@@ -28,198 +28,214 @@ P_\lambda(Z_t=b)
 b\in B_t(n)\cup\{0\}.
 \]
 
-Define
+Set
 
 \[
 T_{n,\lambda}=\sum_{t=1}^{M_n}Z_t,
 \qquad
-\Phi_{n,\lambda}(\theta)=E_\lambda e^{i\theta T_{n,\lambda}},
-\qquad
-\theta\in[-\pi,\pi].
+\Phi_{n,\lambda}(\theta)
+=E_\lambda e^{i\theta T_{n,\lambda}}.
 \]
 
-This is a numerical integer-valued law. It is not the characteristic function of `log d`.
-
-## Exact target range
-
-Put
+The exact final-only target range is
 
 \[
+P_n+1\le q\le Y_n,
+\qquad
 P_n=m_n(2^{M_n}-1)+W_n.
 \]
 
-Nova 2 covers all quotient windows through `P_n` by a deterministic small-core chain. The final-only asymptotic analytic range is
+`N3-ANA-020` proves that the unique centering tilt tends uniformly to zero on this range.
+
+## Newly disproved unnormalized minor arc
+
+`N3-ANA-023` proves that compact tilt does not remove the secondary parity resonance.
+
+Every nonzero first-layer state is odd, while every later-layer state is even. Therefore
 
 \[
-P_n+1\le q\le Y_n.
+P(T\text{ even})=P(Z_1=0)=p^{(0)}_{n,q},
 \]
 
-For each such target, N3-ANA-018 gives a unique tilt `lambda_{n,q}` centered at
+with
 
 \[
-q-W_n/2.
+p^{(0)}_{n,q}
+\le
+\frac{2e^{\varepsilon_n}}{m_n+1},
+\qquad
+\varepsilon_n
+=
+\frac{8M_n\log L_n}{2^{M_n}-1}.
 \]
 
-N3-ANA-020 proves uniformly
+At the nonzero torus frequency `pi`,
 
 \[
--\frac{8M_n\log L_n}{L_n}
-<\lambda_{n,q}<
-\frac{16(n\log n+\log14)}{2^{M_n}},
+\Phi(\pi)=2p^{(0)}-1,
 \]
 
 so
 
 \[
-\sup_q|\lambda_{n,q}|\to0.
+|\Phi(\pi)|
+\ge
+1-rac{4e^{\varepsilon_n}}{m_n+1}
+\to1.
 \]
 
-## Exact resonance facts
-
-N3-ANA-018 proves:
-
-- exact additive span one;
-- exact modulus-one resonance set `{0}` on `[-pi,pi]`.
-
-N3-ANA-019 proves that a modulus gap cannot be uniform over all real tilts.
-
-N3-ANA-021 proves that compact tilt does not rescue the single zero-versus-minimum anchor, because at zero tilt its coefficient is exponentially small.
-
-## Multistate identity
-
-For one layer, write
+The exact twin identity is
 
 \[
-p_t(a)=P_\lambda(Z_t=a),
+\Phi(\pi+u)+\Phi(u)
+=
+2p^{(0)}\prod_{t=2}^{M_n}\phi_t(u).
+\]
+
+Thus a minor arc containing `pi` cannot have a target-uniform positive dispersion gap. Exact span one does not prevent asymptotic concentration on one parity class.
+
+## Reference-law restriction
+
+`N3-ANA-024` proves that any integer-valued reference law `G` satisfies
+
+\[
+d_{TV}(\mathcal L(T),G)
+\ge
+|G(2\mathbb Z)-p^{(0)}|.
+\]
+
+A parity-blind discretized Gaussian or other reference law with a fixed positive even mass cannot approximate the exact post-prefix law in total variation.
+
+A window-specific Fourier comparison may still succeed, but it must encode the parity bias or explicitly treat the `pi` major arc.
+
+## Exact active normalization
+
+Condition on the odd event `Z_1!=0` and define
+
+\[
+\widetilde Z_1=(Z_1-1)/2,
 \qquad
-\phi_{t,\lambda}(\theta)=\sum_ap_t(a)e^{ia\theta}.
+\widetilde Z_t=Z_t/2\quad(t>=2).
 \]
 
-Then exactly
+Then
 
 \[
-|\phi_{t,\lambda}(\theta)|^2
-=
-\sum_{a,b}p_t(a)p_t(b)e^{i(a-b)\theta}
+\widetilde T=(T-1)/2
 \]
 
-and therefore
+under the odd conditional law.
+
+`N3-ANA-025` proves:
+
+1. the transformed coordinates remain independent;
+2. their common exact tilt is `2 lambda`;
+3. the first transformed support contains `0` and `1`;
+4. the transformed law has exact span one;
+5. the transformed tilt also tends uniformly to zero.
+
+The original target window
 
 \[
-1-|\phi_{t,\lambda}(\theta)|^2
-=
-2\sum_{a,b}p_t(a)p_t(b)
-\sin^2\left(\frac{(a-b)\theta}{2}\right).
+I_{n,q}=[q-W_n,q]\cap\mathbb Z
 \]
 
-Define the aggregate layer dispersion
+maps to
 
 \[
-\mathcal D_{t,\lambda}(\theta)
+J_{n,q}
 =
-\sum_{a,b}p_t(a)p_t(b)
+\left[
+\left\lceil\frac{q-W_n-1}{2}\right\rceil,
+\left\lfloor\frac{q-1}{2}\right\rfloor
+\right]\cap\mathbb Z.
+\]
+
+Positive transformed-window mass implies positive original-window mass through
+
+\[
+P_\lambda(T\in I_{n,q})
+\ge
+(1-p^{(0)})
+P_{2\lambda}(\widetilde T\in J_{n,q}).
+\]
+
+## Active transformed supports
+
+The first transformed support is
+
+\[
+\widetilde B_1(n)
+=
+\{(b-1)/2:b\in B_1(n)\}.
+\]
+
+For `t>=2`,
+
+\[
+\widetilde B_t(n)
+=
+\{0\}\cup\{b/2:b\in B_t(n)\}.
+\]
+
+The next theorem must analyze this exact product law, not the unnormalized law.
+
+## Exact dispersion identity
+
+For transformed coordinate probabilities `\widetilde p_t(a)`, define
+
+\[
+\widetilde{\mathcal D}_{t,\lambda}(\theta)
+=
+\sum_{a,b}
+\widetilde p_t(a)\widetilde p_t(b)
 \sin^2\left(\frac{(a-b)\theta}{2}\right).
 \]
 
 Then
 
 \[
-|\Phi_{n,\lambda}(\theta)|^2
-=
-\prod_{t=1}^{M_n}
-\left(1-2\mathcal D_{t,\lambda}(\theta)\right)
+|\widetilde\phi_{t,\lambda}(\theta)|^2
+=1-2\widetilde{\mathcal D}_{t,\lambda}(\theta),
+\]
+
+and
+
+\[
+|\widetilde\Phi_{n,\lambda}(\theta)|^2
 \le
-\exp\left(-2\sum_t\mathcal D_{t,\lambda}(\theta)\right).
+\exp\left(
+-2\sum_t
+\widetilde{\mathcal D}_{t,\lambda}(\theta)
+\right).
 \]
-
-This is the preferred exact minor-arc starting point.
-
-## Desired conclusion
-
-Freeze major and minor arcs on `[-pi,pi]`. Prove a lower bound of the form
-
-\[
-\sum_{t=1}^{M_n}
-\mathcal D_{t,\lambda_{n,q}}(\theta)
-\ge
-\mathcal G_n(\theta)
-\]
-
-uniformly for every post-prefix target and every minor-arc frequency, where
-
-\[
-\int_{\mathfrak m_n}
-\exp(-\mathcal G_n(\theta))
-|K_{n,q}(\theta)|\,d\theta
-\]
-
-is strictly smaller than the required reference window mass.
-
-A pointwise constant gap is not required if an integrable or weighted estimate closes Nova 2's exact inequality.
-
-## Candidate structural inputs
-
-### Many common odd-core differences
-
-Every layer contains a scaled copy of many odd cores. If the tilted mass of enough pairs `u,v` with a controlled difference remains positive, then
-
-\[
-(a-b)=2^{t-1}(u-v)
-\]
-
-produces dyadically separated phase tests across the layers.
-
-### Residue spreading
-
-For a modulus `m`, a lower bound on tilted mass in at least two well-separated residue classes gives a lower bound for `D_t` near frequencies with denominator `m`.
-
-### Divisor-gap chains
-
-Nova 1 proves multiplicative 3-density and Nova 2 uses connected core chains. A quantitative additive or residue consequence for the tilted measure could supply many phase-separated pairs.
-
-### Collision-aware atoms
-
-N3-ANA-022 gives
-
-\[
-P_\lambda(T=s)
-=
-\frac{C_n(s)e^{\lambda s}}
-{\prod_tZ_t(\lambda)}.
-\]
-
-Any reference law must retain or control `C_n(s)`. Aggregate Fourier decay cannot be interpreted as profile injectivity.
 
 ## Exact missing theorem
 
-Prove one of:
+Prove one of the following for every transformed post-prefix target.
 
-1. a uniform lower bound for `sum_t D_t(theta)` outside explicit major arcs;
-2. a measure bound for frequencies where the dispersion sum is small;
-3. a weighted integral bound directly matched to Nova 2's kernel;
-4. an additive-energy estimate giving the required collision-aware local mass;
-5. a target-local obstruction showing that the tilted odd-core measure concentrates on too few phases.
+1. A complete list of the remaining major arcs and a lower bound for
+   \[
+   \sum_t\widetilde{\mathcal D}_{t,2\lambda_{n,q}}(\theta)
+   \]
+   outside them.
+2. A measure bound for frequencies where transformed aggregate dispersion is small.
+3. A weighted integral estimate directly matched to the transformed interval kernel.
+4. A collision-aware local reference law and strict Fourier comparison.
+5. A target-local concentration or additive-energy obstruction showing that the transformed route still fails.
 
-## Known failed shortcuts
+## Mandatory tests
 
-- Unbounded logarithmic minor arcs fail by N3-ANA-007.
-- Uniform all-tilt numerical decay fails by N3-ANA-019.
-- Span one does not imply a quantitative gap.
-- `lambda_{n,q}->0` does not imply fixed state probabilities.
-- The single zero-versus-one pair collapses by N3-ANA-021.
-- Profile injectivity fails by Nova 1 `N1-COL-001`.
-- Berry-Esseen distribution distance is not a constant-width local theorem.
+- Do not assume the parity normalization removes every secondary resonance.
+- Determine the residue distribution of the transformed first coordinate modulo small integers.
+- Track the exact transformed common tilt `2 lambda`.
+- Compare the final error with the transformed reference-window mass.
+- Retain numerical collision multiplicity.
+- Do not use logarithmic divisor phases.
+- Do not infer quantitative dispersion from span one.
 
-## Falsification duties
+## Current route decision
 
-1. List every major arc and internal near-resonance used by the proof.
-2. Keep the exact post-prefix target range.
-3. Check target-uniform tilted mass, not only uniform support cardinality.
-4. Compare the final integral error with the reference window mass.
-5. Retain collision multiplicity or prove an upper energy bound.
-6. Do not substitute logarithmic divisor phases for numerical quotient phases.
-7. Distinguish failure of one carrier or anchor method from failure of the full marker-three model.
+The unnormalized aggregate-dispersion route is rejected unless it includes both zero and `pi` as major arcs and uses a parity-aware reference law.
 
-## Feed to Nova 2
-
-The next useful handoff from Nova 2 is the weakest explicit lower bound on the aggregate dispersion sum that would make its weighted window inequality strict, together with the exact major-arc partition and reference law.
+The preferred route is the exact odd-lattice normalization from `N3-ANA-025`, followed by a fresh resonance audit and transformed weighted Fourier theorem.
