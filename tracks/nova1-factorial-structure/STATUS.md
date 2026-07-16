@@ -4,7 +4,7 @@
 
 - Track: Factorial Structure and Reduction
 - Branch: `nova/factorial-structure`
-- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N53_CONNECTED_PREFIX_ENTROPY_OPEN`
+- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N54_CONNECTED_PREFIX_ENTROPY_OPEN`
 
 The factorial half-range theorem remains open.
 
@@ -77,7 +77,7 @@ A target-independent minor-arc gap over all tilts remains a **disproved route**.
 | N1-COL-001 | proved theorem | Exponential carry collisions prove profile noninjectivity | `proofs/RAINBOW_CARRY_COLLISIONS.md` |
 | N1-OBS-003 | proved theorem | Sequential success requires sufficient connected-prefix entropy | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent streaming recovers exact connected prefixes | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
-| N1-STR-023 | proved theorem | Meet-in-the-middle product streams recover exact divisor order with `O(sqrt(tau(D_n)))` heap size | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
+| N1-STR-023 | proved theorem | Meet-in-the-middle product streams recover exact divisor order with `O(sqrt(tau(D_n)))` balanced heap size | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
 | N1-STR-024 | proved theorem | Layer-normalized surplus `Gamma_n` meets the entropy gate exactly when `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
 
 ## Conditional theorems
@@ -95,17 +95,19 @@ A target-independent minor-arc gap over all tilts remains a **disproved route**.
 | N1-CMP-004 | finite certificate | 3-density, endpoint crossing, and contraction checks | `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md` |
 | N1-CMP-005 | finite certificate | Factorial blocks, one-block ceiling, and carry collisions | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
 | N1-CMP-006 | computational evidence | Non-monotone normalized surplus at `n=51,52,53` | `verification/connected_prefix_normalized_n51_n53.csv` |
+| N1-CMP-007 | computational evidence | Non-monotone normalized surplus through `n=54` and first-blocking-gap ratio below `1.108` on twenty blocked layers | `verification/connected_prefix_normalized_n51_n54.csv` |
 | N1-FIN-005 | finite certificate | Exact carrier coverage for `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
 | N1-FIN-006 | finite certificate | Exact streaming certificate at `n=51` | `verification/FULL_CORE_N51_REPORT.md` |
 | N1-FIN-007 | finite certificate | Exact meet-in-the-middle certificate at `n=52` | `verification/FULL_CORE_N52_REPORT.md` |
 | N1-FIN-008 | finite certificate | Exact dual-partition meet-in-the-middle certificate at `n=53` | `verification/FULL_CORE_N53_REPORT.md` |
+| N1-FIN-009 | finite certificate | Exact dual-partition runtime-aware meet-in-the-middle certificate at `n=54` | `verification/FULL_CORE_N54_REPORT.md` |
 | N2-FIN-202 | finite certificate | Imported carrier coverage for `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 
 Together,
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
-\qquad(12\le n\le53).
+\qquad(12\le n\le54).
 \]
 
 This is a finite theorem only.
@@ -124,14 +126,15 @@ This is a finite theorem only.
 ## Exact open blockers
 
 1. Prove or disprove uniform connected-prefix surplus `Gamma_n>=1` under exact carrier thresholds.
-2. Extend exact finite certification beginning at `n=54`.
-3. Prove or disprove the full quotient downward-window theorem.
-4. Prove downward endpoint-window occupancy.
-5. Upper-bound target-local collision multiplicity or additive energy.
-6. Prove compact numerical tilt or quantitative phase dispersion.
-7. Prove the strict weighted bounded-torus Fourier inequality.
-8. Reconstruct Track B.
-9. Handle finite exceptions after an effective asymptotic threshold exists.
+2. Prove or disprove a uniform first-record-gap upper bound strong enough to imply the required connected-prefix growth.
+3. Extend exact finite certification beginning at `n=55`.
+4. Prove or disprove the full quotient downward-window theorem.
+5. Prove downward endpoint-window occupancy.
+6. Upper-bound target-local collision multiplicity or additive energy.
+7. Prove compact numerical tilt or quantitative phase dispersion.
+8. Prove the strict weighted bounded-torus Fourier inequality.
+9. Reconstruct Track B.
+10. Handle finite exceptions after an effective asymptotic threshold exists.
 
 ## Verification
 
@@ -142,15 +145,17 @@ python tracks/nova1-factorial-structure/verification/endpoint_support_sanity.py
 python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
 python tracks/nova1-factorial-structure/verification/test_mitm_overlap.py
 python tracks/nova1-factorial-structure/verification/test_mitm_n53_normalized.py
+python tracks/nova1-factorial-structure/verification/test_mitm_n54_partition.py
+python tracks/nova1-factorial-structure/verification/plan_mitm_partition.py 54 --max-columns 3000000 --limit 10
 
 g++ -O3 -std=c++20 \
   tracks/nova1-factorial-structure/verification/marker_three_mitm_prefix_u128.cpp \
   -o marker_three_mitm_prefix_u128
 
-./marker_three_mitm_prefix_u128 53
-./marker_three_mitm_prefix_u128 53 414
+./marker_three_mitm_prefix_u128 54 255
+./marker_three_mitm_prefix_u128 54 223
 ```
 
 ## Next theorem target
 
-Prove or refute a uniform lower bound on the normalized complete connected-prefix surplus `Gamma_n`. In parallel, extend the exact meet-in-the-middle audit from `n=54`.
+Prove or refute a uniform lower bound on `Gamma_n`, preferably through a divisor record-gap estimate that controls complete connected-prefix growth. In parallel, extend the exact runtime-aware meet-in-the-middle audit from `n=55`.
