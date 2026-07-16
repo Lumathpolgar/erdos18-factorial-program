@@ -111,6 +111,6 @@ rehashed semantic corruptions rejected: 5
 final N3-ANA-006 decision: ACCEPTED
 ```
 
-Twelve new tests passed in approximately 0.96 seconds in the isolated development suite. Standalone full audit replay completed in approximately 1.43 seconds and final claim replay in approximately 1.33 seconds. Peak resident memory was approximately 304,400 KiB. No timeout or unknown result occurred.
+Thirteen new tests passed in the isolated development suite. Standalone full audit replay completed in approximately 1.43 seconds, final claim replay in approximately 1.33 seconds, and direct replay of the five committed corruption fixtures in approximately 2.16 seconds. Peak resident memory across these runs was approximately 313,424 KiB. No timeout or unknown result occurred.
 
 The finite convergence table is computational evidence only. The theorem follows from fixed-prime convergence, a uniform normalized tail-variance bound, `L^2` convergence of the limiting series, and the exact `p=2` characteristic-function zero at `2*pi/log(2)`.
