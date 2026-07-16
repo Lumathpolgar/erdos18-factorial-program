@@ -2,7 +2,7 @@
 
 Nova 3 requests A through C were frozen against `nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515`, handoff `N3-HO-N4-001`.
 
-Requests D through G were re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`.
+Requests D through H were re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`.
 
 ## Moment and local-ceiling certificate
 
@@ -66,4 +66,27 @@ PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
 
 The threshold sweep covers 879,633 integers. Its full audit semantic SHA-256 is `e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0`.
 
-All finite tables are computational evidence or finite certificates only. They do not prove an asymptotic factorial theorem, profile injectivity, or additive occupancy.
+## Semantic adversarial theorem audit
+
+Request H freezes the exact `N3-ANA-011` theorem contract, independently reconstructs its proof, and rejects all six required rehashed semantic corruptions.
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify \
+  data/analytic/n3_threshold_adversarial_audit.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-contract \
+  data/analytic/n3_ana_011_contract.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-claim \
+  certificates/analytic/n3_ana_011_final_claim.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
+  tests/n3_adversarial_fixtures
+```
+
+The final decision is `N3-ANA-011: ACCEPTED`. The theorem proves address legality, menu cardinality, and formal profile capacity only.
+
+```text
+contract SHA-256: 63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b
+audit SHA-256: 785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9
+claim SHA-256: a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c
+```
+
+Finite tables remain computational evidence or finite certificates only. The accepted theorem comes from the proof reconstruction, not from extrapolating request G. No artifact here proves profile injectivity, distinct numerical sums, additive occupancy, or the factorial half-range theorem.
