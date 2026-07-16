@@ -4,7 +4,7 @@
 
 - Track: Additive Occupancy and Global Sumsets
 - Branch: `nova/additive-occupancy`
-- Overall state: `MARKER_THREE_CERTIFIED_N12_N55_AVERAGE_GAP_UTILIZATION_OPEN`
+- Overall state: `MARKER_THREE_CERTIFIED_N12_N55_FACTORIAL_SPAN_AMPLIFICATION_OPEN`
 
 The factorial formulation of Erdos Problem 18 remains open.
 
@@ -28,7 +28,9 @@ Nova 2 proved:
 - `N2-ADD-121`: exact unique-parent divisor stream;
 - `N2-ADD-122`: exact count-utilization factorization;
 - `N2-ADD-123`: average internal-gap utilization sandwich;
-- `N2-OBS-109`: first-blocking-gap non-identifiability.
+- `N2-ADD-124`: sharp parity-span count-to-threshold criterion;
+- `N2-OBS-109`: first-blocking-gap non-identifiability;
+- `N2-OBS-110`: optimality of parity and count information without factorial-specific spacing.
 
 For one layer,
 
@@ -54,13 +56,48 @@ The exact endpoint condition is
 \Delta_n=\widetilde\Gamma_n\left(\prod_tb_t\right)^{1/L}\ge1.
 \]
 
-## Retired sequential statistic
+## Sharp universal baseline
 
-Nova 1 finite evidence gives `g_t/D_t<1.108` across blocked layers for `51<=n<=55`.
+Because the positive cores are distinct odd integers,
 
-N2-OBS-109 proves that even fixing identical values of `D`, `K`, and the first blocking gap `g=D+2` permits utilization factors ranging from a quantity tending to zero to a quantity tending to one. Therefore first external blocking gaps cannot control sequential utilization.
+\[
+U_t\ge2K_t-1,
+\qquad
+\eta_t\ge\frac{2K_t-1}{K_tD_t}.
+\]
 
-The missing statistic is the internal connected-prefix span or average internal gap:
+Hence
+
+\[
+\frac{F_t}{F_{t-1}}
+>
+\frac{D_t+2K_t}{D_t+1}.
+\]
+
+The product condition
+
+\[
+\prod_t\frac{D_t+2K_t}{D_t+1}
+\ge
+\frac{Y_n+1}{W_n+1}
+\]
+
+is sufficient for endpoint coverage.
+
+N2-OBS-110 proves this is best possible using only oddness, `K_t`, and `D_t`. Any stronger theorem must use the actual factorial-divisor distribution inside the connected prefix.
+
+## Retired sequential statistics
+
+1. The first external blocking gap is non-identifying by N2-OBS-109.
+2. Prefix count and parity alone are quantitatively insufficient by N2-OBS-110 and N2-CMP-206.
+
+The exact missing statistic is factorial-specific span amplification
+
+\[
+A_t=\frac{U_t}{2K_t-1},
+\]
+
+or equivalently a factorial-specific lower or upper bound for
 
 \[
 \eta_t=\frac{U_t}{K_tD_t}.
@@ -99,28 +136,28 @@ The term-bound transition occurs because `r_55=17`. The smallest unaudited finit
 
 ## Finite effective diagnostics
 
-| `n` | count surplus | utilization root | endpoint surplus |
-|---:|---:|---:|---:|
-| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 |
-| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 |
-| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 |
-| 54 | 92.273264366777 | 0.010837378971591 | 1.000000334888580 |
-| 55 | 98.919733584849 | 0.010109209300122 | 1.000000290721510 |
+| `n` | endpoint surplus | parity-only root ratio |
+|---:|---:|---:|
+| 51 | 1.000004144206103 | 0.0000257773398727324 |
+| 52 | 1.000001025305911 | 0.0000185652131315783 |
+| 53 | 1.000001967025492 | 0.0000139117330218277 |
+| 54 | 1.000000334888580 | 0.00000997734788683994 |
+| 55 | 1.000000290721510 | 0.00000761958530584015 |
 
-These values are finite and non-monotone. They do not establish an asymptotic trend.
+The parity-only product misses the exact endpoint scale by roughly `10^28` through `10^31` on this finite range. Actual factorial-divisor spacing supplies nearly all useful expansion. These diagnostics do not establish an asymptotic trend.
 
 ## Preferred proof engines
 
 1. Final-only target-dependent numerical tilt and aggregate phase dispersion.
 2. Deterministic final restricted-sumset growth.
-3. Connected-core recursion, now requiring average internal-gap control and a Phase 12P audit.
+3. Connected-core recursion, now requiring factorial-specific span amplification and a Phase 12P audit.
 4. Preserved three-power fallback.
 
 ## Cross-track requests
 
 ### Nova 1
 
-Prove pointwise or averaged lower or upper bounds for `eta_t=U_t/(K_tD_t)` under the exact factorial-divisor thresholds. First-blocking-gap estimates are no longer accepted as a substitute.
+Prove a pointwise or averaged theorem for `A_t=U_t/(2K_t-1)` or `eta_t` under the exact factorial-divisor thresholds. Count, parity, and first-blocking-gap estimates are no longer sufficient.
 
 ### Nova 3
 
@@ -128,12 +165,12 @@ Continue aggregate odd-core phase dispersion, collision-aware reference laws, an
 
 ### Nova 4
 
-Independently reconstruct N2-OBS-109 and N2-ADD-123, replay the finite certificates through `n=55`, and extend from `n=56`.
+Independently reconstruct N2-ADD-124 and N2-OBS-110, replay N2-CMP-206, and extend exact finite certification from `n=56`.
 
 ## Exact open blockers
 
 1. Uniform marker-three quotient occupancy through `Y_n`.
-2. An average internal-gap lower bound forcing `Delta_n>=1`, or an upper bound forcing `Delta_n<1` and retiring the sequential engine.
+2. A factorial-specific span-amplification lower bound forcing `Delta_n>=1`, or an upper bound forcing `Delta_n<1` and retiring the sequential engine.
 3. Exact finite extension from `n=56`.
 4. Uniform endpoint-window coverage.
 5. Target-local collision multiplicity or additive-energy control.
@@ -143,8 +180,8 @@ Independently reconstruct N2-OBS-109 and N2-ADD-123, replay the finite certifica
 
 ## Claim boundary
 
-Exact coverage through `n=55`, N2-ADD-123, and N2-OBS-109 do not prove asymptotic occupancy, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
+Exact coverage through `n=55` and the sharp parity-span theorem do not prove asymptotic occupancy, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
 
 ## Next theorem target
 
-Prove or refute a uniform bound for the average internal-gap factors `eta_t` in the complete factorial-divisor connected prefixes. This is now the exact sequential frontier.
+Prove or refute a uniform factorial-specific lower bound for the span amplification `U_t/(2K_t-1)` across enough exact carrier layers.
