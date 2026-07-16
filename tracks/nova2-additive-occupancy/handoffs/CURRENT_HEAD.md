@@ -1,7 +1,7 @@
 # Current Nova 2 Checkpoint
 
 - branch: `nova/additive-occupancy`
-- checkpoint head before this metadata commit: `7041674e9bf68a9b72d65391c2d51279df743d23`
+- checkpoint head before this metadata commit: `534b5a9add3629e3f7724bba00ad6456b2225540`
 - carrier results: `N2-ADD-119` through `N2-ADD-128`
 - obstructions: `N2-OBS-109`, `N2-OBS-110`
 - finite diagnostics: `N2-CMP-206`, `N2-CMP-207`, `N2-CMP-208`
@@ -13,6 +13,7 @@
 - first-blocking-gap route: retired
 - parity-count-only route: closed at its sharp universal limit
 - median-only complement route: finite lower bound insufficient
-- one-parameter Rankin route: proved but finite lower bound insufficient
+- one-parameter Rankin route: proved and replayed, but finite lower bound insufficient
 - next sequential engine: saddle-point, multi-parameter moment, exponent box, or direct smooth-divisor count
+- exact Rankin replay: PASS for every `51<=n<=55`
 - final-only numerical quotient theorem: open
