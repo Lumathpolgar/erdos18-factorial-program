@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 4 request H adversarial theorem audit",
+  "type": "object",
+  "required": [
+    "schema",
+    "result_class",
+    "source",
+    "proof_reconstruction",
+    "canonical_contract",
+    "adversarial_tests",
+    "decision",
+    "scope",
+    "sha256"
+  ],
+  "properties": {
+    "schema": {"const": "nova4.n3-threshold-adversarial-audit.v1"},
+    "result_class": {"const": "semantic adversarial theorem audit"},
+    "source": {"type": "object"},
+    "proof_reconstruction": {"type": "object"},
+    "canonical_contract": {"type": "object"},
+    "adversarial_tests": {"type": "array", "minItems": 6, "maxItems": 6},
+    "decision": {"type": "object"},
+    "scope": {"type": "object"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}
