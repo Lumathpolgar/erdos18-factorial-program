@@ -21,7 +21,8 @@ Branch: `nova/analytic-density`
 
 ## Core commits
 
-- proof: `75d022af373a9bdba5307a3e0188c81a69ee8931`
+- corrected proof: `bee2042c84aab681b5ddd8681a39d3808ef4a1fe`
+- original proof milestone: `75d022af373a9bdba5307a3e0188c81a69ee8931`
 - verifier: `192fb56e3efeb2c1bd4b1e9e6f3476356ac62fa3`
 - theorem registry: `2e04b4ff0dcc28f6697c37de3268c9d555ab7077`
 - status: `5ceda46868bccda804fa8e12a21bbb906917b9da`
@@ -31,6 +32,8 @@ Branch: `nova/analytic-density`
 - README: `3f16526967e9136d57a0b77980023a33dfb5e0b1`
 - Nova 2 handoff: `5913db6656cd6cea4b89da974b35eca68b26aaf5`
 - Nova 4 handoff: `d00de8dd80c8b845956c56e366ad88eb37a60089`
+
+The correction commit repairs and tightens proof presentation without changing the theorem statements.
 
 ## Verification command
 
