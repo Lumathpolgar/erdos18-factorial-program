@@ -1,59 +1,80 @@
 # Nova 1 Structural Verification
 
-## Python checks
+## Result-label rule
+
+Every verification artifact is classified as one of:
+
+- **finite certificate**;
+- **computational evidence**.
+
+Verification does not promote an open asymptotic statement to a proved theorem.
+
+## Baseline Python checks
 
 ```text
 python tracks/nova1-factorial-structure/verification/structural_sanity.py
 python tracks/nova1-factorial-structure/verification/marker_three_sanity.py
 python tracks/nova1-factorial-structure/verification/endpoint_support_sanity.py
 python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
-python tracks/nova1-factorial-structure/verification/test_mitm_overlap.py
 ```
 
 These scripts use deterministic inputs and exact integer arithmetic.
 
-### Baseline structural checks
+### `structural_sanity.py`
 
-`structural_sanity.py` verifies finite instances of Legendre valuations, quotient bands, correction legality, distinctness, complement pairing, high-prime menu counts, and the counting-capacity inequality.
+Checks finite instances of:
 
-### Marker-three reduced checks
+- Legendre valuations and digit-sum identities;
+- quotient and dyadic bands;
+- correction legality;
+- marker distinctness;
+- complement pairing;
+- high-prime menu counts;
+- counting-capacity inequalities.
 
-`marker_three_sanity.py` verifies legality, exact 2-adic addresses, cross-layer distinctness, exact main lattice `3Z`, palette residues, the odd-digit one-gap lemma, reduced quotient reachability, correction, and complete reconstruction on its declared reduced domain.
+Result label: **computational evidence**.
+
+### `marker_three_sanity.py`
+
+Checks reduced finite instances of:
+
+- marker-three legality;
+- exact 2-adic layer addresses;
+- cross-layer distinctness;
+- exact main lattice `3Z`;
+- correction residues modulo `3`;
+- odd-digit one-gap behavior;
+- reduced quotient reachability and reconstruction.
 
 Result label: **computational evidence**.
 
 Report: `MARKER_THREE_FINITE_REPORT.md`.
 
-### Endpoint-support checks
+### `endpoint_support_sanity.py`
 
-`endpoint_support_sanity.py` verifies multiplicative 3-density for `6<=n<=20`, endpoint witnesses for `12<=n<=20`, total endpoint crossing, and coarse contraction for `12<=n<=14`.
+Checks:
+
+- multiplicative 3-density for `6<=n<=20`;
+- endpoint witnesses for `12<=n<=20`;
+- total endpoint crossing;
+- coarse contraction for `12<=n<=14`.
 
 Result label: **finite certificate**.
 
 Report: `ENDPOINT_SUPPORT_FINITE_REPORT.md`.
 
-### Block and collision checks
+### `block_collision_sanity.py`
 
-`block_collision_sanity.py` verifies factorial block legality, one-block carrier inequalities, carry-collision identities, and scale separation.
+Checks:
+
+- factorial block legality;
+- one-block carrier inequalities;
+- carry-collision identities;
+- scale separation used by `N1-DIS-006`.
 
 Result label: **finite certificate**.
 
 Report: `BLOCK_COLLISION_FINITE_REPORT.md`.
-
-### Meet-in-the-middle overlap checks
-
-`test_mitm_overlap.py` verifies:
-
-1. every frozen `n=51` carrier field shared by the unique-parent and meet-in-the-middle implementations;
-2. the exact `n=52` split, prefix counts, endpoint identity, entropy ratio, and term bound.
-
-Recorded result:
-
-```text
-PASS test_n51_overlap
-PASS test_n52_certificate
-PASS all 2 meet-in-the-middle checks
-```
 
 ## Materialized complete-core verifier
 
@@ -69,7 +90,7 @@ g++ -O3 -std=c++17 \
   -o marker_three_full_core_u128
 ```
 
-This verifier materializes every truncated core and is deliberately restricted to `12<=n<=50`.
+This verifier materializes every truncated odd core and is deliberately restricted to `12<=n<=50`.
 
 ### N1-FIN-005
 
@@ -89,42 +110,24 @@ Source:
 
 `marker_three_streaming_prefix_u128.cpp`
 
-Build:
-
-```text
-g++ -O3 -std=c++20 \
-  tracks/nova1-factorial-structure/verification/marker_three_streaming_prefix_u128.cpp \
-  -o marker_three_streaming_prefix_u128
-```
-
-Run:
-
-```text
-./marker_three_streaming_prefix_u128 51 30000000
-```
-
-The verifier independently reconstructs Nova 2 theorem `N2-ADD-121` using a unique-parent bounded-exponent divisor stream, exact priority ordering, rational logarithmic certification, record-gap compression, stored left counts, and fail-closed frontier limits.
-
-Proof:
-
-`../proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md`.
+This reconstructs Nova 2 `N2-ADD-121` with a priority-queue divisor stream and record-gap left counts.
 
 ### N1-FIN-006
+
+Result label: **finite certificate**.
 
 At `n=51`:
 
 - total odd-core divisors: `124,001,280`;
-- emitted cores through `Y_51`: `108,924,509`;
-- maximum frontier: `13,602,843`;
-- six prefix sizes: `46,990`, `824,638`, `6,936,398`, `30,013,231`, `70,529,067`, `101,350,643`;
+- emitted through `Y_51`: `108,924,509` in the full stream and `101,350,643` through the final carrier cutoff;
+- maximum unique-parent frontier: `13,602,843`;
+- six layers;
 - term bound: `22`.
 
 Artifacts:
 
 - `FULL_CORE_N51_REPORT.md`;
 - `full_core_n51.txt`.
-
-At `n=52`, a five-minute run emitted `40,000,000` cores but did not complete. This is a resource-limit record, not a counterexample.
 
 ## Meet-in-the-middle connected-prefix verifier
 
@@ -140,87 +143,128 @@ g++ -O3 -std=c++20 \
   -o marker_three_mitm_prefix_u128
 ```
 
-Run:
+Usage:
 
 ```text
-./marker_three_mitm_prefix_u128 51
-./marker_three_mitm_prefix_u128 52
+./marker_three_mitm_prefix_u128 n
+./marker_three_mitm_prefix_u128 n partition_mask
 ```
 
-`N1-STR-023` partitions the odd prime-power coordinates into two balanced families. The exact half-divisor lists are merged as sorted product rows. Unique factorization across disjoint prime supports guarantees complete duplicate-free enumeration.
+The optional partition mask enables adversarial replay with a different split of the prime-power coordinates.
+
+The verifier performs:
+
+1. exact rational certification of `r_n` and `M_n`;
+2. exact factorial valuations and integer square roots;
+3. exact generation and sorting of two half-divisor lists;
+4. duplicate rejection within each half;
+5. count verification `|A||B|=tau(D_n)`;
+6. exact minimum-heap row merge;
+7. strict global-order and duplicate rejection;
+8. exact connected-prefix thresholds and counts;
+9. exact endpoint, margin, entropy-product, and requirement calculations;
+10. fail-closed unsigned 128-bit endpoint limits.
 
 Proof:
 
 `../proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`.
 
-### n=51 overlap
-
-The meet-in-the-middle verifier reproduces every frozen threshold, connected maximum, prefix count, blocking gap, endpoint, margin, product, and term bound from `N1-FIN-006`.
-
-- split: `11,040 x 11,232`;
-- runtime: `9.75` seconds;
-- peak memory: `7,540 KiB`.
-
-Machine record:
-
-`full_core_n51_mitm_overlap.txt`.
-
 ### N1-FIN-007
 
-At `n=52`:
+Result label: **finite certificate**.
 
-- total odd-core divisors: `155,001,600`;
-- balanced split: `12,420 x 12,480`;
-- emitted before certificate completion: `128,277,372`;
-- maximum merge heap: `12,420`;
-- six prefix sizes: `47,281`, `847,667`, `7,770,345`, `34,911,862`, `85,166,200`, `128,277,372`;
-- six main layers reach `Y_52`;
-- term bound: `22`;
-- runtime: `12.56` seconds;
-- peak memory: `7,084 KiB`.
+At `n=52`, six layers reach the endpoint with term bound `22`.
 
 Artifacts:
 
 - `FULL_CORE_N52_REPORT.md`;
-- `full_core_n52_mitm.txt`.
+- `full_core_n52_mitm.txt`;
+- `full_core_n51_mitm_overlap.txt`;
+- `test_mitm_overlap.py`.
 
-Combining imported Nova 2 certificate `N2-FIN-202`, `N1-FIN-005`, `N1-FIN-006`, and `N1-FIN-007` gives
+### N1-FIN-008
+
+Result label: **finite certificate**.
+
+At `n=53`:
+
+- total odd-core divisors: `310,003,200`;
+- split: `17,550 x 17,664`;
+- emitted through the certificate: `255,794,579`;
+- maximum heap: `17,550`;
+- connected-prefix sizes: `63,547`, `1,308,251`, `14,186,800`, `70,586,242`, `175,389,561`, `255,794,579`;
+- six layers;
+- term bound: `22`;
+- final margin: `257,219,713,671,656,581,137,253,687,630`.
+
+Partition masks `350` and `414` produce identical carrier outputs after excluding partition and resource metadata.
+
+Artifacts:
+
+- `FULL_CORE_N53_REPORT.md`;
+- `full_core_n53_mitm.txt`;
+- `full_core_n53_mitm_mask414.txt`;
+- `connected_prefix_normalized_n51_n53.csv`;
+- `test_mitm_n53_normalized.py`.
+
+Reproduction:
+
+```text
+./marker_three_mitm_prefix_u128 53
+./marker_three_mitm_prefix_u128 53 414
+python tracks/nova1-factorial-structure/verification/test_mitm_n53_normalized.py
+```
+
+Expected result:
+
+```text
+PASS exact n=51
+PASS exact n=52
+PASS exact n=53
+PASS alternate partition n=53
+PASS finite non-monotonicity diagnostic
+PASS all normalized meet-in-the-middle checks
+```
+
+## Exact finite boundary
+
+Combining Nova 2 `N2-FIN-202` with Nova 1 certificates gives
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le52).
+\qquad(12\le n\le53).
 \]
 
-This is finite only. The next unaudited parameter is `n=53`.
+This is finite only. The smallest unaudited parameter is `n=54`.
 
-## Connected-prefix entropy theorem
+## Normalized entropy theorem
 
-`N1-OBS-003` is a **proved theorem**.
+`N1-STR-024` is a **proved theorem**.
 
-If `K_t` is the positive connected-prefix cardinality at layer `t`, carrier success requires
+Define
 
 \[
-\prod_t(1+K_t)
-\ge
-\frac{Y_n+1}{W_n+1}.
+P_n=\prod_{t=1}^{L}(1+K_t),
+\qquad
+Q_n=\left\lceil\frac{Y_n+1}{W_n+1}\right\rceil,
 \]
-
-For `n>=120368`, the geometric mean of the executed `1+K_t` must be at least
 
 \[
-\exp\left(\frac{n}{85\log n}\right).
+\Gamma_n=(P_n/Q_n)^{1/L}.
 \]
 
-Proof:
+Then the exact connected-prefix entropy gate is met if and only if
 
-`../proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md`.
+\[
+\Gamma_n\ge1.
+\]
 
-The exact finite product ratio decreases from more than `3,034,386,005,338` at `n=51` to `866,765,166,748` at `n=52`. The ratio remains enormous, but finite monotonicity is not available.
+Finite diagnostic values for `n=51,52,53` are all above one but non-monotone. They do not prove a uniform bound.
 
 ## Evidence boundary
 
-None of the verification runs proves:
+None of these runs proves:
 
 - uniform connected-prefix growth;
 - the asymptotic quotient-window theorem;
