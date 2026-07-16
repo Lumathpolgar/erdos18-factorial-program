@@ -8,41 +8,47 @@ Superseding handoff: `N3-HO-N4-002`
 
 Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
-Source-ledger commit used for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
+Status: `COMPLETE`
 
-Status: `REQUESTS_A_THROUGH_H_AND_N3_ANA_006_COMPLETE_N3_ANA_008_READY`
-
-Completed:
-
-- independent proof reconstruction and acceptance of `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-006`, `N3-ANA-007`, `N3-ANA-010`, and `N3-ANA-011`;
-- exact moment and local-ceiling audits for `2 <= n <= 12`;
-- request C scale, low-prime share, effective-dimension, and high-prime tail evidence;
-- factor-of-two tail-ratio label diagnosis in the frozen script;
-- request D bounded recurrence search over 19,990,010 scores with 80-digit and direct-vector replay;
-- request E reconstruction of Ford, Drappeau–Tenenbaum, and ultrafriable source scopes;
-- request F reconstruction of Dusart Theorem 6.9 and `N3-ANA-010`;
-- request G exact sweep of every integer `120368 <= n <= 1000000`;
-- request H rejection of all six mandated semantic corruptions;
-- final `N3-ANA-011` semantic contract and theorem certificate;
-- `N3-ANA-006` normalized variance asymptotic, infinite-uniform weak limit, characteristic-function product, and non-Gaussianity audit;
-- five rehashed `N3-ANA-006` semantic corruptions rejected.
-
-`N3-ANA-006` decision:
+Independent final decisions now exist for every requested theorem ID:
 
 ```text
+N3-ANA-004: ACCEPTED
+N3-ANA-005: ACCEPTED
 N3-ANA-006: ACCEPTED
-variance asymptotic: ACCEPTED
-full normalized weak limit: ACCEPTED
-non-Gaussian limit: ACCEPTED
-finite diagnostic table as proof: REJECTED
-audit SHA-256: e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119
-claim SHA-256: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
+N3-ANA-007: ACCEPTED
+N3-ANA-008: ACCEPTED
+N3-ANA-009: ACCEPTED_WITH_EXTERNAL_BERRY_ESSEEN_DEPENDENCY
+N3-ANA-010: ACCEPTED
+N3-ANA-011: ACCEPTED_WITH_FORMAL_PROFILE_ONLY_SCOPE
 ```
 
-Remaining:
+The completed package includes exact finite audits, source reconstruction, theorem reconstruction, bounded recurrence evidence, the complete request G sweep, request H semantic adversaries, and fail-closed certificates for the final limit theorems.
 
-- independent final decision for `N3-ANA-008`, the high-prime-tail central limit theorem and scale estimates;
-- independent final decision for `N3-ANA-009`, the coarse central-window lower bound based on Berry-Esseen.
+Final high-prime hashes:
+
+```text
+audit: a9c089489b38990c6de044611a21d8a488166dd0ad570456fee54a0020dc9dd2
+N3-ANA-008 claim: 5723c037725e1bc262bd109b65510d74833a28d8869f27903cd86c33473bf930
+N3-ANA-009 claim: b3775b62ef887fbaa92e39e1ab729d6f093f360d778edfdc4a52a2a1e3397d7d
+```
+
+## N4-REQ-INT-002
+
+Owner: Integration
+
+Status: `ACTIVE_MERGE_READINESS_GATE`
+
+Before merging this branch into `main`:
+
+1. inspect the exact branch divergence and merge base;
+2. confirm GitHub reports the draft PR mergeable;
+3. run or obtain a complete branch test replay in an environment containing the full repository;
+4. resolve the absence of configured CI checks;
+5. review the 12 commits currently present on `main` but absent from this branch;
+6. preserve the research-scope language and do not convert finite evidence into asymptotic claims.
+
+The Nova 4 branch itself must not merge or rebase `main` under its standing branch rules. Integration must occur through an authorized integration action after this gate is cleared.
 
 ## N4-REQ-N2-002
 
@@ -71,12 +77,6 @@ Extend exact profiles to `n=14` with a more memory-efficient witness strategy, a
 ## Completed external requests
 
 ### N4-REQ-N1-001
-
-Owner: Nova 1
-
-Frozen source head: `fa11f4b2cb86a2dd791df189ada12757be791804`
-
-Handoff: `N1-HO-N4-001`
 
 Status: `COMPLETED_FOR_FROZEN_STUDIES_A_AND_B`
 
