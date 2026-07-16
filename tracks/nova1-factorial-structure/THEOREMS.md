@@ -45,7 +45,7 @@ No finite result is promoted to an asymptotic theorem. No formal profile count i
 | N1-COL-001 | proved theorem | At least `2^{floor(M_n/2)}` legal profiles collide at one quotient sum | `proofs/RAINBOW_CARRY_COLLISIONS.md` |
 | N1-OBS-003 | proved theorem | Sequential carrier success requires sufficient connected-prefix entropy | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent streaming plus record-gap counts exactly recovers `u_t^*` and `K_t` | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
-| N1-STR-023 | proved theorem | Meet-in-the-middle row merging exactly recovers divisor order with heap size `O(sqrt(tau(D_n)))` | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
+| N1-STR-023 | proved theorem | Meet-in-the-middle row merging exactly recovers divisor order; balanced partitions give `O(sqrt(tau(D_n)))` heap size | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
 | N1-STR-024 | proved theorem | Layer-normalized surplus `Gamma_n=(P_n/Q_n)^{1/L}` meets the exact entropy gate iff `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
 
 ## Detail for N1-OBS-003 and N1-STR-024
@@ -105,21 +105,23 @@ The normalization permits per-layer finite comparisons but does not imply monoto
 | N1-CMP-004 | finite certificate | Endpoint-support and coarse-contraction checks | `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md` |
 | N1-CMP-005 | finite certificate | Block and collision checks | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
 | N1-CMP-006 | computational evidence | `Gamma_51`, `Gamma_52`, `Gamma_53` are all above one and non-monotone | `verification/connected_prefix_normalized_n51_n53.csv` |
+| N1-CMP-007 | computational evidence | `Gamma_51` through `Gamma_54` are non-monotone and the first-blocking-gap ratio is below `1.108` on twenty finite blocked layers | `verification/connected_prefix_normalized_n51_n54.csv` |
 | N2-FIN-202 | finite certificate | Imported complete-menu carrier coverage for `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 | N1-FIN-005 | finite certificate | Exact complete-core coverage for `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
 | N1-FIN-006 | finite certificate | Exact streaming coverage at `n=51` | `verification/FULL_CORE_N51_REPORT.md` |
 | N1-FIN-007 | finite certificate | Exact meet-in-the-middle coverage at `n=52` | `verification/FULL_CORE_N52_REPORT.md` |
 | N1-FIN-008 | finite certificate | Exact dual-partition meet-in-the-middle coverage at `n=53` | `verification/FULL_CORE_N53_REPORT.md` |
+| N1-FIN-009 | finite certificate | Exact dual-partition runtime-aware meet-in-the-middle coverage at `n=54` | `verification/FULL_CORE_N54_REPORT.md` |
 
 Combined exact finite range:
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le53).
+\qquad(12\le n\le54).
 \]
 
-No conclusion is asserted for `n>=54`.
+No conclusion is asserted for `n>=55`.
 
 ## Disproved routes
 
