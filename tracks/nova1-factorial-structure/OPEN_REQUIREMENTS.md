@@ -97,46 +97,59 @@ Accepted next outcomes are:
 
 A one-factorial-block argument is insufficient by `N1-DIS-006`.
 
+Finite measurements at `n=51` and `n=52` both exceed the exact requirement by enormous factors, but the floor ratio decreases from `3,034,386,005,338` to `866,765,166,748`. No monotonicity assumption is permitted.
+
 ## Finite complete-core requirement
 
-### N1-REQ-N4-004
+### Closed predecessor N1-REQ-N4-004
 
 Result label: **finite certificate** request.
+
+This predecessor targeted exact certification through `n=52` using the unique-parent stream. Nova 1 closed the finite target with the meet-in-the-middle replacement `N1-STR-023` and certificate `N1-FIN-007`. The original five-minute unique-parent run at `n=52` was resource-limited, not a failure.
+
+### N1-REQ-N4-005
+
+Result label: **finite certificate** and **proved theorem** reconstruction request.
 
 Current exact coverage:
 
 - Nova 2 `N2-FIN-202`: every `12<=n<=45`;
 - Nova 1 `N1-FIN-005`: every `46<=n<=50`;
-- Nova 1 `N1-FIN-006`: exact streaming certificate at `n=51`.
+- Nova 1 `N1-FIN-006`: exact streaming certificate at `n=51`;
+- Nova 1 `N1-FIN-007`: exact meet-in-the-middle certificate at `n=52`.
 
 Therefore
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le51).
+\qquad(12\le n\le52).
 \]
 
 Nova 4 must independently reconstruct:
 
 1. rational certification of `r_n` and `M_n`;
-2. the unique-parent divisor stream;
-3. duplicate-free exact ordering;
-4. record-gap compression with left counts;
-5. all layer cutoffs and thresholds;
-6. connected maxima and exact `K_t` values;
-7. carrier endpoints and final margin;
-8. fail-closed frontier and integer-range limits;
-9. the distinction between a finite certificate and an asymptotic theorem.
+2. the odd prime-power valuation vector;
+3. the balanced coordinate partition;
+4. complete and duplicate-free half-divisor lists;
+5. the exact sorted product-row merge;
+6. all layer cutoffs and thresholds;
+7. connected maxima and exact `K_t` values;
+8. carrier endpoints and final margins;
+9. the `n=51` overlap against the unique-parent certificate;
+10. fail-closed integer-range, duplicate, ordering, and incomplete-continuation limits;
+11. the distinction between a finite certificate and an asymptotic theorem.
 
 Nova 1 artifacts:
 
-- `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md`;
-- `verification/marker_three_streaming_prefix_u128.cpp`;
-- `verification/FULL_CORE_N51_REPORT.md`;
-- `verification/full_core_n51.txt`.
+- `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`;
+- `verification/marker_three_mitm_prefix_u128.cpp`;
+- `verification/FULL_CORE_N52_REPORT.md`;
+- `verification/full_core_n51_mitm_overlap.txt`;
+- `verification/full_core_n52_mitm.txt`;
+- `verification/test_mitm_overlap.py`.
 
-The next finite target is `n=52`. Resource exhaustion must be reported as `unknown due to resource limits`, not as mathematical failure.
+The next finite target is `n=53`. Resource exhaustion must be reported as `unknown due to resource limits`, not as mathematical failure.
 
 ## Collision requirement
 
@@ -220,13 +233,15 @@ The archived source package must be inspected before promotion.
 - one-factorial-block carrier ceiling;
 - profile noninjectivity;
 - connected-prefix entropy necessity;
-- exact streaming connected-prefix certifier;
-- exact complete-core carrier coverage through `n=51`.
+- exact unique-parent connected-prefix certifier;
+- exact meet-in-the-middle connected-prefix certifier;
+- exact complete-core carrier coverage through `n=52`.
 
 ## Open structural requirements
 
 - uniform connected-prefix lower or upper bounds meeting `N1-OBS-003`;
-- exact finite extension beginning at `n=52`;
+- exact finite extension beginning at `n=53`;
+- a non-monotone-safe normalized entropy analysis;
 - uniform quotient maximum downward gap at most `W_n`;
 - downward endpoint-window occupancy;
 - target-local collision control;
