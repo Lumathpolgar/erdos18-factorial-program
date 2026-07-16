@@ -22,25 +22,20 @@ M_n=\lceil16(\log n)^2\rceil,
 W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor,
 \]
 
-and
+and quotient layers
 
 \[
 B_t(n)=
-\left\{
-2^{t-1}u:
- u\text{ odd},
- 3u\mid n!,
- 2^{t-1}u\le Y_n
-\right\},
+\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
 \]
 
-prove that an absolute `n_0` exists such that every
+prove that an absolute `n_0` exists such that every integer
 
 \[
 W_n+1\le q\le Y_n
 \]
 
-has a final rainbow sum in
+has a legal rainbow sum in
 
 \[
 [q-W_n,q].
@@ -50,106 +45,107 @@ At most one nonzero term may be selected from each layer.
 
 The structural model is accepted with restrictions by Nova 2. The global occupancy theorem remains open.
 
-## Connected-core entropy requirement
+## Connected-prefix entropy requirement
 
 ### N1-REQ-N2-003
 
 Result label: **conditional theorem** request.
 
-Latest imported engine:
+Imported engine:
 
 - branch: `nova/additive-occupancy`;
-- exact commit: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`;
+- exact accepted head: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`;
 - results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`.
 
-Let `K_t` be the number of positive cores in the complete zero-connected prefix under
+For executed layers define
 
 \[
-D_t=\left\lfloor
-\frac{E_{t-1}+W_n+1}{2^{t-1}}
-\right\rfloor.
+P_n=\prod_{t=1}^{L}(1+K_t),
+\qquad
+Q_n=\left\lceil\frac{Y_n+1}{W_n+1}\right\rceil.
 \]
 
-Nova 1 theorem `N1-OBS-003` proves that sequential carrier success requires
+`N1-OBS-003` proves that sequential success requires
 
 \[
-\prod_{t=1}^{L}(1+K_t)
-\ge
-\frac{Y_n+1}{W_n+1}.
+P_n\ge Q_n.
 \]
 
-For every `n>=120368`, success within the frozen layer budget requires
+`N1-STR-024` defines the layer-normalized surplus
 
 \[
-\left(
-\prod_{t=1}^{L}(1+K_t)
-\right)^{1/L}
-\ge
+\Gamma_n=(P_n/Q_n)^{1/L}
+\]
+
+and proves
+
+\[
+P_n\ge Q_n\iff\Gamma_n\ge1.
+\]
+
+For every `n>=120368`, success within the frozen layer budget also requires geometric-mean connected-prefix size at least
+
+\[
 \exp\left(\frac{n}{85\log n}\right).
 \]
 
 Accepted next outcomes are:
 
-1. a **proved theorem** giving a uniform connected-prefix lower bound that meets the requirement;
-2. a **proved theorem** upper-bounding connected prefixes below it, retiring the sequential engine;
-3. a narrower **conditional theorem** isolating an explicit divisor-gap statement sufficient for success;
+1. a **proved theorem** giving a uniform lower bound `Gamma_n>=1` for enough exact layers;
+2. a **proved theorem** giving `Gamma_n<1` eventually or infinitely often, retiring the sequential engine;
+3. a **conditional theorem** reducing `Gamma_n>=1` to an explicit divisor-gap statement;
 4. an exact counterexample with a replayable certificate.
 
-A one-factorial-block argument is insufficient by `N1-DIS-006`.
-
-Finite measurements at `n=51` and `n=52` both exceed the exact requirement by enormous factors, but the floor ratio decreases from `3,034,386,005,338` to `866,765,166,748`. No monotonicity assumption is permitted.
+Finite values `Gamma_51`, `Gamma_52`, and `Gamma_53` are non-monotone. They must not be extrapolated as an asymptotic trend.
 
 ## Finite complete-core requirement
 
-### Closed predecessor N1-REQ-N4-004
-
-Result label: **finite certificate** request.
-
-This predecessor targeted exact certification through `n=52` using the unique-parent stream. Nova 1 closed the finite target with the meet-in-the-middle replacement `N1-STR-023` and certificate `N1-FIN-007`. The original five-minute unique-parent run at `n=52` was resource-limited, not a failure.
-
 ### N1-REQ-N4-005
 
-Result label: **finite certificate** and **proved theorem** reconstruction request.
+Result label: **finite certificate** request.
 
 Current exact coverage:
 
 - Nova 2 `N2-FIN-202`: every `12<=n<=45`;
 - Nova 1 `N1-FIN-005`: every `46<=n<=50`;
-- Nova 1 `N1-FIN-006`: exact streaming certificate at `n=51`;
-- Nova 1 `N1-FIN-007`: exact meet-in-the-middle certificate at `n=52`.
+- Nova 1 `N1-FIN-006`: `n=51`;
+- Nova 1 `N1-FIN-007`: `n=52`;
+- Nova 1 `N1-FIN-008`: `n=53`.
 
 Therefore
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le52).
+\qquad(12\le n\le53).
 \]
 
 Nova 4 must independently reconstruct:
 
-1. rational certification of `r_n` and `M_n`;
-2. the odd prime-power valuation vector;
-3. the balanced coordinate partition;
-4. complete and duplicate-free half-divisor lists;
-5. the exact sorted product-row merge;
-6. all layer cutoffs and thresholds;
-7. connected maxima and exact `K_t` values;
-8. carrier endpoints and final margins;
-9. the `n=51` overlap against the unique-parent certificate;
-10. fail-closed integer-range, duplicate, ordering, and incomplete-continuation limits;
-11. the distinction between a finite certificate and an asymptotic theorem.
+1. exact rational certification of `r_n` and `M_n`;
+2. factorial valuations and `Y_n`;
+3. both half-divisor lists;
+4. unique product representation;
+5. exact sorted row merge;
+6. duplicate and omission rejection;
+7. every layer threshold and cutoff;
+8. connected maxima and exact `K_t` values;
+9. blocking gaps, endpoints, margins, and term bounds;
+10. alternate partition replay;
+11. `N1-STR-024` integer identities;
+12. fail-closed integer and resource boundaries.
 
-Nova 1 artifacts:
+Current artifacts:
 
 - `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`;
+- `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md`;
 - `verification/marker_three_mitm_prefix_u128.cpp`;
-- `verification/FULL_CORE_N52_REPORT.md`;
-- `verification/full_core_n51_mitm_overlap.txt`;
-- `verification/full_core_n52_mitm.txt`;
-- `verification/test_mitm_overlap.py`.
+- `verification/FULL_CORE_N53_REPORT.md`;
+- `verification/full_core_n53_mitm.txt`;
+- `verification/full_core_n53_mitm_mask414.txt`;
+- `verification/test_mitm_n53_normalized.py`.
 
-The next finite target is `n=53`. Resource exhaustion must be reported as `unknown due to resource limits`, not as mathematical failure.
+The next finite target is `n=54`. Resource exhaustion must be reported as unknown due to resource limits, never as mathematical failure.
 
 ## Collision requirement
 
@@ -157,7 +153,7 @@ The next finite target is `n=53`. Resource exhaustion must be reported as `unkno
 
 Result label: **conditional theorem** request.
 
-`N1-COL-001` proves profile injectivity is false and gives a fiber of size at least
+`N1-COL-001` proves profile injectivity is false and supplies a fiber of size at least
 
 \[
 2^{\lfloor M_n/2\rfloor}.
@@ -170,7 +166,7 @@ The next required result is a target-local upper bound on one of:
 - second moment of target representation counts;
 - weighted collision contribution under the exact tilted numerical-value law.
 
-A raw global profile count is not accepted as occupancy evidence.
+Raw global profile counts are not occupancy evidence.
 
 ## Nova 3 numerical-law requirement
 
@@ -180,7 +176,6 @@ Result label: **conditional theorem** request.
 
 Current imported foundation:
 
-- branch: `nova/analytic-density`;
 - exact head inspected: `003b9c0e1179314d6c119c8a356e0f41231e3ad6`;
 - results: `N3-ANA-017`, `N3-ANA-018`, `N3-ANA-019`;
 - outcome: `ACCEPTED_WITH_RESTRICTIONS`.
@@ -198,27 +193,27 @@ Disproved shortcut:
 
 Open clauses:
 
-1. freeze the exact target range left after deterministic coverage;
+1. freeze the exact target range after deterministic coverage;
 2. prove compact tilt or quantitative phase dispersion there;
 3. prove variance, third-moment, and maximal-step bounds;
 4. construct a positive reference lattice law;
 5. prove a strict weighted Fourier inequality whose error is smaller than the reference window mass.
 
-## Internal Nova 1 requirement
+## Internal Track B requirement
 
 ### N1-REQ-N1-001
 
-Result label: **conditional theorem** reconstruction requirement.
+Result label: **conditional theorem** reconstruction request.
 
-Reconstruct the archived Track B implication under the current definitions:
+Reconstruct
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2)
 \Longrightarrow
-h(n!)=O((\log n)^3).
+h(n!)=O((\log n)^3)
 \]
 
-The archived source package must be inspected before promotion.
+under the current frozen endpoint convention.
 
 ## Closed structural requirements
 
@@ -230,18 +225,18 @@ The archived source package must be inspected before promotion.
 - formal profile capacity;
 - explicit prime-interval threshold;
 - total quotient endpoint reach;
-- one-factorial-block carrier ceiling;
+- one-factorial-block ceiling;
 - profile noninjectivity;
 - connected-prefix entropy necessity;
-- exact unique-parent connected-prefix certifier;
-- exact meet-in-the-middle connected-prefix certifier;
-- exact complete-core carrier coverage through `n=52`.
+- unique-parent exact stream;
+- meet-in-the-middle exact stream;
+- layer-normalized entropy identity;
+- exact complete-core carrier coverage through `n=53`.
 
 ## Open structural requirements
 
-- uniform connected-prefix lower or upper bounds meeting `N1-OBS-003`;
-- exact finite extension beginning at `n=53`;
-- a non-monotone-safe normalized entropy analysis;
+- uniform normalized connected-prefix lower or upper bounds;
+- exact finite extension beginning at `n=54`;
 - uniform quotient maximum downward gap at most `W_n`;
 - downward endpoint-window occupancy;
 - target-local collision control;
@@ -252,4 +247,4 @@ The archived source package must be inspected before promotion.
 
 ## Rule
 
-No requirement may be weakened, strengthened, or reinterpreted silently. A changed hypothesis, constant, endpoint, layer definition, or conclusion receives a new versioned requirement.
+No requirement may be weakened, strengthened, or reinterpreted silently. Any changed hypothesis, constant, endpoint, layer definition, or conclusion receives a new versioned requirement.
