@@ -44,15 +44,7 @@ Request D evaluated 19,990,010 bounded characteristic-function scores. Productio
 
 ## Nova 3 restricted-source compatibility audit
 
-Request E reconstructed three primary source scopes and generated three exact compatibility witnesses:
-
-```text
-Ford ambient-vs-fixed witness: H(120,6,7)=17, tau(120;6,7)=0
-friable scope witness: 10! belongs to S(10!,10), no nonexceptionality certificate
-ultrafriable mismatch: v_2(10!)=8, required 256, excluded prime 11
-```
-
-The standalone 10-test suite completed in approximately 0.004 seconds. Full audit replay and compatibility-claim replay passed. The committed rehashed false-direct-use fixture was rejected. No timeout or unknown result occurred.
+Request E reconstructed three primary source scopes and generated three exact compatibility witnesses. The standalone 10-test suite completed in approximately 0.004 seconds. Full audit replay and compatibility-claim replay passed. No timeout or unknown result occurred.
 
 ## Nova 3 Dusart primary-source audit
 
@@ -67,6 +59,23 @@ pi(60184): 6076
 upper-half prime count: 5254
 ```
 
-The 12-test suite completed in approximately 0.13 seconds. Artifact generation completed in approximately 1.27 seconds and full semantic replay in approximately 1.29 seconds, with peak resident memory approximately 305 MiB. Valid audit and claim replay passed; rehashed threshold, source-threshold, predecessor-coverage, and source-metadata corruptions were rejected. No timeout or unknown result occurred.
+The 12-test suite completed in approximately 0.13 seconds. Artifact generation completed in approximately 1.27 seconds and full semantic replay in approximately 1.29 seconds, with peak resident memory approximately 305 MiB. No timeout or unknown result occurred.
 
-The source audit uses exact integers, rational proof bounds, and 80-digit Decimal endpoint diagnostics. Reading the primary paper is a proof-source activity, not a performance benchmark.
+## Nova 3 exact threshold sweep
+
+Request G checked all 879,633 integers in `120368 <= n <= 1000000`.
+
+```text
+exact upper-half prime counts: every n
+exact v_2(n!): Legendre division and n-bit_count(n)
+certified r_n transitions: 10
+certified M_n transitions: 865
+minimum prime margin: n=120370
+minimum Legendre proof margin: n=131071
+minimum address slack: 57942 at n=120368..120371
+minimum conservative capacity margin: n=120370
+```
+
+The production sweep completed in approximately 6.75 seconds with peak resident memory approximately 351132 KiB. Twelve threshold-sweep tests passed in approximately 22.3 seconds when the full sweep was generated once and semantically replayed again. The committed rehashed false minimum-slack fixture was rejected. No timeout or unknown result occurred.
+
+All discrete quantities in request G are exact. Margin rankings use a complete binary64 screening pass followed by 80-digit Decimal replay of the retained minima and runners-up. The finite sweep is not an asymptotic proof or an additive-occupancy result.
