@@ -1,4 +1,5 @@
 import copy
+from pathlib import Path
 import unittest
 
 from factorial_lab.n3_variance_limit import (
@@ -8,6 +9,7 @@ from factorial_lab.n3_variance_limit import (
     build_claim,
     corrupted_claims,
     limiting_variance_partial,
+    load_json,
     normalized_variance,
     primes_up_to,
     rigorous_integer_tail_upper,
@@ -63,11 +65,20 @@ class VarianceLimitAuditTests(unittest.TestCase):
         verify_audit(self.audit)
         verify_claim(self.claim, self.audit)
 
-    def test_all_corruptions_rejected(self):
+    def test_all_generated_corruptions_rejected(self):
         for name, corrupted in corrupted_claims(self.claim).items():
             with self.subTest(name=name):
                 with self.assertRaises(VerificationError):
                     verify_claim(corrupted, self.audit)
+
+    def test_all_committed_corruptions_rejected(self):
+        directory = Path(__file__).with_name("n3_variance_fixtures")
+        fixtures = sorted(directory.glob("*.json"))
+        self.assertEqual(len(fixtures), 5)
+        for fixture in fixtures:
+            with self.subTest(fixture=fixture.name):
+                with self.assertRaises(VerificationError):
+                    verify_claim(load_json(fixture), self.audit)
 
     def test_rehashed_source_corruption_rejected(self):
         corrupted = copy.deepcopy(self.claim)
