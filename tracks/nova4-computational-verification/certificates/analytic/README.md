@@ -2,53 +2,45 @@
 
 ## Tight local-ceiling certificate
 
-The tight local-ceiling certificate records the first exact equality case:
-
-```text
-n = 2
-q = 2
-delta = 0
-endpoint divisor = 1
-actual count = theorem ceiling = 1
-```
-
-Replay:
+The first exact equality case is `n=2`, `q=2`, `delta=0`, endpoint divisor `1`, with actual count and theorem ceiling both equal to `1`.
 
 ```bash
-cd tracks/nova4-computational-verification
 PYTHONPATH=src python3 src/replay_n3.py verify-local-claim \
   certificates/analytic/n3_local_ceiling_tight_n2.json
 ```
 
-The adversarial fixture lowers the certified upper bound by one, recomputes its outer checksum, and must still fail semantic verification.
-
 ## Characteristic recurrence candidate
 
-The request D candidate certificate records the best bounded-grid recurrence found for `n=12`:
+The request D candidate records the best bounded-grid recurrence found for `n=12`:
 
 ```text
 q = 1,161,483
-t approximately 1.0528518509e7
 |phi_12(t)| approximately 0.9963479152311605
 divisor exponent vectors = 792
 ```
-
-Frozen source:
-
-```text
-handoff: N3-HO-N4-002
-handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
-proof commit: ff57005b975c4917341306bd0eceb6d05a9b18f6
-object: N3-ANA-007
-```
-
-Replay:
 
 ```bash
 PYTHONPATH=src python3 src/replay_n3_recurrence.py verify-candidate \
   certificates/analytic/n3_recurrence_candidate_n12.json
 ```
 
-The verifier recomputes every high-precision coordinate factor, the product modulus, phase residuals, exact divisor-vector count, and the independent direct-vector average. The adversarial fixture changes the modulus to one, recomputes the outer checksum, and must still fail semantic verification.
+## Restricted-source compatibility certificate
 
-This candidate is computational evidence only. It is not a proof of the unbounded recurrence theorem or a certified maximum outside the declared grid.
+The request E certificate records that none of the three audited restricted sources directly selects the deterministic factorial sequence.
+
+```text
+N3-SRC-004: Ford ambient count, direct factorial use rejected
+N3-SRC-005: Drappeau–Tenenbaum method only, fixed sequence not certified
+N3-SRC-006: ultrafriable common-cap model, direct factorial use rejected
+```
+
+Its exact ultrafriable witness uses `n=10`: `v_2(10!)=8`, so `256` must be included, while any common cap large enough to include `256` also includes prime `11`, which does not divide `10!`.
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_sources.py verify-claim \
+  certificates/analytic/n3_restricted_source_compatibility.json
+```
+
+The adversarial fixture changes the direct-use conclusion to true, recomputes the outer checksum, and must still fail semantic verification.
+
+These certificates preserve finite evidence and source-scope decisions only. They do not prove the factorial half-range theorem.
