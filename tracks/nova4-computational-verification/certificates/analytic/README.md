@@ -67,6 +67,42 @@ PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
   --audit data/analytic/n3_threshold_sweep_n120368_n1000000.json
 ```
 
-The committed adversarial fixture lowers the exact minimum address slack, recomputes the outer checksum, and must still fail semantic verification.
+## Final N3-ANA-011 theorem certificate
 
-These certificates preserve finite evidence, source-scope decisions, theorem audits, and finite sweep results. They do not prove the factorial half-range theorem, formal-profile injectivity, or additive occupancy.
+The request H certificate records the final independent theorem decision:
+
+```text
+request H: ACCEPTED
+N3-ANA-011: ACCEPTED
+integer threshold: 120368
+required semantic corruptions rejected: 6 of 6
+```
+
+Accepted conclusions:
+
+```text
+address legality for every integer n>=120368
+menu cardinality lower bound for every addressed layer
+formal profile capacity at least X_n+1
+```
+
+Explicit exclusions:
+
+```text
+formal-profile injectivity
+distinct numerical sums
+additive occupancy
+factorial half-range theorem
+Erdos Problem 18
+```
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-claim \
+  certificates/analytic/n3_ana_011_final_claim.json
+PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
+  tests/n3_adversarial_fixtures
+```
+
+The six fixtures recompute their outer checksums after changing the threshold, address range, unit correction, profile interpretation, half endpoint, or finite/asymptotic classification. All must still fail semantic verification.
+
+These certificates preserve finite evidence, source-scope decisions, theorem audits, and final scoped theorem decisions. They do not prove the factorial half-range theorem or additive occupancy.
