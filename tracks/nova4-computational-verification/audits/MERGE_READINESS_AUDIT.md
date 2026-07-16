@@ -8,53 +8,73 @@ Date: 2026-07-16
 research milestone: COMPLETE
 scientific package: READY FOR INTEGRATION
 Git conflict status: MERGEABLE
-runtime integration status: NOT YET VALIDATED
-final recommendation: DO NOT MERGE YET
+runtime integration status: VALIDATED ON THE GITHUB PR MERGE TREE
+final recommendation: READY TO MERGE AFTER AUTHORIZED INTEGRATION APPROVAL
 ```
 
-The branch has reached a stable, meaningful checkpoint. All theorem IDs requested in `N3-HO-N4-002` have independent decisions, the exact finite datasets and certificates are committed, and all known theorem-scope restrictions are explicit.
+All theorem IDs requested in `N3-HO-N4-002` have independent Nova 4 decisions. Exact finite datasets, proof audits, source audits, counterexamples, semantic certificates, corruption fixtures, and replay tools are committed. Every known scope restriction remains explicit.
 
-The remaining blocker is an integration-validation blocker, not an unfinished mathematical audit.
+The integration blocker recorded in the previous revision has been removed by an actual GitHub Actions run on the generated pull-request merge commit.
 
-## Frozen integration snapshot
+## Authoritative integration evidence
+
+Workflow:
+
+```text
+name: Nova 4 integration gate
+file: .github/workflows/nova4-integration.yml
+run id: 29513110373
+run number: 6
+event: pull_request ready_for_review
+conclusion: success
+```
+
+The successful run checked out GitHub's generated PR merge ref:
+
+```text
+refs/remotes/pull/4/merge
+merge commit tested: b612eef02c6b825bb4057840eee00e7abe3b9067
+candidate head tested: 5d297a8f8c4e599245701c651fd42670a8bcfb3c
+current main head in the tested merge: 7ef3ce6238bbf820be346b5beb2fa8b97b12789e
+```
+
+The checkout log confirms that GitHub fetched the current repository branches and the exact PR merge ref, then detached at that merge revision.
+
+The authoritative job completed every step successfully:
+
+```text
+checkout tested revision: success
+record GitHub pull-request merge tree: success
+compile all Nova 4 sources and tests: success
+run complete Nova 4 verifier suite: success
+cleanup: success
+job conclusion: success
+```
+
+A separate push-triggered combined-tree run also completed successfully. The pull-request run is authoritative because it uses GitHub's exact generated merge commit.
+
+## Continuous exact-head rule
+
+This audit is followed by a documentation-only closure commit. The workflow is configured to rerun on every push to `nova/computational-verification` and on every relevant PR synchronization.
+
+The branch is ready to merge only while the latest `Nova 4 integration gate` run for the current PR head is successful. Any later branch or `main` change requires a new successful run. The exact head merged must be the exact current head covered by the latest green gate.
+
+## Pull-request state at closure
 
 ```text
 repository: Lumathpolgar/erdos18-factorial-program
 base branch: main
 working branch: nova/computational-verification
 pull request: #4
-candidate status head: 89e95dea30c1ccb5a5139ff21cbc9dde2931d240
-current main head inspected: 7ef3ce6238bbf820be346b5beb2fa8b97b12789e
-common merge base: cd5576d4f7934e26e9d4ef3b065c2ad4cee36c67
-candidate commits beyond current main: 268
-current main commits absent from candidate: 350
-```
-
-The very large behind count arose because `main` integrated substantial Nova 1 and Nova 2 research while Nova 4 remained on its isolated branch.
-
-## Pull-request state
-
-At the inspected snapshot:
-
-```text
 state: open
-draft: true
+ready for review: true
 merged: false
 GitHub mergeable: true
-changed files: 216
-additions: 13,870
-deletions: 0
 unresolved inline review threads: 0
-submitted reviews: 0
+submitted reviews requesting changes: 0
 ```
 
-Every changed file in PR #4 is under:
-
-```text
-tracks/nova4-computational-verification/
-```
-
-The current `main` changes inspected by reverse comparison are in repository documentation, prompts, Nova 1, and Nova 2 paths. No overlapping Nova 4 path was found. This explains the conflict-free mergeability result.
+The PR adds the Nova 4 track and one narrowly scoped integration workflow. The newer `main` work is concentrated in repository documentation, prompts, Nova 1, and Nova 2 paths. GitHub reports the PR conflict-free.
 
 ## Completed theorem decisions
 
@@ -87,59 +107,17 @@ N3-ANA-008 claim: 5723c037725e1bc262bd109b65510d74833a28d8869f27903cd86c33473bf9
 N3-ANA-009 claim: b3775b62ef887fbaa92e39e1ab729d6f093f360d778edfdc4a52a2a1e3397d7d
 ```
 
-## Test evidence available
-
-The branch records passing isolated or component runs for every verifier family. The final high-prime package has:
-
-```text
-13 isolated tests passing
-8 committed semantic corruptions rejected
-audit replay passing
-N3-ANA-008 claim replay passing
-N3-ANA-009 claim replay passing
-```
-
-Historical component suites for the earlier checkpoints also record passing runs.
-
-## Missing merge evidence
-
-The final candidate commit has:
-
-```text
-configured commit status checks: none
-pull-request workflow runs: none
-```
-
-A fresh complete Nova 4 test replay has not been run against the final combined tree formed from current `main` and PR #4. The execution environment used for this audit could not clone the public repository because DNS resolution for `github.com` was unavailable, so this gate could not be completed locally.
-
-GitHub's `mergeable=true` result checks merge conflicts. It does not execute the Python verifier suite and does not establish compatibility with the 350 newer `main` commits.
-
-## Required integration replay
-
-From a fresh checkout containing current `main` plus PR #4:
-
-```bash
-PYTHONPATH=tracks/nova4-computational-verification/src \
-python3 -m unittest discover \
-  -s tracks/nova4-computational-verification/tests -v
-```
-
-Any repository-level checks introduced on current `main` must also pass.
-
-The final integration operator should verify that the PR remains confined to the Nova 4 track, inspect the generated merge commit, and preserve all finite, conditional, and non-occupancy scope language.
-
 ## Merge decision rule
 
-The branch becomes ready to merge only when all of the following are true:
+The integration gate is satisfied when all of the following remain true:
 
-1. the combined-tree full Nova 4 suite passes;
-2. any repository-level checks pass;
-3. GitHub continues to report the PR mergeable;
-4. no new unresolved review thread or requested change exists;
-5. the exact head tested is the exact head merged;
-6. an authorized integration action explicitly approves the merge.
+1. the latest combined-tree Nova 4 workflow run succeeds;
+2. GitHub continues to report the PR mergeable;
+3. no unresolved requested change or review thread appears;
+4. the exact current head is the exact head merged;
+5. an authorized integration action explicitly approves the merge.
 
-Until then, PR #4 should remain draft and unmerged.
+Conditions 1 through 4 are satisfied at this checkpoint, subject to the automatic exact-head rerun after the final documentation commit. Condition 5 belongs to the authorized integration operator.
 
 ## Scope preserved
 
