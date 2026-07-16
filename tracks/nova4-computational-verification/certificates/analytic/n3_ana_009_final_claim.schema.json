@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 4 N3-ANA-009 final conditional theorem claim",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "evidence_sha256", "claim", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-ana-009-final-claim.v1"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}
