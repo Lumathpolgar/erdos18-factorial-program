@@ -10,97 +10,159 @@ Prove exact counting, distribution, and Fourier estimates for factorial divisors
 
 ## Current proved frontier
 
-The branch now contains:
+The branch contains:
 
 - the exact factorial-divisor exponent product and exponential-tilt model;
 - a uniform logarithmic local-count ceiling;
 - a non-Gaussian full-model limit;
 - an obstruction to unrestricted logarithmic minor-arc decay;
-- a high-prime zero-tilt central limit theorem and coarse-window theorem;
-- the explicit prime interval bound
+- a high-prime zero-tilt central limit theorem and coarse windows;
+- the explicit prime interval theorem
   \[
   \pi(n)-\pi(n/2)\ge n/(3\log n)
   \qquad(n\ge120368);
   \]
-- explicit old-address and repaired marker-three formal-capacity theorems;
-- a compact-tilt top-prime logarithmic Gaussian theorem for every fixed `|theta|<=theta_0<1`;
+- old-address and repaired marker-three formal-capacity theorems;
+- compact-tilt top-prime logarithmic coarse windows;
 - a unit-tilt freezing obstruction;
-- an exact repair of Nova 1's marker-three capacity proof;
-- an infinite counterexample family to the proposed central-binomial divisibility shortcut;
 - the active marker-three numerical product law;
-- unique target-dependent numerical tilt;
-- exact additive span one and exact torus resonance set `{0}`;
-- an exact deterministic-to-analytic post-prefix boundary;
-- a uniform shrinking-tilt theorem on the complete post-prefix range;
-- a proof that the single binary anchor has exponentially collapsing weight;
-- an exact collision-aware tilted atom formula.
+- exact target-dependent centering;
+- the exact deterministic-to-analytic post-prefix boundary;
+- uniform post-prefix tilt compression;
+- exact collision-aware numerical atoms;
+- an exact parity-twin obstruction at `pi`;
+- an exact odd-lattice normalization with common tilt `2 lambda`.
 
-## Active numerical contract
+## Current cross-track sources
 
-Current exact sources:
+- Nova 1: `nova/factorial-structure@1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`
+- Nova 2: `nova/additive-occupancy@e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`
+- Active request: `N2-HO-N3-003`
 
-- Nova 1 branch `nova/factorial-structure`, commit `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`;
-- Nova 2 branch `nova/additive-occupancy`, commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c`;
-- Nova 2 handoff `N2-HO-N3-003`.
-
-The numerical quotient supports are
+The marker-three quotient supports are
 
 \[
 B_t(n)=
 \{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
 \]
 
-Nova 2's deterministic small-core chain covers through
+The exact final-only asymptotic range is
 
 \[
-P_n=m_n(2^{M_n}-1)+W_n.
+m_n(2^{M_n}-1)+W_n+1
+\le q\le Y_n.
 \]
 
-The asymptotic final-only analytic range is
+## Compact numerical tilt
 
-\[
-P_n+1\le q\le Y_n.
-\]
-
-For every target in this range, N3-ANA-020 proves
+For every target in the exact post-prefix range,
 
 \[
 -\frac{8M_n\log L_n}{L_n}
 <\lambda_{n,q}<
 \frac{16(n\log n+\log14)}{2^{M_n}},
 \qquad
-L_n=m_n(2^{M_n}-1),
+L_n=m_n(2^{M_n}-1).
 \]
 
-so the common numerical tilt tends uniformly to zero.
+Thus the common numerical tilt tends uniformly to zero.
 
-## Current analytic obstruction
+## Parity twin obstruction
 
-Uniformly small tilt does not make individual state probabilities uniform in a useful quantitative sense.
+The exact span-one statement conceals severe parity concentration.
 
-At zero tilt,
+Every nonzero first-layer state is odd. Every later-layer state is even. Hence
 
 \[
-P_0(Z_t=0)P_0(Z_t=2^{t-1})
-<2^{-2(n/(3\log n)-1)}.
+P(T\text{ even})=P(Z_1=0).
 \]
 
-Therefore the existing one-pair characteristic-function estimate cannot close the minor arc.
-
-The full numerical atom also contains exact collision multiplicity:
+Uniformly on the post-prefix range,
 
 \[
-P_\lambda(T=s)
+P(Z_1=0)
+\le
+\frac{2e^{\varepsilon_n}}{m_n+1},
+\qquad
+\varepsilon_n
 =
-\frac{C_n(s)e^{\lambda s}}
-{\prod_tZ_t(\lambda)}.
+\frac{8M_n\log L_n}{2^{M_n}-1}.
 \]
 
-Any local reference law must retain or control `C_n(s)`.
+At the nonzero torus frequency `pi`,
+
+\[
+\Phi(\pi)=2P(Z_1=0)-1,
+\]
+
+so
+
+\[
+|\Phi(\pi)|\to1.
+\]
+
+The exact twin identity is
+
+\[
+\Phi(\pi+u)+\Phi(u)
+=
+2P(Z_1=0)
+\prod_{t=2}^{M_n}\phi_t(u).
+\]
+
+Therefore the unnormalized zero-only major-arc plan is invalid.
+
+## Exact odd-lattice repair
+
+Condition on `Z_1!=0` and define
+
+\[
+\widetilde Z_1=(Z_1-1)/2,
+\qquad
+\widetilde Z_t=Z_t/2\quad(t>=2).
+\]
+
+Then
+
+\[
+\widetilde T=(T-1)/2
+\]
+
+under the odd conditional law.
+
+The transformed coordinates remain independent and have common exact tilt
+
+\[
+\widetilde\lambda=2\lambda.
+\]
+
+The transformed first support contains `0` and `1`, so the transformed law has exact span one.
+
+The target window maps to
+
+\[
+J_{n,q}
+=
+\left[
+\left\lceil\frac{q-W_n-1}{2}\right\rceil,
+\left\lfloor\frac{q-1}{2}\right\rfloor
+\right]\cap\mathbb Z.
+\]
+
+Positive transformed-window mass implies positive original-window mass.
+
+## Active theorem target
+
+Audit the normalized odd-lattice law for every remaining rational or dyadic secondary resonance. Then prove one of:
+
+1. aggregate transformed phase dispersion outside all genuine transformed major arcs;
+2. a measure bound for weak transformed dispersion;
+3. a transformed weighted Fourier estimate;
+4. a target-local transformed concentration or additive-energy obstruction.
+
+The final local law must remain collision-aware.
 
 ## Mandatory distinction
-
-Logarithmic divisor density and numerical additive occupancy are different objects.
 
 A theorem for
 
@@ -114,40 +176,7 @@ does not control
 \mathbb E e^{itd}
 \]
 
-or a numerical rainbow sum. The active additive inversion domain is the integer torus `[-pi,pi]`.
-
-## Active theorem target
-
-Prove aggregate phase dispersion for the complete tilted odd-core menus on the post-prefix target range.
-
-The primary candidate is
-
-\[
-\mathcal D_{t,\lambda}(\theta)
-=
-\sum_{a,b}p_t(a)p_t(b)
-\sin^2\left(\frac{(a-b)\theta}{2}\right),
-\]
-
-with
-
-\[
-|\phi_{t,\lambda}(\theta)|^2
-=1-2\mathcal D_{t,\lambda}(\theta).
-\]
-
-A successful theorem must aggregate many support differences or residue classes and remain collision-aware. A failure result must produce an explicit target-local concentration or additive-energy obstruction.
-
-## Required files
-
-- `STATUS.md`
-- `THEOREMS.md`
-- `SOURCE_LEDGER.md`
-- `OPEN_REQUIREMENTS.md`
-- `PREFERRED_ROUTE.md`
-- candidate files under `candidates/`
-- proofs and verifiers under `proofs/`
-- versioned handoffs under `handoffs/`
+or a numerical rainbow sum. The active inversion domain is the integer torus `[-pi,pi]`.
 
 ## Verification
 
@@ -158,10 +187,11 @@ python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
+python3 tracks/nova3-analytic-density/proofs/parity_twin_sanity.py
 ```
 
-Finite checks and computational tables remain explicitly separated from symbolic proof.
+Finite checks and computational tables remain separate from symbolic proof.
 
 ## Claim boundary
 
-The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, logarithmic density, compact numerical tilt, span one, exact resonances, and collision identities do not by themselves imply quotient occupancy or maximum-gap control.
+The factorial half-range theorem and Erdős Problem 18 remain open. Formal capacity, compact numerical tilt, span one, exact parity normalization, and collision identities do not by themselves prove quotient occupancy or maximum-gap control.
