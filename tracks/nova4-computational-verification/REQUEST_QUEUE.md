@@ -20,11 +20,11 @@ Source-ledger commit for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadc
 
 Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Status: `REQUESTS_A_THROUGH_H_COMPLETE_FINAL_THEOREM_CLOSURE_READY`
+Status: `REQUESTS_A_THROUGH_H_AND_N3_ANA_006_COMPLETE_N3_ANA_008_READY`
 
 Completed work:
 
-- accepted theorem audits for `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-007`, `N3-ANA-010`, and `N3-ANA-011`;
+- accepted theorem audits for `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-006`, `N3-ANA-007`, `N3-ANA-010`, and `N3-ANA-011`;
 - 1,978 exact divisors and 45,840 local windows;
 - request C scale and high-prime computational evidence;
 - request D exhaustive bounded recurrence evidence over 19,990,010 scores;
@@ -32,31 +32,33 @@ Completed work:
 - request F primary-source reconstruction of Dusart Theorem 6.9 and independent derivation of the `n/(3 log n)` prime-interval bound;
 - request G exact sweep of every one of the 879,633 integers in `120368 <= n <= 1000000`;
 - request H exact semantic contract and rejection of all six mandated rehashed corruptions;
-- final theorem certificate for `N3-ANA-011`.
+- final theorem certificate for `N3-ANA-011`;
+- independent fixed-prime, tail-variance, weak-limit, product-convergence, and non-Gaussian reconstruction for `N3-ANA-006`;
+- five rehashed `N3-ANA-006` theorem corruptions rejected.
 
-Request H disposition:
+`N3-ANA-006` disposition:
 
 ```text
-request H: ACCEPTED
-N3-ANA-011: ACCEPTED
-corruptions rejected: 6 of 6
-endpoint witness: n=120417, floor(n/2)=60208, ceil(n/2)=60209 prime
-contract SHA-256: 63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b
-audit SHA-256: 785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9
-claim SHA-256: a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c
+N3-ANA-006: ACCEPTED
+Var(S_n)/n^2 -> (1/12) sum_p (log p)^2/(p-1)^2
+X_n => sum_p (log p) U_p
+characteristic-function zero: 2*pi/log(2)
+full-model limit: non-Gaussian
+audit SHA-256: e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119
+claim SHA-256: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
 ```
 
 Next requested study:
 
-- independently reconstruct `N3-ANA-006`, the variance asymptotic;
-- distinguish proof from request C numerical convergence evidence;
-- verify convergence, domination, and interchange of the prime sum and limit;
+- independently reconstruct `N3-ANA-008`, the high-prime-tail central limit theorem;
+- verify the lower bound `B_{n,y}^2 >> n^2 log(y)/y` under `y->infinity` and `2y<=sqrt(n)`;
+- verify `M_{n,y} << n log(y)/y` and `M_{n,y}/B_{n,y}->0`;
+- verify the triangular-array Lindeberg argument and distinguish the theorem-defined half-span from the frozen script's full-span diagnostic;
 - return `ACCEPTED`, `NEEDS_REPAIR`, or `REJECTED`.
 
-Later studies:
+Later study:
 
-- final independent decision for `N3-ANA-008`, the high-prime tail scale;
-- final independent decision for `N3-ANA-009`, the full-model non-Gaussian limit and characteristic-function zero.
+- final independent decision for `N3-ANA-009`, the coarse central-window lower bound based on Berry-Esseen.
 
 ## N4-REQ-N1-001
 
