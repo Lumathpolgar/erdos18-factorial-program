@@ -118,40 +118,65 @@ src/factorial_lab/n3_moments.py
 src/replay_n3.py
 ```
 
-Schemas:
+Independent checks exact divisor-vector enumeration, exact moments, complement symmetry, vanishing cross covariances, 80-digit log replay, certified integer window endpoints, all requested local counts, semantic checksum, and frozen source metadata. Rehashed downward-bound and cached-count corruption are rejected.
+
+## N4-AUD-006: Nova 3 scale-evidence verifier
+
+Status: `ACTIVE`
+
+Result class: `computational evidence`.
+
+Frozen input:
 
 ```text
-data/analytic/n3_moment_local_audit.schema.json
-certificates/analytic/n3_local_ceiling_claim.schema.json
+nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515
+handoff: N3-HO-N4-001
+request: C
+objects: N3-ANA-006 and N3-ANA-008
+```
+
+Implementation:
+
+```text
+src/factorial_lab/n3_scale.py
+src/replay_n3_scale.py
+```
+
+Index schema:
+
+```text
+data/analytic/n3_scale_evidence_index.schema.json
 ```
 
 Independent checks:
 
-- exact divisor-vector enumeration and numerical uniqueness;
-- exact `tau(n!)` and complement symmetry;
-- exact rational coordinate means and second moments;
-- exact vanishing of all cross covariances;
-- 80-digit decimal replay of log mean and variance;
-- certified `floor(Delta/log q)` using rational log bounds;
-- certified `floor(d exp(Delta))` using rational exponential bounds;
-- exact integer local-window counts for every requested endpoint;
-- full semantic checksum and exact frozen source metadata.
+- exact prime sieve and Legendre valuations;
+- 80-digit Decimal `log tau`, variance contributions, variance shares, and effective dimension;
+- all eight requested `n` rows;
+- all 63 nonempty cutoff-grid rows;
+- eight admissible `y_n=floor(sqrt(n))/2` path rows;
+- theorem-defined `M=max b_p log(p)/2` and exact stored factor two against the frozen script span;
+- direct numerical cross-check of frozen float scale rows and nine printed tail points;
+- one-million-prime truncated variance proxy;
+- full semantic checksum and frozen source metadata.
 
 Corruption behavior:
 
-- lowering a tight upper bound by one is rejected even after recomputing its outer checksum;
-- corrupting the cached actual count is rejected;
-- a valid tight certificate replays independently.
+- rehashed `M/B` corruption is rejected;
+- rehashed low-prime variance-share corruption is rejected;
+- wrong source SHA is rejected.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3.py verify \
-  data/analytic/n3_moment_local_n2_n12.json
-
-PYTHONPATH=src python3 src/replay_n3.py verify-local-claim \
-  certificates/analytic/n3_local_ceiling_tight_n2.json
+PYTHONPATH=src python3 src/replay_n3_scale.py generate \
+  --output-json /tmp/n3_scale_evidence.json \
+  --scale-csv /tmp/n3_scale_rows.csv \
+  --tail-csv /tmp/n3_high_prime_tail_rows.csv
+PYTHONPATH=src python3 src/replay_n3_scale.py verify /tmp/n3_scale_evidence.json
 ```
+
+The verifier records the frozen script's tail-ratio label as `NEEDS_REPAIR_FOR_TAIL_RATIO_LABEL`; it does not reject the theorem statement from that implementation mismatch.
 
 ## Test command
 
