@@ -10,7 +10,7 @@ Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
 Source-ledger commit used for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
 
-Status: `REQUESTS_A_B_C_D_E_F_COMPLETE_REQUEST_G_READY`
+Status: `REQUESTS_A_B_C_D_E_F_G_COMPLETE_REQUEST_H_READY`
 
 Completed:
 
@@ -20,27 +20,29 @@ Completed:
 - factor-of-two tail-ratio label diagnosis in the frozen script;
 - request D bounded recurrence search over 19,990,010 scores with 80-digit and direct-vector replay;
 - request E reconstruction of Ford, Drappeau–Tenenbaum, and ultrafriable source scopes;
-- request F reconstruction of Dusart Theorem 6.9, equation (6.6), and the complete algebra for the upper-half prime interval;
-- exact endpoint witness `pi(120368)-pi(60184)=5254`;
-- rehashed threshold, source-threshold, predecessor-coverage, and source-metadata corruption rejection.
+- request F reconstruction of Dusart Theorem 6.9 and `N3-ANA-010`;
+- request G exact sweep of every integer `120368 <= n <= 1000000`;
+- exact prime-prefix, dual Legendre, rational ceiling, address, and conservative capacity checks;
+- rehashed false minimum-slack certificate rejection.
 
-Request F decision:
+Request G decision:
 
 ```text
-request F: ACCEPTED
-N3-ANA-010: ACCEPTED
-source lower threshold: 5393
-source upper threshold: 60184
-minimal direct-source integer threshold: 120368
-audit SHA-256: 42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212
-claim SHA-256: 7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703
+request G: ACCEPTED_AS_FINITE_CERTIFICATE
+integers checked: 879633
+minimum prime margin: n=120370
+minimum Legendre proof margin: n=131071
+minimum address slack: 57942 at n=120368..120371
+minimum capacity margin: n=120370
+audit SHA-256: e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0
+claim SHA-256: e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88
 ```
 
 Remaining:
 
-- request G exact threshold sweep for `120368 <= n <= 1000000`;
-- request H adversarial threshold tests;
-- independent final decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, and `N3-ANA-011`.
+- request H adversarial threshold and semantics tests;
+- final theorem decision for `N3-ANA-011` after request H;
+- independent final decisions for `N3-ANA-006`, `N3-ANA-008`, and `N3-ANA-009`.
 
 ## N4-REQ-N2-002
 
