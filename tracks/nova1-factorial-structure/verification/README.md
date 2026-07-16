@@ -169,6 +169,23 @@ Proof:
 
 `../proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`.
 
+### Partition planner
+
+Source:
+
+`plan_mitm_partition.py`
+
+Usage:
+
+```text
+python tracks/nova1-factorial-structure/verification/plan_mitm_partition.py \
+  n --max-columns 3000000 --limit 10
+```
+
+The planner enumerates exact prime-coordinate masks, verifies the total divisor count, and ranks partitions by merge-row count subject to an explicit half-list column bound.
+
+Result label for each emitted plan: **finite certificate**.
+
 ### N1-FIN-007
 
 Result label: **finite certificate**.
@@ -207,23 +224,61 @@ Artifacts:
 - `connected_prefix_normalized_n51_n53.csv`;
 - `test_mitm_n53_normalized.py`.
 
+### N1-FIN-009
+
+Result label: **finite certificate**.
+
+At `n=54`:
+
+- total odd-core divisors: `350,438,400`;
+- primary mask `255`: `128 x 2,737,800`;
+- alternate mask `223`: `512 x 684,450`;
+- emitted through the certificate: `287,853,491`;
+- connected-prefix sizes: `63,547`, `1,308,259`, `14,197,074`, `71,967,365`, `185,071,301`, `287,853,491`;
+- six layers;
+- term bound: `22`;
+- final margin: `321,802,717,811,173,461,556,306,445,531`.
+
+The two explicit masks produce identical mathematical output after excluding partition and environment fields.
+
+Primary mask `255`:
+
+- wall time: `15.31` seconds;
+- peak memory: `49,032 KiB`.
+
+Alternate mask `223`:
+
+- wall time: `18.57` seconds;
+- peak memory: `18,056 KiB`.
+
+The balanced `18,720 x 18,720` partition did not complete inside the six-minute execution boundary after emitting `230,000,000` divisors. This is a resource boundary for that partition, not a mathematical failure.
+
+Artifacts:
+
+- `FULL_CORE_N54_REPORT.md`;
+- `full_core_n54_mitm_mask255.txt`;
+- `full_core_n54_mitm_mask223.txt`;
+- `connected_prefix_normalized_n51_n54.csv`;
+- `plan_mitm_partition.py`;
+- `test_mitm_n54_partition.py`.
+
 Reproduction:
 
 ```text
-./marker_three_mitm_prefix_u128 53
-./marker_three_mitm_prefix_u128 53 414
-python tracks/nova1-factorial-structure/verification/test_mitm_n53_normalized.py
+./marker_three_mitm_prefix_u128 54 255
+./marker_three_mitm_prefix_u128 54 223
+python tracks/nova1-factorial-structure/verification/test_mitm_n54_partition.py
 ```
 
 Expected result:
 
 ```text
-PASS exact n=51
-PASS exact n=52
-PASS exact n=53
-PASS alternate partition n=53
-PASS finite non-monotonicity diagnostic
-PASS all normalized meet-in-the-middle checks
+PASS exact n=54
+PASS alternate partition n=54
+PASS exact connected-prefix counts
+PASS normalized non-monotonicity through n=54
+PASS finite first-blocking-gap ratio below 1.108
+PASS all n=54 meet-in-the-middle checks
 ```
 
 ## Exact finite boundary
@@ -233,10 +288,10 @@ Combining Nova 2 `N2-FIN-202` with Nova 1 certificates gives
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le53).
+\qquad(12\le n\le54).
 \]
 
-This is finite only. The smallest unaudited parameter is `n=54`.
+This is finite only. The smallest unaudited parameter is `n=55`.
 
 ## Normalized entropy theorem
 
@@ -260,13 +315,38 @@ Then the exact connected-prefix entropy gate is met if and only if
 \Gamma_n\ge1.
 \]
 
-Finite diagnostic values for `n=51,52,53` are all above one but non-monotone. They do not prove a uniform bound.
+Finite diagnostic values are
+
+\[
+\Gamma_{51}=120.322026489,
+\quad
+\Gamma_{52}=97.645052132,
+\quad
+\Gamma_{53}=124.609364763,
+\quad
+\Gamma_{54}=92.273264367.
+\]
+
+They are all above one and non-monotone. They do not prove a uniform bound.
+
+## Finite divisor-gap diagnostic
+
+Result label: **computational evidence**.
+
+Across the twenty blocked layers for `51<=n<=54`,
+
+\[
+\max g_t/D_t<1.108.
+\]
+
+The exact maximum occurs at `n=51`, layer `4`. No asymptotic divisor-gap theorem is claimed.
 
 ## Evidence boundary
 
 None of these runs proves:
 
 - uniform connected-prefix growth;
+- a uniform divisor record-gap bound;
 - the asymptotic quotient-window theorem;
 - the final downward endpoint window;
 - target-local collision upper bounds;
