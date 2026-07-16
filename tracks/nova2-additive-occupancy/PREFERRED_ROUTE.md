@@ -32,7 +32,7 @@ Prove every final quotient window occupied while preserving one choice per layer
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved `N2-ADD-119` through `N2-ADD-123` and obstruction `N2-OBS-109`.
+Nova 2 proved `N2-ADD-119` through `N2-ADD-124` and obstructions `N2-OBS-109`, `N2-OBS-110`.
 
 For one layer,
 
@@ -41,35 +41,61 @@ D_t=\left\lfloor\frac{F_{t-1}}{2^{t-1}}\right\rfloor,
 \qquad
 \eta_t=\frac{U_t}{K_tD_t},
 \qquad
-\phi_t=\frac{2^{t-1}D_t}{F_{t-1}},
+A_t=\frac{U_t}{2K_t-1}.
 \]
 
-and
-
-\[
-b_t=\frac{1+K_t\eta_t\phi_t}{1+K_t}.
-\]
-
-The exact endpoint factor is
+The exact endpoint factor remains
 
 \[
 \Delta_n=\widetilde\Gamma_n\left(\prod_tb_t\right)^{1/L}.
 \]
 
-### Retired input
+### Sharp universal baseline
 
-A first external blocking-gap estimate cannot control `eta_t` or `b_t`. N2-OBS-109 constructs prefixes with identical `D`, `K`, and `g=D+2` but utilization tending respectively to zero and one.
+Oddness gives
 
-Therefore the active sequential input is the average internal connected gap, equivalently the normalized span
+\[
+U_t\ge2K_t-1
+\]
+
+and hence
+
+\[
+\frac{F_t}{F_{t-1}}
+>
+\frac{D_t+2K_t}{D_t+1}.
+\]
+
+Therefore
+
+\[
+\prod_t\frac{D_t+2K_t}{D_t+1}
+\ge
+\frac{Y_n+1}{W_n+1}
+\]
+
+is sufficient for endpoint coverage.
+
+N2-OBS-110 proves this bound is optimal if one uses only oddness, `K_t`, and `D_t`. The finite parity-only criterion misses the true endpoint scale by roughly `10^28` through `10^31` for `51<=n<=55`.
+
+### Retired inputs
+
+- First external blocking-gap estimates cannot control utilization by N2-OBS-109.
+- Prefix count plus parity cannot supply the missing expansion by N2-OBS-110.
+
+The active rank-three input is now factorial-specific span amplification
+
+\[
+A_t=\frac{U_t}{2K_t-1},
+\]
+
+or equivalently a factorial-specific bound for
 
 \[
 \eta_t=\frac{U_t}{K_tD_t}.
 \]
 
-N2-ADD-123 gives both:
-
-- lower-bound criteria that force `Delta_n>=1`;
-- upper-bound criteria that force `Delta_n<1` and retire rank 3.
+N2-ADD-123 gives lower-bound criteria that force `Delta_n>=1` and upper-bound criteria that force `Delta_n<1` and retire rank 3.
 
 ### Exact finite coverage
 
@@ -87,8 +113,6 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
 
 The smallest unaudited finite parameter is `n=56`.
 
-Finite count surplus remains near `10^2`, while utilization root remains near `10^{-2}` and true endpoint surplus remains only slightly above one. No asymptotic trend is inferred.
-
 ## Rank 4: Three-power normalized fallback
 
 **Result label: conditional theorem with proved prefix.**
@@ -102,6 +126,7 @@ Finite count surplus remains near `10^2`, while utilization root remains near `1
 - One factorial block per layer is asymptotically insufficient by `N1-DIS-006`.
 - Count surplus without utilization is not an endpoint theorem by `N2-ADD-122`.
 - First-blocking-gap ratios do not control utilization by `N2-OBS-109`.
+- Count-threshold parity data cannot improve the sharp span baseline by `N2-OBS-110`.
 - Uniform fixed-law convolution is heuristic only.
 - One-anchor characteristic decay is insufficient by `N3-ANA-021`.
 
@@ -113,7 +138,7 @@ Prove aggregate phase dispersion or a collision-aware weighted Fourier inequalit
 
 ### Sequential target
 
-Prove pointwise or averaged lower or upper bounds for `eta_t=U_t/(K_tD_t)` under the exact factorial-divisor thresholds.
+Prove pointwise or averaged factorial-specific lower or upper bounds for `A_t=U_t/(2K_t-1)` under the exact connected-prefix thresholds.
 
 ### Finite target
 
