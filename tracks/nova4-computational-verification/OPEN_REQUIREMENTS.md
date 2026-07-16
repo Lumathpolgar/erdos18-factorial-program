@@ -8,38 +8,39 @@ Superseding handoff: `N3-HO-N4-002`
 
 Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
-Source-ledger commit used for request E: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
+Source-ledger commit used for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
 
-Status: `REQUESTS_A_B_C_D_E_COMPLETE_REQUEST_F_READY`
+Status: `REQUESTS_A_B_C_D_E_F_COMPLETE_REQUEST_G_READY`
 
 Completed:
 
-- independent proof reconstruction and acceptance of `N3-ANA-004`, `N3-ANA-005`, and `N3-ANA-007`;
+- independent proof reconstruction and acceptance of `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-007`, and `N3-ANA-010`;
 - exact moment and local-ceiling audits for `2 <= n <= 12`;
 - request C scale, low-prime share, effective-dimension, and high-prime tail evidence;
 - factor-of-two tail-ratio label diagnosis in the frozen script;
 - request D bounded recurrence search over 19,990,010 scores with 80-digit and direct-vector replay;
 - request E reconstruction of Ford, Drappeau–Tenenbaum, and ultrafriable source scopes;
-- exact witnesses showing ambient-to-pointwise failure, exceptional-set nonselection, and common-cap mismatch;
-- rehashed false direct-use, removed-exception, and false ultrafriable-equality rejection.
+- request F reconstruction of Dusart Theorem 6.9, equation (6.6), and the complete algebra for the upper-half prime interval;
+- exact endpoint witness `pi(120368)-pi(60184)=5254`;
+- rehashed threshold, source-threshold, predecessor-coverage, and source-metadata corruption rejection.
 
-Request E decision:
+Request F decision:
 
 ```text
-request E: ACCEPTED
-N3-SRC-004: SOURCE_SCOPE_CONFIRMED_DIRECT_FACTORIAL_USE_REJECTED
-N3-SRC-005: SOURCE_SCOPE_CONFIRMED_METHOD_ONLY
-N3-SRC-006: SOURCE_SCOPE_CONFIRMED_DIRECT_FACTORIAL_USE_REJECTED
-any source directly selects n!: NO
-semantic SHA-256: a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f
+request F: ACCEPTED
+N3-ANA-010: ACCEPTED
+source lower threshold: 5393
+source upper threshold: 60184
+minimal direct-source integer threshold: 120368
+audit SHA-256: 42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212
+claim SHA-256: 7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703
 ```
 
 Remaining:
 
-- request F independent Dusart Theorem 6.9 reconstruction;
 - request G exact threshold sweep for `120368 <= n <= 1000000`;
 - request H adversarial threshold tests;
-- independent final decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, `N3-ANA-010`, and `N3-ANA-011`.
+- independent final decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, and `N3-ANA-011`.
 
 ## N4-REQ-N2-002
 
