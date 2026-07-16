@@ -2,7 +2,7 @@
 
 Nova 3 requests A through C were frozen against `nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515`, handoff `N3-HO-N4-001`.
 
-Requests D through H were re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`.
+Requests D through H and the final theorem closures were re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`.
 
 ## Moment and local-ceiling certificate
 
@@ -83,10 +83,33 @@ PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
 
 The final decision is `N3-ANA-011: ACCEPTED`. The theorem proves address legality, menu cardinality, and formal profile capacity only.
 
-```text
-contract SHA-256: 63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b
-audit SHA-256: 785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9
-claim SHA-256: a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c
+## Full-model variance and non-Gaussian limit audit
+
+The final `N3-ANA-006` closure independently reconstructs the normalized variance limit and the weak limit of the complete uniform-divisor model.
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_variance.py verify \
+  data/analytic/n3_variance_limit_audit.json
+PYTHONPATH=src python3 src/replay_n3_variance.py verify-claim \
+  certificates/analytic/n3_ana_006_final_claim.json \
+  --audit data/analytic/n3_variance_limit_audit.json
 ```
 
-Finite tables remain computational evidence or finite certificates only. The accepted theorem comes from the proof reconstruction, not from extrapolating request G. No artifact here proves profile injectivity, distinct numerical sums, additive occupancy, or the factorial half-range theorem.
+Accepted statements:
+
+```text
+Var(S_n)/n^2 -> (1/12) sum_p (log p)^2/(p-1)^2
+X_n => sum_p (log p)U_p
+limiting series converges in L^2
+limiting characteristic function vanishes at 2*pi/log(2)
+full-model limit is non-Gaussian
+```
+
+```text
+audit SHA-256: e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119
+claim SHA-256: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
+```
+
+The ten-row convergence table through `n=1,000,000` is computational evidence only. The proof uses fixed-prime convergence and a uniform tail-variance estimate. This full-model non-Gaussian limit does not preclude a separate central limit theorem for the truncated high-prime tail.
+
+Finite tables remain computational evidence or finite certificates only. No artifact here proves profile injectivity, distinct numerical sums, additive occupancy, or the factorial half-range theorem.
