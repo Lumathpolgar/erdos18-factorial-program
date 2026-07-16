@@ -1,150 +1,65 @@
 # Nova 3 Analytic Certificates
 
-## Tight local-ceiling certificate
+## Existing certificates
 
-The first exact equality case is `n=2`, `q=2`, `delta=0`, endpoint divisor `1`, with actual count and theorem ceiling both equal to `1`.
+The directory preserves certificates for:
 
-```bash
-PYTHONPATH=src python3 src/replay_n3.py verify-local-claim \
-  certificates/analytic/n3_local_ceiling_tight_n2.json
-```
+- the tight local-ceiling equality case;
+- the bounded characteristic recurrence candidate;
+- restricted-source compatibility;
+- Dusart's explicit prime-interval theorem;
+- the exact request G threshold sweep;
+- the final scoped `N3-ANA-011` theorem;
+- the final `N3-ANA-006` variance and non-Gaussian limit theorem.
 
-## Characteristic recurrence candidate
+Each certificate has a matching fail-closed semantic replay and preserves its source commit or blob metadata.
 
-The request D candidate records the best bounded-grid recurrence found for `n=12`:
-
-```text
-q = 1,161,483
-|phi_12(t)| approximately 0.9963479152311605
-divisor exponent vectors = 792
-```
-
-```bash
-PYTHONPATH=src python3 src/replay_n3_recurrence.py verify-candidate \
-  certificates/analytic/n3_recurrence_candidate_n12.json
-```
-
-## Restricted-source compatibility certificate
-
-The request E certificate records that none of the three audited restricted sources directly selects the deterministic factorial sequence.
-
-```bash
-PYTHONPATH=src python3 src/replay_n3_sources.py verify-claim \
-  certificates/analytic/n3_restricted_source_compatibility.json
-```
-
-## Dusart prime-interval theorem certificate
-
-The request F certificate records the independently accepted theorem:
+## Final N3-ANA-008 theorem certificate
 
 ```text
-N3-ANA-010: ACCEPTED
-pi(n)-pi(n/2) >= n/(3 log n) for every integer n>=120368
-source thresholds: 5393 and 60184
-endpoint prime count: 5254
+N3-ANA-008: ACCEPTED
+B_ny^2 >> n^2 log(y)/y
+M_ny = max_{p>y} b_p log(p)/2
+M_ny/B_ny -> 0
+T_ny/B_ny => N(0,1)
 ```
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_dusart.py verify-claim \
-  certificates/analytic/n3_dusart_prime_interval_claim.json \
-  --audit data/analytic/n3_dusart_prime_interval_audit.json
+PYTHONPATH=src python3 src/replay_n3_high_prime.py verify-008 \
+  certificates/analytic/n3_ana_008_final_claim.json \
+  --audit data/analytic/n3_high_prime_limit_audit.json
 ```
 
-## Exact threshold-sweep certificate
+Claim SHA-256: `5723c037725e1bc262bd109b65510d74833a28d8869f27903cd86c33473bf930`.
 
-The request G certificate records the exact minima over every integer `120368 <= n <= 1000000`:
+## Final N3-ANA-009 conditional theorem certificate
 
 ```text
-minimum prime margin: n=120370
-minimum Legendre proof margin: n=131071
-minimum address slack: 57942 at n=120368..120371
-minimum capacity margin: n=120370
+N3-ANA-009: ACCEPTED_WITH_EXTERNAL_BERRY_ESSEEN_DEPENDENCY
+0 < Delta <= B_ny
+abs(x) <= B_ny
+Delta >= (4 C_BE/phi(2)) M_ny
+P{T_ny in [x,x+Delta]} >= (phi(2)/2) Delta/B_ny
 ```
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
-  certificates/analytic/n3_threshold_sweep_claim.json \
-  --audit data/analytic/n3_threshold_sweep_n120368_n1000000.json
+PYTHONPATH=src python3 src/replay_n3_high_prime.py verify-009 \
+  certificates/analytic/n3_ana_009_final_claim.json \
+  --audit data/analytic/n3_high_prime_limit_audit.json
 ```
 
-## Final N3-ANA-011 theorem certificate
+Claim SHA-256: `b3775b62ef887fbaa92e39e1ab729d6f093f360d778edfdc4a52a2a1e3397d7d`.
 
-The request H certificate records the final independent theorem decision:
+## Corruption replay
 
-```text
-request H: ACCEPTED
-N3-ANA-011: ACCEPTED
-integer threshold: 120368
-required semantic corruptions rejected: 6 of 6
-```
-
-Accepted conclusions:
-
-```text
-address legality for every integer n>=120368
-menu cardinality lower bound for every addressed layer
-formal profile capacity at least X_n+1
-```
-
-Explicit exclusions:
-
-```text
-formal-profile injectivity
-distinct numerical sums
-additive occupancy
-factorial half-range theorem
-Erdos Problem 18
-```
+Eight committed fixtures recompute their outer checksums after changing the half-span normalization, growth hypotheses, full-model interpretation, finite/asymptotic classification, coarse-window condition, endpoint error count, external dependency, or fine-window scope.
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-claim \
-  certificates/analytic/n3_ana_011_final_claim.json
-PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
-  tests/n3_adversarial_fixtures
+PYTHONPATH=src python3 src/replay_n3_high_prime.py verify-fixtures \
+  tests/n3_high_prime_fixtures \
+  --audit data/analytic/n3_high_prime_limit_audit.json
 ```
 
-## Final N3-ANA-006 theorem certificate
+All eight must fail semantic verification.
 
-The variance-limit certificate records the independent final decision:
-
-```text
-N3-ANA-006: ACCEPTED
-variance asymptotic: ACCEPTED
-full normalized weak limit: ACCEPTED
-full-model limit: non-Gaussian
-characteristic-function zero: 2*pi/log(2)
-```
-
-Accepted conclusions:
-
-```text
-Var(S_n)/n^2 -> (1/12) sum_p (log p)^2/(p-1)^2
-X_n => sum_p (log p) U_p
-the limiting random series converges in L^2
-the limiting characteristic function is the convergent sinc product
-```
-
-Explicit exclusions:
-
-```text
-high-prime tail CLT N3-ANA-008
-coarse central-window lower bound N3-ANA-009
-additive occupancy
-factorial half-range theorem
-Erdos Problem 18
-```
-
-```bash
-PYTHONPATH=src python3 src/replay_n3_variance.py verify-claim \
-  certificates/analytic/n3_ana_006_final_claim.json \
-  --audit data/analytic/n3_variance_limit_audit.json
-```
-
-Five fixtures recompute their outer checksums after changing the variance constant, prime denominator, Gaussian status, zero frequency, or finite/asymptotic classification. All must still fail semantic verification.
-
-```text
-audit SHA-256: e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119
-claim SHA-256: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
-```
-
-These certificates preserve finite evidence, source-scope decisions, theorem audits, and final scoped theorem decisions. They do not prove the factorial half-range theorem or additive occupancy.
+These certificates do not prove thin-window local limits, additive occupancy, the factorial half-range theorem, or Erdős Problem 18.
