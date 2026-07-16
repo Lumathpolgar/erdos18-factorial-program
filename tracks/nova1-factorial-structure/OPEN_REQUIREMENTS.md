@@ -45,7 +45,7 @@ At most one nonzero term may be selected from each layer.
 
 The structural model is accepted with restrictions by Nova 2. The global occupancy theorem remains open.
 
-## Connected-prefix entropy requirement
+## Connected-prefix count requirement
 
 ### N1-REQ-N2-003
 
@@ -54,8 +54,8 @@ Result label: **conditional theorem** request.
 Imported engine:
 
 - branch: `nova/additive-occupancy`;
-- exact accepted head: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`;
-- results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`.
+- exact accepted head: `2ab09dd980f7116b82530368e3d98bb53240bf0c`;
+- results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, `N2-ADD-122`.
 
 For executed layers define
 
@@ -89,14 +89,83 @@ For every `n>=120368`, success within the frozen layer budget also requires geom
 \exp\left(\frac{n}{85\log n}\right).
 \]
 
+This remains a necessary count gate. By `N1-STR-025`, it is not sufficient because packing utilization can consume nearly all count surplus.
+
+Finite count-surplus values through `n=55` are non-monotone. They must not be extrapolated as an asymptotic trend.
+
+## Effective carrier-utilization requirement
+
+### N1-REQ-N2-006
+
+Result label: **conditional theorem** request.
+
+Imported and independently reconstructed theorem:
+
+- source branch: `nova/additive-occupancy`;
+- exact source commit: `2ab09dd980f7116b82530368e3d98bb53240bf0c`;
+- source theorem: `N2-ADD-122`;
+- Nova 1 reconstruction: `N1-STR-025`.
+
+Let
+
+\[
+F_0=W_n+1,
+\qquad
+F_t=F_{t-1}+s_tU_t,
+\qquad
+s_t=2^{t-1},
+\]
+
+and define
+
+\[
+a_t=\frac{s_tU_t}{F_{t-1}},
+\qquad
+b_t=\frac{1+a_t}{1+K_t}.
+\]
+
+Then exactly
+
+\[
+\frac{F_L}{W_n+1}
+=
+P_n\prod_{t=1}^{L}b_t.
+\]
+
+Put
+
+\[
+R_n=\frac{Y_n+1}{W_n+1},
+\]
+
+\[
+\widetilde\Gamma_n=(P_n/R_n)^{1/L},
+\qquad
+\mathcal B_n=\left(\prod_tb_t\right)^{1/L},
+\qquad
+\Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L}.
+\]
+
+Then
+
+\[
+\Delta_n=\widetilde\Gamma_n\mathcal B_n,
+\]
+
+and endpoint success is equivalent to
+
+\[
+\Delta_n\ge1.
+\]
+
 Accepted next outcomes are:
 
-1. a **proved theorem** giving a uniform lower bound `Gamma_n>=1` for enough exact layers;
-2. a **proved theorem** giving `Gamma_n<1` eventually or infinitely often, retiring the sequential engine;
-3. a **conditional theorem** reducing `Gamma_n>=1` to an explicit divisor-gap statement;
+1. a **proved theorem** giving a uniform lower bound `widetilde Gamma_n * B_n >= 1` for enough exact layers;
+2. a **proved theorem** giving `widetilde Gamma_n * B_n < 1` eventually or infinitely often, retiring the sequential engine;
+3. a **conditional theorem** reducing the effective product to an explicit average-gap or record-gap theorem;
 4. an exact counterexample with a replayable certificate.
 
-Finite values `Gamma_51` through `Gamma_54` are non-monotone. They must not be extrapolated as an asymptotic trend.
+Finite diagnostics for `51<=n<=55` show count surplus between approximately `92` and `125`, utilization root between approximately `0.0080` and `0.0109`, and endpoint root surplus only slightly above one. No asymptotic trend is inferred.
 
 ## Divisor record-gap requirement
 
@@ -108,24 +177,27 @@ Let `D_t` be the exact carrier threshold and let `g_t` be the first record-break
 
 Prove one of:
 
-1. a uniform upper bound on `g_t/D_t` strong enough to force connected-prefix growth meeting `N1-OBS-003`;
-2. a uniform lower obstruction showing record gaps force `Gamma_n<1` eventually or infinitely often;
-3. a conditional theorem reducing the carrier to an explicit theorem about divisor record gaps of
+1. a uniform upper bound on `g_t/D_t`, or a stronger average-gap theorem, sufficient to control the utilization factors in `N1-STR-025`;
+2. a uniform lower obstruction showing utilization forces `Delta_n<1` eventually or infinitely often;
+3. a conditional theorem reducing the carrier to an explicit divisor-gap theorem for
    \[
    D_n=\frac{n!}{3\cdot2^{v_2(n!)}}.
    \]
 
-Finite diagnostic `N1-CMP-007` gives
+Finite diagnostic `N1-CMP-008` gives
 
 \[
-\max_{51\le n\le54,\ 1\le t\le5}\frac{g_t}{D_t}<1.108.
+\max_{51\le n\le55,\ 1\le t\le5}\frac{g_t}{D_t}
+=
+\frac{20891689328819250}{18870510190034037}
+<1.108.
 \]
 
-This is **computational evidence** only. The maximum occurs at `n=51`, layer `4`.
+This is **computational evidence** only. The maximum occurs at `n=51`, layer `4`. A first-blocking-gap ratio alone does not yet control average packing utilization.
 
 ## Finite complete-core requirement
 
-### N1-REQ-N4-006
+### N1-REQ-N4-007
 
 Result label: **finite certificate** request.
 
@@ -136,14 +208,30 @@ Current exact coverage:
 - Nova 1 `N1-FIN-006`: `n=51`;
 - Nova 1 `N1-FIN-007`: `n=52`;
 - Nova 1 `N1-FIN-008`: `n=53`;
-- Nova 1 `N1-FIN-009`: `n=54`.
+- Nova 1 `N1-FIN-009`: `n=54`;
+- Nova 1 `N1-FIN-010`: `n=55`.
 
 Therefore
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le54).
+\qquad(12\le n\le54),
+\]
+
+and
+
+\[
+H_{55!}(\lfloor\sqrt{55!}\rfloor+1)
+\le23.
+\]
+
+Consequently,
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le23
+\qquad(12\le n\le55).
 \]
 
 Nova 4 must independently reconstruct:
@@ -158,22 +246,24 @@ Nova 4 must independently reconstruct:
 8. connected maxima and exact `K_t` values;
 9. blocking gaps, endpoints, margins, and term bounds;
 10. two distinct explicit partition replays;
-11. exact normalized surplus identities;
-12. runtime-aware partition planning with explicit column bounds;
-13. fail-closed integer and resource boundaries.
+11. exact `N1-STR-025` effective-factor identities;
+12. the term-bound transition caused by `r_55=17`;
+13. runtime-aware partition planning with explicit column bounds;
+14. fail-closed integer and resource boundaries.
 
 Current artifacts:
 
 - `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`;
 - `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md`;
+- `proofs/EFFECTIVE_CARRIER_FACTORIZATION_RECONSTRUCTION.md`;
 - `verification/marker_three_mitm_prefix_u128.cpp`;
 - `verification/plan_mitm_partition.py`;
-- `verification/FULL_CORE_N54_REPORT.md`;
-- `verification/full_core_n54_mitm_mask255.txt`;
-- `verification/full_core_n54_mitm_mask223.txt`;
-- `verification/test_mitm_n54_partition.py`.
+- `verification/FULL_CORE_N55_REPORT.md`;
+- `verification/full_core_n55_mitm_mask9.txt`;
+- `verification/full_core_n55_mitm_mask808.txt`;
+- `verification/test_mitm_n55_effective.py`.
 
-The next finite target is `n=55`. Resource exhaustion must be reported as unknown due to resource limits, never as mathematical failure.
+The next finite target is `n=56`. Resource exhaustion must be reported as unknown due to resource limits, never as mathematical failure.
 
 ## Collision requirement
 
@@ -258,14 +348,15 @@ under the current frozen endpoint convention.
 - connected-prefix entropy necessity;
 - unique-parent exact stream;
 - meet-in-the-middle exact stream;
-- layer-normalized entropy identity;
-- exact complete-core carrier coverage through `n=54`.
+- layer-normalized count identity;
+- exact effective carrier factorization;
+- exact complete-core carrier coverage through `n=55`.
 
 ## Open structural requirements
 
-- uniform normalized connected-prefix lower or upper bounds;
-- uniform divisor record-gap control;
-- exact finite extension beginning at `n=55`;
+- uniform effective count-utilization lower or upper bounds;
+- uniform divisor record-gap or average-gap control;
+- exact finite extension beginning at `n=56`;
 - uniform quotient maximum downward gap at most `W_n`;
 - downward endpoint-window occupancy;
 - target-local collision control;
