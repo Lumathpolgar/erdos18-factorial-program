@@ -4,7 +4,7 @@
 
 - Track: Factorial Structure and Reduction
 - Branch: `nova/factorial-structure`
-- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N51_CONNECTED_PREFIX_ENTROPY_OPEN`
+- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N52_CONNECTED_PREFIX_ENTROPY_OPEN`
 
 The factorial half-range theorem remains open.
 
@@ -83,6 +83,7 @@ The exact numerical tilt exists, the additive span is one, and the only torus re
 | N1-COL-001 | proved theorem | Exponential carry collisions prove profile noninjectivity | `proofs/RAINBOW_CARRY_COLLISIONS.md` |
 | N1-OBS-003 | proved theorem | Successful connected-core carrier requires geometric-mean connected-prefix size at least `exp(n/(85 log n))` | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent divisor streaming and record-gap counts recover exact connected maxima and prefix sizes | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
+| N1-STR-023 | proved theorem | Balanced meet-in-the-middle product streams recover the exact divisor order and connected prefixes with heap size `O(sqrt(tau(D_n)))` | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
 
 ## Conditional results
 
@@ -100,16 +101,19 @@ The exact numerical tilt exists, the additive span is one, and the only torus re
 | N1-CMP-005 | finite certificate | Factorial blocks, one-block ceiling, and carry collisions | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
 | N1-FIN-005 | finite certificate | Complete truncated odd-core carrier reaches `Y_n` for every `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
 | N1-FIN-006 | finite certificate | Exact streaming carrier reaches `Y_51` in six layers and records all six `K_t` values | `verification/FULL_CORE_N51_REPORT.md` |
+| N1-FIN-007 | finite certificate | Exact meet-in-the-middle carrier reaches `Y_52` in six layers and records all six `K_t` values | `verification/FULL_CORE_N52_REPORT.md` |
 | N2-FIN-202 | finite certificate | Imported complete-menu carrier reaches `Y_n` for every `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 
 Together, the exact complete-core carrier gives
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
-\qquad(12\le n\le51).
+\qquad(12\le n\le52).
 \]
 
 This is a finite theorem only.
+
+At `n=52`, the connected-prefix product exceeds the exact finite `N1-OBS-003` requirement by an integer factor of at least `866,765,166,748`. This factor is smaller than the `n=51` factor, so finite entropy-margin growth is not monotone across these two values.
 
 ## Disproved routes
 
@@ -134,12 +138,12 @@ This is a finite theorem only.
 - total endpoint support;
 - one-block carrier ceiling;
 - profile-map noninjectivity;
-- exact bounded-memory connected-core certification through `n=51`.
+- exact low-memory connected-core certification through `n=52`.
 
 ## Exact open blockers
 
 1. Prove or disprove connected prefixes of geometric-mean size `exp(Omega(n/log n))` under the exact carrier thresholds.
-2. Extend exact finite certification beginning at `n=52`.
+2. Extend exact finite certification beginning at `n=53`.
 3. Prove or disprove the full quotient downward-window theorem.
 4. Prove downward endpoint-window occupancy, not only total endpoint reach.
 5. Upper-bound target-local collision multiplicity or additive energy.
@@ -155,14 +159,16 @@ python tracks/nova1-factorial-structure/verification/structural_sanity.py
 python tracks/nova1-factorial-structure/verification/marker_three_sanity.py
 python tracks/nova1-factorial-structure/verification/endpoint_support_sanity.py
 python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
+python tracks/nova1-factorial-structure/verification/test_mitm_overlap.py
 
 g++ -O3 -std=c++20 \
-  tracks/nova1-factorial-structure/verification/marker_three_streaming_prefix_u128.cpp \
-  -o marker_three_streaming_prefix_u128
+  tracks/nova1-factorial-structure/verification/marker_three_mitm_prefix_u128.cpp \
+  -o marker_three_mitm_prefix_u128
 
-./marker_three_streaming_prefix_u128 51 30000000
+./marker_three_mitm_prefix_u128 51
+./marker_three_mitm_prefix_u128 52
 ```
 
 ## Next theorem target
 
-Prove a uniform lower bound on the complete zero-connected prefix cardinalities `K_t` strong enough to meet `N1-OBS-003`, or prove a contrary uniform upper bound. In parallel, extend the exact streaming certificate to `n=52` and continue the final-only collision-aware phase-dispersion route.
+Prove a uniform lower bound on the complete zero-connected prefix cardinalities `K_t` strong enough to meet `N1-OBS-003`, or prove a contrary uniform upper bound. In parallel, extend the exact meet-in-the-middle certificate to `n=53` and continue the final-only collision-aware phase-dispersion route.
