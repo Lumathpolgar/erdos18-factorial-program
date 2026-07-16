@@ -65,7 +65,7 @@ C_n=\{1,2,4,\ldots,2^{r_n-1}\}.
 The complete connected-core carrier is exactly certified for
 
 \[
-12\le n\le53.
+12\le n\le54.
 \]
 
 In this range,
@@ -81,6 +81,7 @@ Recent certificates:
 | N1-FIN-006 | 51 | unique-parent stream | 6 | 22 |
 | N1-FIN-007 | 52 | meet-in-the-middle stream | 6 | 22 |
 | N1-FIN-008 | 53 | dual-partition meet-in-the-middle stream | 6 | 22 |
+| N1-FIN-009 | 54 | runtime-aware dual-partition meet-in-the-middle stream | 6 | 22 |
 
 Normalized finite surplus values are
 
@@ -89,10 +90,32 @@ Normalized finite surplus values are
 \quad
 \Gamma_{52}=97.645052132,
 \quad
-\Gamma_{53}=124.609364763.
+\Gamma_{53}=124.609364763,
+\quad
+\Gamma_{54}=92.273264367.
 \]
 
 The finite sequence is non-monotone. No asymptotic conclusion is drawn.
+
+Across the twenty blocked layers for `51<=n<=54`, the finite first-blocking-gap ratio satisfies
+
+\[
+\max g_t/D_t<1.108.
+\]
+
+Result label: **computational evidence**. This is not a uniform theorem.
+
+### Exact computational architecture
+
+`N1-STR-023` allows any partition of the odd prime-power coordinates. Balanced partitions minimize the larger half-list size, but finite runtime is also controlled by the number of active merge rows.
+
+At `n=54`:
+
+- balanced `18,720 x 18,720` partition: exact but did not finish within the six-minute execution boundary;
+- mask `255`: `128 x 2,737,800`, exact certificate in `15.31` seconds;
+- mask `223`: `512 x 684,450`, exact certificate in `18.57` seconds.
+
+The balanced timeout is a resource boundary for that partition, not a mathematical failure.
 
 ### Exact open component
 
@@ -114,6 +137,7 @@ has a rainbow sum in
 - collision concentration;
 - quotient additive shell gaps;
 - insufficient normalized connected-prefix entropy;
+- failure of a uniform divisor record-gap bound;
 - failure of compact phase dispersion;
 - a proof that silently becomes sequential when claiming a final-only result.
 
@@ -190,4 +214,5 @@ Every future revision must include:
 16. finite test plan;
 17. asymptotic failure condition;
 18. exact result labels;
-19. replayable certificates with fail-closed resource boundaries.
+19. replayable certificates with fail-closed resource boundaries;
+20. runtime-aware partition planning for exact streams.
