@@ -4,6 +4,8 @@
 
 Every entry has one research result class. Symbolic proof, conditional implication, finite certificate, computational evidence, and disproved inference remain separate.
 
+The factorial half-range theorem and Erdős Problem 18 remain open.
+
 ## Product and logarithmic divisor model
 
 ### N3-ANA-004, exact exponent product and exponential tilt
@@ -144,8 +146,8 @@ Every entry has one research result class. Symbolic proof, conditional implicati
 - Class: `proved theorem`
 - Current Nova 1 inspected head: `1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`
 - Current Nova 2 inspected head: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`
-- Conclusion: later structural, endpoint, carrier, streaming, and collision commits preserve the exact marker-three numerical label definitions
-- Proofs: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`, `proofs/POST_PREFIX_TILT_AND_COLLISION.md`, and `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
+- Conclusion: later structural, endpoint, carrier, streaming, and collision commits preserve the exact marker-three numerical labels
+- Proofs: `proofs/MARKER_THREE_NUMERICAL_LAW_FOUNDATIONS.md`, `proofs/POST_PREFIX_TILT_AND_COLLISION.md`, `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
 
 ### N3-ANA-018, tilt existence, span, and exact resonance set
 
@@ -250,7 +252,7 @@ Every entry has one research result class. Symbolic proof, conditional implicati
   \[
   |\Phi(\pi)|
   \ge
-  1-rac{4e^{\varepsilon_n}}{m_n+1}
+  1-\frac{4e^{\varepsilon_n}}{m_n+1}
   \to1.
   \]
 - Exact twin identity:
@@ -310,6 +312,90 @@ Every entry has one research result class. Symbolic proof, conditional implicati
   \]
 - Proof: `proofs/PARITY_TWIN_AND_ODD_REDUCTION.md`
 
+## Transformed dyadic resonance ladder
+
+### N3-ANA-026, exact dyadic finite-prefix factorization
+
+- Class: `proved theorem`
+- For
+  \[
+  \theta_j=\frac{\pi}{2^{j-1}},
+  \qquad1\le j\le M_n-1,
+  \]
+  the matching layer satisfies
+  \[
+  \widetilde\phi_{j+1}(\theta_j)
+  =2p_{j+1}^{(0)}-1,
+  \]
+  every layer `t>=j+2` satisfies
+  \[
+  \widetilde\phi_t(\theta_j)=1,
+  \]
+  and
+  \[
+  \widetilde\Phi(\theta_j)
+  =
+  \left(\prod_{t=1}^{j}\widetilde\phi_t(\theta_j)\right)
+  (2p_{j+1}^{(0)}-1).
+  \]
+- Exact global conclusion: there is no nonzero dyadic modulus-one resonance because the first transformed support contains `0` and `1`
+- Structural conclusion: every nonzero dyadic frequency has an exact tail resonance
+- Proof: `proofs/TRANSFORMED_DYADIC_RESONANCE_LADDER.md`
+
+### N3-ANA-027, matching-layer near-pure sign and tail collapse
+
+- Class: `proved theorem and disproved route estimate`
+- Define
+  \[
+  J_n
+  =
+  \min\left(
+  M_n-1,
+  \left\lfloor
+  1+\log_2
+  \frac{2^{M_n}-1}{16M_n\log L_n}
+  \right\rfloor
+  \right).
+  \]
+- Then
+  \[
+  J_n=M_n-O(\log\log n).
+  \]
+- Uniformly for `1<=j<=J_n`:
+  \[
+  p_{j+1}^{(0)}\le\frac{2e}{m_n+1},
+  \]
+  \[
+  |\widetilde\phi_{j+1}(\theta_j)|
+  \ge1-\frac{4e}{m_n+1},
+  \]
+  and
+  \[
+  \sum_{t=j+1}^{M_n}
+  \widetilde{\mathcal D}_t(\theta_j)
+  \le\frac{4e}{m_n+1}.
+  \]
+- Disproved mechanism: a fixed positive proportion of all transformed tail layers contributes fixed phase dispersion at every nonzero minor-arc frequency
+- Boundary: full-product decay may still come from the first `j` transformed coordinates
+- Proof: `proofs/TRANSFORMED_DYADIC_RESONANCE_LADDER.md`
+
+### N3-ANA-028, transformed-window dyadic kernel classification
+
+- Class: `proved theorem`
+- Let
+  \[
+  N_{n,q}=|J_{n,q}|.
+  \]
+- Exact valuation:
+  \[
+  v_2(N_{n,q})\in\{0,1\}.
+  \]
+- More precisely, `v_2(N_{n,q})=1` exactly when `rho_n` and `q` are both even; otherwise `N_{n,q}` is odd
+- At a reduced dyadic frequency `2pi a/2^d`, the transformed interval kernel vanishes exactly when `2^d|N_{n,q}`
+- Consequence: it never vanishes at reduced dyadic frequencies with denominator at least `4`; at `pi` it vanishes only in the even-even case
+- Boundary: nonvanishing at isolated points is not itself an integral obstruction
+- Proof: `proofs/TRANSFORMED_DYADIC_RESONANCE_LADDER.md`
+
 ## Finite certificates
 
 ### N3-FIN-001
@@ -346,8 +432,13 @@ Every entry has one research result class. Symbolic proof, conditional implicati
 
 - Exact small support construction for `n in {12,15}`
 - Checks: parity structure, `pi` identity, parity-twin identity, transformed coordinate law, and transformed interval map
-- Large closed-form rows: `n in {120368,200000,500000,1000000}`
 - Verifier: `proofs/parity_twin_sanity.py`
+
+### N3-FIN-008
+
+- Exact transformed dyadic checks for `n in {12,15}`
+- Checks: matching-layer factor, exact later-layer invisibility, finite-prefix product identity, transformed window length, and dyadic kernel-zero criterion
+- Verifier: `proofs/transformed_dyadic_sanity.py`
 
 ## Computational evidence
 
@@ -357,6 +448,7 @@ Every entry has one research result class. Symbolic proof, conditional implicati
 - `N3-COMP-004`: small numerical marker-three tilt grids
 - `N3-COMP-005`: post-prefix tilt scales
 - `N3-COMP-006`: parity-zero ceiling and `pi` modulus floors at selected large `n`
+- `N3-COMP-007`: dyadic safe-depth, matching-layer modulus, tail-dispersion, and transformed-window valuation rows for `n in {120368,200000,500000,1000000}`
 
 ## Open candidate contracts
 
@@ -370,8 +462,10 @@ Compact-tilt coarse logarithmic windows are proved for the top-prime band. Fine 
 
 ### N3-CAND-CF-001
 
-The unnormalized numerical law has a forced parity twin at `pi`. The active candidate is aggregate phase dispersion for the exact odd-lattice normalized product law from `N3-ANA-025`, together with a collision-aware reference law and transformed weighted Fourier inequality.
+The unnormalized numerical law has a forced parity twin at `pi`. The normalized law has an exact dyadic finite-prefix skeleton. The active candidate is a prefix-residue or prefix-characteristic theorem in neighborhoods of the dyadic ladder frequencies, matched to the transformed window kernel and a collision-aware reference law.
 
 ## Promotion rule
 
-N3-ANA-023 rejects a zero-only major-arc partition for the unnormalized law. N3-ANA-025 supplies the exact parity normalization. None of N3-ANA-014 through N3-ANA-025 proves the transformed dispersion theorem, the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
+N3-ANA-023 rejects a zero-only major-arc partition for the unnormalized law. N3-ANA-025 supplies the exact parity normalization. N3-ANA-026 through N3-ANA-028 reject a many-tail-layers dispersion mechanism at the transformed dyadic ladder and freeze the exact kernel cancellation pattern.
+
+None of N3-ANA-014 through N3-ANA-028 proves transformed local-window positivity, the strict weighted Fourier inequality, quotient occupancy, the factorial half-range theorem, or `INT-002`.
