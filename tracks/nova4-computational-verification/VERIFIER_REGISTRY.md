@@ -178,6 +178,73 @@ PYTHONPATH=src python3 src/replay_n3_scale.py verify /tmp/n3_scale_evidence.json
 
 The verifier records the frozen script's tail-ratio label as `NEEDS_REPAIR_FOR_TAIL_RATIO_LABEL`; it does not reject the theorem statement from that implementation mismatch.
 
+## N4-AUD-007: Nova 3 characteristic-recurrence verifier
+
+Status: `ACTIVE`
+
+Result classes: `proved theorem audit` and `computational evidence`.
+
+Frozen input:
+
+```text
+branch: nova/analytic-density
+superseding handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+proof commit: ff57005b975c4917341306bd0eceb6d05a9b18f6
+request: D
+object: N3-ANA-007
+```
+
+Implementation:
+
+```text
+src/factorial_lab/n3_recurrence.py
+src/replay_n3_recurrence.py
+```
+
+Schemas:
+
+```text
+data/analytic/n3_characteristic_recurrence_index.schema.json
+data/analytic/n3_characteristic_recurrence_evidence.schema.json
+certificates/analytic/n3_recurrence_candidate.schema.json
+```
+
+Independent checks:
+
+- exact prime sieve and factorial valuations;
+- declared contiguous bounded `q` range and frequency blocks;
+- exhaustive binary64 ranking of every `q` for every `3<=n<=12`;
+- exact prime-2 recurrence under `t_q=2*pi*q/log(2)`;
+- top-eight finalist retention for every `n` and block;
+- 80-digit Decimal logarithms, Machin-formula pi, and sine-series reevaluation;
+- exact exponent-vector counts and direct complex averaging;
+- full semantic checksum and frozen handoff/proof metadata;
+- independently recomputed candidate fields and modulus range.
+
+Corruption behavior:
+
+- rehashed false characteristic modulus is rejected;
+- rehashed changed frequency parameter is rejected;
+- rehashed direct-average corruption is rejected;
+- wrong frozen-source metadata is rejected.
+
+Replay:
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_recurrence.py audit \
+  --output /tmp/n3_characteristic_recurrence_evidence.json \
+  --block-csv /tmp/n3_characteristic_recurrence_blocks.csv \
+  --best-csv /tmp/n3_characteristic_recurrence_best.csv \
+  --candidate /tmp/n3_recurrence_candidate_n12.json
+PYTHONPATH=src python3 src/replay_n3_recurrence.py verify \
+  /tmp/n3_characteristic_recurrence_evidence.json
+PYTHONPATH=src python3 src/replay_n3_recurrence.py verify-candidate \
+  certificates/analytic/n3_recurrence_candidate_n12.json
+```
+
+Theorem acceptance rests on an independent reconstruction of the simultaneous-recurrence proof. The bounded scan is supporting evidence only and does not certify an unbounded recurrence rate or a maximum outside the grid.
+
 ## Test command
 
 ```bash
