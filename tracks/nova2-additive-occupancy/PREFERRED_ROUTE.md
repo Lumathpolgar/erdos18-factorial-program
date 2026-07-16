@@ -32,7 +32,7 @@ Prove every final quotient window occupied while preserving one choice per layer
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved `N2-ADD-119` through `N2-ADD-126` and obstructions `N2-OBS-109`, `N2-OBS-110`.
+Nova 2 proved `N2-ADD-119` through `N2-ADD-128` and obstructions `N2-OBS-109`, `N2-OBS-110`.
 
 For one layer,
 
@@ -104,17 +104,42 @@ U_t\ge\left\lceil\sqrt{C_n}\right\rceil
 
 applies to layers five and six in every exact row `51<=n<=55`. It improves the parity product by about five to six decimal orders, but still leaves a deficit of roughly `10^23` through `10^25`.
 
+### Rankin smooth-divisor bound
+
+For every `sigma>0`, define
+
+\[
+Z_n(\sigma)
+=\sum_{d\mid C_n}d^{-\sigma}
+=\prod_{p^e\parallel C_n}
+\frac{1-p^{-(e+1)\sigma}}{1-p^{-\sigma}}.
+\]
+
+N2-ADD-127 proves
+
+\[
+U_t\ge
+\left(\frac{K_t}{Z_n(\sigma)}\right)^{1/\sigma}.
+\]
+
+N2-ADD-128 combines this Rankin radius with parity and the complement median in one explicit carrier product. This is the first factorial-specific span theorem that operates at every layer.
+
+On `51<=n<=55`, the Rankin-median lower bound improves the median-hybrid product by another `10^3.4` through `10^4.2`, but still leaves an endpoint deficit of roughly `10^19.6` through `10^20.6`.
+
 ### Retired or insufficient inputs
 
 - First external blocking-gap estimates cannot control utilization by N2-OBS-109.
 - Prefix count plus parity cannot supply the missing expansion by N2-OBS-110.
-- Median complement symmetry alone is insufficient in the exact finite diagnostics N2-CMP-207.
+- Median complement symmetry alone is insufficient in N2-CMP-207.
+- The one-parameter Rankin moment alone is insufficient in N2-CMP-208.
 
-The active rank-three input is now a substantially deeper lower-tail count for divisors of `C_n`, equivalently an upper bound for
+The active rank-three input is now a stronger lower-tail count than the one-parameter Rankin moment, equivalently a sharper upper bound for
 
 \[
 c_{\tau_n+1-K_t}.
 \]
+
+Promising engines are a saddle-point divisor estimate, a multi-parameter exponential moment, a multi-parameter exponent box, or a direct smooth-divisor count.
 
 N2-ADD-123 still gives lower-bound criteria that force `Delta_n>=1` and upper-bound criteria that force `Delta_n<1` and retire rank 3.
 
@@ -149,6 +174,7 @@ The smallest unaudited finite parameter is `n=56`.
 - First-blocking-gap ratios do not control utilization by `N2-OBS-109`.
 - Count-threshold parity data cannot improve the sharp span baseline by `N2-OBS-110`.
 - Median complement symmetry does not close the finite endpoint lower bound by `N2-CMP-207`.
+- The one-parameter Rankin moment does not close the finite endpoint lower bound by `N2-CMP-208`.
 - Uniform fixed-law convolution is heuristic only.
 - One-anchor characteristic decay is insufficient by `N3-ANA-021`.
 
@@ -160,7 +186,7 @@ Prove aggregate phase dispersion or a collision-aware weighted Fourier inequalit
 
 ### Sequential target
 
-Construct a certified lower-tail divisor family for `C_n` strong enough to upper-bound `c_(tau_n+1-K_t)` at the active layer ranks.
+Replace the one-parameter Rankin lower-tail bound by a saddle-point or multi-parameter divisor-count theorem strong enough to control `c_(tau_n+1-K_t)` at the active layer ranks.
 
 ### Finite target
 
