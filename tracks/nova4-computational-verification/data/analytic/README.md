@@ -1,6 +1,8 @@
 # Nova 3 Analytic Data
 
-Frozen source: `nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515`, handoff `N3-HO-N4-001`.
+Nova 3 requests A through C were frozen against `nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515`, handoff `N3-HO-N4-001`.
+
+Request D was re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`, with the product-model proof pinned separately to `ff57005b975c4917341306bd0eceb6d05a9b18f6`.
 
 ## Moment and local-ceiling certificate
 
@@ -25,4 +27,24 @@ PYTHONPATH=src python3 src/replay_n3_scale.py verify /tmp/n3_scale_evidence.json
 
 The scale evidence also records that the frozen script's high-prime diagnostic is twice the theorem-defined `M/B` because the script omits the factor `1/2` in `M`.
 
-All finite tables are computational evidence only. They do not prove an asymptotic theorem.
+## Bounded characteristic recurrence evidence
+
+Request D covers every `3 <= n <= 12` and every integer `1,000 <= q <= 2,000,000` under
+
+```text
+t_q = 2*pi*q/log(2).
+```
+
+The committed index and CSV tables record 40 frequency-block winners and ten global winners. The retained finalists are reevaluated with 80-digit Decimal arithmetic and independently cross-checked through direct exact divisor exponent-vector averaging.
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_recurrence.py audit \
+  --output /tmp/n3_characteristic_recurrence_evidence.json \
+  --block-csv /tmp/n3_characteristic_recurrence_blocks.csv \
+  --best-csv /tmp/n3_characteristic_recurrence_best.csv \
+  --candidate /tmp/n3_recurrence_candidate_n12.json
+PYTHONPATH=src python3 src/replay_n3_recurrence.py verify \
+  /tmp/n3_characteristic_recurrence_evidence.json
+```
+
+All finite tables are computational evidence only. They do not prove an asymptotic theorem, a recurrence rate, or a maximum outside the declared search domain.
