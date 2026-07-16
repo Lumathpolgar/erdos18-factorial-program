@@ -32,7 +32,7 @@ Prove every final quotient window occupied while preserving one choice per layer
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved `N2-ADD-119` through `N2-ADD-124` and obstructions `N2-OBS-109`, `N2-OBS-110`.
+Nova 2 proved `N2-ADD-119` through `N2-ADD-126` and obstructions `N2-OBS-109`, `N2-OBS-110`.
 
 For one layer,
 
@@ -50,7 +50,7 @@ The exact endpoint factor remains
 \Delta_n=\widetilde\Gamma_n\left(\prod_tb_t\right)^{1/L}.
 \]
 
-### Sharp universal baseline
+### Universal baseline
 
 Oddness gives
 
@@ -66,36 +66,57 @@ and hence
 \frac{D_t+2K_t}{D_t+1}.
 \]
 
-Therefore
-
-\[
-\prod_t\frac{D_t+2K_t}{D_t+1}
-\ge
-\frac{Y_n+1}{W_n+1}
-\]
-
-is sufficient for endpoint coverage.
-
 N2-OBS-110 proves this bound is optimal if one uses only oddness, `K_t`, and `D_t`. The finite parity-only criterion misses the true endpoint scale by roughly `10^28` through `10^31` for `51<=n<=55`.
 
-### Retired inputs
+### Exact factorial reduction
+
+Put
+
+\[
+C_n=\frac{n!}{3\,2^{v_2(n!)}},
+\]
+
+with divisors
+
+\[
+1=c_1<\cdots<c_{\tau_n}=C_n.
+\]
+
+N2-ADD-125 proves
+
+\[
+U_t c_{\tau_n+1-K_t}=C_n.
+\]
+
+Therefore rank three is exactly a lower-tail divisor-quantile problem. If at least `tau_n-K_t+1` divisors lie at or below `B`, then
+
+\[
+U_t\ge\frac{C_n}{B}.
+\]
+
+The median corollary
+
+\[
+K_t>\frac{\tau_n}{2}
+\Longrightarrow
+U_t\ge\left\lceil\sqrt{C_n}\right\rceil
+\]
+
+applies to layers five and six in every exact row `51<=n<=55`. It improves the parity product by about five to six decimal orders, but still leaves a deficit of roughly `10^23` through `10^25`.
+
+### Retired or insufficient inputs
 
 - First external blocking-gap estimates cannot control utilization by N2-OBS-109.
 - Prefix count plus parity cannot supply the missing expansion by N2-OBS-110.
+- Median complement symmetry alone is insufficient in the exact finite diagnostics N2-CMP-207.
 
-The active rank-three input is now factorial-specific span amplification
-
-\[
-A_t=\frac{U_t}{2K_t-1},
-\]
-
-or equivalently a factorial-specific bound for
+The active rank-three input is now a substantially deeper lower-tail count for divisors of `C_n`, equivalently an upper bound for
 
 \[
-\eta_t=\frac{U_t}{K_tD_t}.
+c_{\tau_n+1-K_t}.
 \]
 
-N2-ADD-123 gives lower-bound criteria that force `Delta_n>=1` and upper-bound criteria that force `Delta_n<1` and retire rank 3.
+N2-ADD-123 still gives lower-bound criteria that force `Delta_n>=1` and upper-bound criteria that force `Delta_n<1` and retire rank 3.
 
 ### Exact finite coverage
 
@@ -127,6 +148,7 @@ The smallest unaudited finite parameter is `n=56`.
 - Count surplus without utilization is not an endpoint theorem by `N2-ADD-122`.
 - First-blocking-gap ratios do not control utilization by `N2-OBS-109`.
 - Count-threshold parity data cannot improve the sharp span baseline by `N2-OBS-110`.
+- Median complement symmetry does not close the finite endpoint lower bound by `N2-CMP-207`.
 - Uniform fixed-law convolution is heuristic only.
 - One-anchor characteristic decay is insufficient by `N3-ANA-021`.
 
@@ -138,7 +160,7 @@ Prove aggregate phase dispersion or a collision-aware weighted Fourier inequalit
 
 ### Sequential target
 
-Prove pointwise or averaged factorial-specific lower or upper bounds for `A_t=U_t/(2K_t-1)` under the exact connected-prefix thresholds.
+Construct a certified lower-tail divisor family for `C_n` strong enough to upper-bound `c_(tau_n+1-K_t)` at the active layer ranks.
 
 ### Finite target
 
