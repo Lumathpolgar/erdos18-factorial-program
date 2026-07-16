@@ -14,6 +14,8 @@
 | N2-ADD-122 | proved theorem | Exact carrier growth factors into prefix count and packing utilization | `proofs/EFFECTIVE_CARRIER_ENTROPY_FACTORIZATION.md` |
 | N2-ADD-123 | proved theorem | Average internal gaps give a two-sided utilization sandwich and exact success or failure criteria | `proofs/AVERAGE_GAP_UTILIZATION_CRITERION.md` |
 | N2-ADD-124 | proved theorem | Odd-core parity gives the sharp lower bounds `U_t>=2K_t-1` and `F_t/F_(t-1)>(D_t+2K_t)/(D_t+1)` | `proofs/PARITY_SPAN_COUNT_THRESHOLD_CRITERION.md` |
+| N2-ADD-125 | proved theorem | Divisor complement symmetry gives the exact identity `U_t c_(tau_n+1-K_t)=C_n` | `proofs/DIVISOR_COMPLEMENT_QUANTILE_SPAN.md` |
+| N2-ADD-126 | proved theorem | Certified lower-tail divisor counts and the divisor median give factorial-specific carrier-span lower bounds | `proofs/DIVISOR_COMPLEMENT_QUANTILE_SPAN.md` |
 | N2-OBS-109 | proved obstruction theorem | The first blocking gap, even together with `D` and `K`, cannot uniformly control utilization | `proofs/AVERAGE_GAP_UTILIZATION_CRITERION.md` |
 | N2-OBS-110 | proved obstruction theorem | Count, threshold, and oddness alone cannot improve the parity-span lower bound by a fixed factor | `proofs/PARITY_SPAN_COUNT_THRESHOLD_CRITERION.md` |
 
@@ -119,7 +121,27 @@ and the sufficient count-to-threshold condition
 \frac{Y_n+1}{W_n+1}.
 \]
 
-N2-OBS-110 proves this baseline is optimal among abstract odd-core carriers with only `K_t` and `D_t` specified. Any stronger theorem must use factorial-specific internal-span information.
+N2-OBS-110 proves this baseline is optimal among abstract odd-core carriers with only `K_t` and `D_t` specified.
+
+For
+
+\[
+C_n=\frac{n!}{3\,2^{v_2(n!)}},
+\]
+
+let its divisors be `c_1<...<c_(tau_n)`. N2-ADD-125 proves
+
+\[
+U_t c_{\tau_n+1-K_t}=C_n.
+\]
+
+Thus the exact factorial span frontier is the complementary lower-tail order statistic. If a certified bound gives at least `tau_n-K_t+1` divisors at or below `B`, then N2-ADD-126 gives
+
+\[
+U_t\ge\frac{C_n}{B}.
+\]
+
+In particular, `K_t>tau_n/2` implies `U_t>=ceil(sqrt(C_n))`.
 
 ## Finite certificates
 
@@ -148,15 +170,15 @@ The smallest unaudited finite parameter is `n=56`.
 
 ## Finite utilization diagnostics
 
-| `n` | count surplus | utilization root | endpoint surplus | parity-only root ratio |
-|---:|---:|---:|---:|---:|
-| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 | 0.0000257773398727324 |
-| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 | 0.0000185652131315783 |
-| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 | 0.0000139117330218277 |
-| 54 | 92.273264366777 | 0.010837378971591 | 1.000000334888580 | 0.00000997734788683994 |
-| 55 | 98.919733584849 | 0.010109209300122 | 1.000000290721510 | 0.00000761958530584015 |
+| `n` | endpoint surplus | parity-only root ratio | median-hybrid root ratio |
+|---:|---:|---:|---:|
+| 51 | 1.000004144206103 | 0.0000257773398727324 | 0.000145487587879522 |
+| 52 | 1.000001025305911 | 0.0000185652131315783 | 0.000123906257046752 |
+| 53 | 1.000001967025492 | 0.0000139117330218277 | 0.0000907853071519960 |
+| 54 | 1.000000334888580 | 0.00000997734788683994 | 0.0000892960011035230 |
+| 55 | 1.000000290721510 | 0.00000761958530584015 | 0.0000740382055592177 |
 
-The parity-only product falls below the exact endpoint scale by roughly `10^28` through `10^31` on this finite range. This is `N2-CMP-206`, computational evidence only.
+The parity-only product falls below the exact endpoint scale by roughly `10^28` through `10^31`. The median-hybrid product improves this by about `10^4.5` through `10^5.9`, but still falls below the endpoint scale by roughly `10^23` through `10^25`. These are `N2-CMP-206` and `N2-CMP-207`, computational evidence only.
 
 ## Cross-track decisions
 
@@ -168,7 +190,7 @@ The parity-only product falls below the exact endpoint scale by roughly `10^28` 
 ## Open factorial nodes
 
 1. Prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
-2. Prove factorial-specific lower or upper bounds for the span amplification `U_t/(2K_t-1)` or the average internal-gap factors `eta_t`.
+2. Prove lower-tail divisor-count bounds or complementary-order-statistic bounds strong enough to control `U_t` beyond the median theorem.
 3. Extend exact finite certification from `n=56`.
 4. Prove asymptotic endpoint-window coverage.
 5. Upper-bound target-local collision multiplicity or additive energy.
