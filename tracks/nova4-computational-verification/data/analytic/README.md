@@ -2,7 +2,7 @@
 
 Nova 3 requests A through C were frozen against `nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515`, handoff `N3-HO-N4-001`.
 
-Requests D through F were re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`.
+Requests D through G were re-frozen against superseding handoff `N3-HO-N4-002` at commit `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`.
 
 ## Moment and local-ceiling certificate
 
@@ -52,6 +52,18 @@ PYTHONPATH=src python3 src/replay_n3_dusart.py verify-claim \
   --audit data/analytic/n3_dusart_prime_interval_audit.json
 ```
 
-The exact endpoint witness is `pi(120368)-pi(60184)=5254`. The threshold `120368` is the smallest integer covered directly by the two unsupplemented source hypotheses, not a claim of the globally smallest possible theorem threshold.
+## Exact threshold sweep
 
-All finite tables are computational evidence or source and theorem audits only. They do not prove an asymptotic factorial theorem.
+Request G checks every integer `120368 <= n <= 1000000` and records the exact prime, Legendre, certified ceiling, address, and conservative formal-capacity minima.
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_threshold.py verify \
+  data/analytic/n3_threshold_sweep_n120368_n1000000.json
+PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
+  certificates/analytic/n3_threshold_sweep_claim.json \
+  --audit data/analytic/n3_threshold_sweep_n120368_n1000000.json
+```
+
+The threshold sweep covers 879,633 integers. Its full audit semantic SHA-256 is `e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0`.
+
+All finite tables are computational evidence or finite certificates only. They do not prove an asymptotic factorial theorem, profile injectivity, or additive occupancy.
