@@ -2,10 +2,10 @@
 
 ## Route decision
 
-- Decision ID: `N3-ROUTE-006`
+- Decision ID: `N3-ROUTE-007`
 - Status: `PROVED` as a route ranking and obstruction decision
 - Final quotient occupancy: `OPEN`
-- Date: 2026-07-15
+- Date: 2026-07-16
 
 ## Mandatory model distinction
 
@@ -35,13 +35,6 @@ Exact sources:
 - Nova 2: `nova/additive-occupancy@e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`;
 - active contract: `N2-HO-N3-003`.
 
-The unnormalized supports are
-
-\[
-B_t(n)=
-\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
-\]
-
 The exact post-prefix target range is
 
 \[
@@ -49,21 +42,13 @@ m_n(2^{M_n}-1)+W_n+1
 \le q\le Y_n.
 \]
 
-Closed foundations:
-
-- unique finite centering tilt, N3-ANA-018;
-- uniform post-prefix tilt compression, N3-ANA-020;
-- exact collision factor in atoms, N3-ANA-022;
-- exact parity twin obstruction, N3-ANA-023;
-- parity mismatch restriction on reference laws, N3-ANA-024;
-- exact odd-lattice normalization, N3-ANA-025.
-
 Condition on `Z_1!=0` and define
 
 \[
 \widetilde Z_1=(Z_1-1)/2,
 \qquad
-\widetilde Z_t=Z_t/2\quad(t>=2).
+\widetilde Z_t=Z_t/2
+\quad(t>=2).
 \]
 
 Then
@@ -85,49 +70,99 @@ J_{n,q}
 \right]\cap\mathbb Z.
 \]
 
-This is now the preferred final-only law.
+This remains the preferred final-only law.
 
-### 2. Complete transformed resonance audit
+### 2. Prefix control at the transformed dyadic ladder
 
 Status: `NEXT_REQUIRED_COMPONENT`.
 
-Parity normalization removes the forced `pi` twin from the original law, but it does not prove all transformed rational or dyadic resonances are harmless.
+For
 
-The next theorem must:
+\[
+\theta_j=\frac{\pi}{2^{j-1}},
+\qquad
+1\le j\le M_n-1,
+\]
 
-1. identify every exact and approximate transformed secondary resonance;
-2. determine transformed residue concentration modulo small integers;
-3. freeze all transformed major arcs;
-4. define the complementary transformed minor arcs.
+N3-ANA-026 proves
 
-### 3. Aggregate transformed phase dispersion
+\[
+\widetilde\Phi(\theta_j)
+=
+\left(
+\prod_{t=1}^{j}
+\widetilde\phi_t(\theta_j)
+\right)
+(2p_{j+1}^{(0)}-1),
+\]
+
+while every layer `t>=j+2` is exactly invisible.
+
+N3-ANA-027 proves that for
+
+\[
+J_n=M_n-O(\log\log n),
+\]
+
+and every `j<=J_n`,
+
+\[
+|2p_{j+1}^{(0)}-1|
+\ge
+1-rac{4e}{m_n+1},
+\]
+
+and
+
+\[
+\sum_{t=j+1}^{M_n}
+\widetilde{\mathcal D}_t(\theta_j)
+\le
+\frac{4e}{m_n+1}.
+\]
+
+Thus tail accumulation is not the active mechanism at the dyadic ladder. The next theorem must control
+
+\[
+\prod_{t=1}^{j}
+\widetilde\phi_t(\theta)
+\]
+
+in neighborhoods of each `theta_j`.
+
+Candidate forms:
+
+1. quantitative residue spreading of the first `j` coordinates modulo `2^j`;
+2. direct prefix characteristic decay;
+3. a measure bound for weak-prefix neighborhoods;
+4. a prefix residue concentration obstruction.
+
+### 3. Exact transformed interval-kernel matching
+
+Status: `COEQUAL_REQUIRED_COMPONENT`.
+
+N3-ANA-028 proves
+
+\[
+v_2(|J_{n,q}|)\in\{0,1\}.
+\]
+
+The transformed interval kernel never vanishes at a reduced dyadic frequency of denominator at least `4`. At `pi`, it vanishes only when `rho_n` and `q` are both even.
+
+The next prefix estimate must therefore be neighborhood-sensitive and quantitatively matched to the kernel. Exact pointwise nonvanishing alone is not an integral obstruction.
+
+### 4. Non-dyadic transformed resonance audit
 
 Status: `OPEN_REQUIRED_COMPONENT`.
 
-For transformed coordinate probabilities, define
+Parity normalization and the dyadic ladder theorem do not classify all rational frequencies. A complete result must still identify:
 
-\[
-\widetilde{\mathcal D}_{t,\lambda}(\theta)
-=
-\sum_{a,b}
-\widetilde p_t(a)\widetilde p_t(b)
-\sin^2\left(\frac{(a-b)\theta}{2}\right).
-\]
+- non-dyadic rational residue concentrations;
+- approximate resonances;
+- the final transformed major-arc set;
+- the complementary transformed minor arcs.
 
-Then
-
-\[
-|\widetilde\Phi_{n,\lambda}(\theta)|^2
-\le
-\exp\left(
--2\sum_t
-\widetilde{\mathcal D}_{t,\lambda}(\theta)
-\right).
-\]
-
-A successful route may prove a pointwise lower bound, a measure bound for weak-dispersion frequencies, or a weighted integral estimate.
-
-### 4. Collision-aware transformed reference law
+### 5. Collision-aware transformed reference law
 
 Status: `COEQUAL_REQUIRED_COMPONENT`.
 
@@ -147,7 +182,18 @@ A final local theorem must:
 - or control transformed additive energy;
 - or prove collision concentration is negligible relative to transformed window mass.
 
-### 5. Deterministic-to-analytic decomposition
+### 6. Transformed moment package
+
+Status: `OPEN_REQUIRED_COMPONENT`.
+
+Still required:
+
+- transformed variance lower and upper bounds;
+- transformed third absolute moments;
+- largest transformed step versus standard deviation;
+- exact endpoint exclusions.
+
+### 7. Deterministic-to-analytic decomposition
 
 Status: `CLOSED_INTERFACE_FOR_CURRENT_CONTRACT`.
 
@@ -159,9 +205,9 @@ P_n=m_n(2^{M_n}-1)+W_n.
 
 The final-only transformed law is responsible for every later target through `Y_n`.
 
-Finite exact marker-three coverage now reaches `12<=n<=52`, but these computations do not prove the asymptotic theorem.
+Finite exact marker-three coverage reaches `12<=n<=52`, but these computations do not prove the asymptotic theorem.
 
-### 6. Sequential connected-core route
+### 8. Sequential connected-core route
 
 Status: `USEFUL_FINITE_ENGINE_WITH_ASYMPTOTIC_RESTRICTIONS`.
 
@@ -169,7 +215,7 @@ Nova 1 and Nova 2 have exact streaming and meet-in-the-middle engines through `n
 
 This remains a finite and conditional asymptotic engine. It is not substituted for the final-only transformed Fourier route.
 
-### 7. Repaired marker-three capacity
+### 9. Repaired marker-three capacity
 
 Status: `PROVED_SUPPORTING_ROUTE`.
 
@@ -177,15 +223,11 @@ N3-ANA-014 and N3-ANA-015 prove legal menus and formal capacity for every `n>=12
 
 Capacity is not occupancy.
 
-### 8. Compact top-prime logarithmic reservoir
+### 10. Compact top-prime logarithmic reservoir
 
 Status: `PROVED_INTRINSIC_COMPONENT`.
 
 N3-ANA-012 gives compact-tilt coarse logarithmic density for exact top-prime subset products. It does not transfer directly to numerical quotient sums.
-
-### 9. Fine top-prime logarithmic local analysis
-
-Status: `OPEN_BUT_SECONDARY`.
 
 ## Rejected or disproved routes
 
@@ -205,17 +247,21 @@ Status: `DISPROVED_BY_N3-ANA-021`.
 
 Status: `DISPROVED_BY_N3-ANA-023`.
 
-At `pi`,
-
-\[
-|\Phi(\pi)|\to1
-\]
-
-uniformly over the post-prefix target range.
-
 ### Parity-blind reference law
 
 Status: `REJECTED_BY_N3-ANA-024`.
+
+### Many-tail-layers transformed dispersion
+
+Status: `DISPROVED_BY_N3-ANA-026_AND_N3-ANA-027`.
+
+At each transformed dyadic ladder point, all layers after the matching layer are exactly invisible and the matching layer is almost a pure sign through all but `O(log log n)` top scales.
+
+### Exact transformed-kernel cancellation of the dyadic ladder
+
+Status: `DISPROVED_BY_N3-ANA-028`.
+
+The transformed window length has 2-adic valuation at most one, so no reduced dyadic frequency of denominator at least `4` is a kernel zero.
 
 ### Profile injectivity
 
@@ -241,6 +287,8 @@ Abandon or repair any proposed theorem if it:
 - ignores the exact post-prefix boundary;
 - ignores the original parity twin at `pi`;
 - assumes odd-lattice normalization removes every transformed resonance;
+- assumes later transformed layers accumulate dispersion at dyadic ladder points;
+- assumes the transformed interval kernel cancels denominator `4` or higher dyadic points;
 - assumes exact span one gives quantitative dispersion;
 - ignores collision multiplicity;
 - uses Berry-Esseen distribution distance as a constant-width local theorem;
@@ -248,4 +296,4 @@ Abandon or repair any proposed theorem if it:
 
 ## Next theorem target
 
-`N3-NEXT-007`: perform the complete resonance audit for the exact odd-lattice normalized product law. Prove aggregate transformed dispersion or a weighted transformed integral estimate outside every genuine transformed major arc, or return the first exact transformed residue concentration that blocks the route.
+`N3-NEXT-008`: prove a target-uniform prefix-residue or prefix-characteristic estimate in neighborhoods of every transformed dyadic ladder frequency, matched to the exact transformed interval kernel. If this fails, return the first exact prefix residue concentration or target-local additive-energy obstruction.
