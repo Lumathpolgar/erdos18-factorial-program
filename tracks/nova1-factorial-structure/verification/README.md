@@ -162,7 +162,7 @@ The verifier performs:
 6. exact minimum-heap row merge;
 7. strict global-order and duplicate rejection;
 8. exact connected-prefix thresholds and counts;
-9. exact endpoint, margin, entropy-product, and requirement calculations;
+9. exact endpoint, margin, count-product, and requirement calculations;
 10. fail-closed unsigned 128-bit endpoint limits.
 
 Proof:
@@ -262,23 +262,63 @@ Artifacts:
 - `plan_mitm_partition.py`;
 - `test_mitm_n54_partition.py`.
 
+### N1-FIN-010
+
+Result label: **finite certificate**.
+
+At `n=55`:
+
+- `r_55=17`;
+- `M_55=257`;
+- total odd-core divisors: `452,874,240`;
+- primary mask `9`: `156 x 2,903,040`;
+- alternate mask `808`: `96 x 4,717,440`;
+- emitted through the certificate: `369,103,338`;
+- connected-prefix sizes: `90,622`, `1,867,655`, `18,700,076`, `92,180,941`, `236,519,444`, `369,103,338`;
+- six layers;
+- term bound: `23`;
+- final margin: `2,071,800,017,139,336,764,535,620,107,907`.
+
+The term bound changes from `22` to `23` because `r_55=17`.
+
+Primary mask `9`:
+
+- wall time: `20.68` seconds;
+- peak memory: `52,340 KiB`.
+
+Alternate mask `808`:
+
+- wall time: `20.40` seconds;
+- peak memory: `81,144 KiB`.
+
+The two masks produce identical mathematical output after excluding partition and environment fields.
+
+Artifacts:
+
+- `FULL_CORE_N55_REPORT.md`;
+- `full_core_n55_mitm_mask9.txt`;
+- `full_core_n55_mitm_mask808.txt`;
+- `effective_carrier_n51_n55.csv`;
+- `blocking_gap_ratios_n51_n55.csv`;
+- `test_mitm_n55_effective.py`.
+
 Reproduction:
 
 ```text
-./marker_three_mitm_prefix_u128 54 255
-./marker_three_mitm_prefix_u128 54 223
-python tracks/nova1-factorial-structure/verification/test_mitm_n54_partition.py
+./marker_three_mitm_prefix_u128 55 9
+./marker_three_mitm_prefix_u128 55 808
+python tracks/nova1-factorial-structure/verification/test_mitm_n55_effective.py
 ```
 
 Expected result:
 
 ```text
-PASS exact n=54
-PASS alternate partition n=54
-PASS exact connected-prefix counts
-PASS normalized non-monotonicity through n=54
-PASS finite first-blocking-gap ratio below 1.108
-PASS all n=54 meet-in-the-middle checks
+PASS exact n=55
+PASS alternate partition n=55
+PASS effective carrier factorization
+PASS term-bound transition from 22 to 23
+PASS finite first-blocking-gap ratio below 1.108 through n=55
+PASS all n=55 effective carrier checks
 ```
 
 ## Exact finite boundary
@@ -288,12 +328,27 @@ Combining Nova 2 `N2-FIN-202` with Nova 1 certificates gives
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le54).
+\qquad(12\le n\le54),
 \]
 
-This is finite only. The smallest unaudited parameter is `n=55`.
+and
 
-## Normalized entropy theorem
+\[
+H_{55!}(\lfloor\sqrt{55!}\rfloor+1)
+\le23.
+\]
+
+Consequently,
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
+\le23
+\qquad(12\le n\le55).
+\]
+
+These statements are finite only. The smallest unaudited parameter is `n=56`.
+
+## Count-surplus theorem
 
 `N1-STR-024` is a **proved theorem**.
 
@@ -309,44 +364,86 @@ Q_n=\left\lceil\frac{Y_n+1}{W_n+1}\right\rceil,
 \Gamma_n=(P_n/Q_n)^{1/L}.
 \]
 
-Then the exact connected-prefix entropy gate is met if and only if
+Then the exact connected-prefix count gate is met if and only if
 
 \[
 \Gamma_n\ge1.
 \]
 
-Finite diagnostic values are
+This is a necessary count gate, not a sufficient endpoint theorem.
+
+## Effective carrier theorem
+
+`N1-STR-025` is a **proved theorem**, independently reconstructed from Nova 2 `N2-ADD-122` at exact commit
+
+`2ab09dd980f7116b82530368e3d98bb53240bf0c`.
+
+For
 
 \[
-\Gamma_{51}=120.322026489,
-\quad
-\Gamma_{52}=97.645052132,
-\quad
-\Gamma_{53}=124.609364763,
-\quad
-\Gamma_{54}=92.273264367.
+a_t=\frac{s_tU_t}{F_{t-1}},
+\qquad
+b_t=\frac{1+a_t}{1+K_t},
 \]
 
-They are all above one and non-monotone. They do not prove a uniform bound.
+one has
+
+\[
+\frac{F_L}{W_n+1}
+=
+P_n\prod_{t=1}^{L}b_t.
+\]
+
+With
+
+\[
+\widetilde\Gamma_n=(P_n/R_n)^{1/L},
+\qquad
+\mathcal B_n=\left(\prod_tb_t\right)^{1/L},
+\qquad
+\Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L},
+\]
+
+\[
+\Delta_n=\widetilde\Gamma_n\mathcal B_n.
+\]
+
+Endpoint success is equivalent to `Delta_n>=1`.
+
+Finite diagnostic values are:
+
+| `n` | count surplus | utilization root | endpoint surplus |
+|---:|---:|---:|---:|
+| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 |
+| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 |
+| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 |
+| 54 | 92.273264366777 | 0.010837378971591 | 1.000000334888580 |
+| 55 | 98.919733584849 | 0.010109209300122 | 1.000000290721510 |
+
+The count surplus is mostly consumed by utilization loss. No uniform bound follows.
 
 ## Finite divisor-gap diagnostic
 
 Result label: **computational evidence**.
 
-Across the twenty blocked layers for `51<=n<=54`,
+Across the twenty-five blocked layers for `51<=n<=55`,
 
 \[
-\max g_t/D_t<1.108.
+\max g_t/D_t
+=
+\frac{20891689328819250}{18870510190034037}
+<1.108.
 \]
 
-The exact maximum occurs at `n=51`, layer `4`. No asymptotic divisor-gap theorem is claimed.
+The exact maximum occurs at `n=51`, layer `4`. No asymptotic divisor-gap or utilization theorem is claimed.
 
 ## Evidence boundary
 
 None of these runs proves:
 
 - uniform connected-prefix growth;
-- a uniform divisor record-gap bound;
+- a uniform packing-utilization lower bound;
+- a uniform divisor record-gap or average-gap bound;
 - the asymptotic quotient-window theorem;
 - the final downward endpoint window;
 - target-local collision upper bounds;
