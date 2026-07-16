@@ -1,4 +1,4 @@
-import copy
+from pathlib import Path
 import unittest
 
 from factorial_lab.n3_threshold import *
@@ -46,10 +46,13 @@ class ThresholdSweepTests(unittest.TestCase):
         verify_audit(self.audit)
         verify_claim(self.claim, self.audit)
 
-    def test_corrupt_rehashed(self):
-        corrupted = copy.deepcopy(self.claim)
-        corrupted["claim"]["minima"]["address_slack"]["value"] -= 1
-        corrupted["sha256"] = semantic_sha256(corrupted)
+    def test_committed_corrupt_rehashed_fixture(self):
+        fixture = (
+            Path(__file__).parent
+            / "n3_threshold_fixtures"
+            / "corrupt_rehashed_minimum_slack.json"
+        )
+        corrupted = load_json(fixture)
         with self.assertRaises(VerificationError):
             verify_claim(corrupted, self.audit)
 
