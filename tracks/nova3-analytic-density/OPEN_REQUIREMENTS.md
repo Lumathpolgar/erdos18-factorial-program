@@ -12,54 +12,45 @@ Closed by N3-ANA-010 and N3-ANA-011 with threshold `120368`.
 
 Status: `SUPERSEDED_BY_DISPROOF`
 
-Nova 2 proved the old additive construction misses its first required window.
+Nova 2 proved the old construction misses its first required window.
 
-### N3-REQ-N1-003, repaired marker-three capacity audit
+### N3-REQ-N1-003, repaired marker-three capacity
 
 Status: `CLOSED_WITH_PROOF_REPAIR`
 
-Source:
-
-- branch: `nova/factorial-structure`
-- audited request commit: `9febe46f2298d2726eeffa139676136963790019`
-- handoff: `N1-HO-N3-002`
-
 Closed by N3-ANA-014 through N3-ANA-016.
 
-### N3-REQ-N1-004, compact-tilt logarithmic reservoir
+### N3-REQ-N1-004, compact logarithmic reservoir
 
 Status: `AVAILABLE_COMPONENT`
 
-N3-ANA-012 supplies compact-tilt coarse logarithmic density for top-prime subset products. It is not a numerical additive theorem.
+N3-ANA-012 supplies compact-tilt logarithmic density for top-prime subset products. It is not a numerical additive theorem.
 
 ### N3-REQ-N1-005, deterministic transition range
 
 Status: `CLOSED_FOR_CURRENT_ASYMPTOTIC_CONTRACT`
 
-Latest inspected source:
-
-- branch: `nova/factorial-structure`
-- commit: `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`
-
-Together with Nova 2 `N2-ADD-120`, the deterministic small-core prefix covers quotient windows through
+The deterministic marker-three prefix covers through
 
 \[
 P_n=m_n(2^{M_n}-1)+W_n.
 \]
 
-The current final-only asymptotic analytic range is
+The current final-only asymptotic range is
 
 \[
 P_n+1\le q\le Y_n.
 \]
 
-Nova 2's exact complete-menu computation separately covers every `12<=n<=45` through the full endpoint.
+Latest inspected structural head:
+
+`nova/factorial-structure@1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`.
 
 ### N3-REQ-N1-006, collision intake
 
 Status: `CLOSED_AS_EXACT_LAW_IDENTITY`
 
-Nova 1 theorem `N1-COL-001` proves exponential carry-collision fibers. N3-ANA-022 transfers this exactly into the common tilted law:
+N3-ANA-022 gives
 
 \[
 P_\lambda(T=s)
@@ -71,23 +62,21 @@ Target-local upper collision or additive-energy bounds remain open.
 
 ## Nova 2 requirements
 
-### N3-REQ-N2-001, bounded numerical torus contract
+### N3-REQ-N2-001, active bounded numerical torus contract
 
 Status: `ACTIVE_MARKER_THREE_MODEL`
 
 Latest inspected source:
 
 - branch: `nova/additive-occupancy`
-- commit: `82603c631a106c3bff4676bdeeb9cc791fc98f3c`
+- commit: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`
 - handoff: `N2-HO-N3-003`
 
-The law is the exact numerical marker-three product law on `[-pi,pi]`.
-
-### N3-REQ-N2-002, structural version compatibility
+### N3-REQ-N2-002, structural compatibility
 
 Status: `CLOSED`
 
-N3-ANA-017 verifies that later Nova 1 endpoint, carrier-block, and collision commits preserve the marker-three numerical supports through head `e3a0e3f5fb335b23afdd9e1fe418ac46ca1c766a`.
+The exact marker-three numerical labels remain unchanged through the latest inspected Nova 1 and Nova 2 heads.
 
 ### N3-REQ-N2-003, tilt existence and centering
 
@@ -95,115 +84,143 @@ Status: `CLOSED`
 
 N3-ANA-018 proves unique finite centering tilt for every `W_n<q<=Y_n`.
 
-### N3-REQ-N2-004, span and exact resonances
+### N3-REQ-N2-004, exact span and modulus-one resonances
 
 Status: `CLOSED`
 
-N3-ANA-018 proves exact span one, exact resonance set `{0}`, and an exact two-state characteristic-function bound.
+N3-ANA-018 proves exact span one and exact modulus-one resonance set `{0}`.
 
-### N3-REQ-N2-005, uniform minor-arc decay over all tilts
+### N3-REQ-N2-005, all-tilt minor-arc gap
 
 Status: `CLOSED_NEGATIVELY`
 
-N3-ANA-019 proves endpoint-uniform decay is false because the law freezes as `lambda->+-infinity`.
+N3-ANA-019 proves endpoint freezing prevents a fixed gap over all real tilts.
 
-### N3-REQ-N2-006, final analytic target range
+### N3-REQ-N2-006, exact final analytic range
 
 Status: `CLOSED_FOR_CURRENT_CONTRACT`
 
-The exact asymptotic range not covered by the deterministic small-core prefix is
-
 \[
 m_n(2^{M_n}-1)+W_n+1
-\le q\le
-Y_n.
+\le q\le Y_n.
 \]
-
-This interval is nonempty for every `n>=120368`.
 
 ### N3-REQ-N2-007, compact numerical tilt
 
 Status: `CLOSED`
 
-N3-ANA-020 proves uniformly on the exact post-prefix range that
+N3-ANA-020 proves
 
 \[
--\frac{8M_n\log L_n}{L_n}
-<\lambda_{n,q}<
-\frac{16(n\log n+\log14)}{2^{M_n}},
+\sup_q|\lambda_{n,q}|\to0
 \]
 
-and hence
-
-\[
-\sup_q|\lambda_{n,q}|\to0.
-\]
+uniformly on the exact post-prefix range.
 
 ### N3-REQ-N2-008, binary-anchor minor arc
 
 Status: `CLOSED_NEGATIVELY`
 
-N3-ANA-021 proves that at zero tilt the coefficient
+N3-ANA-021 proves the zero-versus-minimum-state coefficient is exponentially small at zero tilt.
+
+### N3-REQ-N2-009, unnormalized aggregate dispersion outside zero
+
+Status: `CLOSED_NEGATIVELY`
+
+N3-ANA-023 proves the unnormalized characteristic function has a secondary near-resonance at `pi`:
 
 \[
-P_0(Z_t=0)P_0(Z_t=2^{t-1})
+|\Phi(\pi)|
+\ge
+1-rac{4e^{\varepsilon_n}}{m_n+1}
+\to1.
 \]
 
-is exponentially small in `n/log n`. Compact tilt alone does not make the existing two-state minor-arc estimate quantitative.
+The exact aggregate dispersion at `pi` tends to zero. A minor arc containing `pi` cannot have a fixed positive dispersion lower bound.
 
-### N3-REQ-N2-009, aggregate phase dispersion
+### N3-REQ-N2-010, parity-aware reference law
+
+Status: `CLOSED_AS_RESTRICTION`
+
+N3-ANA-024 proves
+
+\[
+d_{TV}(\mathcal L(T),G)
+\ge
+|G(2\mathbb Z)-P(T\text{ even})|.
+\]
+
+Any reference law must match the asymptotic odd-parity concentration or explicitly include the `pi` major arc.
+
+### N3-REQ-N2-011, exact odd-lattice normalization
+
+Status: `CLOSED`
+
+N3-ANA-025 proves that conditioning on `Z_1!=0`, subtracting one, and dividing by two gives an independent integer product law with common tilt `2 lambda` and exact span one.
+
+The transformed interval is
+
+\[
+J_{n,q}
+=
+\left[
+\left\lceil\frac{q-W_n-1}{2}\right\rceil,
+\left\lfloor\frac{q-1}{2}\right\rfloor
+\right]\cap\mathbb Z.
+\]
+
+### N3-REQ-N2-012, transformed resonance audit
 
 Status: `OPEN_AND_BLOCKING`
 
-On the post-prefix target range, prove a lower bound that aggregates many support pairs or many residue classes. A valid result must control the complete odd-core menus rather than one anchor pair.
+For the exact normalized law from N3-ANA-025:
 
-Candidate forms include:
+1. identify every remaining exact and approximate secondary resonance;
+2. determine transformed residue concentration modulo small integers;
+3. freeze complete transformed major and minor arcs;
+4. do not assume parity normalization removes all rational resonances.
 
-1. a lower bound for
-   \[
-   \sum_{a,b}p_t(a)p_t(b)\sin^2((a-b)\theta/2);
-   \]
-2. a multistate conditional variance bound on every minor arc;
-3. a quantitative divisor-gap or residue-spreading theorem for the tilted odd-core measure;
-4. a direct bound for a target-local set of phase-separated coordinates.
+### N3-REQ-N2-013, transformed aggregate phase dispersion
 
-### N3-REQ-N2-010, moment package
+Status: `OPEN_AND_BLOCKING`
 
-Status: `OPEN`
+Prove one of:
 
-Still required on the exact post-prefix range:
+- a lower bound for the transformed dispersion sum outside all transformed major arcs;
+- a measure bound for weak-dispersion frequencies;
+- a weighted transformed integral estimate;
+- a target-local transformed concentration obstruction.
 
-- uniform variance lower and upper bounds;
-- third absolute centered moment bounds;
-- largest numerical step versus standard deviation;
-- exact endpoint exclusions, if any.
-
-### N3-REQ-N2-011, collision or energy control
-
-Status: `OPEN`
-
-N3-ANA-022 freezes the exact role of multiplicity. A local theorem must either:
-
-- incorporate `C_n(s)` in the reference law;
-- prove a target-local upper fiber bound;
-- prove an additive-energy estimate strong enough for the desired window;
-- or show that collision concentration obstructs the proposed approximation.
-
-### N3-REQ-N2-012, weighted Fourier inequality
+### N3-REQ-N2-014, transformed moment package
 
 Status: `OPEN`
 
 Still required:
 
+- uniform transformed variance bounds;
+- transformed third absolute centered moments;
+- largest transformed step versus standard deviation;
+- exact endpoint exclusions.
+
+### N3-REQ-N2-015, collision-aware transformed reference law
+
+Status: `OPEN`
+
+A local theorem must retain `C_n(s)`, prove a target-local upper fiber bound, establish an additive-energy estimate, or show collision concentration obstructs approximation.
+
+### N3-REQ-N2-016, transformed weighted Fourier inequality
+
+Status: `OPEN`
+
+The final required inequality must be written for the transformed law and transformed interval kernel, then transferred back through
+
 \[
-\int_{-\pi}^{\pi}
-|\Phi_{n,q}-\Psi_{n,q}|
-|K_{n,q}|\,d\theta
-<
-2\pi G_{n,q}(I_{n,q}).
+P(T\in I_{n,q})
+\ge
+(1-p^{(0)})P(\widetilde T\in J_{n,q}).
 \]
 
-Berry-Esseen distribution distance alone is not sufficient for constant-width windows.
+Berry-Esseen distribution distance alone remains insufficient.
 
 ## Nova 4 requirements
 
@@ -220,9 +237,10 @@ python3 tracks/nova3-analytic-density/proofs/compact_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
+python3 tracks/nova3-analytic-density/proofs/parity_twin_sanity.py
 ```
 
-Return separate verdicts through N3-ANA-022 and N3-FIN-006.
+Return separate verdicts through N3-ANA-025 and N3-FIN-007.
 
 ### N3-REQ-N4-002, source audit reconstruction
 
@@ -240,20 +258,21 @@ Verify the invalid central-binomial shortcut, quotient-factorial replacement, an
 
 Status: `OPEN`
 
-Independently verify strict mean monotonicity, endpoint limits, span one, exact resonance set, and all-tilt freezing.
+Verify strict mean monotonicity, endpoint limits, exact span, exact resonance set, and endpoint freezing.
 
 ### N3-REQ-N4-005, post-prefix tilt and collision audit
 
 Status: `OPEN`
 
-Independently verify:
+Verify N3-ANA-020 through N3-ANA-022 and N3-FIN-006.
 
-1. the convex negative-tilt partition bound;
-2. the four-highest-layer positive-tilt bound;
-3. the exact deterministic-to-analytic transition;
-4. the binary-anchor coefficient collapse;
-5. the collision-aware atom formula;
-6. the finite collision enumeration.
+### N3-REQ-N4-006, parity twin and odd normalization audit
+
+Status: `OPEN`
+
+Verify N3-ANA-023 through N3-ANA-025 and N3-FIN-007. Handoff:
+
+`handoffs/TO_NOVA4_PARITY_TWIN.md`.
 
 ## Self-owned requirements
 
@@ -261,7 +280,7 @@ Independently verify:
 
 Status: `CLOSED`
 
-Scale map, local ceiling, full-model non-Gaussian obstruction, and unrestricted minor-arc obstruction are complete.
+Scale map, local ceiling, full-model non-Gaussian obstruction, and unrestricted logarithmic minor-arc obstruction are complete.
 
 ### N3-SELF-005, matched numerical bounded-torus theorem
 
@@ -270,17 +289,20 @@ Status: `PARTIALLY_CLOSED`
 Closed:
 
 - exact centering;
-- exact span and resonance set;
-- exact asymptotic post-prefix target range;
-- compact post-prefix tilt;
-- exact collision factor in atoms.
+- exact target range;
+- compact numerical tilt;
+- exact span and exact modulus-one resonances;
+- collision factor in atoms;
+- parity twin obstruction;
+- exact odd-lattice normalization.
 
 Open:
 
-- aggregate phase dispersion;
-- moments;
-- reference law;
-- strict weighted Fourier comparison.
+- transformed resonance audit;
+- transformed aggregate dispersion;
+- transformed moments;
+- collision-aware reference law;
+- strict transformed Fourier comparison.
 
 ### N3-SELF-006, compact nonzero logarithmic tilt
 
@@ -302,20 +324,24 @@ Closed by N3-ANA-014 through N3-ANA-016.
 
 Status: `OPEN_BUT_SECONDARY`
 
-The numerical marker-three contract currently has higher cross-track priority.
-
 ### N3-SELF-010, compact numerical tilt
 
 Status: `CLOSED`
 
-Closed by N3-ANA-020 on the exact post-prefix target range.
+Closed by N3-ANA-020.
 
-### N3-SELF-011, aggregate numerical phase dispersion
+### N3-SELF-011, unnormalized aggregate phase dispersion
+
+Status: `CLOSED_NEGATIVELY`
+
+Closed by the parity twin obstruction N3-ANA-023.
+
+### N3-SELF-012, parity-normalized numerical phase dispersion
 
 Status: `OPEN`
 
-Prove a multistate minor-arc coefficient for the complete tilted odd-core menus. A single zero-versus-one pair is permanently insufficient by N3-ANA-021.
+Audit and control the exact transformed law from N3-ANA-025.
 
 ## Rule
 
-Do not solve an undefined stronger problem. Every theorem must name its exact labels, target range, endpoint exclusions, legal comparison direction, and receiving theorem node.
+Do not solve an undefined stronger problem. Every theorem must name its exact labels, target range, transformed supports, resonance set, endpoint exclusions, legal comparison direction, and receiving theorem node.
