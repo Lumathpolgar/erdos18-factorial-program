@@ -16,6 +16,8 @@
 | N2-ADD-124 | proved theorem | Odd-core parity gives the sharp lower bounds `U_t>=2K_t-1` and `F_t/F_(t-1)>(D_t+2K_t)/(D_t+1)` | `proofs/PARITY_SPAN_COUNT_THRESHOLD_CRITERION.md` |
 | N2-ADD-125 | proved theorem | Divisor complement symmetry gives the exact identity `U_t c_(tau_n+1-K_t)=C_n` | `proofs/DIVISOR_COMPLEMENT_QUANTILE_SPAN.md` |
 | N2-ADD-126 | proved theorem | Certified lower-tail divisor counts and the divisor median give factorial-specific carrier-span lower bounds | `proofs/DIVISOR_COMPLEMENT_QUANTILE_SPAN.md` |
+| N2-ADD-127 | proved theorem | Rankin weighted divisor moments give `U_t >= (K_t/Z_n(sigma))^(1/sigma)` for every `sigma>0` | `proofs/RANKIN_SMOOTH_DIVISOR_SPAN.md` |
+| N2-ADD-128 | proved theorem | The Rankin, parity, and median span bounds combine into an explicit sufficient carrier product | `proofs/RANKIN_SMOOTH_DIVISOR_SPAN.md` |
 | N2-OBS-109 | proved obstruction theorem | The first blocking gap, even together with `D` and `K`, cannot uniformly control utilization | `proofs/AVERAGE_GAP_UTILIZATION_CRITERION.md` |
 | N2-OBS-110 | proved obstruction theorem | Count, threshold, and oddness alone cannot improve the parity-span lower bound by a fixed factor | `proofs/PARITY_SPAN_COUNT_THRESHOLD_CRITERION.md` |
 
@@ -143,6 +145,21 @@ U_t\ge\frac{C_n}{B}.
 
 In particular, `K_t>tau_n/2` implies `U_t>=ceil(sqrt(C_n))`.
 
+For every `sigma>0`, define the finite Euler product
+
+\[
+Z_n(\sigma)=\sum_{d\mid C_n}d^{-\sigma}
+=\prod_{p^e\parallel C_n}\frac{1-p^{-(e+1)\sigma}}{1-p^{-\sigma}}.
+\]
+
+N2-ADD-127 proves
+
+\[
+U_t\ge\left(\frac{K_t}{Z_n(\sigma)}\right)^{1/\sigma}.
+\]
+
+N2-ADD-128 combines this bound with parity and the complement median in an explicit carrier product. This is the first factorial-specific lower bound that applies at every exact layer.
+
 ## Finite certificates
 
 - `N2-FIN-201`: superseded-route rational-log certificate at `n=1892`.
@@ -170,15 +187,15 @@ The smallest unaudited finite parameter is `n=56`.
 
 ## Finite utilization diagnostics
 
-| `n` | endpoint surplus | parity-only root ratio | median-hybrid root ratio |
-|---:|---:|---:|---:|
-| 51 | 1.000004144206103 | 0.0000257773398727324 | 0.000145487587879522 |
-| 52 | 1.000001025305911 | 0.0000185652131315783 | 0.000123906257046752 |
-| 53 | 1.000001967025492 | 0.0000139117330218277 | 0.0000907853071519960 |
-| 54 | 1.000000334888580 | 0.00000997734788683994 | 0.0000892960011035230 |
-| 55 | 1.000000290721510 | 0.00000761958530584015 | 0.0000740382055592177 |
+| `n` | endpoint surplus | parity-only root ratio | median-hybrid root ratio | Rankin-median root ratio |
+|---:|---:|---:|---:|---:|
+| 51 | 1.000004144206103 | 0.0000257773398727324 | 0.000145487587879522 | 0.000542135786332180 |
+| 52 | 1.000001025305911 | 0.0000185652131315783 | 0.000123906257046752 | 0.000488608023294683 |
+| 53 | 1.000001967025492 | 0.0000139117330218277 | 0.0000907853071519960 | 0.000443191288757114 |
+| 54 | 1.000000334888580 | 0.00000997734788683994 | 0.0000892960011035230 | 0.000438131601230971 |
+| 55 | 1.000000290721510 | 0.00000761958530584015 | 0.0000740382055592177 | 0.000374184125626777 |
 
-The parity-only product falls below the exact endpoint scale by roughly `10^28` through `10^31`. The median-hybrid product improves this by about `10^4.5` through `10^5.9`, but still falls below the endpoint scale by roughly `10^23` through `10^25`. These are `N2-CMP-206` and `N2-CMP-207`, computational evidence only.
+The parity-only product falls below the exact endpoint scale by roughly `10^28` through `10^31`. The median-hybrid product improves this by about `10^4.5` through `10^5.9`. The Rankin-median product improves the median-hybrid bound by a further `10^3.4` through `10^4.2`, but still falls below the endpoint scale by roughly `10^19.6` through `10^20.6`. These are computational evidence only.
 
 ## Cross-track decisions
 
@@ -190,7 +207,7 @@ The parity-only product falls below the exact endpoint scale by roughly `10^28` 
 ## Open factorial nodes
 
 1. Prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
-2. Prove lower-tail divisor-count bounds or complementary-order-statistic bounds strong enough to control `U_t` beyond the median theorem.
+2. Improve the lower-tail divisor bound beyond the one-parameter Rankin moment, or prove a contrary complementary-quantile obstruction.
 3. Extend exact finite certification from `n=56`.
 4. Prove asymptotic endpoint-window coverage.
 5. Upper-bound target-local collision multiplicity or additive energy.
