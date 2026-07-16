@@ -75,6 +75,24 @@ The exact finite audit for every `2 <= n <= 12` completed in approximately 2.35 
 
 The run enumerated 1,978 exact divisors and checked 45,840 local windows. Local endpoint decisions used rationally certified `floor(d exp(Delta))` values rather than floating logarithm comparisons. Moment identities were checked exactly over exponent vectors and replayed with 80-digit decimal logarithms.
 
-Ten new Nova 3 tests completed in approximately 3.7 seconds. They cover exact moment totals, certified exponential floors, certified `floor(Delta/log q)`, full semantic replay, valid tight-certificate replay, cached-field corruption, and a rehashed upper bound lowered by one.
+Ten new Nova 3 tests completed in approximately 3.7 seconds.
 
-No timeout or unknown result occurred in the Nova 3 moment/local audit. All timings are engineering diagnostics, not mathematical claims.
+## Nova 3 scale-evidence benchmark
+
+Request C generation completed in approximately 8.55 seconds with approximately 300 MiB peak resident memory.
+
+The run produced:
+
+```text
+scale rows: 8
+cutoff-grid tail rows: 63
+theorem-path rows: 8
+proxy prime limit: 1,000,000
+proxy prime count: 78,498
+```
+
+All factorial valuations were exact integers. Logarithms, variance contributions, shares, effective dimensions, and tail ratios used 80-digit Decimal arithmetic. The frozen script's float formulas were independently replayed at all eight scale rows and nine printed tail points.
+
+Thirteen new scale-evidence tests passed in approximately 2.7 seconds. They cover exact sieving and valuations, scale-row consistency, low-prime share totals, theorem half-span, cutoff admissibility flags, semantic replay, rehashed ratio and share corruption, wrong source metadata, frozen-script numerical cross-check, and the admissible theorem path.
+
+No timeout or unknown result occurred in request C. All timings are engineering diagnostics, not mathematical claims.
