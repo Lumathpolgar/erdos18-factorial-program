@@ -69,7 +69,7 @@ new Nova 3 source tests: 10 passing
 new Nova 3 Dusart tests: 12 passing
 new Nova 3 threshold-sweep tests: 12 passing
 new Nova 3 adversarial tests: 14 passing
-new Nova 3 variance-limit tests: 12 passing
+new Nova 3 variance-limit tests: 13 passing
 arithmetic: exact integers, rational logarithm bounds, exact prime counts, dual Legendre identities, elementary series tails, binary64 finite diagnostics, and semantic replay
 ```
 
