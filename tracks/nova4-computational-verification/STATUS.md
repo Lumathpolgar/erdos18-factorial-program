@@ -12,7 +12,7 @@ Computation, Falsification, and Verification
 
 ## Overall state
 
-`NOVA3_MOMENT_LOCAL_AUDIT_COMPLETE`
+`NOVA3_SCALE_REQUEST_C_COMPLETE`
 
 ## Active results
 
@@ -26,6 +26,7 @@ Computation, Falsification, and Verification
 | N4-AUD-003 | `exact finite theorem audit` | Nova 1 capacity predicates audited for every `3 <= n <= 1,000,000` | `audits/N1_CAPACITY_THRESHOLD_AUDIT.md` |
 | N4-AUD-004 | `computational evidence` | Exact reduced-rainbow support, profiles, residues, gaps, and witnesses computed for every `20 <= n <= 80` | `audits/N1_REDUCED_RAINBOW_AUDIT.md` |
 | N4-AUD-005 | `finite certificate` | `N3-ANA-004` and `N3-ANA-005` independently reconstructed and accepted; exact finite moments and local ceilings replayed for every `2 <= n <= 12` | `audits/N3_MOMENT_LOCAL_CEILING_AUDIT.md` |
+| N4-AUD-006 | `computational evidence` | Nova 3 request C scale rows, low-prime shares, effective dimension, and high-prime tail grid independently generated | `audits/N3_SCALE_CONVERGENCE_AUDIT.md` |
 | N4-CE-001 | `counterexample` | Descending greedy is suboptimal at `n=8, x=155` | `certificates/n8_target155_optimal.json` |
 | N4-CE-002 | `disproved finite claim` | Frozen `N1-HO-N2-001` fails at its first requested target when admissible | `certificates/lattice/n2_obs_107_n1892.json` |
 | N4-CE-003 | `disproved finite claim` | Every frozen reduced Study B model for `20 <= n <= 80` fails at its first requested target | `certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json` |
@@ -42,11 +43,14 @@ Nova 1 reduced-rainbow audit: every n = 20 through 80
 Nova 3 moment audit: every n = 2 through 12
 Nova 3 exact divisors enumerated: 1,978
 Nova 3 local windows checked: 45,840
+Nova 3 scale rows: 8
+Nova 3 high-prime cutoff rows: 63
+Nova 3 theorem-path rows: 8
 previous complete unit suite: 39 passing
 new reduced-rainbow tests: 11 passing
 new Nova 3 moment/local tests: 10 passing
-on-disk corrupted fixtures required to fail: 12
-arithmetic: exact integers, exact rational identities, rational interval bounds, and 80-digit decimal replay
+new Nova 3 scale tests: 13 passing
+arithmetic: exact integers, rational identities, rational interval bounds, and 80-digit Decimal evaluation
 ```
 
 ## Current limitations
@@ -54,11 +58,11 @@ arithmetic: exact integers, exact rational identities, rational interval bounds,
 - No asymptotic factorial half-range theorem is proved.
 - The accepted Nova 2 obstruction applies only to the frozen Nova 1 model at commit `b939574eb88a08bb03abda5bbe6ff2ca97444e08`.
 - The reduced-rainbow disproof applies only to Study B at Nova 1 commit `fa11f4b2cb86a2dd791df189ada12757be791804`; it does not disprove the full-menu preferred route.
-- The formal-profile compression statistic for Study B is a truncated-support diagnostic, not a pure collision probability.
-- Nova 3 results `N3-ANA-006` through `N3-ANA-009` remain unaudited.
+- Nova 3 request C is computational evidence only. `N3-ANA-006` and `N3-ANA-008` remain theorem-audit pending.
+- The frozen Nova 3 script labels `b_p log p/B` as `M/B`, but the theorem defines `M=b_p log p/2`; that script label requires repair.
 - No Track B source package is present for reconstruction.
 - The `n=14` exact representation profile remains unknown due to resource limits.
 
 ## Next audit target
 
-Run request C of Nova 3 handoff `N3-HO-N4-001`: independently generate the scale-convergence table, variance shares, participation ratio, and high-prime `M_{n,y}/B_{n,y}` grid, labeled `COMPUTATIONAL_EVIDENCE`.
+Run request D of Nova 3 handoff `N3-HO-N4-001`: bounded characteristic-function recurrence search with explicit frequency range and numerical precision, labeled `COMPUTATIONAL_EVIDENCE`.
