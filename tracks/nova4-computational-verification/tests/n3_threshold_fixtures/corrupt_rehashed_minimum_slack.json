@@ -1,0 +1,126 @@
+{
+  "claim": {
+    "decision": {
+      "N3_ANA_011": "FINITE_RANGE_CONFIRMED_THEOREM_DECISION_PENDING_REQUEST_H",
+      "all_address_checks_pass": true,
+      "all_capacity_checks_pass": true,
+      "all_ceiling_checks_pass": true,
+      "all_legendre_checks_pass": true,
+      "all_prime_checks_pass": true,
+      "request_G": "ACCEPTED_AS_FINITE_CERTIFICATE"
+    },
+    "finite_only": true,
+    "minima": {
+      "address_slack": {
+        "first_n": 120368,
+        "last_n": 120371,
+        "minimizing_n": [120368,120369,120370,120371],
+        "value": 57941
+      },
+      "capacity_margin_bits": {
+        "gap": "9.159902697176993029690666958",
+        "row": {
+          "M_n": 2190,
+          "address_slack": 57942,
+          "binary_digit_sum": 9,
+          "capacity_margin_bits": "10488366.752701948593350710525838599021888782279328038221642538239178328227042338",
+          "conservative_required_bits": "1015750.2472980514066492894741614009781112177206719617783574617608216717729576625",
+          "e_M": 2237,
+          "floor_n_over_2": 60185,
+          "legal_address_max": 60179,
+          "legendre_lower_bound_margin": "8.877116346233304089877701655917603690474665127057602033022543172246768679200174",
+          "n": 120370,
+          "pi_floor_n_over_2": 6076,
+          "pi_n": 11330,
+          "prime_margin": "1824.1644264096105844088940986529829638197083376830289376378100630008366569105509",
+          "prime_target": "3429.8355735903894155911059013470170361802916623169710623621899369991633430894491",
+          "profile_capacity_exponent": 11504117,
+          "r_n": 47,
+          "upper_half_prime_count": 5254,
+          "v2_factorial": 120361
+        },
+        "runner_up_margin": "10488375.912604645770343740216505556751789819758914869963501730858311731660938281",
+        "runner_up_n": 120369
+      },
+      "legendre_lower_bound_margin": {
+        "gap": "0.000005503476318760647073161096664",
+        "row": {
+          "M_n": 2222,
+          "address_slack": 63256,
+          "binary_digit_sum": 17,
+          "capacity_margin_bits": "11569120.221344768715069880068012477255701925923685147761693945855674889278272772",
+          "conservative_required_bits": "1114103.7786552312849301199319875227442980740763148522383060541443251107217272276",
+          "e_M": 2270,
+          "floor_n_over_2": 65535,
+          "legal_address_max": 65526,
+          "legendre_lower_bound_margin": "0.999988993068356614813649579045292159182032277389388015748016637167805566864181",
+          "n": 131071,
+          "pi_floor_n_over_2": 6542,
+          "pi_n": 12251,
+          "prime_margin": "2001.2430561286467215230441071320287301249734257183445501547133173126204059851790",
+          "prime_target": "3707.7569438713532784769558928679712698750265742816554498452866826873795940148210",
+          "profile_capacity_exponent": 12683224,
+          "r_n": 48,
+          "upper_half_prime_count": 5709,
+          "v2_factorial": 131054
+        },
+        "runner_up_margin": "0.999994496544675375460722740141956225898367212873400530509855716870851345150836",
+        "runner_up_n": 262143
+      },
+      "prime_margin": {
+        "gap": "0.02605837239448723812415727036",
+        "row": {
+          "M_n": 2190,
+          "address_slack": 57942,
+          "binary_digit_sum": 9,
+          "capacity_margin_bits": "10488366.752701948593350710525838599021888782279328038221642538239178328227042338",
+          "conservative_required_bits": "1015750.2472980514066492894741614009781112177206719617783574617608216717729576625",
+          "e_M": 2237,
+          "floor_n_over_2": 60185,
+          "legal_address_max": 60179,
+          "legendre_lower_bound_margin": "8.877116346233304089877701655917603690474665127057602033022543172246768679200174",
+          "n": 120370,
+          "pi_floor_n_over_2": 6076,
+          "pi_n": 11330,
+          "prime_margin": "1824.1644264096105844088940986529829638197083376830289376378100630008366569105509",
+          "prime_target": "3429.8355735903894155911059013470170361802916623169710623621899369991633430894491",
+          "profile_capacity_exponent": 11504117,
+          "r_n": 47,
+          "upper_half_prime_count": 5254,
+          "v2_factorial": 120361
+        },
+        "runner_up_margin": "1824.1904847820050716470182559233469239769303265755886522420467153051345920687721",
+        "runner_up_n": 120369
+      }
+    },
+    "range": {
+      "endpoint_semantics": "pi(n/2)=pi(floor(n/2))",
+      "every_integer_checked": true,
+      "integer_count": 879633,
+      "n_max": 1000000,
+      "n_min": 120368
+    }
+  },
+  "evidence_sha256": "e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0",
+  "result_class": "finite threshold sweep certificate",
+  "schema": "nova4.n3-threshold-sweep-claim.v1",
+  "sha256": "a1f29c3d769f0d506a74f4fc261cf9142cc3fc735315af626578b8777cea9316",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "imported_n1": {
+      "blob_sha": "4255e76ff18f675ae80a0192381070d9a934fc97",
+      "commit": "fa11f4b2cb86a2dd791df189ada12757be791804",
+      "file": "tracks/nova1-factorial-structure/proofs/HIGH_PRIME_MENU_CAPACITY.md",
+      "object": "N1-STR-009"
+    },
+    "object": "N3-ANA-011",
+    "proof_file": "tracks/nova3-analytic-density/proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md",
+    "proof_file_blob_sha": "e36daf98db86da16bd5ed8c6c82f43530d745f66",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "G",
+    "sanity_file": "tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py",
+    "sanity_file_blob_sha": "519c900b616a33d95f3b2a8a8dec10d04a0a24f5"
+  }
+}
