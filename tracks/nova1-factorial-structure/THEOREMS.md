@@ -45,6 +45,7 @@ No finite result is promoted to an asymptotic theorem. No formal profile count i
 | N1-COL-001 | proved theorem | At least `2^{floor(M_n/2)}` legal profiles collide at one quotient sum for `n>=120368` | `proofs/RAINBOW_CARRY_COLLISIONS.md` |
 | N1-OBS-003 | proved theorem | Sequential carrier success requires geometric-mean connected-prefix size at least `exp(n/(85 log n))` for `n>=120368` | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent streaming plus record-gap left counts exactly recovers `u_t^*` and `K_t` without storing the complete divisor prefix | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
+| N1-STR-023 | proved theorem | A balanced meet-in-the-middle product stream emits every odd core exactly once and recovers exact carrier prefixes with heap size `O(sqrt(tau(D_n)))` | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
 
 ## Detail for N1-OBS-003
 
@@ -91,6 +92,26 @@ Imported precursor:
 - Nova 2 result: `N2-ADD-121`;
 - branch: `nova/additive-occupancy`;
 - exact commit: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`.
+
+## Detail for N1-STR-023
+
+Partition the odd prime-power coordinates of
+
+\[
+D_n=\frac{n!}{3\cdot2^{v_2(n!)}}
+\]
+
+into disjoint sets `I` and `J`. Their sorted half-divisor lists are `A` and `B`. Every divisor of `D_n` has a unique representation `ab` with `a in A` and `b in B`.
+
+For each fixed `a`, the row `aB` is strictly increasing. A minimum-heap merge of the rows emits the complete divisor order exactly once. Scanning consecutive gaps resolves the first gap above each carrier threshold, re-evaluating the same right endpoint after every blocked-layer transition.
+
+A balanced coordinate partition gives heap size
+
+\[
+O(\sqrt{\tau(D_n)}),
+\]
+
+rather than a frontier proportional to millions of exponent vectors.
 
 ## Conditional results
 
@@ -179,15 +200,41 @@ Imported precursor:
 - Report: `verification/FULL_CORE_N51_REPORT.md`
 - Raw certificate: `verification/full_core_n51.txt`
 
+### N1-FIN-007: Exact meet-in-the-middle certificate at n=52
+
+- Result label: **finite certificate**
+- Total odd-core divisors: `155,001,600`
+- Balanced split: `12,420 x 12,480`
+- Divisors emitted before certificate completion: `128,277,372`
+- Maximum merge heap: `12,420`
+- Connected-prefix sizes:
+  \[
+  47{,}281,
+  847{,}667,
+  7{,}770{,}345,
+  34{,}911{,}862,
+  85{,}166{,}200,
+  128{,}277{,}372
+  \]
+- Six layers reach `Y_52`
+- Exact conclusion:
+  \[
+  H_{52!}(\lfloor\sqrt{52!}\rfloor+1)\le22
+  \]
+- Entropy product floor ratio: `866,765,166,748`
+- Verifier: `verification/marker_three_mitm_prefix_u128.cpp`
+- Report: `verification/FULL_CORE_N52_REPORT.md`
+- Raw certificate: `verification/full_core_n52_mitm.txt`
+
 Combined exact finite range:
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le51).
+\qquad(12\le n\le52).
 \]
 
-No conclusion is asserted for `n>=52`.
+No conclusion is asserted for `n>=53`.
 
 ## Disproved routes
 
