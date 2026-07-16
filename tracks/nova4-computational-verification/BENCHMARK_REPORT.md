@@ -96,3 +96,21 @@ final N3-ANA-011 decision: ACCEPTED
 Fourteen new tests passed in approximately 0.009 seconds in the isolated development suite. Standalone full audit replay completed in approximately 1.49 seconds, final claim replay in approximately 1.34 seconds, and fixture-directory replay in approximately 1.25 seconds. Peak resident memory was approximately 307 MiB. No timeout or unknown result occurred.
 
 Request H is a proof-semantics and fail-closed verification activity. The accepted theorem establishes address legality, menu cardinality, and formal profile capacity only. It does not establish profile injectivity, distinct numerical sums, additive occupancy, the factorial half-range theorem, or Erdős Problem 18.
+
+## Nova 3 full-model variance and non-Gaussian limit audit
+
+The `N3-ANA-006` audit independently reconstructed the variance asymptotic and full weak limit from Legendre valuations and elementary tail control.
+
+```text
+finite variance rows: 10
+largest finite n: 1,000,000
+limiting-series prime cutoff: 1,000,000
+partial limiting variance: 0.1154658352305299
+elementary remaining-tail upper bound: 0.00007349978436438362
+rehashed semantic corruptions rejected: 5
+final N3-ANA-006 decision: ACCEPTED
+```
+
+Twelve new tests passed in approximately 0.96 seconds in the isolated development suite. Standalone full audit replay completed in approximately 1.43 seconds and final claim replay in approximately 1.33 seconds. Peak resident memory was approximately 304,400 KiB. No timeout or unknown result occurred.
+
+The finite convergence table is computational evidence only. The theorem follows from fixed-prime convergence, a uniform normalized tail-variance bound, `L^2` convergence of the limiting series, and the exact `p=2` characteristic-function zero at `2*pi/log(2)`.
