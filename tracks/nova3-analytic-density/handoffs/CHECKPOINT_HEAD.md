@@ -10,6 +10,8 @@ This file freezes the theorem artifacts included in the ninth substantive checkp
 - Nova 2 handoff commit: `058cf80888f4d98d1d7ac03956ff29c9f1556b02`
 - Nova 4 handoff commit: `4eb594b74f9633b0c98b5eccc2ce5403dcf6f644`
 - Checkpoint record commit: `53099d2e7b51f6dea4873a92cbc69f4d3caeaf42`
+- Status addendum commit: `548ff65f2eb64e2000956906467fa911f8acbe85`
+- Preferred-route addendum commit: `3abffa7ddf8c495bcb29a50a230273fdc8dc4795`
 
 The mathematical claims are frozen by the proof and registry-addendum commits above.
 
