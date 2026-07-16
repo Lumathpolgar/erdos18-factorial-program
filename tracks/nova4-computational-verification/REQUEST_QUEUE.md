@@ -1,6 +1,6 @@
 # Nova 4 Verification Request Queue
 
-Date: 2026-07-15
+Date: 2026-07-16
 
 Nova 4 never changes another track's theorem status. Every request freezes the sending branch and exact commit SHA before testing.
 
@@ -16,49 +16,43 @@ Frozen branch: `nova/analytic-density`
 
 Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
-Request D proof commit: `ff57005b975c4917341306bd0eceb6d05a9b18f6`
+Source-ledger commit for request E: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
 
 Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Status: `REQUESTS_A_B_C_D_COMPLETE_REQUEST_E_READY`
+Status: `REQUESTS_A_B_C_D_E_COMPLETE_REQUEST_F_READY`
 
 Completed work:
 
-- independent reconstruction and acceptance of `N3-ANA-004`;
-- independent reconstruction and acceptance of `N3-ANA-005`;
-- exact enumeration of 1,978 divisors across `2 <= n <= 12`;
-- exact rational coordinate moments and covariance checks;
-- 45,840 exact local-window checks;
-- valid tight certificate and rehashed corrupted-bound rejection;
-- eight request C scale rows, 63 cutoff-grid rows, and eight admissible theorem-path rows;
-- variance shares, effective dimension, one-million-prime proxy, and frozen-script cross-check;
-- factor-of-two tail-label diagnosis in `scale_sanity.py`;
-- independent reconstruction and acceptance of `N3-ANA-007`;
-- exhaustive request D ranking of 19,990,010 bounded recurrence scores;
-- 40 block winners and 10 global winners;
-- 80-digit finalist evaluation and direct exact exponent-vector cross-check;
-- valid `n=12` candidate and rehashed candidate-corruption rejection.
+- accepted theorem audits for `N3-ANA-004`, `N3-ANA-005`, and `N3-ANA-007`;
+- 1,978 exact divisors and 45,840 local windows;
+- request C scale and high-prime computational evidence;
+- request D exhaustive bounded recurrence evidence over 19,990,010 scores;
+- request E primary-source reconstruction for `N3-SRC-004`, `N3-SRC-005`, and `N3-SRC-006`;
+- exact Ford witness `H(120,6,7)=17` while `tau(120;6,7)=0`;
+- exact friable membership without a nonexceptionality certificate for `10!`;
+- exact ultrafriable common-cap contradiction at `n=10` using `2^8=256` and prime `11`;
+- valid compatibility certificate and rehashed direct-use corruption rejection.
 
-Request D disposition:
+Request E disposition:
 
 ```text
-N3-ANA-007: ACCEPTED
-request D: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
-q range: 1,000 through 2,000,000
-n range: 3 through 12
-semantic SHA-256: b15ad70a01046ec292ab3197faafc357bf4c9be155e97a5d498b10a6681123fc
+request E: ACCEPTED
+restricted sources reconstructed: 3
+direct factorial sources: 0
+semantic SHA-256: a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f
+claim SHA-256: ae60e9e8758df8113ac249404d8660c5ae4bb5edf02b3aab342c43c47a8124ba
 ```
 
 Next requested study:
 
-- request E source reconstruction for Ford's `H(x,y,z)`;
-- verify the scope of the Drappeau-Tenenbaum exceptional friable subset;
-- compare the ultrafriable common exponent cap with the prime-dependent exponents `v_p(n!)`;
-- determine whether any restricted source directly selects the factorial sequence.
+- request F primary-source reconstruction of Dusart Theorem 6.9;
+- independently verify the lower bound at `x>=5393` and upper bound at `x>=60184`;
+- derive the prime-interval inequality for integer `n>=120368` without using Nova 3's intermediate algebra;
+- return a separate decision for `N3-ANA-010`.
 
 Later studies:
 
-- request F Dusart theorem reconstruction;
 - request G exact threshold sweep for every `120368 <= n <= 1000000`;
 - request H adversarial threshold tests;
 - final independent decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, `N3-ANA-010`, and `N3-ANA-011`.
@@ -77,17 +71,7 @@ Frozen commit: `fa11f4b2cb86a2dd791df189ada12757be791804`
 
 Status: `COMPLETED_FOR_FROZEN_STUDIES_A_AND_B`
 
-Completed work:
-
-- certified Study A capacity predicates for every `3 <= n <= 1,000,000`;
-- exact Study B high-prime core menus and layers for every `20 <= n <= 80`;
-- exact factorial divisibility, address, numerical-collision, residue, and witness checks;
-- target-truncated zero-or-one-per-layer support and gap audits;
-- first-failure certificate at `n=20`, target `8`, window `[1,8]`;
-- exact failure at the first requested target in all 61 reduced models;
-- CSV summary, deterministic full-audit checksum, replay commands, and corrupted-certificate tests.
-
-Acceptance scope: Study A is an exact finite theorem audit. Study B is computational evidence plus a disproved finite claim for the exact reduced models only.
+Study A certified the capacity predicates for every `3 <= n <= 1,000,000`. Study B found failure at the first requested target in all 61 reduced models for `20 <= n <= 80`.
 
 ## N4-REQ-N2-001
 
@@ -103,16 +87,7 @@ Frozen commit: `45c74a5fa747551422ffcad7d3ddf22788fbe622`
 
 Status: `ACCEPTED_FOR_FROZEN_MODEL`
 
-Completed work:
-
-- reusable common-gcd, residue, and exact finite support gate;
-- exact factorial-divisor and numerical-collision validation;
-- independent replay of `N2-OBS-107`;
-- proof reconstruction of `N2-ADD-115`;
-- exhaustive transition audit for `3 <= n <= 10000`;
-- corrupted-certificate rejection tests.
-
-Acceptance is limited to the exact model frozen by Nova 2. A revised candidate requires a new versioned request and exact source SHA.
+The exact lattice obstruction and transition audit are complete. A revised candidate requires a new versioned request and exact source SHA.
 
 ## Intake rule
 
