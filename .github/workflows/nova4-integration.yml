@@ -1,0 +1,50 @@
+name: Nova 4 integration gate
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'tracks/nova4-computational-verification/**'
+      - '.github/workflows/nova4-integration.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nova4-combined-tree:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out generated pull-request merge commit
+        uses: actions/checkout@v4
+
+      - name: Record integration snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "event=${GITHUB_EVENT_NAME}"
+          echo "tested_sha=${GITHUB_SHA}"
+          echo "head_sha=${{ github.event.pull_request.head.sha }}"
+          echo "base_sha=${{ github.event.pull_request.base.sha }}"
+          git rev-parse HEAD
+          git status --short
+
+      - name: Compile Nova 4 Python sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 --version
+          python3 -m compileall -q \
+            tracks/nova4-computational-verification/src \
+            tracks/nova4-computational-verification/tests
+
+      - name: Run complete Nova 4 verifier suite
+        shell: bash
+        env:
+          PYTHONPATH: tracks/nova4-computational-verification/src
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover \
+            -s tracks/nova4-computational-verification/tests \
+            -v
