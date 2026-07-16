@@ -36,19 +36,13 @@ The timings are diagnostic measurements, not mathematical claims.
 
 ## Exact finite values
 
-The exact interval maxima are:
-
 ```text
 H_{n!}(floor(sqrt(n!)) + 1) = 1 for 1 <= n <= 4,
 H_{n!}(floor(sqrt(n!)) + 1) = 2 for 5 <= n <= 7,
 H_{n!}(floor(sqrt(n!)) + 1) = 3 for 8 <= n <= 13.
 ```
 
-This is an exact finite theorem audit only. It does not imply a uniform asymptotic bound.
-
 ## Smallest greedy counterexample
-
-The descending largest-divisor greedy algorithm is first suboptimal at:
 
 ```text
 n = 8
@@ -57,40 +51,30 @@ greedy = 144 + 10 + 1
 optimal = 140 + 15
 ```
 
-The two-term certificate is independently replayable. A one-term representation is impossible because `155` does not divide `8!`. Therefore the optimum is exactly two terms.
-
 ## Resource limit
 
-An exact Method A run for `n=14` did not complete within a 30 second bounded attempt. Its status is:
-
-```text
-unknown due to resource limits
-```
-
-No mathematical conclusion is inferred for `n=14` from that timeout.
+The exact Method A run for `n=14` did not complete within 30 seconds. Its status remains `unknown due to resource limits`.
 
 ## Lattice gate benchmark
 
-Environment: CPython 3.13.5, standard library only.
-
-The complete unit suite at that checkpoint contained 32 tests and completed in approximately 0.2 seconds in the recorded environment.
-
-The exact transition audit for every `3 <= n <= 10000` completed in approximately 1.9 seconds. It uses rational interval bounds for logarithmic ceilings and exact integer checks for factorial valuation and target admissibility.
-
-These timings are engineering diagnostics, not mathematical claims.
+The exact transition audit for every `3 <= n <= 10000` completed in approximately 1.9 seconds. The complete suite at that checkpoint contained 32 tests.
 
 ## Nova 1 capacity benchmark
 
-The exact audit of all 999,998 integers in `3 <= n <= 1,000,000` completed in approximately 6.7 seconds in the recorded container. Peak resident memory was approximately 333 MB.
-
-The complete unit suite at that checkpoint contained 39 tests and completed in approximately 7.0 seconds. These are engineering diagnostics, not mathematical claims.
+The exact audit of all 999,998 integers in `3 <= n <= 1,000,000` completed in approximately 6.7 seconds. Peak resident memory was approximately 333 MB. The complete suite at that checkpoint contained 39 tests.
 
 ## Nova 1 reduced-rainbow benchmark
 
-The deterministic Study B generation for all 61 cases in `20 <= n <= 80` completed in approximately 24.1 seconds in the recorded CPython 3.13.5 container. Peak resident memory was approximately 316 MiB.
+The deterministic Study B generation for all 61 cases in `20 <= n <= 80` completed in approximately 24.1 seconds. Peak resident memory was approximately 316 MiB.
 
-The calculation used exact target-truncated integer bitsets through `T_n=10^7`, exact residue masks for every modulus `2<=q<=64`, and stored support snapshots for replayable record-gap witnesses.
+The calculation used exact target-truncated integer bitsets through `T_n=10^7`, exact residue masks for every modulus `2<=q<=64`, and replayable record-gap witnesses. Eleven new reduced-rainbow tests passed.
 
-Eleven newly added reduced-rainbow tests completed in approximately 2.7 seconds. They cover exact parameter transitions, family construction, support counts, independent lattice agreement, witness reconstruction, duplicate-layer rejection, full semantic replay on a sample range, in-memory rehashed false claims, and the on-disk rehashed corrupted certificate.
+## Nova 3 moment and local-ceiling benchmark
 
-No timeout or unknown result occurred in Study B. These timings are engineering diagnostics, not mathematical claims.
+The exact finite audit for every `2 <= n <= 12` completed in approximately 2.35 seconds. Peak resident memory was approximately 288 MiB.
+
+The run enumerated 1,978 exact divisors and checked 45,840 local windows. Local endpoint decisions used rationally certified `floor(d exp(Delta))` values rather than floating logarithm comparisons. Moment identities were checked exactly over exponent vectors and replayed with 80-digit decimal logarithms.
+
+Ten new Nova 3 tests completed in approximately 3.7 seconds. They cover exact moment totals, certified exponential floors, certified `floor(Delta/log q)`, full semantic replay, valid tight-certificate replay, cached-field corruption, and a rehashed upper bound lowered by one.
+
+No timeout or unknown result occurred in the Nova 3 moment/local audit. All timings are engineering diagnostics, not mathematical claims.
