@@ -28,12 +28,6 @@ PYTHONPATH=src python3 src/replay_n3_recurrence.py verify-candidate \
 
 The request E certificate records that none of the three audited restricted sources directly selects the deterministic factorial sequence.
 
-```text
-N3-SRC-004: Ford ambient count, direct factorial use rejected
-N3-SRC-005: Drappeau–Tenenbaum method only, fixed sequence not certified
-N3-SRC-006: ultrafriable common-cap model, direct factorial use rejected
-```
-
 ```bash
 PYTHONPATH=src python3 src/replay_n3_sources.py verify-claim \
   certificates/analytic/n3_restricted_source_compatibility.json
@@ -56,6 +50,23 @@ PYTHONPATH=src python3 src/replay_n3_dusart.py verify-claim \
   --audit data/analytic/n3_dusart_prime_interval_audit.json
 ```
 
-The adversarial fixture lowers the claimed threshold to `120367`, recomputes the outer checksum, and must still fail semantic verification.
+## Exact threshold-sweep certificate
 
-These certificates preserve finite evidence, source-scope decisions, and theorem audit decisions. They do not prove the factorial half-range theorem.
+The request G certificate records the exact minima over every integer `120368 <= n <= 1000000`:
+
+```text
+minimum prime margin: n=120370
+minimum Legendre proof margin: n=131071
+minimum address slack: 57942 at n=120368..120371
+minimum capacity margin: n=120370
+```
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
+  certificates/analytic/n3_threshold_sweep_claim.json \
+  --audit data/analytic/n3_threshold_sweep_n120368_n1000000.json
+```
+
+The committed adversarial fixture lowers the exact minimum address slack, recomputes the outer checksum, and must still fail semantic verification.
+
+These certificates preserve finite evidence, source-scope decisions, theorem audits, and finite sweep results. They do not prove the factorial half-range theorem, formal-profile injectivity, or additive occupancy.
