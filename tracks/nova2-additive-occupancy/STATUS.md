@@ -4,7 +4,7 @@
 
 - Track: Additive Occupancy and Global Sumsets
 - Branch: `nova/additive-occupancy`
-- Overall state: `MARKER_THREE_CERTIFIED_N12_N55_FACTORIAL_SPAN_AMPLIFICATION_OPEN`
+- Overall state: `MARKER_THREE_CERTIFIED_N12_N55_COMPLEMENT_QUANTILE_OPEN`
 
 The factorial formulation of Erdos Problem 18 remains open.
 
@@ -29,6 +29,8 @@ Nova 2 proved:
 - `N2-ADD-122`: exact count-utilization factorization;
 - `N2-ADD-123`: average internal-gap utilization sandwich;
 - `N2-ADD-124`: sharp parity-span count-to-threshold criterion;
+- `N2-ADD-125`: exact divisor-complement order-statistic identity;
+- `N2-ADD-126`: lower-tail quantile and median carrier bounds;
 - `N2-OBS-109`: first-blocking-gap non-identifiability;
 - `N2-OBS-110`: optimality of parity and count information without factorial-specific spacing.
 
@@ -56,51 +58,63 @@ The exact endpoint condition is
 \Delta_n=\widetilde\Gamma_n\left(\prod_tb_t\right)^{1/L}\ge1.
 \]
 
-## Sharp universal baseline
+## Universal and factorial-specific span bounds
 
-Because the positive cores are distinct odd integers,
+The universal parity theorem gives
 
 \[
-U_t\ge2K_t-1,
-\qquad
-\eta_t\ge\frac{2K_t-1}{K_tD_t}.
+U_t\ge2K_t-1.
 \]
 
-Hence
+For the reserved odd core
 
 \[
-\frac{F_t}{F_{t-1}}
->
-\frac{D_t+2K_t}{D_t+1}.
+C_n=\frac{n!}{3\,2^{v_2(n!)}},
 \]
 
-The product condition
+write its positive divisors as
 
 \[
-\prod_t\frac{D_t+2K_t}{D_t+1}
-\ge
-\frac{Y_n+1}{W_n+1}
+1=c_1<\cdots<c_{\tau_n}=C_n.
 \]
 
-is sufficient for endpoint coverage.
-
-N2-OBS-110 proves this is best possible using only oddness, `K_t`, and `D_t`. Any stronger theorem must use the actual factorial-divisor distribution inside the connected prefix.
-
-## Retired sequential statistics
-
-1. The first external blocking gap is non-identifying by N2-OBS-109.
-2. Prefix count and parity alone are quantitatively insufficient by N2-OBS-110 and N2-CMP-206.
-
-The exact missing statistic is factorial-specific span amplification
+Because the connected prefix contains exactly the first `K_t` divisors, N2-ADD-125 gives the exact identity
 
 \[
-A_t=\frac{U_t}{2K_t-1},
+U_t c_{\tau_n+1-K_t}=C_n.
 \]
 
-or equivalently a factorial-specific lower or upper bound for
+Thus
 
 \[
-\eta_t=\frac{U_t}{K_tD_t}.
+A_t=\frac{U_t}{2K_t-1}
+=\frac{C_n}{(2K_t-1)c_{\tau_n+1-K_t}}.
+\]
+
+If at least `tau_n-K_t+1` divisors lie at or below `B`, then
+
+\[
+U_t\ge\frac{C_n}{B}.
+\]
+
+In particular,
+
+\[
+K_t>\frac{\tau_n}{2}
+\quad\Longrightarrow\quad
+U_t\ge\left\lceil\sqrt{C_n}\right\rceil.
+\]
+
+## Retired or insufficient sequential inputs
+
+1. First external blocking gaps are non-identifying by N2-OBS-109.
+2. Prefix count and parity alone are optimal but quantitatively insufficient by N2-OBS-110 and N2-CMP-206.
+3. Divisor median symmetry is stronger, but N2-CMP-207 still leaves a finite endpoint deficit of roughly `10^23` through `10^25`.
+
+The exact missing input is now a substantially deeper lower-tail divisor-count theorem, equivalently an upper bound for
+
+\[
+c_{\tau_n+1-K_t}.
 \]
 
 ## Nova 1 intake
@@ -136,28 +150,28 @@ The term-bound transition occurs because `r_55=17`. The smallest unaudited finit
 
 ## Finite effective diagnostics
 
-| `n` | endpoint surplus | parity-only root ratio |
-|---:|---:|---:|
-| 51 | 1.000004144206103 | 0.0000257773398727324 |
-| 52 | 1.000001025305911 | 0.0000185652131315783 |
-| 53 | 1.000001967025492 | 0.0000139117330218277 |
-| 54 | 1.000000334888580 | 0.00000997734788683994 |
-| 55 | 1.000000290721510 | 0.00000761958530584015 |
+| `n` | endpoint surplus | parity-only root ratio | median-hybrid root ratio |
+|---:|---:|---:|---:|
+| 51 | 1.000004144206103 | 0.0000257773398727324 | 0.000145487587879522 |
+| 52 | 1.000001025305911 | 0.0000185652131315783 | 0.000123906257046752 |
+| 53 | 1.000001967025492 | 0.0000139117330218277 | 0.0000907853071519960 |
+| 54 | 1.000000334888580 | 0.00000997734788683994 | 0.0000892960011035230 |
+| 55 | 1.000000290721510 | 0.00000761958530584015 | 0.0000740382055592177 |
 
-The parity-only product misses the exact endpoint scale by roughly `10^28` through `10^31` on this finite range. Actual factorial-divisor spacing supplies nearly all useful expansion. These diagnostics do not establish an asymptotic trend.
+For every row, layers five and six cross the divisor median. Median symmetry improves the parity baseline by about five to six decimal orders, but still does not approach the true endpoint factor. No asymptotic trend is inferred.
 
 ## Preferred proof engines
 
 1. Final-only target-dependent numerical tilt and aggregate phase dispersion.
 2. Deterministic final restricted-sumset growth.
-3. Connected-core recursion, now requiring factorial-specific span amplification and a Phase 12P audit.
+3. Connected-core recursion, now requiring a complementary lower-tail divisor theorem and a Phase 12P audit.
 4. Preserved three-power fallback.
 
 ## Cross-track requests
 
 ### Nova 1
 
-Prove a pointwise or averaged theorem for `A_t=U_t/(2K_t-1)` or `eta_t` under the exact factorial-divisor thresholds. Count, parity, and first-blocking-gap estimates are no longer sufficient.
+Prove lower-tail divisor-count bounds for the reserved odd factorial core strong enough to upper-bound `c_(tau_n+1-K_t)` beyond the median theorem.
 
 ### Nova 3
 
@@ -165,12 +179,12 @@ Continue aggregate odd-core phase dispersion, collision-aware reference laws, an
 
 ### Nova 4
 
-Independently reconstruct N2-ADD-124 and N2-OBS-110, replay N2-CMP-206, and extend exact finite certification from `n=56`.
+Independently reconstruct N2-ADD-125 and N2-ADD-126, replay N2-CMP-207, and extend exact finite certification from `n=56`.
 
 ## Exact open blockers
 
 1. Uniform marker-three quotient occupancy through `Y_n`.
-2. A factorial-specific span-amplification lower bound forcing `Delta_n>=1`, or an upper bound forcing `Delta_n<1` and retiring the sequential engine.
+2. A lower-tail divisor-count theorem forcing `Delta_n>=1`, or a contrary complementary-quantile upper bound retiring the sequential engine.
 3. Exact finite extension from `n=56`.
 4. Uniform endpoint-window coverage.
 5. Target-local collision multiplicity or additive-energy control.
@@ -180,8 +194,8 @@ Independently reconstruct N2-ADD-124 and N2-OBS-110, replay N2-CMP-206, and exte
 
 ## Claim boundary
 
-Exact coverage through `n=55` and the sharp parity-span theorem do not prove asymptotic occupancy, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
+Exact coverage through `n=55`, complement symmetry, and the median-hybrid theorem do not prove asymptotic occupancy, the factorial half-range theorem for all sufficiently large `n`, or Erdos Problem 18.
 
 ## Next theorem target
 
-Prove or refute a uniform factorial-specific lower bound for the span amplification `U_t/(2K_t-1)` across enough exact carrier layers.
+Construct a certified lower-tail divisor family for `C_n` large enough to bound the complementary order statistics required by the active carrier layers.
