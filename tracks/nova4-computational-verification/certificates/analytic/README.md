@@ -103,6 +103,48 @@ PYTHONPATH=src python3 src/replay_n3_adversarial.py verify-fixtures \
   tests/n3_adversarial_fixtures
 ```
 
-The six fixtures recompute their outer checksums after changing the threshold, address range, unit correction, profile interpretation, half endpoint, or finite/asymptotic classification. All must still fail semantic verification.
+## Final N3-ANA-006 theorem certificate
+
+The variance-limit certificate records the independent final decision:
+
+```text
+N3-ANA-006: ACCEPTED
+variance asymptotic: ACCEPTED
+full normalized weak limit: ACCEPTED
+full-model limit: non-Gaussian
+characteristic-function zero: 2*pi/log(2)
+```
+
+Accepted conclusions:
+
+```text
+Var(S_n)/n^2 -> (1/12) sum_p (log p)^2/(p-1)^2
+X_n => sum_p (log p) U_p
+the limiting random series converges in L^2
+the limiting characteristic function is the convergent sinc product
+```
+
+Explicit exclusions:
+
+```text
+high-prime tail CLT N3-ANA-008
+coarse central-window lower bound N3-ANA-009
+additive occupancy
+factorial half-range theorem
+Erdos Problem 18
+```
+
+```bash
+PYTHONPATH=src python3 src/replay_n3_variance.py verify-claim \
+  certificates/analytic/n3_ana_006_final_claim.json \
+  --audit data/analytic/n3_variance_limit_audit.json
+```
+
+Five fixtures recompute their outer checksums after changing the variance constant, prime denominator, Gaussian status, zero frequency, or finite/asymptotic classification. All must still fail semantic verification.
+
+```text
+audit SHA-256: e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119
+claim SHA-256: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
+```
 
 These certificates preserve finite evidence, source-scope decisions, theorem audits, and final scoped theorem decisions. They do not prove the factorial half-range theorem or additive occupancy.
