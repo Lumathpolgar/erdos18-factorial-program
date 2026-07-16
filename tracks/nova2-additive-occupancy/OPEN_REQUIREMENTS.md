@@ -12,49 +12,39 @@ Frozen marker-three source:
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
 - construction: `N1-CON-003`.
 
-Accepted facts include legality, exact 2-adic separation, numerical palette disjointness, exact lattice `3 Z`, quotient span one, correction reduction, and term cost `M_n+r_n`.
+### N2-REQ-N1-002-v6
 
-### N2-REQ-N1-002-v5
+Status: `OPEN_AVERAGE_INTERNAL_GAP`.
 
-Status: `OPEN_EFFECTIVE_UTILIZATION`.
-
-The count-only entropy condition from `N1-OBS-003` is necessary but not sufficient. Under `N2-ADD-122`, define
+Under N2-ADD-123, define
 
 \[
-a_t=\frac{2^{t-1}U_t}{F_{t-1}},
+D_t=\left\lfloor\frac{F_{t-1}}{2^{t-1}}\right\rfloor,
 \qquad
-b_t=\frac{1+a_t}{1+K_t}.
-\]
-
-The exact sequential requirement is
-
-\[
-\left(\prod_t(1+K_t)\right)
-\left(\prod_tb_t\right)
-\ge
-\frac{Y_n+1}{W_n+1}.
+\eta_t=\frac{U_t}{K_tD_t}.
 \]
 
 Provide one of:
 
-1. pointwise lower bounds for `b_t`;
-2. averaged lower bounds for `prod b_t`;
-3. lower bounds for average-gap utilization `eta_t=U_t/(K_tD_t)`;
-4. a uniform upper bound proving the effective product fails and retiring N2-ADD-120.
+1. pointwise lower bounds `eta_t>=rho_t` strong enough to force `Delta_n>=1`;
+2. an averaged lower bound for the product of the exact utilization factors;
+3. pointwise or averaged upper bounds strong enough to force `Delta_n<1` and retire N2-ADD-120;
+4. an explicit divisor-spacing theorem that implies either bound.
 
-Exact inspected source:
+The first external blocking gap is not an acceptable substitute. N2-OBS-109 proves that identical `(D_t,K_t,g_t)` data can coexist with utilization tending to zero or one.
 
-`nova/factorial-structure@a6bdab1b917f3b3688f5a0c86e80c8a026bfbc07`.
+Latest inspected source:
 
-Response:
-
-`handoffs/RESPONSE_TO_NOVA1_N53_EFFECTIVE_ENTROPY.md`.
+- branch: `nova/factorial-structure`;
+- head inspected: `8c7ee8f64af56a8d082f1fa3adabb0b0309f6e27`;
+- handoff source commit: `6b31a320fa4c4bd4c9b2395e60faa174198e022e`;
+- handoff: `N1-HO-N2-009`.
 
 ### N2-REQ-N1-003-v2
 
 Status: `OPEN`.
 
-Provide target-local collision-energy or maximum-fiber upper bounds for sums in `[q-W_n,q]`. Raw profile count is not numerical support cardinality.
+Provide target-local collision-energy or maximum-fiber upper bounds for sums in `[q-W_n,q]`.
 
 ## Nova 3 requirements
 
@@ -68,28 +58,19 @@ Tilt existence, uniqueness, span one, exact resonances, and post-prefix tilt com
 
 Status: `OPEN`.
 
-Prove uniform numerical variance, third-moment, maximal-step, and endpoint-collapse bounds for the exact marker-three quotient law.
+Prove uniform numerical variance, third-moment, maximal-step, and endpoint-collapse bounds.
 
 ### N2-REQ-N3-003-v5
 
 Status: `OPEN`.
 
-Prove aggregate phase dispersion
-
-\[
-\mathcal D_{t,\lambda}(\theta)
-=
-\sum_{a,b}p_t(a)p_t(b)
-\sin^2\left(\frac{(a-b)\theta}{2}\right)
-\]
-
-strong enough to control the complete characteristic function on required minor arcs.
+Prove aggregate phase dispersion for the complete tilted odd-core menus on the required minor arcs.
 
 ### N2-REQ-N3-004-v4
 
 Status: `OPEN`.
 
-Construct a collision-aware integer reference law or a target-local energy bound and prove the strict weighted Fourier inequality for every declared target.
+Construct a collision-aware integer reference law or target-local energy bound and prove the strict weighted Fourier inequality.
 
 ### N2-REQ-N3-005
 
@@ -105,26 +86,25 @@ Status: `OPEN`.
 
 Independently replay the marker-three structural gate from commit `ebb47ba436af554366d0f285119a769f31f9e561`.
 
-### N2-REQ-N4-002-v6
+### N2-REQ-N4-002-v7
 
 Status: `PARTIALLY_CLOSED_BY_NOVA2_AND_NOVA1`.
 
 Independently reconstruct:
 
-- `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, and `N2-ADD-122`;
-- `N2-FIN-202` for `12<=n<=45`;
-- `N2-FIN-203` at `n=46`;
-- accepted Nova 1 finite certificates through `n=53`;
-- the dual-partition replay at `n=53`.
+- N2-ADD-119 through N2-ADD-123;
+- N2-OBS-109;
+- finite certificates through `n=55`;
+- the dual-partition replays at `n=53` and `n=55`.
 
-### N2-REQ-N4-003-v6
+### N2-REQ-N4-003-v7
 
 Status: `OPEN`.
 
 Extend exact complete-core certification from
 
 \[
-n=54.
+n=56.
 \]
 
 Resource limits must remain fail-closed and are not counterexamples.
@@ -133,13 +113,13 @@ Resource limits must remain fail-closed and are not counterexamples.
 
 Status: `OPEN`.
 
-For feasible ranges, compute full restricted sumsets and report support size, collision multiplicity, maximum downward gap, first empty window, and exact witnesses. Reduced-menu failure is not full-model failure.
+For feasible ranges, compute full restricted sumsets and report support size, collision multiplicity, maximum downward gap, first empty window, and exact witnesses.
 
 ### N2-REQ-N4-005-v3
 
 Status: `OPEN`.
 
-Audit endpoint-window support. Total maximum support above `Y_n` does not prove every downward window occupied.
+Audit endpoint-window support. Total maximum support above `Y_n` does not prove every required downward window is occupied.
 
 ## Archive requirement
 
@@ -163,17 +143,31 @@ Q_n\cap[q-W_n,q]\ne\varnothing
 
 for every required quotient target, uniformly for all sufficiently large `n`.
 
-### N2-REQ-INT-002-v6
+### N2-REQ-INT-002-v7
 
-Status: `FINITE_RANGE_CLOSED_THROUGH_N53`.
+Status: `FINITE_RANGE_CLOSED_THROUGH_N55`.
 
-Exact complete-core carrier coverage is established for every `12<=n<=53`. Extend from `n=54` only as a finite auxiliary program.
+The sharp finite bounds are
 
-### N2-REQ-INT-003-v5
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+\quad(12\le n\le54)
+\]
 
-Status: `OPEN`.
+and
 
-Prove the effective carrier condition `widetilde Gamma_n B_n>=1`, or upper-bound the utilization product strongly enough to retire the sequential engine. Separately audit Phase 12P.
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
+\quad(12\le n\le55).
+\]
+
+Extend from `n=56` only as a finite auxiliary program.
+
+### N2-REQ-INT-003-v6
+
+Status: `OPEN_AVERAGE_INTERNAL_GAP`.
+
+Use N2-ADD-123 to prove lower or upper bounds for `eta_t=U_t/(K_tD_t)`. First-blocking-gap estimates are retired by N2-OBS-109.
 
 ### N2-REQ-INT-004-v4
 
@@ -185,22 +179,13 @@ Upper-bound target-local collision multiplicity or additive energy.
 
 Status: `OPEN`.
 
-Compare the two final-only engines on identical labels:
-
-1. collision-aware bounded-torus Fourier positivity;
-2. deterministic final restricted-sumset growth.
+Compare collision-aware bounded-torus Fourier positivity and deterministic final restricted-sumset growth on identical labels.
 
 ### N2-REQ-INT-006
 
 Status: `OPEN`.
 
 Prove the bulk and deterministic endpoint regimes cover every target with no transition gap.
-
-### N2-REQ-INT-007-v4
-
-Status: `OPEN`.
-
-Certify smaller exceptions and extend the upper finite boundary from `n=54`, clearly separated from the asymptotic theorem program.
 
 ## Rule
 
