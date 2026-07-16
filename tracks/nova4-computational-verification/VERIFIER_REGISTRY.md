@@ -6,46 +6,14 @@ Status: `ACTIVE`
 
 Result class: `finite certificate`
 
-Purpose: verify exact sums of distinct positive divisors of `n!`.
-
-Implementation:
+Implementation and schema:
 
 ```text
 src/factorial_lab/certificates.py
-```
-
-Input schema:
-
-```text
 certificates/representation_certificate.schema.json
 ```
 
-Checks:
-
-- strict integer fields;
-- positivity;
-- exact factorial divisibility through prime valuations;
-- duplicate numerical values across all labels;
-- exact sum equality;
-- target range membership;
-- term count;
-- optional cached field consistency.
-
-Failure behavior: fail closed with nonzero replay status.
-
-Corruption tests:
-
-- duplicate numerical divisors with different labels;
-- illegal divisor;
-- wrong sum;
-- exceeded term bound;
-- false cached sum.
-
-Test command:
-
-```bash
-PYTHONPATH=src python3 -m unittest discover -s tests -v
-```
+Checks strict integers, positivity, exact factorial divisibility, numerical distinctness regardless of labels, exact sum equality, target range, term count, and cached fields.
 
 ## N4-VER-002: Exact profile replay
 
@@ -53,48 +21,17 @@ Status: `ACTIVE`
 
 Result class: `exact finite theorem audit`
 
-Implementation:
+Implementation: `src/factorial_lab/dataset.py`.
 
-```text
-src/factorial_lab/dataset.py
-```
-
-Independent optimality basis:
-
-- Method A minimum-cardinality dynamic programming;
-- Method B exact-cardinality bitsets.
-
-Recomputed fields:
-
-- all `lambda` values;
-- interval maximum;
-- hardest targets;
-- prime valuations;
-- divisor count;
-- eligible divisor count;
-- greedy failure count and first failure;
-- dataset checksum.
-
-Replay command:
-
-```bash
-PYTHONPATH=src python3 src/replay.py verify-dataset \
-  data/factorial_half_range_profiles_n1_n13.json
-```
+Independent methods: minimum-cardinality 0/1 dynamic programming and exact-cardinality bitsets. Recomputes all `lambda` values, interval maxima, hardest targets, valuations, divisor counts, eligible counts, greedy failures, and checksum.
 
 ## N4-VER-003: Arithmetic core
 
 Status: `ACTIVE`
 
-Result class: `exact finite theorem audit`
+Implementation: `src/factorial_lab/arithmetic.py`.
 
-Implementation:
-
-```text
-src/factorial_lab/arithmetic.py
-```
-
-Checks include prime sieve, Legendre valuations, exact divisor generation, divisor-count identity, and exact factorial divisibility.
+Checks deterministic prime sieving, Legendre valuations, exact divisor generation, divisor-count identities, and factorial divisibility.
 
 ## N4-VER-004: Lattice-first label-family verifier
 
@@ -102,39 +39,14 @@ Status: `ACTIVE`
 
 Result class: `finite certificate`
 
-Implementation:
+Implementation and schema:
 
 ```text
 src/factorial_lab/lattice.py
-```
-
-Input schema:
-
-```text
 certificates/lattice/label_family.schema.json
 ```
 
-Checks:
-
-- exact source branch and commit metadata;
-- positive integer terms and exact factorial divisibility;
-- target-range bounds;
-- duplicate numerical terms within and across labels;
-- correction-palette collisions;
-- main and final common gcd;
-- exact reachable residues for declared moduli;
-- exact finite reachable support with one or zero terms per layer;
-- every downward target window in the finite domain;
-- cached gcd and first-failure claims by recomputation.
-
-Resource behavior: exceeding the explicit exact-state limit produces `unknown due to resource limits`, never a false claim.
-
-Replay command:
-
-```bash
-PYTHONPATH=src python3 src/replay.py verify-label-family \
-  tests/lattice_fixtures/valid_common_gcd_failure.json
-```
+Checks source metadata, factorial legality, target bounds, numerical duplicates, correction collisions, gcd, residue support, exact one-or-zero-per-layer finite support, every downward window, and cached failure claims. Explicit state-limit overflow reports `unknown due to resource limits`.
 
 ## N4-AUD-002: Frozen Nova 2 lattice-obstruction replay
 
@@ -149,20 +61,7 @@ src/factorial_lab/logcert.py
 src/factorial_lab/n2_audit.py
 ```
 
-Certificate schema:
-
-```text
-certificates/lattice/n2_obs_107.schema.json
-```
-
-The verifier uses rigorous rational bounds for the logarithmic ceilings, recomputes `v_2(n!)`, checks exact source SHAs, verifies target admissibility, and proves the target window is disjoint from the common lattice.
-
-Replay command:
-
-```bash
-PYTHONPATH=src python3 src/replay.py verify-n2-obs-107 \
-  certificates/lattice/n2_obs_107_n1892.json
-```
+Recomputes `N2-ADD-115` and `N2-OBS-107` against exact source SHAs and proves the failing window is disjoint from the common lattice.
 
 ## N4-AUD-003: Nova 1 capacity-threshold verifier
 
@@ -170,7 +69,7 @@ Status: `ACTIVE`
 
 Result class: `exact finite theorem audit`
 
-Frozen input: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, handoff `N1-HO-N4-001`, Study A.
+Frozen input: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, Study A.
 
 Implementation:
 
@@ -179,23 +78,7 @@ src/factorial_lab/logcert.py
 src/factorial_lab/n1_capacity.py
 ```
 
-Checks:
-
-- exact prime counts and `m_n`;
-- exact `v_2(n!)=n-popcount(n)`;
-- rationally certified transition tables for both logarithmic ceilings;
-- exact truth values of `A_n` and `C_n`;
-- all later failures after first success;
-- all truth-state transition rows;
-- certified minimum `C_n` margin on every success interval;
-- semantic checksum and exact frozen source metadata.
-
-Replay:
-
-```bash
-PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
-  certificates/capacity/n1_capacity_audit_n3_n1000000.json
-```
+Checks exact prime counts, `v_2(n!)`, certified logarithmic ceilings, predicates `A_n` and `C_n`, transition rows, later failures, minimum certified margins, checksum, and frozen source metadata.
 
 ## N4-AUD-004: Nova 1 reduced-rainbow verifier
 
@@ -203,7 +86,7 @@ Status: `ACTIVE`
 
 Result classes: `computational evidence` and `disproved finite claim`.
 
-Frozen input: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, handoff `N1-HO-N4-001`, Study B.
+Frozen input: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, Study B.
 
 Implementation:
 
@@ -212,34 +95,68 @@ src/factorial_lab/n1_rainbow.py
 src/replay_rainbow.py
 ```
 
+Checks certified parameters, exact high-prime menus, addresses, factorial legality, no numerical collisions, exact target-truncated bitset support, formal profiles, gcd, residues for every `2<=q<=64`, maximum gaps, first failure, and exact witnesses. The bitset result is independently checked against the common-lattice obstruction.
+
+## N4-AUD-005: Nova 3 product-moment and local-ceiling verifier
+
+Status: `ACTIVE`
+
+Result class: `finite certificate` supporting accepted theorem audits.
+
+Frozen input:
+
+```text
+nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515
+handoff: N3-HO-N4-001
+objects: N3-ANA-004 and N3-ANA-005
+```
+
+Implementation:
+
+```text
+src/factorial_lab/n3_moments.py
+src/replay_n3.py
+```
+
 Schemas:
 
 ```text
-data/rainbow/n1_reduced_rainbow.schema.json
-certificates/rainbow/n1_reduced_rainbow_first_failure.schema.json
+data/analytic/n3_moment_local_audit.schema.json
+certificates/analytic/n3_local_ceiling_claim.schema.json
 ```
 
-Checks:
+Independent checks:
 
-- rationally certified `ceil(log n)` and exact `v_2(n!)`;
-- exact high-prime interval and core-menu generation;
-- exact layer addresses and no repeated address;
-- positive non-power-of-two terms dividing `n!` exactly;
-- no numerical duplicates within or across layers;
-- exact zero-or-one-per-layer bitset support in `[0,T_n]`;
-- exact formal profiles and distinct reachable sums;
-- exact term gcd and residue occupancy for every `2<=q<=64`;
-- exact maximum downward gap and first excessive gap;
-- witness reconstruction with layer, address, term membership, numerical distinctness, and exact sum checks;
+- exact divisor-vector enumeration and numerical uniqueness;
+- exact `tau(n!)` and complement symmetry;
+- exact rational coordinate means and second moments;
+- exact vanishing of all cross covariances;
+- 80-digit decimal replay of log mean and variance;
+- certified `floor(Delta/log q)` using rational log bounds;
+- certified `floor(d exp(Delta))` using rational exponential bounds;
+- exact integer local-window counts for every requested endpoint;
 - full semantic checksum and exact frozen source metadata.
 
-Independent failure basis: the bitset support result is checked against the common-lattice obstruction `2^(r_n^*+1) Z`.
+Corruption behavior:
 
-Corruption behavior: a false first-failure target is rejected even when the outer checksum is recomputed.
+- lowering a tight upper bound by one is rejected even after recomputing its outer checksum;
+- corrupting the cached actual count is rejected;
+- a valid tight certificate replays independently.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_rainbow.py verify-failure \
-  certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
+PYTHONPATH=src python3 src/replay_n3.py verify \
+  data/analytic/n3_moment_local_n2_n12.json
+
+PYTHONPATH=src python3 src/replay_n3.py verify-local-claim \
+  certificates/analytic/n3_local_ceiling_tight_n2.json
 ```
+
+## Test command
+
+```bash
+PYTHONPATH=src python3 -m unittest discover -s tests -v
+```
+
+Every verifier fails closed on malformed input, checksum mismatch, or semantic disagreement.
