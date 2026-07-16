@@ -54,4 +54,19 @@ ultrafriable mismatch: v_2(10!)=8, required 256, excluded prime 11
 
 The standalone 10-test suite completed in approximately 0.004 seconds. Full audit replay and compatibility-claim replay passed. The committed rehashed false-direct-use fixture was rejected. No timeout or unknown result occurred.
 
-The source audit uses exact integers and deterministic semantic replay. Reading and interpreting the primary papers is a proof-scope activity, not a performance benchmark.
+## Nova 3 Dusart primary-source audit
+
+Request F reconstructed Theorem 6.9, equation (6.6), and independently certified the algebra for `N3-ANA-010`.
+
+```text
+source lower threshold: 5393
+source upper threshold: 60184
+derived integer threshold: 120368
+pi(120368): 11330
+pi(60184): 6076
+upper-half prime count: 5254
+```
+
+The 12-test suite completed in approximately 0.13 seconds. Artifact generation completed in approximately 1.27 seconds and full semantic replay in approximately 1.29 seconds, with peak resident memory approximately 305 MiB. Valid audit and claim replay passed; rehashed threshold, source-threshold, predecessor-coverage, and source-metadata corruptions were rejected. No timeout or unknown result occurred.
+
+The source audit uses exact integers, rational proof bounds, and 80-digit Decimal endpoint diagnostics. Reading the primary paper is a proof-source activity, not a performance benchmark.
