@@ -4,141 +4,103 @@
 
 **Result label: conditional theorem.**
 
-Structural source:
+Frozen structural source:
 
 - branch: `nova/factorial-structure`;
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
-- construction: `N1-CON-003`;
-- Nova 2 outcome: `ACCEPTED_WITH_RESTRICTIONS`.
+- construction: `N1-CON-003`.
 
-The quotient layers are
-
-\[
-B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
-\]
-
-with required windows
+The exact quotient layers are
 
 \[
-[q-W_n,q],
-\qquad
-W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor.
+B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
 \]
 
-The structural gate passes: exact lattice `3 Z`, quotient span one, layer distinctness, palette disjointness, exact correction reduction, and term cost `M_n+r_n`.
-
-Preferred analytic engine:
+The active final-only engine is:
 
 1. use the unique numerical target-dependent tilt;
-2. exploit Nova 3's post-prefix tilt compression;
-3. prove numerical moment bounds;
-4. aggregate odd-core phase dispersion across many support pairs;
-5. retain collision multiplicities in the reference law or control target-local additive energy;
+2. exploit post-prefix tilt compression;
+3. prove numerical moments and endpoint control;
+4. aggregate phase dispersion across complete odd-core menus;
+5. retain collision multiplicities or control target-local energy;
 6. prove the strict weighted bounded-torus inequality;
 7. extract a legal final rainbow sum.
 
-This remains rank 1 because it is final-only and survives any failure of the sequential carrier engine.
+This remains rank 1 because it survives failure of every sequential carrier argument.
 
 ## Rank 2: Deterministic final restricted-sumset theorem
 
 **Result label: conditional theorem.**
 
-Prove every final quotient window occupied while preserving one choice per layer, exact numerical values, factorial legality, downward orientation, and endpoints.
+Prove every final quotient window occupied while preserving one choice per layer, exact numerical values, factorial legality, downward orientation, and endpoint coverage.
 
-## Rank 3: Complete connected-core carrier recursion
+## Rank 3: Complete connected-core carrier
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved N2-ADD-119, N2-ADD-120, and N2-ADD-121.
+Nova 2 proved `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, and `N2-ADD-122`.
 
-At layer `t`, the allowable core gap is
+At layer `t`, let `F_t=E_t+W_n+1`, `s_t=2^{t-1}`, connected maximum `U_t`, and positive connected-prefix count `K_t`. Define
 
 \[
-D_t(E_{t-1})
+a_t=\frac{s_tU_t}{F_{t-1}},
+\qquad
+b_t=\frac{1+a_t}{1+K_t}.
+\]
+
+The exact growth identity is
+
+\[
+\frac{F_L}{W_n+1}
 =
-\left\lfloor
-\frac{E_{t-1}+W_n+1}{2^{t-1}}
-\right\rfloor.
+\left(\prod_t(1+K_t)\right)
+\left(\prod_tb_t\right).
 \]
 
-Exact finite evidence:
-
-- N2-FIN-202: complete menus for `12<=n<=45`;
-- N2-FIN-203: bounded-memory stream at `n=46`;
-- accepted Nova 1 `N1-FIN-005`: independent complete-menu audit for `46<=n<=50`;
-- N2-FIN-204: combined exact coverage for every `12<=n<=50`.
-
-Throughout this range,
+Therefore the count gate from `N1-OBS-003` is necessary but not sufficient. The active sequential theorem is to prove
 
 \[
-H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
-\le22.
+\widetilde\Gamma_n\mathcal B_n\ge1,
 \]
 
-### Necessary entropy gate
+where `widetilde Gamma_n` is count surplus and `B_n` is the geometric-mean utilization factor.
 
-Accepted Nova 1 theorem `N1-OBS-003` proves that if `K_t` is the positive connected-prefix cardinality, sequential success requires
+Exact finite coverage:
 
 \[
-\prod_{t=1}^{L}(1+K_t)
-\ge
-\frac{Y_n+1}{W_n+1}.
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+\qquad(12\le n\le53).
 \]
 
-For `n>=120368`, the geometric mean must be at least
+At `n=51,52,53`, count surplus is roughly `98` to `125`, but utilization root is only roughly `0.008` to `0.010`, leaving true endpoint surplus just above one. Finite success does not establish a uniform utilization bound.
 
-\[
-\exp\left(\frac{n}{85\log n}\right).
-\]
-
-This is the decisive asymptotic gate for rank 3. The next valid theorem must either prove connected prefixes of this scale or upper-bound them below the requirement and retire the sequential engine.
-
-Finite success through `n=50` does not settle that gate.
+The smallest unaudited finite parameter is `n=54`.
 
 ## Rank 4: Three-power normalized fallback
 
 **Result label: conditional theorem with proved prefix.**
 
-N2-ADD-116 through N2-ADD-118 remain exact but are superseded as preferred architecture.
+`N2-ADD-116` through `N2-ADD-118` remain exact but are not the preferred architecture.
 
 ## Rejected or benchmark-only routes
 
-- Raw profile capacity: rejected as an occupancy proof.
-- Profile injectivity: false by Nova 1 collision theorem `N1-COL-001`.
-- One factorial arithmetic block per layer: disproved asymptotically by `N1-DIS-006`.
-- Uniform fixed-law convolution: heuristic only.
-- One-anchor characteristic-function decay: insufficient by Nova 3 `N3-ANA-021`.
-
-## Exact finite boundary
-
-Complete-core carrier coverage is exact for
-
-\[
-12\le n\le50.
-\]
-
-The smallest unaudited finite parameter is `n=51`.
-
-Finite extension remains auxiliary. It cannot replace either an asymptotic connected-prefix theorem or a final-only additive theorem.
+- Raw profile capacity is not occupancy.
+- Profile injectivity is false by `N1-COL-001`.
+- One factorial block per layer is asymptotically insufficient by `N1-DIS-006`.
+- Count surplus without utilization is not an endpoint theorem by `N2-ADD-122`.
+- Uniform fixed-law convolution is heuristic only.
+- One-anchor characteristic decay is insufficient by `N3-ANA-021`.
 
 ## Exact next theorem targets
 
 ### Final-only target
 
-Prove aggregate phase dispersion or a collision-aware weighted Fourier inequality for the numerical marker-three law on the unresolved post-prefix range.
+Prove aggregate phase dispersion or a collision-aware weighted Fourier inequality for the unresolved numerical target range.
 
 ### Sequential target
 
-Prove or refute connected-prefix geometric-mean growth
-
-\[
-\exp\left(\frac{n}{85\log n}ight)
-\]
-
-under the exact target-dependent thresholds.
+Prove a pointwise or averaged lower bound for `b_t`, or for average-gap utilization, strong enough to offset count surplus. A contrary upper bound may retire the sequential engine without affecting ranks 1 and 2.
 
 ### Finite target
 
-Extend complete-core certification from `n=51`, clearly labeled as a finite certificate.
-
-A failure of rank 3 does not terminate ranks 1 or 2.
+Extend exact meet-in-the-middle certification from `n=54`, clearly labeled as finite.
