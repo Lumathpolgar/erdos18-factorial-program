@@ -20,48 +20,43 @@ Source-ledger commit for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadc
 
 Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Status: `REQUESTS_A_B_C_D_E_F_G_COMPLETE_REQUEST_H_READY`
+Status: `REQUESTS_A_THROUGH_H_COMPLETE_FINAL_THEOREM_CLOSURE_READY`
 
 Completed work:
 
-- accepted theorem audits for `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-007`, and `N3-ANA-010`;
+- accepted theorem audits for `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-007`, `N3-ANA-010`, and `N3-ANA-011`;
 - 1,978 exact divisors and 45,840 local windows;
 - request C scale and high-prime computational evidence;
 - request D exhaustive bounded recurrence evidence over 19,990,010 scores;
 - request E primary-source scope reconstruction for three restricted sources;
 - request F primary-source reconstruction of Dusart Theorem 6.9 and independent derivation of the `n/(3 log n)` prime-interval bound;
 - request G exact sweep of every one of the 879,633 integers in `120368 <= n <= 1000000`;
-- exact upper-half prime counts, two exact `v_2(n!)` formulas, rationally certified logarithmic ceilings, address legality, and conservative formal-profile capacity;
-- valid finite certificate and rehashed minimum-slack corruption rejection.
+- request H exact semantic contract and rejection of all six mandated rehashed corruptions;
+- final theorem certificate for `N3-ANA-011`.
 
-Request G disposition:
+Request H disposition:
 
 ```text
-request G: ACCEPTED_AS_FINITE_CERTIFICATE
-N3-ANA-011 swept interval: CONFIRMED
-final N3-ANA-011 theorem decision: PENDING_REQUEST_H
-minimum prime margin: n=120370
-minimum Legendre proof margin: n=131071
-minimum address slack: 57942 at n=120368..120371
-minimum capacity margin: n=120370
-audit SHA-256: e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0
-claim SHA-256: e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88
+request H: ACCEPTED
+N3-ANA-011: ACCEPTED
+corruptions rejected: 6 of 6
+endpoint witness: n=120417, floor(n/2)=60208, ceil(n/2)=60209 prime
+contract SHA-256: 63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b
+audit SHA-256: 785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9
+claim SHA-256: a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c
 ```
 
 Next requested study:
 
-- request H adversarial threshold and semantics tests;
-- reject a threshold below source coverage without supplementation;
-- reject a larger unproved legal-address range;
-- reject removal of the unit exclusion from the menu bound;
-- reject formal-profile count as distinct numerical sums;
-- reject `pi(ceil(n/2))` without endpoint analysis;
-- reject reporting the finite sweep as an asymptotic proof.
+- independently reconstruct `N3-ANA-006`, the variance asymptotic;
+- distinguish proof from request C numerical convergence evidence;
+- verify convergence, domination, and interchange of the prime sum and limit;
+- return `ACCEPTED`, `NEEDS_REPAIR`, or `REJECTED`.
 
 Later studies:
 
-- final decision for `N3-ANA-011` after request H;
-- final independent decisions for `N3-ANA-006`, `N3-ANA-008`, and `N3-ANA-009`.
+- final independent decision for `N3-ANA-008`, the high-prime tail scale;
+- final independent decision for `N3-ANA-009`, the full-model non-Gaussian limit and characteristic-function zero.
 
 ## N4-REQ-N1-001
 
