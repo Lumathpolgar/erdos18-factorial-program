@@ -80,18 +80,6 @@ Checks the complete bounded `q` grid, finalist selection, 80-digit reevaluation,
 
 Status: `ACTIVE`.
 
-Result class: `source compatibility audit`.
-
-Frozen input:
-
-```text
-branch: nova/analytic-density
-handoff: N3-HO-N4-002
-handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
-source-ledger commit: 697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4
-request: E
-```
-
 Implementation: `src/factorial_lab/n3_sources.py` and `src/replay_n3_sources.py`.
 
 Checks Ford’s ambient quantifier, the friable exceptional-set qualifier, the ultrafriable common-cap mismatch, exact witnesses, source classifications, frozen metadata, and semantic checksums.
@@ -114,46 +102,75 @@ request: F
 object: N3-ANA-010
 ```
 
+Implementation: `src/factorial_lab/n3_dusart.py` and `src/replay_n3_dusart.py`.
+
+Checks the exact primary-source thresholds, their application at `n` and `n/2`, rational positivity of the cleared-denominator polynomial, exact endpoint prime counts, source metadata, and semantic checksums.
+
+## N4-AUD-010: Nova 3 exact threshold-sweep verifier
+
+Status: `ACTIVE`.
+
+Result class: `finite certificate`.
+
+Frozen input:
+
+```text
+branch: nova/analytic-density
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+Nova 3 proof blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
+Nova 3 sanity script blob: 519c900b616a33d95f3b2a8a8dec10d04a0a24f5
+Nova 1 theorem: N1-STR-009
+Nova 1 commit: fa11f4b2cb86a2dd791df189ada12757be791804
+Nova 1 proof blob: 4255e76ff18f675ae80a0192381070d9a934fc97
+request: G
+object: N3-ANA-011
+```
+
 Implementation:
 
 ```text
-src/factorial_lab/n3_dusart.py
-src/replay_n3_dusart.py
+src/factorial_lab/n3_threshold.py
+src/replay_n3_threshold.py
 ```
 
 Schemas:
 
 ```text
-data/analytic/n3_dusart_prime_interval_audit.schema.json
-certificates/analytic/n3_dusart_prime_interval_claim.schema.json
+data/analytic/n3_threshold_sweep.schema.json
+certificates/analytic/n3_threshold_sweep_claim.schema.json
 ```
 
 Independent checks:
 
-- exact primary-source metadata for arXiv:1002.0442v1, Theorem 6.9, equation (6.6);
-- source thresholds `5393` and `60184` and their application at `n` and `n/2`;
-- source-derived integer threshold `120368` and failure of unsupplemented predecessor coverage;
-- rational certificate `log(2)<7/10`, `b<9/5`, `log(n)>4`, and `Q(L)>0`;
-- exact sieve counts `pi(120368)=11330` and `pi(60184)=6076`;
-- 80-digit source and target margins;
-- frozen handoff, source-ledger, proof-file metadata, and semantic checksums.
+- every integer `120368 <= n <= 1000000` is visited;
+- exact `pi(n)-pi(floor(n/2))` from a deterministic prime-prefix table;
+- exact `v_2(n!)` from Legendre division and the independent identity `n-bit_count(n)`;
+- exact `r_n=ceil(4 log n)` and `M_n=ceil(16(log n)^2)` from rigorous rational log intervals;
+- every address inequality and conservative formal-profile capacity inequality;
+- 64 full-range finalists per logarithmic margin and 80-digit Decimal replay of the minima and runners-up;
+- exact parameter-transition counts and boundary rows;
+- frozen Nova 3 and imported Nova 1 metadata;
+- semantic checksums.
 
 Corruption behavior:
 
-- rehashed threshold `120367` is rejected;
-- rehashed source upper threshold `60183` is rejected;
-- rehashed predecessor-coverage claim is rejected;
-- wrong frozen-source metadata is rejected.
+- a rehashed false minimum address slack is rejected;
+- an altered range is rejected;
+- wrong proof or source metadata is rejected;
+- a claim that the finite sweep is asymptotic is not accepted by the schema and semantic replay.
 
 Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_n3_dusart.py verify \
-  data/analytic/n3_dusart_prime_interval_audit.json
-PYTHONPATH=src python3 src/replay_n3_dusart.py verify-claim \
-  certificates/analytic/n3_dusart_prime_interval_claim.json \
-  --audit data/analytic/n3_dusart_prime_interval_audit.json
+PYTHONPATH=src python3 src/replay_n3_threshold.py verify \
+  data/analytic/n3_threshold_sweep_n120368_n1000000.json
+PYTHONPATH=src python3 src/replay_n3_threshold.py verify-claim \
+  certificates/analytic/n3_threshold_sweep_claim.json \
+  --audit data/analytic/n3_threshold_sweep_n120368_n1000000.json
 ```
+
+The verifier records request G as a finite certificate only. It does not infer distinct numerical sums or additive occupancy from formal profile capacity.
 
 ## Test command
 
