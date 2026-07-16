@@ -41,6 +41,10 @@ PYTHONPATH=src python3 src/replay_n3_variance.py verify \
 PYTHONPATH=src python3 src/replay_n3_variance.py verify-claim \
   certificates/analytic/n3_ana_006_final_claim.json \
   --audit data/analytic/n3_variance_limit_audit.json
+
+PYTHONPATH=src python3 src/replay_n3_variance.py verify-fixtures \
+  tests/n3_variance_fixtures \
+  --audit data/analytic/n3_variance_limit_audit.json
 ```
 
 ## Artifacts
@@ -48,6 +52,6 @@ PYTHONPATH=src python3 src/replay_n3_variance.py verify-claim \
 - `n3_variance_limit_audit.json`: complete semantic theorem audit;
 - `n3_variance_convergence.csv`: finite computational diagnostics through `n=1,000,000`;
 - `../../certificates/analytic/n3_ana_006_final_claim.json`: final theorem certificate;
-- `../../tests/n3_variance_fixtures/`: rehashed semantic corruptions.
+- `../../tests/n3_variance_fixtures/`: five rehashed semantic corruptions.
 
 The finite convergence table is computational evidence only. The asymptotic result comes from fixed-prime convergence and a uniform normalized tail-variance estimate.
