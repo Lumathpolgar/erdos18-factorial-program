@@ -4,7 +4,7 @@
 
 - Track: Factorial Structure and Reduction
 - Branch: `nova/factorial-structure`
-- Overall state: `FULL_CORE_FINITE_EXTENSION_CONNECTED_PREFIX_ENTROPY_OPEN`
+- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N51_CONNECTED_PREFIX_ENTROPY_OPEN`
 
 The factorial half-range theorem remains open.
 
@@ -12,9 +12,9 @@ The factorial half-range theorem remains open.
 
 Prove or disprove quotient downward-window occupancy for the repaired marker-three valuation rainbow construction `N1-CON-003`.
 
-The immediate sequential subproblem is now exact:
+The immediate sequential subproblem is:
 
-> Prove that enough complete odd-core prefixes remain connected from zero to satisfy the connected-prefix entropy requirement `N1-OBS-003`, or prove that they cannot.
+> Prove that enough complete odd-core prefixes remain connected from zero to satisfy `N1-OBS-003`, or prove a uniform upper bound that prevents this.
 
 ## Imported cross-track results
 
@@ -27,24 +27,16 @@ The immediate sequential subproblem is now exact:
 
 The original valuation-tagged route remains a **disproved route**.
 
-### Nova 2 marker-three carrier intake
+### Nova 2 marker-three package
 
-The repaired construction was accepted with restrictions at:
-
-- branch: `nova/additive-occupancy`
-- exact commit: `b15278e21f91e0e188b1c7c3e9a10e58a1db20fe`
-- outcome: `ACCEPTED_WITH_RESTRICTIONS`
-- results: `N2-ADD-119`, `N2-ADD-120`
-
-The latest imported complete-menu certificate is:
+Latest accepted source:
 
 - branch: `nova/additive-occupancy`
-- exact commit: `82603c631a106c3bff4676bdeeb9cc791fc98f3c`
-- result: `N2-FIN-202`
-- classification: **finite certificate**
-- range: every `12<=n<=45`
+- exact commit: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`
+- results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, `N2-FIN-202`, `N2-FIN-203`, `N2-FIN-204`
+- response to `N1-HO-N2-004`: `ACCEPTED_WITH_RESTRICTIONS`
 
-Nova 2 independently accepted the exact lattice, quotient span, correction reduction, distinctness, and term cost. Its connected-core recursion is a sufficient sequential engine, not the full final-only theorem.
+Nova 2 accepted `N1-OBS-003` as a necessary condition for the sequential carrier engine and accepted `N1-FIN-005` as a finite certificate.
 
 ### Nova 3 inputs
 
@@ -61,7 +53,7 @@ Numerical-law foundation:
 - results: `N3-ANA-017`, `N3-ANA-018`, `N3-ANA-019`
 - outcome: `ACCEPTED_WITH_RESTRICTIONS`
 
-The exact numerical tilt exists, the additive span is one, and the only torus resonance is zero. A target-independent minor-arc gap over all tilts is a **disproved route** because the law freezes at the tilt endpoints.
+The exact numerical tilt exists, the additive span is one, and the only torus resonance is zero. A target-independent minor-arc gap over all tilts is a **disproved route**.
 
 ## Proved results
 
@@ -90,6 +82,7 @@ The exact numerical tilt exists, the additive span is one, and the only torus re
 | N1-STR-021 | proved theorem | Factorial arithmetic blocks are legal connected submenus | `proofs/FACTORIAL_BLOCK_CARRIER_OBSTRUCTION.md` |
 | N1-COL-001 | proved theorem | Exponential carry collisions prove profile noninjectivity | `proofs/RAINBOW_CARRY_COLLISIONS.md` |
 | N1-OBS-003 | proved theorem | Successful connected-core carrier requires geometric-mean connected-prefix size at least `exp(n/(85 log n))` | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
+| N1-STR-022 | proved theorem | Unique-parent divisor streaming and record-gap counts recover exact connected maxima and prefix sizes | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
 
 ## Conditional results
 
@@ -105,10 +98,18 @@ The exact numerical tilt exists, the additive span is one, and the only torus re
 | N1-CMP-003 | computational evidence | Reduced exact quotient checks for `7<=n<=14` | `verification/MARKER_THREE_FINITE_REPORT.md` |
 | N1-CMP-004 | finite certificate | 3-density, endpoint crossing, and coarse contraction checks | `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md` |
 | N1-CMP-005 | finite certificate | Factorial blocks, one-block ceiling, and carry collisions | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
-| N1-FIN-005 | finite certificate | Complete truncated odd-core carrier reaches `Y_n` for every `46<=n<=50` in six layers | `verification/FULL_CORE_N46_N50_REPORT.md` |
+| N1-FIN-005 | finite certificate | Complete truncated odd-core carrier reaches `Y_n` for every `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
+| N1-FIN-006 | finite certificate | Exact streaming carrier reaches `Y_51` in six layers and records all six `K_t` values | `verification/FULL_CORE_N51_REPORT.md` |
 | N2-FIN-202 | finite certificate | Imported complete-menu carrier reaches `Y_n` for every `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 
-Together, the complete-core carrier is exactly certified for every `12<=n<=50`. This is not an asymptotic theorem.
+Together, the exact complete-core carrier gives
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
+\qquad(12\le n\le51).
+\]
+
+This is a finite theorem only.
 
 ## Disproved routes
 
@@ -133,18 +134,19 @@ Together, the complete-core carrier is exactly certified for every `12<=n<=50`. 
 - total endpoint support;
 - one-block carrier ceiling;
 - profile-map noninjectivity;
-- exact finite complete-core carrier coverage through `n=50`.
+- exact bounded-memory connected-core certification through `n=51`.
 
 ## Exact open blockers
 
 1. Prove or disprove connected prefixes of geometric-mean size `exp(Omega(n/log n))` under the exact carrier thresholds.
-2. Prove or disprove the full quotient downward-window theorem.
-3. Prove downward endpoint-window occupancy, not only total endpoint reach.
-4. Upper-bound target-local collision multiplicity or additive energy.
-5. Prove compact numerical tilt or quantitative phase dispersion on the exact unresolved target range.
-6. Prove the strict weighted bounded-torus Fourier inequality.
-7. Reconstruct Track B under the frozen endpoint convention.
-8. Handle finite exceptions after an effective asymptotic threshold exists.
+2. Extend exact finite certification beginning at `n=52`.
+3. Prove or disprove the full quotient downward-window theorem.
+4. Prove downward endpoint-window occupancy, not only total endpoint reach.
+5. Upper-bound target-local collision multiplicity or additive energy.
+6. Prove compact numerical tilt or quantitative phase dispersion on the exact unresolved target range.
+7. Prove the strict weighted bounded-torus Fourier inequality.
+8. Reconstruct Track B under the frozen endpoint convention.
+9. Handle finite exceptions after an effective asymptotic threshold exists.
 
 ## Verification
 
@@ -154,13 +156,13 @@ python tracks/nova1-factorial-structure/verification/marker_three_sanity.py
 python tracks/nova1-factorial-structure/verification/endpoint_support_sanity.py
 python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
 
-g++ -O3 -std=c++17 \
-  tracks/nova1-factorial-structure/verification/marker_three_full_core_u128.cpp \
-  -o marker_three_full_core_u128
+g++ -O3 -std=c++20 \
+  tracks/nova1-factorial-structure/verification/marker_three_streaming_prefix_u128.cpp \
+  -o marker_three_streaming_prefix_u128
+
+./marker_three_streaming_prefix_u128 51 30000000
 ```
 
 ## Next theorem target
 
-Prove a uniform lower bound on the complete zero-connected prefix cardinalities `K_t` strong enough to meet `N1-OBS-003`. A general upper bound below that threshold is equally valid and would retire the sequential carrier engine.
-
-In parallel, the final-only route must bound target-local collision energy and establish compact phase dispersion on the unresolved quotient targets.
+Prove a uniform lower bound on the complete zero-connected prefix cardinalities `K_t` strong enough to meet `N1-OBS-003`, or prove a contrary uniform upper bound. In parallel, extend the exact streaming certificate to `n=52` and continue the final-only collision-aware phase-dispersion route.
