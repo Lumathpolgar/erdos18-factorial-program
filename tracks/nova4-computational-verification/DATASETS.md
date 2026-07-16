@@ -70,86 +70,82 @@ Candidate SHA-256: `ab8e8a6d0aa24440ceb1379b86d9ae70dd02b2a5b263f4db4ea89eb354f4
 
 Result class: `source compatibility audit`.
 
-Frozen source:
+Frozen source: handoff `N3-HO-N4-002` at `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`, source ledger `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`.
 
-```text
-handoff: N3-HO-N4-002
-handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
-source-ledger commit: 697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4
-request: E
-```
+Decision: Ford, Drappeau–Tenenbaum, and ultrafriable results do not directly select the deterministic factorial sequence.
 
-Primary sources reconstructed:
+Audit SHA-256: `a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f`.
 
-```text
-N3-SRC-004: Kevin Ford, arXiv:math/0401223v5
-N3-SRC-005: Drappeau–Tenenbaum, arXiv:1604.04204v1
-N3-SRC-006: Dartyge–Feutrie–Tenenbaum, arXiv:2001.04435v1
-```
-
-Exact compatibility witnesses:
-
-```text
-H(120,6,7) = 17 while tau(120;6,7) = 0
-10! belongs to S(10!,10), but the source gives no nonexceptionality certificate
-v_2(10!) = 8; y<256 excludes 256, while y>=256 includes prime 11
-```
-
-Audit semantic SHA-256: `a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f`.
-
-Claim semantic SHA-256: `ae60e9e8758df8113ac249404d8660c5ae4bb5edf02b3aab342c43c47a8124ba`.
-
-Decision: none of the three sources directly selects the deterministic factorial sequence.
+Claim SHA-256: `ae60e9e8758df8113ac249404d8660c5ae4bb5edf02b3aab342c43c47a8124ba`.
 
 ## N4-DATA-010: Dusart primary-source prime-interval audit
 
 Result class: `primary-source theorem audit`.
 
-Frozen source:
-
-```text
-handoff: N3-HO-N4-002
-handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
-source-ledger commit: 697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4
-proof file blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
-request: F
-object: N3-ANA-010
-```
-
 Primary source: Pierre Dusart, arXiv:1002.0442v1, Theorem 6.9, equation (6.6), PDF page 9.
 
-Confirmed source inequalities:
-
-```text
-pi(x) >= x/(log(x)-1) for x>=5393
-pi(x) <= x/(log(x)-1.1) for x>=60184
-```
-
-Derived result:
+Accepted result:
 
 ```text
 pi(n)-pi(n/2) >= n/(3 log n) for every integer n>=120368
 ```
 
-Exact endpoint witness:
+Exact endpoint witness: `pi(120368)-pi(60184)=5254`.
+
+Audit SHA-256: `42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212`.
+
+Claim SHA-256: `7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703`.
+
+## N4-DATA-011: Nova 3 exact threshold sweep
+
+Result class: `finite certificate`.
+
+Frozen source:
 
 ```text
-pi(120368) = 11330
-pi(60184) = 6076
-upper-half prime count = 5254
+handoff: N3-HO-N4-002
+handoff commit: 7469dada02fa4caca08ed391ef8b0cb0f1e855b2
+Nova 3 proof blob: e36daf98db86da16bd5ed8c6c82f43530d745f66
+Nova 3 sanity script blob: 519c900b616a33d95f3b2a8a8dec10d04a0a24f5
+Nova 1 theorem: N1-STR-009
+Nova 1 commit: fa11f4b2cb86a2dd791df189ada12757be791804
+Nova 1 proof blob: 4255e76ff18f675ae80a0192381070d9a934fc97
+```
+
+Coverage:
+
+```text
+every integer 120368 <= n <= 1000000
+integers checked: 879633
+exact prime-prefix counts
+exact v_2(n!) by Legendre division and n-bit_count(n)
+r_n transitions: 10
+M_n transitions: 865
+```
+
+Minimum findings:
+
+```text
+prime margin: n=120370
+Legendre proof margin: n=131071
+address slack: 57942 at n=120368,120369,120370,120371
+capacity margin: n=120370
 ```
 
 Artifacts:
 
 ```text
-data/analytic/n3_dusart_prime_interval_audit.json
-data/analytic/n3_dusart_prime_interval_audit.schema.json
-certificates/analytic/n3_dusart_prime_interval_claim.json
-certificates/analytic/n3_dusart_prime_interval_claim.schema.json
+data/analytic/n3_threshold_sweep_n120368_n1000000.json
+data/analytic/n3_threshold_sweep.schema.json
+data/analytic/n3_threshold_sweep_minima.csv
+certificates/analytic/n3_threshold_sweep_claim.json
+certificates/analytic/n3_threshold_sweep_claim.schema.json
 ```
 
-Audit semantic SHA-256: `42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212`.
+Audit semantic SHA-256: `e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0`.
 
-Claim semantic SHA-256: `7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703`.
+Claim semantic SHA-256: `e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88`.
+
+Decision: request G is accepted as a finite certificate. Final theorem disposition for `N3-ANA-011` remains pending request H.
 
 No finite dataset or source-scope audit in this registry is an asymptotic factorial theorem.
