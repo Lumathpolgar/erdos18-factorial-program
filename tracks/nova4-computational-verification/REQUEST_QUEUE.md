@@ -18,7 +18,7 @@ Frozen commit: `0ce88b28dc2e6641093526f5777bb31f658e3515`
 
 Artifact: `tracks/nova3-analytic-density/handoffs/TO_NOVA4.md`
 
-Status: `MOMENT_AND_LOCAL_AUDITS_COMPLETE_SCALE_READY`
+Status: `REQUESTS_A_B_C_COMPLETE_REQUEST_D_READY`
 
 Completed work:
 
@@ -27,20 +27,35 @@ Completed work:
 - exact enumeration of 1,978 divisors across `2 <= n <= 12`;
 - exact rational coordinate moments and covariance checks;
 - 45,840 exact local-window checks;
-- valid tight certificate and rehashed corrupted-bound rejection.
+- valid tight certificate and rehashed corrupted-bound rejection;
+- eight request C scale rows;
+- 63 exact cutoff-grid high-prime rows;
+- eight admissible `y_n=floor(sqrt(n))/2` path rows;
+- variance shares for primes `2`, `3`, `5`, and `7`;
+- participation-ratio effective dimension;
+- one-million-prime truncated variance proxy;
+- frozen-script float cross-check and factor-of-two tail-label diagnosis.
+
+Request C disposition:
+
+```text
+scale table: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
+N3-ANA-006: EVIDENCE_CONSISTENT, THEOREM NOT YET ACCEPTED
+N3-ANA-008: EVIDENCE_CONSISTENT, THEOREM NOT YET ACCEPTED
+scale_sanity.py tail label: NEEDS_REPAIR_FOR_TAIL_RATIO_LABEL
+```
 
 Next requested study:
 
-- scale convergence tables labeled computational evidence;
-- variance shares for primes `2`, `3`, `5`, and `7`;
-- participation-ratio effective dimension;
-- high-prime `M_{n,y}/B_{n,y}` grid.
+- bounded characteristic-function recurrence search for small `n`;
+- explicit frequency range, resolution, and numerical precision;
+- near-one values of `|phi_n(t)|` with reproducible witnesses;
+- all results labeled computational evidence.
 
 Later studies:
 
-- characteristic-function recurrence search labeled evidence;
 - source-compatibility reconstruction;
-- final independent decisions for `N3-ANA-006` through `N3-ANA-009`.
+- final independent proof decisions for `N3-ANA-006` through `N3-ANA-009`.
 
 ## N4-REQ-N1-001
 
