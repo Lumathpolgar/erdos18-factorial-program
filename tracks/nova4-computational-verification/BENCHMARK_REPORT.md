@@ -79,3 +79,20 @@ minimum conservative capacity margin: n=120370
 The production sweep completed in approximately 6.75 seconds with peak resident memory approximately 351132 KiB. Twelve threshold-sweep tests passed in approximately 22.3 seconds when the full sweep was generated once and semantically replayed again. The committed rehashed false minimum-slack fixture was rejected. No timeout or unknown result occurred.
 
 All discrete quantities in request G are exact. Margin rankings use a complete binary64 screening pass followed by 80-digit Decimal replay of the retained minima and runners-up. The finite sweep is not an asymptotic proof or an additive-occupancy result.
+
+## Nova 3 request H semantic adversarial audit
+
+Request H reconstructed the uniform proof contract for `N3-ANA-011` and tested six rehashed semantic corruptions.
+
+```text
+canonical contract replay: pass
+full adversarial audit replay: pass
+final theorem claim replay: pass
+required corruptions rejected: 6 of 6
+endpoint witness: n=120417, ceil(n/2)=60209 prime
+final N3-ANA-011 decision: ACCEPTED
+```
+
+Fourteen new tests passed in approximately 0.009 seconds in the isolated development suite. Standalone full audit replay completed in approximately 1.49 seconds, final claim replay in approximately 1.34 seconds, and fixture-directory replay in approximately 1.25 seconds. Peak resident memory was approximately 307 MiB. No timeout or unknown result occurred.
+
+Request H is a proof-semantics and fail-closed verification activity. The accepted theorem establishes address legality, menu cardinality, and formal profile capacity only. It does not establish profile injectivity, distinct numerical sums, additive occupancy, the factorial half-range theorem, or Erdős Problem 18.
