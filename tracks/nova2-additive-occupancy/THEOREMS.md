@@ -13,7 +13,9 @@
 | N2-ADD-121 | proved theorem | Unique-parent stream emits exact odd factorial divisors in order | `proofs/MARKER_THREE_STREAMING_N46_AUDIT.md` |
 | N2-ADD-122 | proved theorem | Exact carrier growth factors into prefix count and packing utilization | `proofs/EFFECTIVE_CARRIER_ENTROPY_FACTORIZATION.md` |
 | N2-ADD-123 | proved theorem | Average internal gaps give a two-sided utilization sandwich and exact success or failure criteria | `proofs/AVERAGE_GAP_UTILIZATION_CRITERION.md` |
+| N2-ADD-124 | proved theorem | Odd-core parity gives the sharp lower bounds `U_t>=2K_t-1` and `F_t/F_(t-1)>(D_t+2K_t)/(D_t+1)` | `proofs/PARITY_SPAN_COUNT_THRESHOLD_CRITERION.md` |
 | N2-OBS-109 | proved obstruction theorem | The first blocking gap, even together with `D` and `K`, cannot uniformly control utilization | `proofs/AVERAGE_GAP_UTILIZATION_CRITERION.md` |
+| N2-OBS-110 | proved obstruction theorem | Count, threshold, and oddness alone cannot improve the parity-span lower bound by a fixed factor | `proofs/PARITY_SPAN_COUNT_THRESHOLD_CRITERION.md` |
 
 ## Accepted imported theorems
 
@@ -101,7 +103,23 @@ The exact endpoint factor is
 \Delta_n=\widetilde\Gamma_n\left(\prod_tb_t\right)^{1/L}.
 \]
 
-N2-ADD-123 proves that lower bounds on average internal gaps can force `Delta_n>=1`, while upper bounds can certify `Delta_n<1` and retire this sequential engine. N2-OBS-109 proves that first external blocking gaps cannot replace average internal-gap information.
+N2-ADD-123 gives the exact average-gap success and failure criteria. N2-OBS-109 rules out first external blocking gaps as a substitute for internal spacing.
+
+N2-ADD-124 adds the sharp universal parity baseline
+
+\[
+\eta_t\ge\frac{2K_t-1}{K_tD_t}
+\]
+
+and the sufficient count-to-threshold condition
+
+\[
+\prod_{t=1}^{L}\frac{D_t+2K_t}{D_t+1}
+\ge
+\frac{Y_n+1}{W_n+1}.
+\]
+
+N2-OBS-110 proves this baseline is optimal among abstract odd-core carriers with only `K_t` and `D_t` specified. Any stronger theorem must use factorial-specific internal-span information.
 
 ## Finite certificates
 
@@ -130,15 +148,15 @@ The smallest unaudited finite parameter is `n=56`.
 
 ## Finite utilization diagnostics
 
-| `n` | count surplus | utilization root | endpoint surplus |
-|---:|---:|---:|---:|
-| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 |
-| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 |
-| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 |
-| 54 | 92.273264366777 | 0.010837378971591 | 1.000000334888580 |
-| 55 | 98.919733584849 | 0.010109209300122 | 1.000000290721510 |
+| `n` | count surplus | utilization root | endpoint surplus | parity-only root ratio |
+|---:|---:|---:|---:|---:|
+| 51 | 120.322026488584 | 0.008311064676932 | 1.000004144206103 | 0.0000257773398727324 |
+| 52 | 97.645052132052 | 0.010241184816549 | 1.000001025305911 | 0.0000185652131315783 |
+| 53 | 124.609364763243 | 0.008025094814707 | 1.000001967025492 | 0.0000139117330218277 |
+| 54 | 92.273264366777 | 0.010837378971591 | 1.000000334888580 | 0.00000997734788683994 |
+| 55 | 98.919733584849 | 0.010109209300122 | 1.000000290721510 | 0.00000761958530584015 |
 
-These are finite diagnostics only.
+The parity-only product falls below the exact endpoint scale by roughly `10^28` through `10^31` on this finite range. This is `N2-CMP-206`, computational evidence only.
 
 ## Cross-track decisions
 
@@ -150,7 +168,7 @@ These are finite diagnostics only.
 ## Open factorial nodes
 
 1. Prove or disprove marker-three quotient occupancy uniformly through `Y_n`.
-2. Prove lower or upper bounds for the average internal-gap factors `eta_t` under exact factorial-divisor thresholds.
+2. Prove factorial-specific lower or upper bounds for the span amplification `U_t/(2K_t-1)` or the average internal-gap factors `eta_t`.
 3. Extend exact finite certification from `n=56`.
 4. Prove asymptotic endpoint-window coverage.
 5. Upper-bound target-local collision multiplicity or additive energy.
