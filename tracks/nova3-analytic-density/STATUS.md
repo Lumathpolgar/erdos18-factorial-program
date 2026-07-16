@@ -10,7 +10,7 @@
 
 ## Overall state
 
-`SEVENTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
+`EIGHTH_SUBSTANTIVE_CHECKPOINT_COMPLETE`
 
 The factorial half-range theorem and Erdős Problem 18 remain open.
 
@@ -21,7 +21,7 @@ The factorial half-range theorem and Erdős Problem 18 remain open.
 - branch: `nova/factorial-structure`
 - inspected head: `1b81ec74f907d57d520bcf6c51f2e6e71f0474a7`
 - active construction: `N1-CON-003`
-- exact finite marker-three coverage now reaches `12<=n<=52`
+- exact finite marker-three coverage reaches `12<=n<=52`
 - numerical label definitions remain unchanged
 
 ### Nova 2
@@ -40,17 +40,20 @@ The factorial half-range theorem and Erdős Problem 18 remain open.
 
 ## Closed numerical foundation
 
-### N3-ANA-017 through N3-ANA-019
+### N3-ANA-017 through N3-ANA-022
 
-- active contract compatibility proved;
-- unique finite centering tilt proved;
-- exact additive span one proved;
-- exact modulus-one resonance set `{0}` proved;
-- all-tilt minor-arc gap disproved by endpoint freezing.
+Closed:
 
-### N3-ANA-020
+- active contract compatibility;
+- unique finite centering tilt;
+- exact additive span one;
+- exact modulus-one resonance set `{0}`;
+- exact deterministic-to-analytic transition;
+- uniform post-prefix tilt compression;
+- binary-anchor failure;
+- collision-aware atom identity.
 
-For every post-prefix target,
+The exact post-prefix tilt bound is
 
 \[
 -\frac{8M_n\log L_n}{L_n}
@@ -60,38 +63,32 @@ For every post-prefix target,
 L_n=m_n(2^{M_n}-1).
 \]
 
-Thus
+## Parity checkpoint
+
+### N3-ANA-023
+
+The unnormalized law has an asymptotically exact parity twin:
 
 \[
-\sup_{P_n<q\le Y_n}|\lambda_{n,q}|\to0.
+P(T\text{ even})
+=p^{(0)}_{n,q}
+\le
+\frac{2e^{\varepsilon_n}}{m_n+1},
 \]
-
-### N3-ANA-021
-
-The single zero-versus-minimum-state phase coefficient is exponentially small at zero tilt. Compact tilt does not rescue that anchor.
-
-### N3-ANA-022
-
-Exact numerical atoms include profile collision multiplicity:
 
 \[
-P_\lambda(T=s)
-=
-\frac{C_n(s)e^{\lambda s}}
-{\prod_tZ_t(\lambda)}.
+\Phi(\pi)=2p^{(0)}_{n,q}-1,
 \]
-
-## New result N3-ANA-023: parity twin near-resonance
-
-Every nonzero first-layer state is odd. Every later-layer state is even. Therefore
 
 \[
-T\text{ is even}
-\Longleftrightarrow
-Z_1=0.
+|\Phi(\pi)|
+\ge
+1-
+\frac{4e^{\varepsilon_n}}{m_n+1}
+\to1,
 \]
 
-Put
+where
 
 \[
 \varepsilon_n
@@ -99,37 +96,7 @@ Put
 \frac{8M_n\log L_n}{2^{M_n}-1}.
 \]
 
-Uniformly over the exact post-prefix target range,
-
-\[
-p^{(0)}_{n,q}
-:=P(Z_1=0)
-\le
-\frac{2e^{\varepsilon_n}}{m_n+1}.
-\]
-
-Hence
-
-\[
-P(T\text{ even})=p^{(0)}_{n,q}=O(1/n),
-\]
-
-while
-
-\[
-\Phi(\pi)=2p^{(0)}_{n,q}-1
-\]
-
-and
-
-\[
-|\Phi(\pi)|
-\ge
-1-rac{4e^{\varepsilon_n}}{m_n+1}
-\to1.
-\]
-
-The exact parity-twin identity is
+The exact twin identity is
 
 \[
 \Phi(\pi+u)+\Phi(u)
@@ -138,11 +105,9 @@ The exact parity-twin identity is
 \prod_{t=2}^{M_n}\phi_t(u).
 \]
 
-Thus the original zero-only major-arc plan is invalid even after compact tilt. The unnormalized law has an asymptotically exact secondary twin at `pi`.
+### N3-ANA-024
 
-## New obstruction N3-ANA-024: parity-blind reference laws
-
-For every integer reference law `G`,
+Every integer reference law `G` satisfies
 
 \[
 d_{TV}(\mathcal L(T),G)
@@ -150,18 +115,17 @@ d_{TV}(\mathcal L(T),G)
 |G(2\mathbb Z)-p^{(0)}|.
 \]
 
-A reference law with a fixed positive even mass cannot approximate the post-prefix law in total variation.
+A parity-blind reference law cannot approximate the post-prefix law in total variation.
 
-This does not by itself disprove a window-specific weighted Fourier comparison. It forces parity into the reference law or major-arc decomposition.
-
-## New theorem N3-ANA-025: exact odd-lattice normalization
+### N3-ANA-025
 
 Condition on `Z_1!=0` and define
 
 \[
 \widetilde Z_1=(Z_1-1)/2,
 \qquad
-\widetilde Z_t=Z_t/2\quad(t>=2).
+\widetilde Z_t=Z_t/2
+\quad(t>=2).
 \]
 
 Then
@@ -170,21 +134,9 @@ Then
 \widetilde T=(T-1)/2
 \]
 
-under the odd conditional law.
+under the odd conditional law. The transformed coordinates remain independent, share common tilt `2 lambda`, and have exact span one.
 
-The transformed coordinates:
-
-- remain independent;
-- share the exact common tilt `2 lambda`;
-- have exact additive span one because the first transformed support contains `0` and `1`.
-
-The original target window
-
-\[
-I_{n,q}=[q-W_n,q]\cap\mathbb Z
-\]
-
-maps to
+The transformed target window is
 
 \[
 J_{n,q}
@@ -195,16 +147,112 @@ J_{n,q}
 \right]\cap\mathbb Z.
 \]
 
-The exact positivity transfer is
+Positive transformed-window mass implies positive original-window mass.
+
+## New transformed dyadic checkpoint
+
+### N3-ANA-026, exact finite-prefix factorization
+
+For
 
 \[
-P_\lambda(T\in I_{n,q})
-\ge
-(1-p^{(0)})
-P_{2\lambda}(\widetilde T\in J_{n,q}).
+\theta_j=\frac{\pi}{2^{j-1}},
+\qquad
+1\le j\le M_n-1,
 \]
 
-This removes the forced parity twin. It does not prove that all secondary resonances disappear.
+one has
+
+\[
+\widetilde\phi_{j+1}(\theta_j)
+=2p_{j+1}^{(0)}-1,
+\]
+
+\[
+\widetilde\phi_t(\theta_j)=1
+\qquad(t>=j+2),
+\]
+
+and therefore
+
+\[
+\widetilde\Phi(\theta_j)
+=
+\left(
+\prod_{t=1}^{j}
+\widetilde\phi_t(\theta_j)
+\right)
+(2p_{j+1}^{(0)}-1).
+\]
+
+There is no nonzero exact dyadic resonance because the transformed first support contains `0` and `1`. However, every dyadic frequency has an exact tail resonance.
+
+### N3-ANA-027, near-pure matching layer and tail collapse
+
+Define
+
+\[
+J_n
+=
+\min\left(
+M_n-1,
+\left\lfloor
+1+\log_2
+\frac{2^{M_n}-1}{16M_n\log L_n}
+\right\rfloor
+\right).
+\]
+
+Then
+
+\[
+J_n=M_n-O(\log\log n).
+\]
+
+Uniformly for `1<=j<=J_n`,
+
+\[
+p_{j+1}^{(0)}
+\le
+\frac{2e}{m_n+1},
+\]
+
+\[
+|\widetilde\phi_{j+1}(\theta_j)|
+\ge
+1-rac{4e}{m_n+1},
+\]
+
+and
+
+\[
+\sum_{t=j+1}^{M_n}
+\widetilde{\mathcal D}_t(\theta_j)
+\le
+\frac{4e}{m_n+1}.
+\]
+
+Thus a many-tail-layers dispersion mechanism is false at the transformed dyadic ladder. Any decay there must come from the first `j` transformed coordinates.
+
+### N3-ANA-028, transformed-window kernel classification
+
+Let
+
+\[
+N_{n,q}=|J_{n,q}|.
+\]
+
+Then
+
+\[
+v_2(N_{n,q})\in\{0,1\}.
+\]
+
+More precisely, `v_2(N_{n,q})=1` exactly when `rho_n` and `q` are both even. Otherwise `N_{n,q}` is odd.
+
+At a reduced dyadic frequency `2pi a/2^d`, the transformed interval kernel vanishes exactly when `2^d|N_{n,q}`. Therefore it never vanishes for denominator at least `4`. At `pi`, it vanishes only in the even-even case.
+
+This does not create an integral obstruction by itself. It proves that exact kernel cancellation cannot remove the higher dyadic ladder points.
 
 ## Verification
 
@@ -216,63 +264,71 @@ python3 tracks/nova3-analytic-density/proofs/marker_three_capacity_sanity.py
 python3 tracks/nova3-analytic-density/proofs/marker_three_numerical_law_sanity.py
 python3 tracks/nova3-analytic-density/proofs/post_prefix_tilt_sanity.py
 python3 tracks/nova3-analytic-density/proofs/parity_twin_sanity.py
+python3 tracks/nova3-analytic-density/proofs/transformed_dyadic_sanity.py
 ```
 
-### N3-FIN-007
+### N3-FIN-008
 
-The verifier checks:
+The new verifier checks for `n in {12,15}`:
 
-- exact marker-three supports for `n in {12,15}`;
-- first-layer odd and later-layer even structure;
-- the exact value at `pi`;
-- the parity-twin identity at positive, zero, and negative tilts;
-- transformed coordinate probabilities under tilt `2 lambda`;
-- the exact transformed target-window map.
+- exact transformed supports;
+- matching-layer two-phase factors;
+- exact invisibility of every later layer;
+- the finite-prefix product identity;
+- exact transformed-window lengths;
+- the dyadic kernel-zero criterion.
 
-Selected large closed-form rows:
+### N3-COMP-007
 
-| `n` | zero-state ceiling | lower bound for `|Phi(pi)|` |
-|---:|---:|---:|
-| 120368 | `1.6616e-5` | `0.9999667686` |
-| 200000 | `1.0000e-5` | `0.9999800000` |
-| 500000 | `4.0000e-6` | `0.9999920000` |
-| 1000000 | `2.0000e-6` | `0.9999960000` |
+Selected large rows:
+
+| `n` | `M_n` | safe dyadic depth `J_n` | excluded top scales | matching modulus floor | tail dispersion ceiling |
+|---:|---:|---:|---:|---:|---:|
+| 120368 | 2190 | 2165 | 24 | `0.9999261376` | `7.3863e-5` |
+| 200000 | 2384 | 2359 | 24 | `0.9999484829` | `5.1517e-5` |
+| 500000 | 2756 | 2730 | 25 | `0.9999849501` | `1.5050e-5` |
+| 1000000 | 3054 | 3028 | 25 | `0.9999913115` | `8.6885e-6` |
+
+At `n=120368`, the transformed window length is
+
+\[
+23456248059221,
+\]
+
+which is odd. No nonzero dyadic kernel zero is available there.
 
 ## Cross-track outcome
 
 ### Nova 2
 
-Handoff:
-
-`handoffs/RESPONSE_TO_NOVA2_PARITY_TWIN.md`
-
-Outcome:
-
-`ACCEPTED_WITH_PARITY_REPAIR`.
-
-The final-only Fourier contract should use the exact odd-lattice normalized law, or explicitly include both zero and `pi` major arcs with a parity-aware reference law.
+The final-only transformed Fourier contract must now control prefix residue mixing at the dyadic ladder frequencies and their neighborhoods. Tail accumulation alone is invalid.
 
 ### Nova 4
 
-Independent reconstruction requested in:
-
-`handoffs/TO_NOVA4_PARITY_TWIN.md`.
+Independent reconstruction is required for N3-ANA-026 through N3-ANA-028 and N3-FIN-008.
 
 ## Exact remaining blockers
 
-1. Audit all secondary resonances of the normalized odd-lattice law.
-2. Prove aggregate transformed phase dispersion outside explicit transformed major arcs.
+1. Prove prefix characteristic decay or prefix residue spreading at every relevant transformed dyadic scale.
+2. Extend from exact dyadic points to neighborhoods matched to the transformed interval kernel.
 3. Prove uniform transformed variance, third-moment, and maximal-step bounds.
 4. Construct a collision-aware transformed reference law.
 5. Prove the strict transformed weighted Fourier inequality.
-6. Independently reconstruct N3-ANA-023 through N3-ANA-025.
+6. Independently reconstruct N3-ANA-023 through N3-ANA-028.
 7. Reconstruct unavailable Phase 12L and Phase 12P source packages.
 8. Handle finite exceptions after an effective asymptotic theorem exists.
 
 ## Claim boundary
 
-Compact tilt, parity normalization, exact span, and collision identities do not prove quotient occupancy, the factorial half-range theorem, or Erdős Problem 18.
+Compact tilt, parity normalization, exact span, dyadic factorization, and collision identities do not prove quotient occupancy, the factorial half-range theorem, or Erdős Problem 18.
 
 ## Next theorem target
 
-`N3-NEXT-007`: audit the transformed odd-lattice product law for all remaining dyadic or rational secondary resonances. Prove an aggregate dispersion or weighted integral bound outside the complete transformed major-arc set, or return the first exact transformed residue concentration that blocks it.
+`N3-NEXT-008`: prove a prefix-residue or prefix-characteristic estimate for
+
+\[
+\prod_{t=1}^{j}
+\widetilde\phi_{t,n,q}(\theta)
+\]
+
+in neighborhoods of every transformed dyadic ladder frequency `theta_j`, with bounds matched to the exact transformed interval kernel. If this fails, return the first exact prefix residue concentration or target-local additive-energy obstruction.
