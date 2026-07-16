@@ -132,20 +132,54 @@ address slack: 57942 at n=120368,120369,120370,120371
 capacity margin: n=120370
 ```
 
-Artifacts:
-
-```text
-data/analytic/n3_threshold_sweep_n120368_n1000000.json
-data/analytic/n3_threshold_sweep.schema.json
-data/analytic/n3_threshold_sweep_minima.csv
-certificates/analytic/n3_threshold_sweep_claim.json
-certificates/analytic/n3_threshold_sweep_claim.schema.json
-```
-
 Audit semantic SHA-256: `e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0`.
 
 Claim semantic SHA-256: `e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88`.
 
-Decision: request G is accepted as a finite certificate. Final theorem disposition for `N3-ANA-011` remains pending request H.
+Decision: request G is accepted as a finite certificate.
 
-No finite dataset or source-scope audit in this registry is an asymptotic factorial theorem.
+## N4-DATA-012: Nova 3 request H semantic adversarial audit
+
+Result class: `semantic adversarial theorem audit`.
+
+Coverage:
+
+```text
+canonical N3-ANA-011 theorem contract
+six rehashed semantic corruption fixtures
+independent uniform address proof reconstruction
+exact Nova 1 menu-definition compatibility check
+formal profile-capacity proof reconstruction
+```
+
+Required corruptions rejected:
+
+```text
+lower threshold without finite supplementation
+larger legal address range without proof
+removed menu-unit correction
+formal profiles treated as distinct numerical sums
+ceil half-endpoint substitution without analysis
+finite sweep reported as asymptotic proof
+```
+
+Exact endpoint witness: `n=120417`, `floor(n/2)=60208`, `ceil(n/2)=60209`, and `60209` is prime.
+
+Artifacts:
+
+```text
+data/analytic/n3_ana_011_contract.json
+data/analytic/n3_threshold_adversarial_audit.json
+certificates/analytic/n3_ana_011_final_claim.json
+tests/n3_adversarial_fixtures/*.json
+```
+
+Contract SHA-256: `63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b`.
+
+Audit SHA-256: `785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9`.
+
+Claim SHA-256: `a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c`.
+
+Decision: request H and `N3-ANA-011` are accepted. The theorem is restricted to address legality, menu cardinality, and formal profile capacity.
+
+No finite dataset or semantic audit in this registry proves additive occupancy or the factorial half-range theorem.
