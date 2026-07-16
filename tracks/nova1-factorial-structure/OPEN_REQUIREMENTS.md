@@ -22,197 +22,141 @@ M_n=\lceil16(\log n)^2\rceil,
 W_n=\left\lfloor\frac{2^{r_n}-3}{3}\right\rfloor,
 \]
 
-and
+and quotient layers
 
 \[
 B_t(n)=
 \{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
 \]
 
-prove that an absolute `n_0` exists such that every
+prove that an absolute `n_0` exists such that every integer
 
 \[
 W_n+1\le q\le Y_n
 \]
 
-has a legal rainbow sum in
+has a legal rainbow sum in `[q-W_n,q]`, using at most one nonzero term from each layer.
 
-\[
-[q-W_n,q].
-\]
+The structural model is accepted with restrictions by Nova 2. Global occupancy remains open.
 
-At most one nonzero term may be selected from each layer. The global occupancy theorem remains open.
-
-## Connected-prefix count requirement
-
-### N1-REQ-N2-003
-
-Result label: **conditional theorem** request.
-
-For executed layers define
-
-\[
-P_n=\prod_{t=1}^{L}(1+K_t),
-\qquad
-Q_n=\left\lceil\frac{Y_n+1}{W_n+1}\right\rceil.
-\]
-
-`N1-OBS-003` proves the necessary gate
-
-\[
-P_n\ge Q_n.
-\]
-
-`N1-STR-024` defines
-
-\[
-\Gamma_n=(P_n/Q_n)^{1/L}
-\]
-
-and proves `P_n>=Q_n` exactly when `Gamma_n>=1`.
-
-This remains necessary but not sufficient. `N1-STR-025` shows packing utilization can consume almost all count surplus.
-
-## Effective carrier-utilization requirement
+## Exact carrier factorization requirement
 
 ### N1-REQ-N2-006
 
 Result label: **conditional theorem** request.
 
-Imported and independently reconstructed source:
+Imported and independently reconstructed sources:
 
-- source branch: `nova/additive-occupancy`;
-- source commit: `2ab09dd980f7116b82530368e3d98bb53240bf0c`;
-- source theorem: `N2-ADD-122`;
-- Nova 1 theorem: `N1-STR-025`.
+- `N2-ADD-122` from `nova/additive-occupancy@2ab09dd980f7116b82530368e3d98bb53240bf0c`;
+- `N2-ADD-124` and `N2-OBS-110` from `nova/additive-occupancy@47ed3938d8900c82b245a3592502ac957330bbc6`;
+- Nova 1 results `N1-STR-025`, `N1-STR-026`, and `N1-OBS-004`.
 
-Let
+For executed layers,
 
 \[
-F_0=W_n+1,
+F_t=F_{t-1}+s_tU_t,
 \qquad
-F_t=F_{t-1}+2^{t-1}U_t,
+s_t=2^{t-1},
+\qquad
+P_n=\prod_{t=1}^{L}(1+K_t),
 \]
-
-and
 
 \[
-b_t=\frac{F_t/F_{t-1}}{1+K_t}.
+b_t=\frac{1+s_tU_t/F_{t-1}}{1+K_t}.
 \]
 
-Then
+Then exactly
 
 \[
-\frac{F_L}{W_n+1}
-=
-P_n\prod_{t=1}^{L}b_t.
+\frac{F_L}{W_n+1}=P_n\prod_{t=1}^{L}b_t.
 \]
 
-Put
+With
 
 \[
 R_n=\frac{Y_n+1}{W_n+1},
-\qquad
+\quad
 \widetilde\Gamma_n=(P_n/R_n)^{1/L},
-\]
-
-\[
+\quad
 \mathcal B_n=\left(\prod_tb_t\right)^{1/L},
-\qquad
-\Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L}.
 \]
-
-Then
 
 \[
-\Delta_n=\widetilde\Gamma_n\mathcal B_n,
+\Delta_n=\left(\frac{F_L}{Y_n+1}\right)^{1/L},
 \]
 
-and endpoint success is equivalent to `Delta_n>=1`.
+one has
+
+\[
+\Delta_n=\widetilde\Gamma_n\mathcal B_n.
+\]
+
+Endpoint success is equivalent to `Delta_n>=1`.
 
 Accepted outcomes are:
 
-1. a **proved theorem** giving a uniform lower bound `Delta_n>=1` for enough exact layers;
-2. a **proved theorem** giving `Delta_n<1` eventually or infinitely often, retiring the sequential engine;
-3. a **conditional theorem** reducing `Delta_n>=1` to an explicit factorial-divisor spacing theorem;
-4. an exact counterexample with replayable certificate.
+1. a **proved theorem** giving a uniform effective-product lower bound;
+2. a **proved theorem** giving an eventual or infinite upper obstruction that retires the sequential engine;
+3. a **conditional theorem** reducing the effective product to a precise factorial-divisor spacing theorem;
+4. an exact counterexample with a replayable certificate.
 
-## Factorial-specific internal-span requirement
+## Factorial-specific span requirement
 
 ### N1-REQ-N2-007
 
 Result label: **conditional theorem** request.
 
-Imported and independently reconstructed source:
-
-- source branch: `nova/additive-occupancy`;
-- exact source commit: `47ed3938d8900c82b245a3592502ac957330bbc6`;
-- source results: `N2-ADD-124`, `N2-OBS-110`;
-- Nova 1 results: `N1-STR-026`, `N1-OBS-004`.
-
-For every positive odd-core prefix,
-
-\[
-U_t\ge2K_t-1.
-\]
-
-This gives the parity-only sufficient product
-
-\[
-\prod_{t=1}^{L}
-\frac{D_t+2K_t}{D_t+1}
-\ge
-R_n.
-\]
-
-The bound is optimal if only oddness, `K_t`, and `D_t` are supplied. Therefore the next valid theorem must use factorial-specific information and control one of
+For every executed layer define
 
 \[
 A_t=\frac{U_t}{2K_t-1},
 \qquad
-\eta_t=\frac{U_t}{K_tD_t},
+\eta_t=\frac{U_t}{K_tD_t}.
 \]
 
-or an equivalent internal average-gap statistic.
+`N1-STR-026` proves the universal parity baseline `A_t>=1`. `N1-OBS-004` proves no fixed improvement is possible using only oddness, `K_t`, and `D_t`.
 
-Accepted outcomes are:
+Prove one of:
 
-1. a uniform lower bound for enough `A_t` or `eta_t` that forces `Delta_n>=1`;
-2. a uniform upper obstruction that forces `Delta_n<1` eventually or infinitely often;
-3. a conditional reduction to an explicit divisor-distribution theorem for
+1. a factorial-specific lower bound for enough `A_t` or `eta_t` to force `Delta_n>=1`;
+2. an averaged internal-gap theorem for divisors of
    \[
-   D_n=\frac{n!}{3\cdot2^{v_2(n!)}};
+   D_n=\frac{n!}{3\cdot2^{v_2(n!)}}
    \]
-4. an exact counterexample.
+   strong enough to close the carrier;
+3. a factorial-specific upper obstruction showing the required amplification fails eventually or infinitely often.
 
-At `n=56`, the parity-only endpoint ratio has seventh root
+Finite data through `n=57` are **computational evidence** only. At `n=57`, the parity-only endpoint product misses by about `2.82e32`, while factorial-specific spacing restores endpoint success.
 
-\[
-0.0000307763983342963\ldots,
-\]
-
-and misses the endpoint by about `3.82e31` before factorial-specific amplification. This is **computational evidence** only.
-
-## Divisor gap requirement
+## External blocking-gap boundary
 
 ### N1-REQ-N2-005
 
 Result label: **conditional theorem** request.
 
-A first external blocking gap does not determine internal average spacing. Across the 31 finite blocked layers for `51<=n<=56`,
+The finite candidate
 
 \[
-\max\frac{g_t}{D_t}
-=
-\frac{6963896442939750}{6290170063344679}
-<1.108.
+g_t/D_t<1.108
 \]
 
-This is **computational evidence** only. The maximum occurs at `n=51`, layer `4`.
+is a **disproved route**. At `n=57`, layer `3`,
 
-The required next theorem must control internal divisor spacing, average gaps, or the full span `U_t`, not only the first gap outside the connected prefix.
+\[
+D_3=2{,}911{,}465{,}312{,}076,
+\qquad
+g_3=3{,}399{,}069{,}458{,}070,
+\]
 
-## Finite complete-core requirement
+so
+
+\[
+g_3/D_3=1.1674772300983786\ldots.
+\]
+
+A first external blocking gap does not identify the internal average spacing. Any future gap theorem must directly control `U_t`, `A_t`, `eta_t`, or an equivalent effective-product quantity.
+
+## Finite overflow-safe carrier requirement
 
 ### N1-REQ-N4-008
 
@@ -222,7 +166,7 @@ Current exact coverage:
 
 - Nova 2 `N2-FIN-202`: every `12<=n<=45`;
 - Nova 1 `N1-FIN-005`: every `46<=n<=50`;
-- Nova 1 `N1-FIN-006` through `N1-FIN-011`: `n=51` through `n=56`.
+- Nova 1 `N1-FIN-006` through `N1-FIN-012`: every `51<=n<=57`.
 
 Therefore
 
@@ -240,34 +184,35 @@ and
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le24
-\qquad(12\le n\le56).
+\qquad(12\le n\le57).
 \]
 
 Nova 4 must independently reconstruct:
 
 1. exact rational certification of `r_n` and `M_n`;
 2. factorial valuations and `Y_n`;
-3. unique half-list product representation;
-4. exact sorted row merge;
-5. duplicate and omission rejection;
-6. all thresholds, cutoffs, connected maxima, and `K_t` values;
-7. the six-layer shortfall at `n=56`;
-8. the seventh-layer no-block completion;
-9. both explicit partition replays, masks `98` and `33`;
-10. exact effective-factor and parity-span calculations;
-11. term bound `24`;
+3. endpoint-truncated half lists;
+4. division-based overflow guards;
+5. unique product representation and exact sorted merge;
+6. deterministic checkpoint serialization and continuation;
+7. duplicate, omission, stale-cache, and corrupted-checkpoint rejection;
+8. every layer threshold, connected maximum, count, and blocking gap;
+9. effective, parity, and factorial-span diagnostics;
+10. two distinct explicit partition replays;
+11. overflow-safe regression for `52<=n<=56`;
 12. fail-closed resource and integer boundaries.
 
-Current artifacts:
+Authoritative artifacts:
 
-- `proofs/EFFECTIVE_CARRIER_FACTORIZATION_RECONSTRUCTION.md`;
-- `proofs/PARITY_SPAN_CRITERION_RECONSTRUCTION.md`;
-- `verification/FULL_CORE_N56_REPORT.md`;
-- `verification/full_core_n56_mitm_mask98.txt`;
-- `verification/full_core_n56_mitm_mask33.txt`;
-- `verification/test_mitm_n56_parity.py`.
+- `proofs/OVERFLOW_SAFE_CHECKPOINTED_MITM_STREAM.md`;
+- `verification/marker_three_mitm_checkpoint_u128.cpp`;
+- `verification/OVERFLOW_SAFE_REGRESSION_N52_N56.md`;
+- `verification/FULL_CORE_N57_REPORT.md`;
+- `verification/full_core_n57_safe_mask6.txt`;
+- `verification/full_core_n57_safe_mask424.txt`;
+- `verification/test_mitm_n57_overflow_safe.py`.
 
-The next finite target is `n=57`. Resource exhaustion must be recorded as unknown due to resource limits, never as mathematical failure.
+The retired `marker_three_mitm_prefix_u128.cpp` must fail closed. The next finite target is `n=58`.
 
 ## Collision requirement
 
@@ -275,9 +220,13 @@ The next finite target is `n=57`. Resource exhaustion must be recorded as unknow
 
 Result label: **conditional theorem** request.
 
-`N1-COL-001` proves profile injectivity is false. The next required result is a target-local upper bound on maximum fiber size, additive energy, a second moment of representation counts, or weighted collision contribution under the exact tilted numerical law.
+`N1-COL-001` supplies a fiber of size at least
 
-Raw global profile counts are not occupancy evidence.
+\[
+2^{\lfloor M_n/2\rfloor}.
+\]
+
+The next required result is a target-local upper bound on maximum fiber size, additive energy, representation-count second moments, or weighted collision contribution under the exact tilted numerical-value law.
 
 ## Nova 3 numerical-law requirement
 
@@ -285,7 +234,15 @@ Raw global profile counts are not occupancy evidence.
 
 Result label: **conditional theorem** request.
 
-Current accepted foundation closes unique finite tilt, exact span one, the exact torus resonance set, and a first-layer characteristic-function bound. The remaining nodes are compact tilt or quantitative phase dispersion, variance and higher-moment control, a positive reference lattice law, and a strict weighted Fourier inequality.
+Current accepted foundation:
+
+- exact head inspected: `003b9c0e1179314d6c119c8a356e0f41231e3ad6`;
+- results: `N3-ANA-017`, `N3-ANA-018`, `N3-ANA-019`;
+- outcome: `ACCEPTED_WITH_RESTRICTIONS`.
+
+Closed clauses include unique finite tilt, exact span one, exact torus resonance set `{0}`, and an explicit first-layer characteristic bound.
+
+Open clauses are compact target-dependent tilt or direct phase dispersion, moment control, a positive reference lattice law, and a strict weighted Fourier inequality.
 
 ## Internal Track B requirement
 
@@ -301,33 +258,33 @@ H_{n!}(\lfloor\sqrt{n!}\rfloor+1)=O((\log n)^2)
 h(n!)=O((\log n)^3)
 \]
 
-under the current endpoint convention.
+under the current frozen endpoint convention.
 
 ## Closed structural requirements
 
 - factorial valuation atlas;
-- numerical distinctness;
-- support lattice and correction residues;
-- formal profile capacity;
-- total endpoint reach;
-- one-block ceiling;
-- profile noninjectivity;
-- exact divisor streams;
-- count-surplus identity;
-- effective carrier factorization;
-- sharp parity-span baseline;
-- exact complete-core coverage through `n=56`.
+- numerical distinctness and correction palette;
+- support lattice and residues;
+- direct first-target and total endpoint reach;
+- profile-capacity and prime-interval thresholds;
+- one-block obstruction and profile noninjectivity;
+- connected-prefix count necessity;
+- unique-parent and meet-in-the-middle streams;
+- exact count-utilization factorization;
+- sharp parity-span baseline and optimality;
+- overflow-safe truncation and exact checkpoint continuation;
+- exact complete-core coverage through `n=57`.
 
 ## Open structural requirements
 
-- factorial-specific internal-span or average-gap control;
-- effective count-utilization lower or upper bounds;
-- exact finite extension beginning at `n=57`;
-- uniform quotient downward-window occupancy;
+- factorial-specific internal span or normalized average-gap theorem;
+- uniform effective-product lower or upper bound;
+- exact overflow-safe finite extension from `n=58`;
+- quotient maximum downward gap at most `W_n`;
 - downward endpoint-window occupancy;
 - target-local collision control;
-- compact numerical tilt or phase dispersion;
-- strict weighted Fourier positivity;
+- compact numerical tilt or direct phase dispersion;
+- strict weighted bounded-torus Fourier inequality;
 - Track B reconstruction;
 - finite exceptions after an effective asymptotic threshold.
 
