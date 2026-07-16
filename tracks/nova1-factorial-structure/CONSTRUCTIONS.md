@@ -50,6 +50,9 @@ r_n=\lceil4\log n\rceil.
 - necessary formal profile capacity for every `n>=120368`;
 - multiplicative 3-density of the reserved odd factorial core;
 - total quotient support crossing `floor(X_n/3)` with three distinct terms;
+- connected-prefix entropy necessity for the sequential carrier;
+- exact unique-parent connected-prefix streaming;
+- exact meet-in-the-middle connected-prefix streaming;
 - globally nonsequential final occupancy request.
 
 ### Exact endpoint result
@@ -64,6 +67,34 @@ with exact 2-adic valuations `0`, `1`, and `2`. Their sum is greater than `X_n/3
 
 This does not prove a sum in the final downward window.
 
+### Sequential carrier status
+
+Nova 2 results `N2-ADD-119` and `N2-ADD-120` provide a sufficient connected-core recursion. Nova 1 theorem `N1-OBS-003` proves that success requires
+
+\[
+\prod_{t=1}^{L}(1+K_t)
+\ge
+\frac{Y_n+1}{W_n+1}.
+\]
+
+The one-factorial-block implementation is a **disproved route** by `N1-DIS-006`. The complete connected-core implementation remains open asymptotically.
+
+Exact finite connected-core coverage is currently certified for every
+
+\[
+12\le n\le52.
+\]
+
+At `n=51` and `n=52`, six layers suffice and the exact entropy products exceed their finite requirements by factors greater than `3.034e12` and `8.667e11`, respectively. The decrease shows that finite margin monotonicity is not available.
+
+### Exact enumeration engines
+
+`N1-STR-022` uses a unique-parent exponent-vector stream and record-gap compression.
+
+`N1-STR-023` partitions the odd prime-power coordinates into two disjoint families and merges sorted product rows. At `n=52`, the exact divisor family of size `155,001,600` is represented by a balanced `12,420 x 12,480` product grid, reducing the active heap to `12,420` nodes.
+
+These are exact finite certifiers, not occupancy theorems for all sufficiently large `n`.
+
 ### Open component
 
 Uniform downward-window occupancy of the quotient rainbow sumset with radius
@@ -77,17 +108,22 @@ through `floor(X_n/3)`.
 ### Primary risks
 
 - downward endpoint-window deficit despite total support crossing the endpoint;
+- connected-prefix entropy eventually falling below the sequential requirement;
 - collision concentration;
 - quotient additive shell gaps;
 - an unrecognized bounded-torus resonance;
-- a proof that secretly becomes sequential.
+- a proof that secretly becomes sequential;
+- inference from finite entropy ratios without a non-monotone-safe theorem.
 
-### Finite evidence
+### Finite evidence and certificates
 
 - reduced-parameter quotient checks for every `7<=n<=14` find maximum downward distance at most one;
 - multiplicative 3-density is checked for every `6<=n<=20`;
 - endpoint crossing is checked for every `12<=n<=20`;
-- coarse contraction is exhaustively checked for all quotient targets with `12<=n<=14` and `1<=L<=6`.
+- coarse contraction is exhaustively checked for all quotient targets with `12<=n<=14` and `1<=L<=6`;
+- complete connected-core carrier coverage is exact for every `12<=n<=52`;
+- the meet-in-the-middle verifier exactly reproduces the independent `n=51` unique-parent certificate;
+- `n=52` is certified with six prefix sizes and term bound `22`.
 
 Paths:
 
@@ -95,6 +131,10 @@ Paths:
 - `verification/MARKER_THREE_FINITE_REPORT.md`
 - `verification/endpoint_support_sanity.py`
 - `verification/ENDPOINT_SUPPORT_FINITE_REPORT.md`
+- `verification/FULL_CORE_N46_N50_REPORT.md`
+- `verification/FULL_CORE_N51_REPORT.md`
+- `verification/FULL_CORE_N52_REPORT.md`
+- `verification/test_mitm_overlap.py`
 
 Result labels: **computational evidence** and **finite certificate**.
 
@@ -210,4 +250,5 @@ Every future revision must include:
 14. sequential-obstruction audit;
 15. exact missing additive and analytic statements;
 16. finite test plan;
-17. asymptotic failure condition.
+17. asymptotic failure condition;
+18. non-monotone-safe normalization for finite entropy comparisons.
