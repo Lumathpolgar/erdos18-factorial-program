@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 4 N3-ANA-008 and N3-ANA-009 audit",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "decisions", "N3_ANA_008", "N3_ANA_009", "finite_diagnostics", "scope_excludes", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-high-prime-limit-audit.v1"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "decisions": {"type": "object"},
+    "N3_ANA_008": {"type": "object"},
+    "N3_ANA_009": {"type": "object"},
+    "finite_diagnostics": {"type": "object"}
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,76 @@
+{
+  "first_admissible_failure_n": 1892,
+  "first_side_condition_n": 1892,
+  "first_target_in_half_range_n": 9,
+  "later_failures_after_first_admissible": [
+    {
+      "n": 1893,
+      "side_condition": false,
+      "target_in_half_range": true
+    },
+    {
+      "n": 1894,
+      "side_condition": false,
+      "target_in_half_range": true
+    },
+    {
+      "n": 1895,
+      "side_condition": false,
+      "target_in_half_range": true
+    }
+  ],
+  "n_max": 10000,
+  "n_min": 3,
+  "result_class": "exact finite theorem audit",
+  "schema": "nova4.n2-obs-107-range-audit.v1",
+  "source_branch": "nova/additive-occupancy",
+  "source_commit": "45c74a5fa747551422ffcad7d3ddf22788fbe622",
+  "stable_success_through_checked_range_from_n": 1896,
+  "transitions": [
+    {
+      "both": false,
+      "layer_count": 20,
+      "n": 3,
+      "r": 5,
+      "side_condition": false,
+      "target_in_half_range": false,
+      "v2_factorial": 1
+    },
+    {
+      "both": false,
+      "layer_count": 78,
+      "n": 9,
+      "r": 9,
+      "side_condition": false,
+      "target_in_half_range": true,
+      "v2_factorial": 7
+    },
+    {
+      "both": true,
+      "layer_count": 911,
+      "n": 1892,
+      "r": 31,
+      "side_condition": true,
+      "target_in_half_range": true,
+      "v2_factorial": 1886
+    },
+    {
+      "both": false,
+      "layer_count": 912,
+      "n": 1893,
+      "r": 31,
+      "side_condition": false,
+      "target_in_half_range": true,
+      "v2_factorial": 1886
+    },
+    {
+      "both": true,
+      "layer_count": 912,
+      "n": 1896,
+      "r": 31,
+      "side_condition": true,
+      "target_in_half_range": true,
+      "v2_factorial": 1890
+    }
+  ]
+}

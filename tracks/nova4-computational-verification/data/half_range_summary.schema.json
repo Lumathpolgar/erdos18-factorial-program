@@ -1,0 +1,28 @@
+{
+  "$id": "erdos18.factorial.half_range_summary.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "checked_targets": {"minimum": 1, "type": "integer"},
+    "full_profile_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "records": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "H": {"minimum": 0, "type": "integer"},
+          "n": {"minimum": 1, "type": "integer"},
+          "status": {"const": "exact finite theorem audit"},
+          "target_upper_inclusive": {"minimum": 0, "type": "integer"}
+        },
+        "required": ["n", "target_upper_inclusive", "H", "status"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "result_class": {"const": "exact finite theorem audit"},
+    "schema": {"const": "erdos18.factorial.half_range_summary.v1"}
+  },
+  "required": ["schema", "result_class", "n_range", "checked_targets", "records", "full_profile_sha256"],
+  "title": "Exact factorial half-range summary",
+  "type": "object"
+}

@@ -1,0 +1,38 @@
+{
+  "$id": "erdos18.factorial.representation.v1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "claimed_sum": {"minimum": 0, "type": "integer"},
+    "claimed_term_count": {"minimum": 0, "type": "integer"},
+    "max_terms": {"minimum": 0, "type": "integer"},
+    "n": {"minimum": 1, "type": "integer"},
+    "producer": {"type": "object"},
+    "schema": {"const": "erdos18.factorial.representation.v1"},
+    "target": {"minimum": 0, "type": "integer"},
+    "target_range": {
+      "additionalProperties": false,
+      "properties": {
+        "lower": {"minimum": 0, "type": "integer"},
+        "upper_exclusive": {"minimum": 1, "type": "integer"}
+      },
+      "required": ["lower", "upper_exclusive"],
+      "type": "object"
+    },
+    "terms": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "label": {"type": "string"},
+          "value": {"minimum": 1, "type": "integer"}
+        },
+        "required": ["value"],
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": ["schema", "n", "target", "max_terms", "terms"],
+  "title": "Factorial distinct-divisor representation certificate",
+  "type": "object"
+}

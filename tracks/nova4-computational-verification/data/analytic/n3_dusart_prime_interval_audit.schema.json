@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "algebra": {"type": "object"},
+    "decision": {"type": "object"},
+    "finite_threshold_witness": {"type": "object"},
+    "result_class": {"const": "primary-source theorem audit"},
+    "schema": {"const": "nova4.n3-dusart-source-audit.v1"},
+    "sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "source": {"type": "object"},
+    "source_thresholds": {"type": "object"}
+  },
+  "required": ["schema", "result_class", "source", "decision", "source_thresholds", "algebra", "finite_threshold_witness", "sha256"],
+  "type": "object"
+}

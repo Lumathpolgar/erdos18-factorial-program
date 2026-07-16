@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova4.n1-reduced-rainbow-first-failure.v1",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "audit_sha256", "claimed", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n1-reduced-rainbow-first-failure.v1"},
+    "result_class": {"const": "disproved finite claim"},
+    "claimed": {"type": "object", "required": ["n", "r_star", "m_star", "addresses", "high_primes", "high_core_menu", "layer_sizes", "gcd_nonzero_layer_terms", "target", "window", "correction_radius", "predecessor_reachable", "predecessor_witness", "independent_lattice_obstruction"]},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

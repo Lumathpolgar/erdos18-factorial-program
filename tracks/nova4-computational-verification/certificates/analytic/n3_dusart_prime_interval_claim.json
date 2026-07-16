@@ -1,0 +1,38 @@
+{
+  "claim": {
+    "algebra_Q_lower_at_4": "18/5",
+    "decision": "ACCEPTED",
+    "finite_threshold_prime_count": 5254,
+    "inequality": "pi(n)-pi(n/2)>=n/(3*log(n))",
+    "integer_threshold": 120368,
+    "object": "N3-ANA-010",
+    "predecessor_covered_without_supplement": false,
+    "source_lower_threshold": 5393,
+    "source_upper_threshold": 60184,
+    "upper_source_argument_at_threshold": 60184
+  },
+  "evidence_sha256": "42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212",
+  "result_class": "prime interval theorem certificate",
+  "schema": "nova4.n3-dusart-prime-interval-claim.v1",
+  "sha256": "7d33e3f669768c555267753c5439d50e2502de2202a9298a0c209c6c9c129703",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "object": "N3-ANA-010",
+    "primary_source": {
+      "arxiv_id": "1002.0442",
+      "author": "Pierre Dusart",
+      "equation": "(6.6)",
+      "pdf_page": 9,
+      "theorem": "Theorem 6.9",
+      "title": "Estimates of Some Functions Over Primes without R.H.",
+      "version": "v1"
+    },
+    "proof_file": "tracks/nova3-analytic-density/proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md",
+    "proof_file_blob_sha": "e36daf98db86da16bd5ed8c6c82f43530d745f66",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "F",
+    "source_ledger_commit": "697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4"
+  }
+}

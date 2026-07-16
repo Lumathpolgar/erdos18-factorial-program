@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "claim": {"type": "object"},
+    "evidence_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "result_class": {"const": "prime interval theorem certificate"},
+    "schema": {"const": "nova4.n3-dusart-prime-interval-claim.v1"},
+    "sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "source": {"type": "object"}
+  },
+  "required": ["schema", "result_class", "source", "evidence_sha256", "claim", "sha256"],
+  "type": "object"
+}

@@ -1,0 +1,24 @@
+{
+  "claim": {
+    "actual": 1,
+    "b_q": 1,
+    "ceiling": 1,
+    "coordinate_choices": 1,
+    "delta": [0, 1],
+    "endpoint_divisor": 1,
+    "n": 2,
+    "q": 2,
+    "upper_integer": 1
+  },
+  "claimed_upper_bound": 1,
+  "result_class": "finite certificate",
+  "schema": "nova4.n3-local-ceiling-claim.v1",
+  "sha256": "3b44d5b1e861aa71a32713c077b336ce53cb7eb54fdff8686da14a4fbf54482e",
+  "source": {
+    "branch": "nova/analytic-density",
+    "commit": "0ce88b28dc2e6641093526f5777bb31f658e3515",
+    "handoff": "N3-HO-N4-001",
+    "objects": ["N3-ANA-004", "N3-ANA-005"],
+    "repository": "Lumathpolgar/erdos18-factorial-program"
+  }
+}

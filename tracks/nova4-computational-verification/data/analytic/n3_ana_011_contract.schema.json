@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 4 N3-ANA-011 semantic contract",
+  "type": "object",
+  "required": ["schema", "sha256", "source", "theorem"],
+  "properties": {
+    "schema": {"const": "nova4.n3-ana-011-contract.v1"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source": {"type": "object"},
+    "theorem": {"type": "object"},
+    "mutation": {"type": "string"}
+  },
+  "additionalProperties": false
+}

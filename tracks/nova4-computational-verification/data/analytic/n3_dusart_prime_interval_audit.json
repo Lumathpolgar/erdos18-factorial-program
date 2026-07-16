@@ -1,0 +1,99 @@
+{
+  "algebra": {
+    "Q": "L^2+(5-4*b)*L-2*b",
+    "Q_lower": "L^2-(11/5)*L-18/5",
+    "Q_lower_at_4": "18/5",
+    "Q_lower_derivative": "2*L-11/5",
+    "Q_lower_increasing_for_L_at_least_4": true,
+    "all_denominators_positive": true,
+    "b_definition": "log(2)+11/10",
+    "b_upper": "9/5",
+    "conclusion": "source lower bound minus source upper bound is at least n/(3*log(n))",
+    "e_upper": "11/4",
+    "ln2_proof": {
+      "exp_7_over_10_taylor_lower": "12013/6000",
+      "greater_than_two": true
+    },
+    "ln2_upper": "7/10",
+    "normalized_difference": "1/(L-1)-1/(2*(L-b))-1/(3*L) = Q(L)/(6*L*(L-1)*(L-b))",
+    "threshold_exceeds_e4": {
+      "conclusion": "L=log(n)>4 for n>=120368",
+      "e4_upper": "81",
+      "threshold": 120368,
+      "threshold_greater_than_81": true
+    }
+  },
+  "decision": {
+    "N3_ANA_010": "ACCEPTED",
+    "algebra_confirmed": true,
+    "request_F": "ACCEPTED",
+    "source_thresholds_confirmed": true
+  },
+  "finite_threshold_witness": {
+    "Q_at_log_n": "107.84852480654411290855583936202179806178658968104160996701073362553051087314823",
+    "b": "1.7931471805599453094172321214581765680755001343602552541206800094933936219696947",
+    "endpoint_identity": "pi(n/2)=pi(floor(n/2)) for integer n",
+    "exact_margin_over_target": "1824.2165431711756312554072404225232270120328464395569881095485288785809024294787",
+    "exact_upper_half_prime_count": 5254,
+    "floor_n_over_2": 60184,
+    "log_n": "11.698308995800002802813548387369022744275186111144179718440771112081722309161654",
+    "n": 120368,
+    "pi_floor_n_over_2": 6076,
+    "pi_n": 11330,
+    "source_derived_lower_bound": "5175.0999891899846192077009850703359189801705849350393955290986993336685136592484",
+    "source_hypotheses_hold": true,
+    "source_margin_over_target": "1745.3165323611602504631082254928591459922034313745963836386472282122494160887271",
+    "target_n_over_3logn": "3429.7834568288243687445927595774767729879671535604430118904514711214190975705213"
+  },
+  "result_class": "primary-source theorem audit",
+  "schema": "nova4.n3-dusart-source-audit.v1",
+  "scope": {
+    "not_a_claim_of_smallest_possible_theorem_threshold": true,
+    "not_additive_occupancy": true,
+    "theorem_statement": "pi(n)-pi(n/2)>=n/(3*log(n)) for every integer n>=120368",
+    "threshold_is_source_coverage_threshold_without_finite_supplement": true
+  },
+  "sha256": "42e3675f35d0623f09b30b36ae6847bedadf448cdfe3984ef20fcef09904f212",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "object": "N3-ANA-010",
+    "primary_source": {
+      "arxiv_id": "1002.0442",
+      "author": "Pierre Dusart",
+      "equation": "(6.6)",
+      "pdf_page": 9,
+      "theorem": "Theorem 6.9",
+      "title": "Estimates of Some Functions Over Primes without R.H.",
+      "version": "v1"
+    },
+    "proof_file": "tracks/nova3-analytic-density/proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md",
+    "proof_file_blob_sha": "e36daf98db86da16bd5ed8c6c82f43530d745f66",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "F",
+    "source_ledger_commit": "697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4"
+  },
+  "source_thresholds": {
+    "derived_integer_threshold": 120368,
+    "lower_bound": {
+      "applied_at": "x=n",
+      "statement": "pi(x)>=x/(log(x)-1)",
+      "threshold": 5393
+    },
+    "minimal_from_unsupplemented_source_hypotheses": true,
+    "not_claimed_global_minimum": true,
+    "predecessor": {
+      "n": 120367,
+      "n_over_2": "120367/2",
+      "n_over_2_decimal": "60183.5",
+      "upper_source_hypothesis_holds": false
+    },
+    "threshold_reason": "n/2>=60184 and n>=5393",
+    "upper_bound": {
+      "applied_at": "x=n/2",
+      "statement": "pi(x)<=x/(log(x)-1.1)",
+      "threshold": 60184
+    }
+  }
+}

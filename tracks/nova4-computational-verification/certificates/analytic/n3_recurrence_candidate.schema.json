@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 3 characteristic recurrence candidate",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "evidence_sha256", "candidate", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-characteristic-recurrence-candidate.v1"},
+    "result_class": {"const": "computational evidence"},
+    "source": {"type": "object"},
+    "evidence_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "candidate": {"type": "object"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}

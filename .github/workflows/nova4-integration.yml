@@ -1,0 +1,81 @@
+name: Nova 4 integration gate
+
+on:
+  push:
+    branches:
+      - nova/computational-verification
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+    paths:
+      - 'tracks/nova4-computational-verification/**'
+      - '.github/workflows/nova4-integration.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  nova4-combined-tree:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out tested revision
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Record GitHub pull-request merge tree
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "event=${GITHUB_EVENT_NAME}"
+          echo "candidate_head=${{ github.event.pull_request.head.sha }}"
+          echo "base_head=${{ github.event.pull_request.base.sha }}"
+          echo "tested_merge_commit=$(git rev-parse HEAD)"
+          echo "combined_tree=$(git rev-parse HEAD^{tree})"
+          git status --short
+
+      - name: Construct current-main plus candidate combined tree for push runs
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_HEAD="$(git rev-parse HEAD)"
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          BASE_HEAD="$(git rev-parse refs/remotes/origin/main)"
+
+          git checkout --detach "$BASE_HEAD"
+          git -c user.name='Nova 4 Integration Gate' \
+              -c user.email='nova4-integration@users.noreply.github.com' \
+              merge --no-commit --no-ff "$SOURCE_HEAD"
+
+          echo "event=${GITHUB_EVENT_NAME}"
+          echo "candidate_head=${SOURCE_HEAD}"
+          echo "base_head=${BASE_HEAD}"
+          echo "combined_tree=$(git write-tree)"
+          git status --short
+
+      - name: Compile Nova 4 Python sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 --version
+          python3 -m compileall -q \
+            tracks/nova4-computational-verification/src \
+            tracks/nova4-computational-verification/tests
+
+      - name: Run complete Nova 4 verifier suite
+        shell: bash
+        env:
+          PYTHONPATH: tracks/nova4-computational-verification/src
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover \
+            -s tracks/nova4-computational-verification/tests \
+            -v

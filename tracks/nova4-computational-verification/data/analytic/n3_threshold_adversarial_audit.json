@@ -1,0 +1,240 @@
+{
+  "adversarial_tests": [
+    {
+      "expected": "REJECTED",
+      "fixture": "corrupt_rehashed_lower_threshold.json",
+      "fixture_sha256": "69cce7ab5268df25c7d3e284c402a1070b507ae6ba44e67a7e8bd02df8b9c91c",
+      "id": "H1",
+      "mutation": "lower_threshold_without_supplement",
+      "outer_hash_recomputed": true,
+      "reason": "n/2 must be at least 60184; 120367/2=60183.5 is outside the frozen source hypothesis",
+      "rejected": true,
+      "verifier_message": "rejected lower_threshold_without_supplement: n/2 must be at least 60184; 120367/2=60183.5 is outside the frozen source hypothesis"
+    },
+    {
+      "expected": "REJECTED",
+      "fixture": "corrupt_rehashed_address_range.json",
+      "fixture_sha256": "a02a8b7a3714eed48758af818eabaa9706ca695ae697b542dd30d2acd7293f11",
+      "id": "H2",
+      "mutation": "larger_address_range_without_proof",
+      "outer_hash_recomputed": true,
+      "reason": "N1-STR-009 is proved only through floor(v2(n!)/2)-1; no extension proof is supplied",
+      "rejected": true,
+      "verifier_message": "rejected larger_address_range_without_proof: N1-STR-009 is proved only through floor(v2(n!)/2)-1; no extension proof is supplied"
+    },
+    {
+      "expected": "REJECTED",
+      "fixture": "corrupt_rehashed_unit_correction.json",
+      "fixture_sha256": "81c6daac4dd46dfd2d7b866e5e4e2571e9b017320e89eba6bf257a7fb2981387",
+      "id": "H3",
+      "mutation": "remove_menu_unit_correction",
+      "outer_hash_recomputed": true,
+      "reason": "the lower half of subset products includes the unit, while U_e(n) requires u>1",
+      "rejected": true,
+      "verifier_message": "rejected remove_menu_unit_correction: the lower half of subset products includes the unit, while U_e(n) requires u>1"
+    },
+    {
+      "expected": "REJECTED",
+      "fixture": "corrupt_rehashed_profile_injectivity.json",
+      "fixture_sha256": "09b655bae46c84391d08f8ce4f8c92cf091cb950babefec963fd560541f9593e",
+      "id": "H4",
+      "mutation": "profiles_as_distinct_sums",
+      "outer_hash_recomputed": true,
+      "reason": "the product counts formal profiles only; injectivity and numerical distinctness are not proved",
+      "rejected": true,
+      "verifier_message": "rejected profiles_as_distinct_sums: the product counts formal profiles only; injectivity and numerical distinctness are not proved"
+    },
+    {
+      "expected": "REJECTED",
+      "fixture": "corrupt_rehashed_ceil_endpoint.json",
+      "fixture_sha256": "4eeeefc0e11538bbed4cae38dd9fab1ea0709bd31a494f82f897c25ae1c86574",
+      "id": "H5",
+      "mutation": "ceil_half_endpoint_without_analysis",
+      "outer_hash_recomputed": true,
+      "reason": "pi(n/2)=pi(floor(n/2)); at n=120417 the ceil endpoint 60209 is prime and changes the count",
+      "rejected": true,
+      "verifier_message": "rejected ceil_half_endpoint_without_analysis: pi(n/2)=pi(floor(n/2)); at n=120417 the ceil endpoint 60209 is prime and changes the count"
+    },
+    {
+      "expected": "REJECTED",
+      "fixture": "corrupt_rehashed_finite_asymptotic.json",
+      "fixture_sha256": "d7b094b505bfdc4687f5874e9bdd9ef07206556520baf1e519b92ebbd651ea25",
+      "id": "H6",
+      "mutation": "finite_sweep_as_asymptotic_proof",
+      "outer_hash_recomputed": true,
+      "reason": "the 879633-point sweep is a finite certificate; uniformity beyond it comes from the proof",
+      "rejected": true,
+      "verifier_message": "rejected finite_sweep_as_asymptotic_proof: the 879633-point sweep is a finite certificate; uniformity beyond it comes from the proof"
+    }
+  ],
+  "canonical_contract": {
+    "schema": "nova4.n3-ana-011-contract.v1",
+    "sha256": "63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b",
+    "source": {
+      "branch": "nova/analytic-density",
+      "handoff": "N3-HO-N4-002",
+      "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+      "imported_n1": {
+        "blob_sha": "4255e76ff18f675ae80a0192381070d9a934fc97",
+        "commit": "fa11f4b2cb86a2dd791df189ada12757be791804",
+        "file": "tracks/nova1-factorial-structure/proofs/HIGH_PRIME_MENU_CAPACITY.md",
+        "object": "N1-STR-009"
+      },
+      "object": "N3-ANA-011",
+      "proof_file": "tracks/nova3-analytic-density/proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md",
+      "proof_file_blob_sha": "e36daf98db86da16bd5ed8c6c82f43530d745f66",
+      "repository": "Lumathpolgar/erdos18-factorial-program",
+      "request": "H",
+      "request_G": {
+        "audit_sha256": "e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0",
+        "claim_sha256": "e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88",
+        "range": [120368,1000000]
+      },
+      "sanity_file": "tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py",
+      "sanity_file_blob_sha": "519c900b616a33d95f3b2a8a8dec10d04a0a24f5"
+    },
+    "theorem": {
+      "address_extension_proof_supplied": false,
+      "address_legal_max": "floor(v2(n!)/2)-1",
+      "decision": "ACCEPTED",
+      "distinct_numerical_sums": false,
+      "half_endpoint": "floor(n/2)",
+      "half_endpoint_analysis": "pi(n/2)=pi(floor(n/2)) for integer n",
+      "integer_threshold": 120368,
+      "menu_definition": "u|n!, u odd, u>1, 2^e*u<=floor(sqrt(n!))",
+      "menu_lower_bound": "2^(m_n-1)-1",
+      "menu_unit_excluded": true,
+      "object": "N3-ANA-011",
+      "profile_injectivity": false,
+      "profile_object": "formal profiles",
+      "request_G_finite_only": true,
+      "scope": {
+        "additive_occupancy": false,
+        "address_legality": true,
+        "erdos18_solved": false,
+        "factorial_half_range": false,
+        "formal_profile_capacity": true,
+        "menu_cardinality": true
+      },
+      "threshold_finite_supplement": false,
+      "uniform_theorem_source": "analytic proof, not finite sweep"
+    }
+  },
+  "decision": {
+    "N3_ANA_011": "ACCEPTED",
+    "all_six_required_corruptions_rejected": true,
+    "request_G_remains_finite_certificate_only": true,
+    "request_H": "ACCEPTED",
+    "scope_restrictions_enforced": true
+  },
+  "proof_reconstruction": {
+    "address_uniformity": {
+      "base_margin_lower": 115632,
+      "base_rhs_upper": 4736,
+      "ceiling_upper": "e_M<=16*L^2+4*L+2",
+      "conclusion": "e_M<=floor(V_n/2)-1 for every integer n>=120368",
+      "definitions": {
+        "M_n": "ceil(16*log(n)^2)",
+        "V_n": "v2(n!)",
+        "e_M": "r_n+M_n",
+        "r_n": "ceil(4*log(n))"
+      },
+      "derivative_control": {
+        "base_lower": 119590,
+        "function": "n-64*log(n)-10",
+        "increasing_for_n_greater_than_64": true
+      },
+      "legendre_lower": "V_n>=n-L/log(2)-1",
+      "ln2_lower_proof": {
+        "conclusion": "log(2)>1/2 and 1/log(2)<2",
+        "e_upper": "11/4",
+        "e_upper_less_than_4": true
+      },
+      "log_threshold_upper_proof": {
+        "conclusion": "log(120368)<12",
+        "e_lower": "e>8/3",
+        "eight_over_three_power_12_exceeds_threshold": true
+      },
+      "sufficient_condition": "n>=32*L^2+(8+1/log(2))*L+8"
+    },
+    "endpoint_witness": {
+      "ceil_endpoint_is_prime": true,
+      "ceil_n_over_2": 60209,
+      "conclusion": "pi(ceil(n/2))=pi(floor(n/2))+1 at this n",
+      "floor_n_over_2": 60208,
+      "n": 120417
+    },
+    "menu_transfer": {
+      "definition_match": {
+        "address_hypothesis": "0<=e<=floor(V_n/2)-1",
+        "odd_divisor": true,
+        "size_condition": "2^e*u<=floor(sqrt(n!))",
+        "unit_excluded": true
+      },
+      "floor_sqrt_step": "legal address gives 2^e*sqrt(O_n)<=sqrt(n!)/2; sqrt(n!)/2<=floor(sqrt(n!)) for n!>=4",
+      "high_prime_subset_products": "2^m_n",
+      "imported_object": "N1-STR-009",
+      "menu_lower_bound": "2^(m_n-1)-1",
+      "strict_lower_half_count": "2^(m_n-1)",
+      "unit_is_in_lower_half": true
+    },
+    "prime_interval_dependency": {
+      "accepted_object": "N3-ANA-010",
+      "derived_integer_threshold": 120368,
+      "source_lower_threshold": 5393,
+      "source_upper_threshold": 60184,
+      "statement": "pi(n)-pi(n/2)>=n/(3*log(n)) for every integer n>=120368"
+    },
+    "profile_capacity": {
+      "additive_occupancy_proved": false,
+      "conclusion": "formal profile count is at least X_n+1",
+      "distinct_numerical_sums_proved": false,
+      "exponent_lower": "4*n*log(n)",
+      "formal_profile_lower_exponent": "M_n*(m_n-1)+r_n",
+      "injectivity_proved": false,
+      "ln2_greater_than_half": true,
+      "n_at_least_12_log_n": true,
+      "required_bit_upper": "1+n*log(n)/(2*log(2))"
+    }
+  },
+  "result_class": "semantic adversarial theorem audit",
+  "schema": "nova4.n3-threshold-adversarial-audit.v1",
+  "scope": {
+    "not_proved": [
+      "formal-profile injectivity",
+      "distinct numerical sums",
+      "additive occupancy",
+      "factorial half-range theorem",
+      "Erdos Problem 18"
+    ],
+    "proved": [
+      "address legality for every integer n>=120368",
+      "menu cardinality lower bound for every addressed layer",
+      "formal profile capacity at least X_n+1"
+    ]
+  },
+  "sha256": "785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "imported_n1": {
+      "blob_sha": "4255e76ff18f675ae80a0192381070d9a934fc97",
+      "commit": "fa11f4b2cb86a2dd791df189ada12757be791804",
+      "file": "tracks/nova1-factorial-structure/proofs/HIGH_PRIME_MENU_CAPACITY.md",
+      "object": "N1-STR-009"
+    },
+    "object": "N3-ANA-011",
+    "proof_file": "tracks/nova3-analytic-density/proofs/EXPLICIT_PRIME_INTERVAL_AND_CAPACITY.md",
+    "proof_file_blob_sha": "e36daf98db86da16bd5ed8c6c82f43530d745f66",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "H",
+    "request_G": {
+      "audit_sha256": "e26653648c2cc9ebc30b03f01904dbb5bcca65737ead57abc9cdbc0b2f218bb0",
+      "claim_sha256": "e41f7e639c605ed4e70e4ac2cc6afe20d83ef8bf4f22e991fe0986449b9c1e88",
+      "range": [120368,1000000]
+    },
+    "sanity_file": "tracks/nova3-analytic-density/proofs/prime_interval_capacity_sanity.py",
+    "sanity_file_blob_sha": "519c900b616a33d95f3b2a8a8dec10d04a0a24f5"
+  }
+}

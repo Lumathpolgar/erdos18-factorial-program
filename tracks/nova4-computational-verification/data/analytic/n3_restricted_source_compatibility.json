@@ -1,0 +1,89 @@
+{
+  "decisions": {
+    "N3-SRC-004": "SOURCE_SCOPE_CONFIRMED_DIRECT_FACTORIAL_USE_REJECTED",
+    "N3-SRC-005": "SOURCE_SCOPE_CONFIRMED_METHOD_ONLY",
+    "N3-SRC-006": "SOURCE_SCOPE_CONFIRMED_DIRECT_FACTORIAL_USE_REJECTED",
+    "any_source_directly_selects_factorial_sequence": false,
+    "request_E": "ACCEPTED"
+  },
+  "result_class": "source compatibility audit",
+  "schema": "nova4.n3-restricted-source-audit.v1",
+  "scope": "This audit classifies source compatibility. It does not reprove the cited papers or establish a factorial divisor-density theorem.",
+  "sha256": "a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "E",
+    "source_ledger_commit": "697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4"
+  },
+  "sources": [
+    {
+      "authors": ["Kevin Ford"],
+      "direct_factorial_use": "REJECTED",
+      "factorial_sequence_selected": false,
+      "id": "N3-SRC-004",
+      "legal_use": "background comparison and warning against average-to-pointwise transfer",
+      "primary_source": "arXiv:math/0401223v5; Annals of Mathematics 168 (2008), 367-433",
+      "quantifier_scope": "ambient count over all positive integers m<=x",
+      "reason_code": "AMBIENT_COUNT_NOT_FIXED_INTEGER",
+      "source_object": "H(x,y,z)=#{m<=x: tau(m;y,z)>0}",
+      "title": "The distribution of integers with a divisor in a given interval"
+    },
+    {
+      "authors": ["Sary Drappeau", "Gerald Tenenbaum"],
+      "direct_factorial_use": "REJECTED",
+      "factorial_sequence_selected": false,
+      "id": "N3-SRC-005",
+      "legal_use": "methodological compatibility with independent exponent coordinates only",
+      "primary_source": "arXiv:1604.04204v1",
+      "quantifier_scope": "almost all y-friable integers in S(x,y), with an explicit exceptional set",
+      "reason_code": "EXCEPTIONAL_SET_DOES_NOT_CERTIFY_FIXED_SEQUENCE",
+      "source_object": "Gaussian divisor law for all but a quantified exceptional subset of S(x,y)",
+      "title": "Lois de repartition des diviseurs des entiers friables"
+    },
+    {
+      "authors": ["Cecile Dartyge", "David Feutrie", "Gerald Tenenbaum"],
+      "direct_factorial_use": "REJECTED",
+      "factorial_sequence_selected": false,
+      "id": "N3-SRC-006",
+      "legal_use": "source-scope comparison only; no lower-bound transfer to exact factorial divisors",
+      "primary_source": "arXiv:2001.04435v1",
+      "quantifier_scope": "arithmetic-progression distribution in the common-cap ultrafriable set U(x,y)",
+      "reason_code": "COMMON_PRIME_POWER_CAP_DIFFERS_FROM_FACTORIAL_VALUATIONS",
+      "source_object": "U(x,y), integers m<=x with every occurring prime power <=y",
+      "title": "Entiers ultrafriables en progressions arithmetiques"
+    }
+  ],
+  "witnesses": {
+    "drappeau_tenenbaum_exceptional_scope": {
+      "explanation": "Membership in S(x,y) does not prove that this deterministic member lies outside the theorem's exceptional subset.",
+      "factorial": 3628800,
+      "factorial_is_in_S_x_y": true,
+      "n": 10,
+      "source_nonexceptional_certificate_for_factorial": false,
+      "x": 3628800,
+      "y": 10
+    },
+    "ford_ambient_vs_fixed": {
+      "H_factorial_y_z": 17,
+      "explanation": "The ambient count is positive while the fixed factorial has no divisor in the interval.",
+      "factorial": 120,
+      "interval": [6, 7],
+      "n": 5,
+      "tau_factorial_y_z": 0
+    },
+    "ultrafriable_common_cap_mismatch": {
+      "case_y_at_least_required_power": "11 is included in U(10!,y) although 11 does not divide 10!",
+      "case_y_below_required_power": "2^8 is excluded from U(10!,y)",
+      "common_y_exact_support_possible": false,
+      "explanation": "No common ultrafriability parameter y makes U(10!,y) equal the divisor set of 10!.",
+      "factorial": 3628800,
+      "n": 10,
+      "prime_not_dividing_factorial": 11,
+      "required_prime_power": 256,
+      "v_2_factorial": 8
+    }
+  }
+}

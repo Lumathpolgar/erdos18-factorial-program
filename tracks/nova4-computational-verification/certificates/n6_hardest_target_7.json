@@ -1,0 +1,1 @@
+{"max_terms":2,"n":6,"producer":{"method":"exact_profile_dp","result_class":"finite certificate"},"schema":"erdos18.factorial.representation.v1","target":7,"target_range":{"lower":0,"upper_exclusive":27},"terms":[{"label":"d0","value":1},{"label":"d1","value":6}]}

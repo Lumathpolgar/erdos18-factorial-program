@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova4.n1-reduced-rainbow.v1",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "range", "method", "cases", "first_failure", "failure_count", "all_cases_have_occupancy_failure", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n1-reduced-rainbow.v1"},
+    "result_class": {"const": "computational evidence"},
+    "range": {"type": "object", "required": ["n_min", "n_max", "case_count"]},
+    "cases": {"type": "array", "minItems": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

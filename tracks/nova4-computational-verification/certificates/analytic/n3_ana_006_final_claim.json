@@ -1,0 +1,35 @@
+{
+  "claim": {
+    "decision": "ACCEPTED",
+    "finite_diagnostics_only": true,
+    "non_gaussian": true,
+    "object": "N3-ANA-006",
+    "scope_excludes": [
+      "high-prime tail CLT",
+      "coarse local lower bound",
+      "additive occupancy",
+      "factorial half-range theorem",
+      "Erdos Problem 18"
+    ],
+    "variance_limit": "(1/12)sum_p (log p)^2/(p-1)^2",
+    "weak_limit": "sum_p (log p)U_p",
+    "zero_frequency": "2*pi/log(2)"
+  },
+  "evidence_sha256": "e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119",
+  "result_class": "final theorem audit certificate",
+  "schema": "nova4.n3-variance-limit-claim.v1",
+  "sha256": "efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4",
+  "source": {
+    "audit_stage": "POST_H_THEOREM_CLOSURE",
+    "branch": "nova/analytic-density",
+    "external_dependency": "none beyond elementary convergence and unique factorization",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "object": "N3-ANA-006",
+    "proof_file": "tracks/nova3-analytic-density/proofs/PRODUCT_MODEL_THEOREMS.md",
+    "proof_file_blob_sha": "6260f8db0b377cf7dbc1850cbe25c91243099e10",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "source_ledger_blob_sha": "da81e6aaf2674fdae036d72df002547d4a71b18a",
+    "source_ledger_file": "tracks/nova3-analytic-density/SOURCE_LEDGER.md"
+  }
+}

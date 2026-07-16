@@ -1,0 +1,1 @@
+{"max_terms":2,"n":6,"schema":"erdos18.factorial.representation.v1","target":10,"target_range":{"lower":0,"upper_exclusive":11},"terms":[{"label":"left","value":4},{"label":"right","value":6}]}

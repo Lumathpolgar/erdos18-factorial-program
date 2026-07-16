@@ -1,0 +1,33 @@
+{
+  "claim": {
+    "any_source_directly_selects_factorial_sequence": false,
+    "source_ids": [
+      "N3-SRC-004",
+      "N3-SRC-005",
+      "N3-SRC-006"
+    ],
+    "ultrafriable_witness": {
+      "case_y_at_least_required_power": "11 is included in U(10!,y) although 11 does not divide 10!",
+      "case_y_below_required_power": "2^8 is excluded from U(10!,y)",
+      "common_y_exact_support_possible": false,
+      "explanation": "No common ultrafriability parameter y makes U(10!,y) equal the divisor set of 10!.",
+      "factorial": 3628800,
+      "n": 10,
+      "prime_not_dividing_factorial": 11,
+      "required_prime_power": 256,
+      "v_2_factorial": 8
+    }
+  },
+  "evidence_sha256": "a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f",
+  "result_class": "source compatibility certificate",
+  "schema": "nova4.n3-source-compatibility-claim.v1",
+  "sha256": "ae60e9e8758df8113ac249404d8660c5ae4bb5edf02b3aab342c43c47a8124ba",
+  "source": {
+    "branch": "nova/analytic-density",
+    "handoff": "N3-HO-N4-002",
+    "handoff_commit": "7469dada02fa4caca08ed391ef8b0cb0f1e855b2",
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "request": "E",
+    "source_ledger_commit": "697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4"
+  }
+}

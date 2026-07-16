@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 3 bounded characteristic recurrence evidence",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "search", "block_rows", "best_rows", "totals", "assessment", "scope", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-characteristic-recurrence-evidence.v1"},
+    "result_class": {"const": "computational evidence"},
+    "source": {"type": "object"},
+    "search": {"type": "object"},
+    "block_rows": {"type": "array", "minItems": 1},
+    "best_rows": {"type": "array", "minItems": 1},
+    "totals": {"type": "object"},
+    "assessment": {"type": "object"},
+    "scope": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}
