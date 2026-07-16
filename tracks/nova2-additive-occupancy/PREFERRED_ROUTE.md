@@ -10,21 +10,15 @@ Frozen structural source:
 - commit: `ebb47ba436af554366d0f285119a769f31f9e561`;
 - construction: `N1-CON-003`.
 
-The exact quotient layers are
+Active engine:
 
-\[
-B_t(n)=\{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\}.
-\]
-
-The active final-only engine is:
-
-1. use the unique numerical target-dependent tilt;
-2. exploit post-prefix tilt compression;
-3. prove numerical moments and endpoint control;
+1. unique numerical target-dependent tilt;
+2. post-prefix tilt compression;
+3. numerical moment and endpoint control;
 4. aggregate phase dispersion across complete odd-core menus;
-5. retain collision multiplicities or control target-local energy;
-6. prove the strict weighted bounded-torus inequality;
-7. extract a legal final rainbow sum.
+5. collision-aware reference mass or target-local energy;
+6. strict weighted bounded-torus inequality;
+7. legal final rainbow extraction.
 
 This remains rank 1 because it survives failure of every sequential carrier argument.
 
@@ -38,49 +32,68 @@ Prove every final quotient window occupied while preserving one choice per layer
 
 **Result label: conditional theorem with exact finite certificates.**
 
-Nova 2 proved `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, and `N2-ADD-122`.
+Nova 2 proved `N2-ADD-119` through `N2-ADD-123` and obstruction `N2-OBS-109`.
 
-At layer `t`, let `F_t=E_t+W_n+1`, `s_t=2^{t-1}`, connected maximum `U_t`, and positive connected-prefix count `K_t`. Define
+For one layer,
 
 \[
-a_t=\frac{s_tU_t}{F_{t-1}},
+D_t=\left\lfloor\frac{F_{t-1}}{2^{t-1}}\right\rfloor,
 \qquad
-b_t=\frac{1+a_t}{1+K_t}.
+\eta_t=\frac{U_t}{K_tD_t},
+\qquad
+\phi_t=\frac{2^{t-1}D_t}{F_{t-1}},
 \]
 
-The exact growth identity is
+and
 
 \[
-\frac{F_L}{W_n+1}
-=
-\left(\prod_t(1+K_t)\right)
-\left(\prod_tb_t\right).
+b_t=\frac{1+K_t\eta_t\phi_t}{1+K_t}.
 \]
 
-Therefore the count gate from `N1-OBS-003` is necessary but not sufficient. The active sequential theorem is to prove
+The exact endpoint factor is
 
 \[
-\widetilde\Gamma_n\mathcal B_n\ge1,
+\Delta_n=\widetilde\Gamma_n\left(\prod_tb_t\right)^{1/L}.
 \]
 
-where `widetilde Gamma_n` is count surplus and `B_n` is the geometric-mean utilization factor.
+### Retired input
 
-Exact finite coverage:
+A first external blocking-gap estimate cannot control `eta_t` or `b_t`. N2-OBS-109 constructs prefixes with identical `D`, `K`, and `g=D+2` but utilization tending respectively to zero and one.
+
+Therefore the active sequential input is the average internal connected gap, equivalently the normalized span
+
+\[
+\eta_t=\frac{U_t}{K_tD_t}.
+\]
+
+N2-ADD-123 gives both:
+
+- lower-bound criteria that force `Delta_n>=1`;
+- upper-bound criteria that force `Delta_n<1` and retire rank 3.
+
+### Exact finite coverage
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
-\qquad(12\le n\le53).
+\qquad(12\le n\le54),
 \]
 
-At `n=51,52,53`, count surplus is roughly `98` to `125`, but utilization root is only roughly `0.008` to `0.010`, leaving true endpoint surplus just above one. Finite success does not establish a uniform utilization bound.
+and
 
-The smallest unaudited finite parameter is `n=54`.
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
+\qquad(12\le n\le55).
+\]
+
+The smallest unaudited finite parameter is `n=56`.
+
+Finite count surplus remains near `10^2`, while utilization root remains near `10^{-2}` and true endpoint surplus remains only slightly above one. No asymptotic trend is inferred.
 
 ## Rank 4: Three-power normalized fallback
 
 **Result label: conditional theorem with proved prefix.**
 
-`N2-ADD-116` through `N2-ADD-118` remain exact but are not the preferred architecture.
+`N2-ADD-116` through `N2-ADD-118` remain exact but are not preferred.
 
 ## Rejected or benchmark-only routes
 
@@ -88,6 +101,7 @@ The smallest unaudited finite parameter is `n=54`.
 - Profile injectivity is false by `N1-COL-001`.
 - One factorial block per layer is asymptotically insufficient by `N1-DIS-006`.
 - Count surplus without utilization is not an endpoint theorem by `N2-ADD-122`.
+- First-blocking-gap ratios do not control utilization by `N2-OBS-109`.
 - Uniform fixed-law convolution is heuristic only.
 - One-anchor characteristic decay is insufficient by `N3-ANA-021`.
 
@@ -99,8 +113,8 @@ Prove aggregate phase dispersion or a collision-aware weighted Fourier inequalit
 
 ### Sequential target
 
-Prove a pointwise or averaged lower bound for `b_t`, or for average-gap utilization, strong enough to offset count surplus. A contrary upper bound may retire the sequential engine without affecting ranks 1 and 2.
+Prove pointwise or averaged lower or upper bounds for `eta_t=U_t/(K_tD_t)` under the exact factorial-divisor thresholds.
 
 ### Finite target
 
-Extend exact meet-in-the-middle certification from `n=54`, clearly labeled as finite.
+Extend exact meet-in-the-middle certification from `n=56`, clearly labeled as finite.
