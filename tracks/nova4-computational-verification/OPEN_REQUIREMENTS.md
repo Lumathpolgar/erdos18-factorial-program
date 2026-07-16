@@ -8,39 +8,35 @@ Superseding handoff: `N3-HO-N4-002`
 
 Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
-Product-model proof commit used for request D: `ff57005b975c4917341306bd0eceb6d05a9b18f6`
+Source-ledger commit used for request E: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
 
-Status: `REQUESTS_A_B_C_D_COMPLETE_REQUEST_E_READY`
+Status: `REQUESTS_A_B_C_D_E_COMPLETE_REQUEST_F_READY`
 
 Completed:
 
-- independent proof reconstruction and acceptance of `N3-ANA-004`;
-- independent proof reconstruction and acceptance of `N3-ANA-005`;
-- exact moment audit for every `2 <= n <= 12`;
-- exact local-count ceiling audit at every requested endpoint and width;
-- rehashed corrupted-bound rejection;
-- request C scale table, low-prime shares, effective dimension, cutoff grid, and theorem-path evidence;
-- frozen-script numerical cross-check and factor-of-two tail-ratio label diagnosis;
-- independent proof reconstruction and acceptance of `N3-ANA-007`;
-- request D bounded recurrence search for every `3 <= n <= 12` and every `1,000 <= q <= 2,000,000`;
-- 80-digit finalist replay and direct divisor-vector cross-check;
-- rehashed recurrence-candidate corruption rejection.
+- independent proof reconstruction and acceptance of `N3-ANA-004`, `N3-ANA-005`, and `N3-ANA-007`;
+- exact moment and local-ceiling audits for `2 <= n <= 12`;
+- request C scale, low-prime share, effective-dimension, and high-prime tail evidence;
+- factor-of-two tail-ratio label diagnosis in the frozen script;
+- request D bounded recurrence search over 19,990,010 scores with 80-digit and direct-vector replay;
+- request E reconstruction of Ford, Drappeau–Tenenbaum, and ultrafriable source scopes;
+- exact witnesses showing ambient-to-pointwise failure, exceptional-set nonselection, and common-cap mismatch;
+- rehashed false direct-use, removed-exception, and false ultrafriable-equality rejection.
 
-Request D decision:
+Request E decision:
 
 ```text
-N3-ANA-007: ACCEPTED
-request D: ACCEPTED_AS_COMPUTATIONAL_EVIDENCE
-bounded search scores: 19,990,010
-full evidence semantic SHA-256: b15ad70a01046ec292ab3197faafc357bf4c9be155e97a5d498b10a6681123fc
+request E: ACCEPTED
+N3-SRC-004: SOURCE_SCOPE_CONFIRMED_DIRECT_FACTORIAL_USE_REJECTED
+N3-SRC-005: SOURCE_SCOPE_CONFIRMED_METHOD_ONLY
+N3-SRC-006: SOURCE_SCOPE_CONFIRMED_DIRECT_FACTORIAL_USE_REJECTED
+any source directly selects n!: NO
+semantic SHA-256: a5be7514baa9c327e27fa27fccb7d9de0f687d42515b3e8b1de2c949387b662f
 ```
-
-The earlier requests A through C were received under `N3-HO-N4-001`. Request D was re-frozen against superseding handoff `N3-HO-N4-002`, which preserves the same product-model theorem and explicitly retains request D.
 
 Remaining:
 
-- request E source-compatibility reconstruction for Ford, Drappeau-Tenenbaum, and ultrafriable exponent caps;
-- request F independent Dusart source reconstruction;
+- request F independent Dusart Theorem 6.9 reconstruction;
 - request G exact threshold sweep for `120368 <= n <= 1000000`;
 - request H adversarial threshold tests;
 - independent final decisions for `N3-ANA-006`, `N3-ANA-008`, `N3-ANA-009`, `N3-ANA-010`, and `N3-ANA-011`.
