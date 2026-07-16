@@ -4,7 +4,7 @@
 
 - Track: Factorial Structure and Reduction
 - Branch: `nova/factorial-structure`
-- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N54_CONNECTED_PREFIX_ENTROPY_OPEN`
+- Overall state: `FULL_CORE_CERTIFIED_THROUGH_N55_EFFECTIVE_UTILIZATION_OPEN`
 
 The factorial half-range theorem remains open.
 
@@ -12,7 +12,7 @@ The factorial half-range theorem remains open.
 
 Prove or disprove quotient downward-window occupancy for `N1-CON-003`, the marker-three valuation rainbow.
 
-The immediate sequential subproblem is to prove a uniform lower bound on complete zero-connected prefix sizes meeting `N1-OBS-003`, or a contrary upper bound that retires the sequential engine.
+The immediate sequential subproblem is to prove a uniform lower bound on the exact effective carrier product, including both connected-prefix count and packing utilization, or a contrary upper bound that retires the sequential engine.
 
 ## Imported cross-track results
 
@@ -28,10 +28,10 @@ The original valuation-tagged route remains a **disproved route**.
 ### Nova 2 marker-three package
 
 - branch: `nova/additive-occupancy`
-- exact accepted head: `e443674f86b2ee3c7037ac94ee47f6b8a4b3b29f`
-- results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, `N2-FIN-202`, `N2-FIN-203`, `N2-FIN-204`
+- exact accepted head: `2ab09dd980f7116b82530368e3d98bb53240bf0c`
+- results: `N2-ADD-119`, `N2-ADD-120`, `N2-ADD-121`, `N2-ADD-122`, `N2-FIN-202`, `N2-FIN-203`, `N2-FIN-204`
 
-Nova 2 accepts the carrier engine as a sufficient sequential method with restrictions. It does not establish asymptotic occupancy.
+Nova 2 accepts the carrier engine as a sufficient sequential method with restrictions. `N2-ADD-122` proves that count surplus alone is only a necessary gate because the exact endpoint product also contains packing-utilization factors.
 
 ### Nova 3 inputs
 
@@ -78,7 +78,8 @@ A target-independent minor-arc gap over all tilts remains a **disproved route**.
 | N1-OBS-003 | proved theorem | Sequential success requires sufficient connected-prefix entropy | `proofs/CONNECTED_PREFIX_ENTROPY_REQUIREMENT.md` |
 | N1-STR-022 | proved theorem | Unique-parent streaming recovers exact connected prefixes | `proofs/STREAMING_CONNECTED_PREFIX_CERTIFIER.md` |
 | N1-STR-023 | proved theorem | Meet-in-the-middle product streams recover exact divisor order with `O(sqrt(tau(D_n)))` balanced heap size | `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md` |
-| N1-STR-024 | proved theorem | Layer-normalized surplus `Gamma_n` meets the entropy gate exactly when `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
+| N1-STR-024 | proved theorem | Layer-normalized count surplus meets the count gate exactly when `Gamma_n>=1` | `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md` |
+| N1-STR-025 | proved theorem | Exact carrier growth factors into count surplus and packing utilization | `proofs/EFFECTIVE_CARRIER_FACTORIZATION_RECONSTRUCTION.md` |
 
 ## Conditional theorems
 
@@ -96,21 +97,36 @@ A target-independent minor-arc gap over all tilts remains a **disproved route**.
 | N1-CMP-005 | finite certificate | Factorial blocks, one-block ceiling, and carry collisions | `verification/BLOCK_COLLISION_FINITE_REPORT.md` |
 | N1-CMP-006 | computational evidence | Non-monotone normalized surplus at `n=51,52,53` | `verification/connected_prefix_normalized_n51_n53.csv` |
 | N1-CMP-007 | computational evidence | Non-monotone normalized surplus through `n=54` and first-blocking-gap ratio below `1.108` on twenty blocked layers | `verification/connected_prefix_normalized_n51_n54.csv` |
+| N1-CMP-008 | computational evidence | Effective count, utilization, and endpoint factors through `n=55`; first-blocking-gap ratio remains below `1.108` on twenty-five blocked layers | `verification/effective_carrier_n51_n55.csv` |
 | N1-FIN-005 | finite certificate | Exact carrier coverage for `46<=n<=50` | `verification/FULL_CORE_N46_N50_REPORT.md` |
 | N1-FIN-006 | finite certificate | Exact streaming certificate at `n=51` | `verification/FULL_CORE_N51_REPORT.md` |
 | N1-FIN-007 | finite certificate | Exact meet-in-the-middle certificate at `n=52` | `verification/FULL_CORE_N52_REPORT.md` |
 | N1-FIN-008 | finite certificate | Exact dual-partition meet-in-the-middle certificate at `n=53` | `verification/FULL_CORE_N53_REPORT.md` |
 | N1-FIN-009 | finite certificate | Exact dual-partition runtime-aware meet-in-the-middle certificate at `n=54` | `verification/FULL_CORE_N54_REPORT.md` |
+| N1-FIN-010 | finite certificate | Exact dual-partition effective-carrier certificate at `n=55` | `verification/FULL_CORE_N55_REPORT.md` |
 | N2-FIN-202 | finite certificate | Imported carrier coverage for `12<=n<=45` | Nova 2 commit `82603c631a106c3bff4676bdeeb9cc791fc98f3c` |
 
-Together,
+The sharper finite conclusions are
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le22
-\qquad(12\le n\le54).
+\qquad(12\le n\le54),
 \]
 
-This is a finite theorem only.
+and
+
+\[
+H_{55!}(\lfloor\sqrt{55!}\rfloor+1)\le23.
+\]
+
+Consequently,
+
+\[
+H_{n!}(\lfloor\sqrt{n!}\rfloor+1)\le23
+\qquad(12\le n\le55).
+\]
+
+These are finite theorems only.
 
 ## Disproved routes
 
@@ -125,9 +141,9 @@ This is a finite theorem only.
 
 ## Exact open blockers
 
-1. Prove or disprove uniform connected-prefix surplus `Gamma_n>=1` under exact carrier thresholds.
-2. Prove or disprove a uniform first-record-gap upper bound strong enough to imply the required connected-prefix growth.
-3. Extend exact finite certification beginning at `n=55`.
+1. Prove a uniform lower bound on the effective product `widetilde Gamma_n * B_n`, or an upper bound that retires the sequential engine.
+2. Prove or disprove a uniform divisor record-gap or average-gap bound strong enough to control utilization.
+3. Extend exact finite certification beginning at `n=56`.
 4. Prove or disprove the full quotient downward-window theorem.
 5. Prove downward endpoint-window occupancy.
 6. Upper-bound target-local collision multiplicity or additive energy.
@@ -146,16 +162,17 @@ python tracks/nova1-factorial-structure/verification/block_collision_sanity.py
 python tracks/nova1-factorial-structure/verification/test_mitm_overlap.py
 python tracks/nova1-factorial-structure/verification/test_mitm_n53_normalized.py
 python tracks/nova1-factorial-structure/verification/test_mitm_n54_partition.py
-python tracks/nova1-factorial-structure/verification/plan_mitm_partition.py 54 --max-columns 3000000 --limit 10
+python tracks/nova1-factorial-structure/verification/test_mitm_n55_effective.py
+python tracks/nova1-factorial-structure/verification/plan_mitm_partition.py 55 --max-columns 3000000 --limit 10
 
 g++ -O3 -std=c++20 \
   tracks/nova1-factorial-structure/verification/marker_three_mitm_prefix_u128.cpp \
   -o marker_three_mitm_prefix_u128
 
-./marker_three_mitm_prefix_u128 54 255
-./marker_three_mitm_prefix_u128 54 223
+./marker_three_mitm_prefix_u128 55 9
+./marker_three_mitm_prefix_u128 55 808
 ```
 
 ## Next theorem target
 
-Prove or refute a uniform lower bound on `Gamma_n`, preferably through a divisor record-gap estimate that controls complete connected-prefix growth. In parallel, extend the exact runtime-aware meet-in-the-middle audit from `n=55`.
+Prove or refute a uniform lower bound on the exact utilization product, preferably through a divisor average-gap or record-gap theorem that closes `N1-STR-025`. In parallel, extend the runtime-aware meet-in-the-middle audit from `n=56`.
