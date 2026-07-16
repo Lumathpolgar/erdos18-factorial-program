@@ -4,82 +4,41 @@
 
 Result class: `exact finite theorem audit`
 
-Parameters:
+Coverage:
 
 ```text
 1 <= n <= 13
 0 <= x <= floor(sqrt(n!))
+109,947 targets
 ```
 
-Coverage: 109,947 targets.
+Methods: minimum-cardinality 0/1 dynamic programming and independent exact-cardinality bitset reachability.
 
-Arithmetic: exact integers.
-
-Methods:
-
-1. minimum-cardinality 0/1 dynamic programming;
-2. independent exact-cardinality bitset reachability.
-
-Committed compact data:
+Artifacts:
 
 ```text
 data/factorial_half_range_summary_n1_n13.json
-```
-
-Schema:
-
-```text
 data/half_range_summary.schema.json
 ```
 
-Full generated profile name:
-
-```text
-data/factorial_half_range_profiles_n1_n13.json
-```
-
-Full profile SHA-256:
+Full generated profile SHA-256:
 
 ```text
 cfa5a728089e547ef357e3a6bf51574afa03c40b36ed9774e144e84f0a89e996
 ```
 
-Generation command:
-
-```bash
-PYTHONPATH=src python3 src/replay.py generate-dataset \
-  --n-min 1 --n-max 13 \
-  --output data/factorial_half_range_profiles_n1_n13.json \
-  --certificate-dir certificates
-```
-
-Verification command:
-
-```bash
-PYTHONPATH=src python3 src/replay.py verify-dataset \
-  data/factorial_half_range_profiles_n1_n13.json
-```
-
-Known limitation: Method A for `n=14` did not complete in a 30 second bounded attempt. That case is `unknown due to resource limits`.
+Known limitation: the `n=14` Method A profile is `unknown due to resource limits` after a bounded 30-second attempt.
 
 ## N4-DATA-002: Representation certificates
 
 Result class: `finite certificate`
 
-Contents:
+Contents: one hardest-target certificate for each `1 <= n <= 13` and one optimal certificate for the smallest descending-greedy counterexample.
 
-- one certificate for a hardest target for each `1 <= n <= 13`;
-- one optimal certificate for the smallest descending-greedy counterexample.
-
-Schema:
+Schema and replay:
 
 ```text
 certificates/representation_certificate.schema.json
-```
-
-Verification command:
-
-```bash
 PYTHONPATH=src python3 src/replay.py verify-tree certificates
 ```
 
@@ -90,65 +49,28 @@ Result class: `exact finite theorem audit`
 Frozen source:
 
 ```text
-branch: nova/additive-occupancy
-commit: 45c74a5fa747551422ffcad7d3ddf22788fbe622
+nova/additive-occupancy@45c74a5fa747551422ffcad7d3ddf22788fbe622
 objects: N2-ADD-115 and N2-OBS-107
 ```
 
-Parameter range:
+Coverage: every `3 <= n <= 10,000`.
 
-```text
-3 <= n <= 10000
-```
-
-Committed data:
+Artifact and SHA-256:
 
 ```text
 data/lattice/n2_obs_107_range_n3_n10000.json
-```
-
-Schema:
-
-```text
-data/lattice/n2_obs_107_range_audit.schema.json
-```
-
-SHA-256:
-
-```text
 94b8c1f074904e2aabe7d8b8ddf09279e591936050c07a5882e87977cfbd78b6
 ```
 
-Exact findings:
-
-- first target-range success: `n=9`;
-- first valuation-budget success: `n=1892`;
-- first simultaneous admissible obstruction: `n=1892`;
-- temporary later side-condition failures: `n=1893,1894,1895`;
-- simultaneous success at every checked `1896 <= n <= 10000`.
-
-Generation command:
-
-```bash
-PYTHONPATH=src python3 src/replay.py audit-n2-obs-107 \
-  --n-min 3 --n-max 10000 \
-  --output data/lattice/n2_obs_107_range_n3_n10000.json
-```
+Findings: first simultaneous admissible obstruction at `n=1892`; temporary side-condition failures at `1893,1894,1895`; success for every checked `1896<=n<=10000`.
 
 ## N4-DATA-004: Nova 1 capacity-threshold audit
 
 Result class: `exact finite theorem audit`
 
-Frozen source:
+Frozen source: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, handoff `N1-HO-N4-001`, Study A.
 
-```text
-branch: nova/factorial-structure
-commit: fa11f4b2cb86a2dd791df189ada12757be791804
-handoff: N1-HO-N4-001, Study A
-Nova 4 certificate checkpoint: 53b579cd5a7eeac780869cffa2cb8b9b8bdd5289
-```
-
-Parameter range: every `3 <= n <= 1,000,000`.
+Coverage: every `3 <= n <= 1,000,000`.
 
 Artifacts:
 
@@ -158,49 +80,23 @@ data/capacity/n1_capacity_transitions_n3_n1000000.csv
 certificates/capacity/n1_capacity_audit_n3_n1000000.json
 ```
 
-Semantic checksum:
+Semantic SHA-256:
 
 ```text
 3c88c2e578af86f8a760ead6f9f12bc77af5349106f9e0406aae06cfb981a7d4
 ```
 
-File SHA-256:
-
-```text
-JSON: 508feff0c91a03f8097b3dbeca8982d143417ee38d31449bc26c8a3c45d992d6
-CSV:  289c5cafbedd3c6501518289f0e5d150c831014ab5ede7c17f1c823446f16ba4
-```
-
-Exact findings:
-
-- first `A_n` success: `1892`;
-- first simultaneous success: `1892`;
-- later `A_n` failures: `1893,1894,1895`;
-- simultaneous success for every checked `1896<=n<=1,000,000`;
-- only `C_n` failure after its initial success: `n=10`.
-
-Replay:
-
-```bash
-PYTHONPATH=src python3 src/replay.py verify-n1-capacity \
-  data/capacity/n1_capacity_audit_n3_n1000000.json
-```
+Findings: first `A_n` and simultaneous success at `1892`; later `A_n` failures `1893,1894,1895`; simultaneous success for every checked `1896<=n<=1,000,000`; only later `C_n` failure at `n=10`.
 
 ## N4-DATA-005: Nova 1 reduced-rainbow Study B
 
-Result class: `computational evidence`
+Result class: `computational evidence` plus `disproved finite claim`.
 
-Frozen source:
+Frozen source: `nova/factorial-structure@fa11f4b2cb86a2dd791df189ada12757be791804`, Study B.
 
-```text
-branch: nova/factorial-structure
-commit: fa11f4b2cb86a2dd791df189ada12757be791804
-handoff: N1-HO-N4-001, Study B
-```
+Coverage: every `20 <= n <= 80`.
 
-Parameter range: every `20 <= n <= 80`.
-
-Committed artifacts:
+Artifacts:
 
 ```text
 data/rainbow/n1_reduced_rainbow_summary_n20_n80.csv
@@ -209,37 +105,66 @@ data/rainbow/n1_reduced_rainbow.schema.json
 certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
 ```
 
-The deterministic full generated audit includes exact residue sets for every modulus `2<=q<=64` and replayable witnesses for every new maximum downward gap. Its semantic SHA-256 is:
+Full audit semantic SHA-256:
 
 ```text
 cfc5dcbcadf9e6572a94a478eafd7632551b8e657bf41b3a69129ede088ce0f7
 ```
 
-First-failure certificate semantic SHA-256:
+Every one of the 61 reduced models fails at its first requested target. The first failure is `n=20`, target `8`, empty window `[1,8]`.
+
+## N4-DATA-006: Nova 3 moment and local-ceiling audit
+
+Result class: `finite certificate` supporting accepted theorem audits.
+
+Frozen source:
 
 ```text
-0c5dcdf30a72a28de6900c4e2d574dbcd5a5e210de07c305118af2730da04e8c
+nova/analytic-density@0ce88b28dc2e6641093526f5777bb31f658e3515
+handoff: N3-HO-N4-001
+objects: N3-ANA-004 and N3-ANA-005
 ```
 
-Exact finite findings:
+Coverage:
 
-- all 61 reduced models fail at their first requested target `2^(r_n^*)`;
-- every nonzero layer term has gcd `2^(r_n^*+1)`;
-- the first failure is `n=20`, target `8`, empty window `[1,8]`;
-- exact reachable-set sizes range from `159` to `311,688`;
-- additional residue deficiencies beyond the gcd subgroup occur only at `n=22` for moduli `45`, `55`, and `57`.
+```text
+2 <= n <= 12
+1,978 exact divisors enumerated
+45,840 exact local windows checked
+Delta in {0,1/4,1/2,1,2}
+every prime q<=n
+every divisor-log endpoint
+```
 
-Generation and replay:
+Artifacts:
+
+```text
+data/analytic/n3_moment_local_n2_n12.json
+data/analytic/n3_moment_local_summary_n2_n12.csv
+data/analytic/n3_moment_local_audit.schema.json
+certificates/analytic/n3_local_ceiling_tight_n2.json
+```
+
+Semantic audit SHA-256:
+
+```text
+85fdfcd360faa9009531c10bf46a85bf0312e6e46252d06544e72787183f4e03
+```
+
+Exact findings:
+
+- divisor uniqueness, `tau(n!)`, and complement symmetry pass for every case;
+- exact rational coordinate moments and all cross covariances match the product model;
+- 80-digit decimal mean and variance replay pass with errors far below `1e-12`;
+- every requested local ceiling passes;
+- 21 windows are tight, first at `n=2`, `q=2`, `Delta=0`, endpoint divisor `1`;
+- lowering that bound from `1` to `0` and rehashing the artifact is rejected.
+
+Replay:
 
 ```bash
-PYTHONPATH=src python3 src/replay_rainbow.py audit \
-  --n-min 20 --n-max 80 \
-  --output-json /tmp/n1_reduced_rainbow_full.json \
-  --output-csv data/rainbow/n1_reduced_rainbow_summary_n20_n80.csv \
-  --output-failure certificates/rainbow/n1_reduced_rainbow_first_failure_n20.json
-
-PYTHONPATH=src python3 src/replay_rainbow.py verify \
-  /tmp/n1_reduced_rainbow_full.json
+PYTHONPATH=src python3 src/replay_n3.py verify \
+  data/analytic/n3_moment_local_n2_n12.json
 ```
 
-The profile-compression fields are truncated-support diagnostics, not pure collision probabilities and not asymptotic claims.
+No finite dataset in this registry is an asymptotic theorem.
