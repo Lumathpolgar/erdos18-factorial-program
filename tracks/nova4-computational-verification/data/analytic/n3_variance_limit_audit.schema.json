@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "nova4.n3-variance-limit-audit.v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "result_class",
+    "source",
+    "decision",
+    "proof_reconstruction",
+    "limiting_variance_series",
+    "finite_diagnostics",
+    "scope",
+    "sha256"
+  ],
+  "properties": {
+    "schema": {"const": "nova4.n3-variance-limit-audit.v1"},
+    "result_class": {"const": "proved theorem audit with finite diagnostics"},
+    "source": {"type": "object"},
+    "decision": {"type": "object"},
+    "proof_reconstruction": {"type": "object"},
+    "limiting_variance_series": {"type": "object"},
+    "finite_diagnostics": {"type": "object"},
+    "scope": {"type": "object"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": false
+}
