@@ -1,11 +1,12 @@
-# Candidate 3: Parity-Normalized Marker-Three Dispersion
+# Candidate 3: Transformed Dyadic Prefix Control
 
 ## Contract
 
 - Candidate ID: `N3-CAND-CF-001`
 - Original unrestricted logarithmic form: `DISPROVED`
 - Unnormalized numerical form with only the zero major arc: `DISPROVED`
-- Active parity-normalized numerical form: `OPEN`
+- Normalized many-tail-layers form: `DISPROVED`
+- Active transformed prefix form: `OPEN`
 - Intended consumer: Nova 2
 
 ## Original numerical law
@@ -17,7 +18,7 @@ B_t(n)=
 \{2^{t-1}u:u\text{ odd},\ 3u\mid n!,\ 2^{t-1}u\le Y_n\},
 \]
 
-let
+let independent coordinates satisfy
 
 \[
 P_\lambda(Z_t=b)
@@ -31,10 +32,7 @@ b\in B_t(n)\cup\{0\}.
 Set
 
 \[
-T_{n,\lambda}=\sum_{t=1}^{M_n}Z_t,
-\qquad
-\Phi_{n,\lambda}(\theta)
-=E_\lambda e^{i\theta T_{n,\lambda}}.
+T_{n,\lambda}=\sum_{t=1}^{M_n}Z_t.
 \]
 
 The exact final-only target range is
@@ -45,77 +43,44 @@ P_n+1\le q\le Y_n,
 P_n=m_n(2^{M_n}-1)+W_n.
 \]
 
-`N3-ANA-020` proves that the unique centering tilt tends uniformly to zero on this range.
+## Closed unnormalized obstruction
 
-## Newly disproved unnormalized minor arc
-
-`N3-ANA-023` proves that compact tilt does not remove the secondary parity resonance.
-
-Every nonzero first-layer state is odd, while every later-layer state is even. Therefore
+N3-ANA-023 proves
 
 \[
-P(T\text{ even})=P(Z_1=0)=p^{(0)}_{n,q},
-\]
-
-with
-
-\[
-p^{(0)}_{n,q}
+P(T\text{ even})
+=p^{(0)}_{n,q}
 \le
 \frac{2e^{\varepsilon_n}}{m_n+1},
-\qquad
-\varepsilon_n
-=
-\frac{8M_n\log L_n}{2^{M_n}-1}.
 \]
-
-At the nonzero torus frequency `pi`,
 
 \[
-\Phi(\pi)=2p^{(0)}-1,
+\Phi(\pi)=2p^{(0)}_{n,q}-1,
 \]
 
-so
+and
 
 \[
 |\Phi(\pi)|
 \ge
-1-rac{4e^{\varepsilon_n}}{m_n+1}
+1-
+\frac{4e^{\varepsilon_n}}{m_n+1}
 \to1.
 \]
 
-The exact twin identity is
+Thus the unnormalized zero-only major-arc route is false.
 
-\[
-\Phi(\pi+u)+\Phi(u)
-=
-2p^{(0)}\prod_{t=2}^{M_n}\phi_t(u).
-\]
-
-Thus a minor arc containing `pi` cannot have a target-uniform positive dispersion gap. Exact span one does not prevent asymptotic concentration on one parity class.
-
-## Reference-law restriction
-
-`N3-ANA-024` proves that any integer-valued reference law `G` satisfies
-
-\[
-d_{TV}(\mathcal L(T),G)
-\ge
-|G(2\mathbb Z)-p^{(0)}|.
-\]
-
-A parity-blind discretized Gaussian or other reference law with a fixed positive even mass cannot approximate the exact post-prefix law in total variation.
-
-A window-specific Fourier comparison may still succeed, but it must encode the parity bias or explicitly treat the `pi` major arc.
+N3-ANA-024 forces parity into every viable reference law or major-arc decomposition.
 
 ## Exact active normalization
 
-Condition on the odd event `Z_1!=0` and define
+Condition on `Z_1!=0` and define
 
 \[
 \widetilde Z_1=(Z_1-1)/2,
 \qquad
-\widetilde Z_t=Z_t/2\quad(t>=2).
+\widetilde Z_t=Z_t/2
+\quad(t>=2).
 \]
 
 Then
@@ -126,21 +91,15 @@ Then
 
 under the odd conditional law.
 
-`N3-ANA-025` proves:
+N3-ANA-025 proves:
 
 1. the transformed coordinates remain independent;
 2. their common exact tilt is `2 lambda`;
-3. the first transformed support contains `0` and `1`;
+3. the transformed first support contains `0` and `1`;
 4. the transformed law has exact span one;
-5. the transformed tilt also tends uniformly to zero.
+5. the transformed tilt tends uniformly to zero.
 
-The original target window
-
-\[
-I_{n,q}=[q-W_n,q]\cap\mathbb Z
-\]
-
-maps to
+The transformed target interval is
 
 \[
 J_{n,q}
@@ -151,91 +110,162 @@ J_{n,q}
 \right]\cap\mathbb Z.
 \]
 
-Positive transformed-window mass implies positive original-window mass through
+Positive transformed-window mass implies positive original-window mass.
+
+## Closed dyadic resonance audit
+
+For
 
 \[
-P_\lambda(T\in I_{n,q})
+\theta_j=\frac{\pi}{2^{j-1}},
+\qquad
+1\le j\le M_n-1,
+\]
+
+N3-ANA-026 proves
+
+\[
+\widetilde\Phi_{n,q}(\theta_j)
+=
+\left(
+\prod_{t=1}^{j}
+\widetilde\phi_{t,n,q}(\theta_j)
+\right)
+(2p_{j+1,n,q}^{(0)}-1).
+\]
+
+Every layer `t>=j+2` has factor exactly `1` at `theta_j`.
+
+There is no nonzero exact dyadic modulus-one resonance because the transformed first support contains `0` and `1`. However, every dyadic point has an exact tail resonance.
+
+## Closed many-tail-layers obstruction
+
+Define
+
+\[
+J_n
+=
+\min\left(
+M_n-1,
+\left\lfloor
+1+\log_2
+\frac{2^{M_n}-1}{16M_n\log L_n}
+\right\rfloor
+\right).
+\]
+
+N3-ANA-027 proves
+
+\[
+J_n=M_n-O(\log\log n)
+\]
+
+and, uniformly for `j<=J_n`,
+
+\[
+|2p_{j+1,n,q}^{(0)}-1|
 \ge
-(1-p^{(0)})
-P_{2\lambda}(\widetilde T\in J_{n,q}).
+1-rac{4e}{m_n+1},
 \]
 
-## Active transformed supports
-
-The first transformed support is
-
 \[
-\widetilde B_1(n)
-=
-\{(b-1)/2:b\in B_1(n)\}.
+\sum_{t=j+1}^{M_n}
+\widetilde{\mathcal D}_{t,n,q}(\theta_j)
+\le
+\frac{4e}{m_n+1}.
 \]
 
-For `t>=2`,
+Thus the transformed tail does not accumulate useful dispersion at the dyadic ladder. Any decay must come from the first `j` transformed coordinates.
+
+## Exact transformed-kernel interaction
+
+Let
 
 \[
-\widetilde B_t(n)
-=
-\{0\}\cup\{b/2:b\in B_t(n)\}.
+N_{n,q}=|J_{n,q}|.
 \]
 
-The next theorem must analyze this exact product law, not the unnormalized law.
-
-## Exact dispersion identity
-
-For transformed coordinate probabilities `\widetilde p_t(a)`, define
+N3-ANA-028 proves
 
 \[
-\widetilde{\mathcal D}_{t,\lambda}(\theta)
+v_2(N_{n,q})\in\{0,1\}.
+\]
+
+At a reduced dyadic frequency `2pi a/2^d`, the transformed interval kernel vanishes exactly when `2^d|N_{n,q}`.
+
+Therefore:
+
+1. no reduced dyadic frequency of denominator at least `4` is an exact kernel zero;
+2. `pi` is a kernel zero only when `rho_n` and `q` are both even.
+
+Pointwise nonvanishing is not itself an integral obstruction. It proves that the next theorem cannot discard higher dyadic frequencies by exact kernel cancellation.
+
+## Active prefix object
+
+For each dyadic scale, define the prefix characteristic
+
+\[
+\widetilde\Phi_{n,q}^{\langle j\rangle}(\theta)
 =
-\sum_{a,b}
-\widetilde p_t(a)\widetilde p_t(b)
-\sin^2\left(\frac{(a-b)\theta}{2}\right).
+\prod_{t=1}^{j}
+\widetilde\phi_{t,n,q}(\theta).
+\]
+
+The active theorem must control this prefix in a neighborhood of
+
+\[
+\theta_j=\pi/2^{j-1}.
+\]
+
+Equivalent residue formulation:
+
+Let
+
+\[
+S_j=\sum_{t=1}^{j}\widetilde Z_t.
 \]
 
 Then
 
 \[
-|\widetilde\phi_{t,\lambda}(\theta)|^2
-=1-2\widetilde{\mathcal D}_{t,\lambda}(\theta),
+\widetilde\Phi_{n,q}^{\langle j\rangle}(\theta_j)
+=
+\sum_{r\bmod 2^j}
+P(S_j\equiv r\bmod2^j)
+e^{2\pi ir/2^j}.
 \]
 
-and
-
-\[
-|\widetilde\Phi_{n,\lambda}(\theta)|^2
-\le
-\exp\left(
--2\sum_t
-\widetilde{\mathcal D}_{t,\lambda}(\theta)
-\right).
-\]
+A quantitative prefix theorem may therefore be stated as residue spreading modulo `2^j` or as direct characteristic decay.
 
 ## Exact missing theorem
 
-Prove one of the following for every transformed post-prefix target.
+Prove one of the following uniformly for every post-prefix target.
 
-1. A complete list of the remaining major arcs and a lower bound for
+1. A neighborhood estimate
    \[
-   \sum_t\widetilde{\mathcal D}_{t,2\lambda_{n,q}}(\theta)
+   \left|
+   \widetilde\Phi_{n,q}^{\langle j\rangle}
+   (\theta_j+u)
+   \right|
+   \le E_{n,j}(u)
    \]
-   outside them.
-2. A measure bound for frequencies where transformed aggregate dispersion is small.
-3. A weighted integral estimate directly matched to the transformed interval kernel.
-4. A collision-aware local reference law and strict Fourier comparison.
-5. A target-local concentration or additive-energy obstruction showing that the transformed route still fails.
+   whose weighted integral is below the transformed reference-window mass.
+2. Quantitative residue spreading of `S_j mod 2^j` sufficient to bound the prefix characteristic.
+3. A measure bound for neighborhoods where prefix dispersion is weak.
+4. A transformed prefix concentration or additive-energy obstruction.
+5. A non-dyadic rational obstruction that requires enlarging the transformed major-arc set.
 
 ## Mandatory tests
 
-- Do not assume the parity normalization removes every secondary resonance.
-- Determine the residue distribution of the transformed first coordinate modulo small integers.
-- Track the exact transformed common tilt `2 lambda`.
-- Compare the final error with the transformed reference-window mass.
+- Keep the exact post-prefix target range.
+- Track common transformed tilt `2 lambda`.
+- Analyze the first `j` coordinates, not the invisible tail.
+- Match every neighborhood estimate to the transformed interval kernel.
+- Do not treat nonzero pointwise kernel values as an integral lower bound.
 - Retain numerical collision multiplicity.
 - Do not use logarithmic divisor phases.
-- Do not infer quantitative dispersion from span one.
+- Do not infer quantitative dispersion from exact span one.
 
 ## Current route decision
 
-The unnormalized aggregate-dispersion route is rejected unless it includes both zero and `pi` as major arcs and uses a parity-aware reference law.
-
-The preferred route is the exact odd-lattice normalization from `N3-ANA-025`, followed by a fresh resonance audit and transformed weighted Fourier theorem.
+The preferred route is the exact odd-lattice normalization, followed by target-uniform prefix residue control near the complete dyadic ladder, a non-dyadic resonance audit, and a collision-aware transformed weighted Fourier theorem.
