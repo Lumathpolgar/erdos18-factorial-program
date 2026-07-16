@@ -71,7 +71,7 @@ Q_n=\left\lceil\frac{Y_n+1}{W_n+1}\right\rceil.
 P_n\ge Q_n.
 \]
 
-`N1-STR-024` defines the layer-normalized surplus
+`N1-STR-024` defines
 
 \[
 \Gamma_n=(P_n/Q_n)^{1/L}
@@ -96,11 +96,36 @@ Accepted next outcomes are:
 3. a **conditional theorem** reducing `Gamma_n>=1` to an explicit divisor-gap statement;
 4. an exact counterexample with a replayable certificate.
 
-Finite values `Gamma_51`, `Gamma_52`, and `Gamma_53` are non-monotone. They must not be extrapolated as an asymptotic trend.
+Finite values `Gamma_51` through `Gamma_54` are non-monotone. They must not be extrapolated as an asymptotic trend.
+
+## Divisor record-gap requirement
+
+### N1-REQ-N2-005
+
+Result label: **conditional theorem** request.
+
+Let `D_t` be the exact carrier threshold and let `g_t` be the first record-breaking consecutive divisor gap strictly larger than `D_t`, when such a gap occurs before the layer cutoff.
+
+Prove one of:
+
+1. a uniform upper bound on `g_t/D_t` strong enough to force connected-prefix growth meeting `N1-OBS-003`;
+2. a uniform lower obstruction showing record gaps force `Gamma_n<1` eventually or infinitely often;
+3. a conditional theorem reducing the carrier to an explicit theorem about divisor record gaps of
+   \[
+   D_n=\frac{n!}{3\cdot2^{v_2(n!)}}.
+   \]
+
+Finite diagnostic `N1-CMP-007` gives
+
+\[
+\max_{51\le n\le54,\ 1\le t\le5}\frac{g_t}{D_t}<1.108.
+\]
+
+This is **computational evidence** only. The maximum occurs at `n=51`, layer `4`.
 
 ## Finite complete-core requirement
 
-### N1-REQ-N4-005
+### N1-REQ-N4-006
 
 Result label: **finite certificate** request.
 
@@ -110,14 +135,15 @@ Current exact coverage:
 - Nova 1 `N1-FIN-005`: every `46<=n<=50`;
 - Nova 1 `N1-FIN-006`: `n=51`;
 - Nova 1 `N1-FIN-007`: `n=52`;
-- Nova 1 `N1-FIN-008`: `n=53`.
+- Nova 1 `N1-FIN-008`: `n=53`;
+- Nova 1 `N1-FIN-009`: `n=54`.
 
 Therefore
 
 \[
 H_{n!}(\lfloor\sqrt{n!}\rfloor+1)
 \le22
-\qquad(12\le n\le53).
+\qquad(12\le n\le54).
 \]
 
 Nova 4 must independently reconstruct:
@@ -131,21 +157,23 @@ Nova 4 must independently reconstruct:
 7. every layer threshold and cutoff;
 8. connected maxima and exact `K_t` values;
 9. blocking gaps, endpoints, margins, and term bounds;
-10. alternate partition replay;
-11. `N1-STR-024` integer identities;
-12. fail-closed integer and resource boundaries.
+10. two distinct explicit partition replays;
+11. exact normalized surplus identities;
+12. runtime-aware partition planning with explicit column bounds;
+13. fail-closed integer and resource boundaries.
 
 Current artifacts:
 
 - `proofs/MEET_IN_THE_MIDDLE_CONNECTED_PREFIX_STREAM.md`;
 - `proofs/NORMALIZED_CONNECTED_PREFIX_SURPLUS.md`;
 - `verification/marker_three_mitm_prefix_u128.cpp`;
-- `verification/FULL_CORE_N53_REPORT.md`;
-- `verification/full_core_n53_mitm.txt`;
-- `verification/full_core_n53_mitm_mask414.txt`;
-- `verification/test_mitm_n53_normalized.py`.
+- `verification/plan_mitm_partition.py`;
+- `verification/FULL_CORE_N54_REPORT.md`;
+- `verification/full_core_n54_mitm_mask255.txt`;
+- `verification/full_core_n54_mitm_mask223.txt`;
+- `verification/test_mitm_n54_partition.py`.
 
-The next finite target is `n=54`. Resource exhaustion must be reported as unknown due to resource limits, never as mathematical failure.
+The next finite target is `n=55`. Resource exhaustion must be reported as unknown due to resource limits, never as mathematical failure.
 
 ## Collision requirement
 
@@ -231,12 +259,13 @@ under the current frozen endpoint convention.
 - unique-parent exact stream;
 - meet-in-the-middle exact stream;
 - layer-normalized entropy identity;
-- exact complete-core carrier coverage through `n=53`.
+- exact complete-core carrier coverage through `n=54`.
 
 ## Open structural requirements
 
 - uniform normalized connected-prefix lower or upper bounds;
-- exact finite extension beginning at `n=54`;
+- uniform divisor record-gap control;
+- exact finite extension beginning at `n=55`;
 - uniform quotient maximum downward gap at most `W_n`;
 - downward endpoint-window occupancy;
 - target-local collision control;
