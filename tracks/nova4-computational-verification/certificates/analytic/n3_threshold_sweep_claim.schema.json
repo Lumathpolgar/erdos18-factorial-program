@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Nova 4 request G threshold sweep claim",
+  "type": "object",
+  "required": ["schema", "result_class", "source", "evidence_sha256", "claim", "sha256"],
+  "properties": {
+    "schema": {"const": "nova4.n3-threshold-sweep-claim.v1"},
+    "result_class": {"const": "finite threshold sweep certificate"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "additionalProperties": true
+}
