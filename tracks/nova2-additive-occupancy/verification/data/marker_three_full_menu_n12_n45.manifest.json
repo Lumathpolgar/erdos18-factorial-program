@@ -1,0 +1,59 @@
+{
+  "schema": "nova2.marker-three-full-menu-manifest.v1",
+  "result_id": "N2-FIN-202",
+  "result_class": "finite certificate",
+  "source": {
+    "repository": "Lumathpolgar/erdos18-factorial-program",
+    "nova1_branch": "nova/factorial-structure",
+    "nova1_commit": "ebb47ba436af554366d0f285119a769f31f9e561",
+    "nova1_construction": "N1-CON-003",
+    "nova1_handoff": "N1-HO-N2-002",
+    "nova2_theorems": [
+      "N2-ADD-119",
+      "N2-ADD-120"
+    ]
+  },
+  "range": {
+    "n_min": 12,
+    "n_max": 45,
+    "all_reach_full_endpoint": true,
+    "completed_cases": 34,
+    "maximum_layers_used": 6,
+    "maximum_term_bound": 22
+  },
+  "layer_count_transitions": [
+    {"n_min": 12, "n_max": 14, "layers_used": 2},
+    {"n_min": 15, "n_max": 19, "layers_used": 3},
+    {"n_min": 20, "n_max": 25, "layers_used": 4},
+    {"n_min": 26, "n_max": 38, "layers_used": 5},
+    {"n_min": 39, "n_max": 45, "layers_used": 6}
+  ],
+  "largest_completed_case": {
+    "n": 45,
+    "r": 16,
+    "M": 232,
+    "v2_factorial": 41,
+    "odd_core_divisor_count": 18627840,
+    "layers_used": 6,
+    "quotient_endpoint": 3645731459384007323435539335,
+    "occupied_through": 3737710017095625573621505083,
+    "margin": 91978557711618250185965748,
+    "term_bound": 22
+  },
+  "next_resource_limited_case": {
+    "n": 46,
+    "odd_core_divisor_count": 27941760,
+    "declared_generation_cap": 20000000,
+    "status": "not audited due to resource limit"
+  },
+  "artifacts": {
+    "generator": "verification/marker_three_full_menu_audit.py",
+    "summary_csv": "verification/data/marker_three_full_menu_n12_n45.csv",
+    "proof_report": "proofs/MARKER_THREE_FINITE_FULL_MENU_AUDIT.md"
+  },
+  "hashes": {
+    "canonical_full_per_layer_payload_sha256": "15f3598d3d111bfd78a7f1e51a9fd07972158c81f60686a76a5a3e03bf22224c",
+    "summary_csv_lf_sha256": "b777f045c7f5fa6ff44d143b97d1526a2f3c228a20d264f0a44b64bf111b0f6b"
+  },
+  "claim_boundary": "Exact finite certificate only. No asymptotic conclusion and no inference for n=46 or larger."
+}
