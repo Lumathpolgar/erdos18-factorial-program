@@ -10,11 +10,11 @@ Handoff commit: `7469dada02fa4caca08ed391ef8b0cb0f1e855b2`
 
 Source-ledger commit used for requests E and F: `697e7ed8bdb03f54b2389b2fcdd8b685dadcebc4`
 
-Status: `REQUESTS_A_THROUGH_H_COMPLETE_FINAL_THEOREM_CLOSURE_READY`
+Status: `REQUESTS_A_THROUGH_H_AND_N3_ANA_006_COMPLETE_N3_ANA_008_READY`
 
 Completed:
 
-- independent proof reconstruction and acceptance of `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-007`, `N3-ANA-010`, and `N3-ANA-011`;
+- independent proof reconstruction and acceptance of `N3-ANA-004`, `N3-ANA-005`, `N3-ANA-006`, `N3-ANA-007`, `N3-ANA-010`, and `N3-ANA-011`;
 - exact moment and local-ceiling audits for `2 <= n <= 12`;
 - request C scale, low-prime share, effective-dimension, and high-prime tail evidence;
 - factor-of-two tail-ratio label diagnosis in the frozen script;
@@ -23,25 +23,26 @@ Completed:
 - request F reconstruction of Dusart Theorem 6.9 and `N3-ANA-010`;
 - request G exact sweep of every integer `120368 <= n <= 1000000`;
 - request H rejection of all six mandated semantic corruptions;
-- exact endpoint witness `n=120417`, where `ceil(n/2)=60209` is prime;
-- final `N3-ANA-011` semantic contract and theorem certificate.
+- final `N3-ANA-011` semantic contract and theorem certificate;
+- `N3-ANA-006` normalized variance asymptotic, infinite-uniform weak limit, characteristic-function product, and non-Gaussianity audit;
+- five rehashed `N3-ANA-006` semantic corruptions rejected.
 
-Request H decision:
+`N3-ANA-006` decision:
 
 ```text
-request H: ACCEPTED
-N3-ANA-011: ACCEPTED
-required corruptions rejected: 6 of 6
-canonical contract SHA-256: 63b5e3ae60a38f892768c791765a6f4dd99073586dbeada06e66f7c02b5caf8b
-audit SHA-256: 785517e04e7421348cad72e6e8d20718294dc9edaa32852f3e794ea2637503a9
-claim SHA-256: a254a6dc271b174a8e5f809c67c22c75de5e6163f36e69a018cb0770f9b9b23c
+N3-ANA-006: ACCEPTED
+variance asymptotic: ACCEPTED
+full normalized weak limit: ACCEPTED
+non-Gaussian limit: ACCEPTED
+finite diagnostic table as proof: REJECTED
+audit SHA-256: e1914a367749c8a397e77212c0d48c53335811e52418ffe0d8d1738046886119
+claim SHA-256: efe6091759b788c9383b76799a6a62283a06d3d4f844f5a9e9199ed09d49dcf4
 ```
 
 Remaining:
 
-- independent final decision for `N3-ANA-006`, the variance asymptotic;
-- independent final decision for `N3-ANA-008`, the high-prime tail scale;
-- independent final decision for `N3-ANA-009`, the full-model non-Gaussian limit and characteristic-function zero.
+- independent final decision for `N3-ANA-008`, the high-prime-tail central limit theorem and scale estimates;
+- independent final decision for `N3-ANA-009`, the coarse central-window lower bound based on Berry-Esseen.
 
 ## N4-REQ-N2-002
 
