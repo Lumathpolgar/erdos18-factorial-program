@@ -1,6 +1,9 @@
 name: Nova 4 integration gate
 
 on:
+  push:
+    branches:
+      - nova/computational-verification
   pull_request:
     branches:
       - main
@@ -16,18 +19,33 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Check out generated pull-request merge commit
+      - name: Check out candidate branch
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Record integration snapshot
+      - name: Construct current-main plus candidate combined tree
+        id: integration
         shell: bash
         run: |
           set -euo pipefail
+          SOURCE_HEAD="$(git rev-parse HEAD)"
+          git fetch --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          BASE_HEAD="$(git rev-parse refs/remotes/origin/main)"
+
+          git checkout --detach "$BASE_HEAD"
+          git -c user.name='Nova 4 Integration Gate' \
+              -c user.email='nova4-integration@users.noreply.github.com' \
+              merge --no-commit --no-ff "$SOURCE_HEAD"
+
+          TREE_SHA="$(git write-tree)"
           echo "event=${GITHUB_EVENT_NAME}"
-          echo "tested_sha=${GITHUB_SHA}"
-          echo "head_sha=${{ github.event.pull_request.head.sha }}"
-          echo "base_sha=${{ github.event.pull_request.base.sha }}"
-          git rev-parse HEAD
+          echo "candidate_head=${SOURCE_HEAD}"
+          echo "base_head=${BASE_HEAD}"
+          echo "combined_tree=${TREE_SHA}"
+          echo "candidate_head=${SOURCE_HEAD}" >> "$GITHUB_OUTPUT"
+          echo "base_head=${BASE_HEAD}" >> "$GITHUB_OUTPUT"
+          echo "combined_tree=${TREE_SHA}" >> "$GITHUB_OUTPUT"
           git status --short
 
       - name: Compile Nova 4 Python sources
